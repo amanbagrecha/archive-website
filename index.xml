@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Aman Bagrecha</title>
-    <link>https://amanbagrecha.github.io/</link>
-      <atom:link href="https://amanbagrecha.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <link>amanbagrecha.github.io/</link>
+      <atom:link href="amanbagrecha.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Aman Bagrecha</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 01 Jun 2030 13:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://amanbagrecha.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <url>/amanbagrecha.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
       <title>Aman Bagrecha</title>
-      <link>https://amanbagrecha.github.io/</link>
+      <link>amanbagrecha.github.io/</link>
     </image>
     
     <item>
       <title>Python basics</title>
-      <link>https://amanbagrecha.github.io/courses/example/python/</link>
+      <link>amanbagrecha.github.io/courses/example/python/</link>
       <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/courses/example/python/</guid>
+      <guid>amanbagrecha.github.io/courses/example/python/</guid>
       <description>&lt;p&gt;Build a foundation in Python.&lt;/p&gt;
 &lt;p&gt;
   &lt;i class=&#34;fas fa-clock  pr-1 fa-fw&#34;&gt;&lt;/i&gt; 1-2 hours per week, for 8 weeks&lt;/p&gt;
@@ -51,9 +51,9 @@
     
     <item>
       <title>Visualization</title>
-      <link>https://amanbagrecha.github.io/courses/example/visualization/</link>
+      <link>amanbagrecha.github.io/courses/example/visualization/</link>
       <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/courses/example/visualization/</guid>
+      <guid>amanbagrecha.github.io/courses/example/visualization/</guid>
       <description>&lt;p&gt;Learn how to visualize data with Plotly.&lt;/p&gt;
 &lt;p&gt;
   &lt;i class=&#34;fas fa-clock  pr-1 fa-fw&#34;&gt;&lt;/i&gt; 1-2 hours per week, for 8 weeks&lt;/p&gt;
@@ -81,9 +81,9 @@ fig.show()
     
     <item>
       <title>Statistics</title>
-      <link>https://amanbagrecha.github.io/courses/example/stats/</link>
+      <link>amanbagrecha.github.io/courses/example/stats/</link>
       <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/courses/example/stats/</guid>
+      <guid>amanbagrecha.github.io/courses/example/stats/</guid>
       <description>&lt;p&gt;Introduction to statistics for data science.&lt;/p&gt;
 &lt;p&gt;
   &lt;i class=&#34;fas fa-clock  pr-1 fa-fw&#34;&gt;&lt;/i&gt; 1-2 hours per week, for 8 weeks&lt;/p&gt;
@@ -109,9 +109,9 @@ The variance of the distribution is $\sigma^{2}$.
     
     <item>
       <title>Example Talk</title>
-      <link>https://amanbagrecha.github.io/talk/example-talk/</link>
+      <link>amanbagrecha.github.io/talk/example-talk/</link>
       <pubDate>Sat, 01 Jun 2030 13:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/talk/example-talk/</guid>
+      <guid>amanbagrecha.github.io/talk/example-talk/</guid>
       <description>&lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
     Click on the &lt;strong&gt;Slides&lt;/strong&gt; button above to view the built-in slides feature.
@@ -128,10 +128,1485 @@ The variance of the distribution is $\sigma^{2}$.
     </item>
     
     <item>
+      <title>Reverse Geocode using Mapbox API with Zoom functionality</title>
+      <link>amanbagrecha.github.io/post/openlayers/reverse-geocode-using-mapbox-api-with-zoom-functionality/</link>
+      <pubDate>Mon, 24 May 2021 20:04:53 +0530</pubDate>
+      <guid>amanbagrecha.github.io/post/openlayers/reverse-geocode-using-mapbox-api-with-zoom-functionality/</guid>
+      <description>&lt;h2 id=&#34;main-steps&#34;&gt;Main steps&lt;/h2&gt;
+&lt;p&gt;This one page appication demostrates only key elements, rest of the customisation is at discretion of the viewer.&lt;/p&gt;
+&lt;h3 id=&#34;setup-the-project&#34;&gt;Setup the project&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Create &lt;code&gt;html&lt;/code&gt; file and add basic elements&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0&amp;quot;&amp;gt;
+ &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css&amp;quot; type=&amp;quot;text/css&amp;quot;&amp;gt;
+ &amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}
+ &amp;lt;/style&amp;gt;
+ &amp;lt;/head&amp;gt;
+ &amp;lt;body&amp;gt;
+&amp;lt;h2&amp;gt;Autocomplete&amp;lt;/h2&amp;gt;
+&amp;lt;br&amp;gt;
+&amp;lt;form  method=&amp;quot;post&amp;quot; &amp;gt;
+  &amp;lt;div class=&amp;quot;autocomplete&amp;quot; style=&amp;quot;width:300px;&amp;quot;&amp;gt;
+	&amp;lt;input id=&amp;quot;myInput&amp;quot; type=&amp;quot;text&amp;quot; name=&amp;quot;myCountry&amp;quot; placeholder=&amp;quot;Country&amp;quot;&amp;gt;
+  &amp;lt;/div&amp;gt;
+  &amp;lt;input type=&amp;quot;submit&amp;quot; id = &amp;quot;geocodingSubmit&amp;quot;&amp;gt;
+&amp;lt;/form&amp;gt;
+&amp;lt;div id=&#39;project_map&#39;, class=&amp;quot;map&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;script src=&amp;quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;!-- &amp;lt;script src=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.5.0/proj4.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; --&amp;gt;
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+	 var project_maplayer = new ol.layer.Tile({
+	// source: new ol.source.OSM(),
+	source: new ol.source.XYZ({
+		attributions: [&#39;Powered by Esri&#39;,
+									 &#39;Source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community&#39;],
+		attributionsCollapsible: false,
+		url: &#39;https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}&#39;,
+		maxZoom: 23
+	}),
+	zIndex: 0
+});
+var project_view = new ol.View({
+	projection: &#39;EPSG:4326&#39;,
+	center: [-81.80808208706726, 27.285095000261222],
+	zoom: 7,
+});
+var Projectmap = new ol.Map({
+	layers: [project_maplayer,],
+	target: &#39;project_map&#39;,
+	view: project_view,
+    constrainOnlyCenter: true,
+});
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We added the following elements,&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Search bar: we setup the search function to input values as address and wrap it within a form with post request.&lt;/li&gt;
+&lt;li&gt;Map : the div element with &lt;code&gt;id=&amp;quot;project_map&amp;quot;&lt;/code&gt; holds the map element and the script does the following. First, create layer with ESRI basemap. Second, add the layer to the Map object.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;At this stage the application looks like the following image&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/joNvjw7.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;add-autocomplete-functionality&#34;&gt;Add autocomplete functionality&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;style&amp;gt;
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+&amp;lt;/style&amp;gt;
+
+&amp;lt;script&amp;gt;
+myHeaders =  {&#39;Content-Type&#39;: &#39;application/json&#39;, &#39;Access-Control-Allow-Credentials&#39; : true,
+					&#39;Access-Control-Allow-Origin&#39;:&#39;*&#39;,
+					&#39;Accept&#39;: &#39;application/json&#39;}
+
+function autocomplete(inp) {
+  /*the autocomplete function takes one argument,
+  the text field element*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener(&amp;quot;input&amp;quot;, function(e) {
+	  var a, b, i, val = this.value;
+	  var ACCESS_TOKEN_KEY = &#39;your_token_here&#39;
+	  /*close any already open lists of autocompleted values*/
+	  var URL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${val}.json?access_token=${ACCESS_TOKEN_KEY}&amp;amp;types=address,region,poi,country,district,locality,neighborhood,postcode&amp;amp;country=us`
+	 
+	  fetch(URL,{
+		method: &#39;GET&#39;,
+		headers: myHeaders,
+	  }).then(response =&amp;gt; response.json())
+	  .then(data =&amp;gt; {
+		geocode_data = data;
+		// console.log(data) 
+	  
+	  closeAllLists();
+	  if (!val) { return false;}
+	  currentFocus = -1;
+	  /*create a DIV element that will contain the items (values):*/
+	  a = document.createElement(&amp;quot;DIV&amp;quot;);
+	  a.setAttribute(&amp;quot;id&amp;quot;, this.id + &amp;quot;autocomplete-list&amp;quot;);
+	  a.setAttribute(&amp;quot;class&amp;quot;, &amp;quot;autocomplete-items&amp;quot;);
+	  /*append the DIV element as a child of the autocomplete container:*/
+	  this.parentNode.appendChild(a);
+	  /*for each item in the array...*/
+	  for (i = 0; i &amp;lt; geocode_data.features.length; i++) {
+
+		  b = document.createElement(&amp;quot;DIV&amp;quot;);
+		  /*insert a input field that will hold the current array item&#39;s value:*/
+		  b.innerHTML += geocode_data.features[i].place_name;
+		  b.innerHTML += `&amp;lt;input type=&#39;hidden&#39; style=&amp;quot;display: none;&amp;quot; id=${i}-center-cc  
+		  coordinates=&#39;${geocode_data.features[i].center}&#39; value=&#39;${geocode_data.features[i].place_name}&#39;&amp;gt;`;
+		  
+		  /*execute a function when someone clicks on the item value (DIV element):*/
+		  b.addEventListener(&amp;quot;click&amp;quot;, function(e) {
+			  /*insert the value for the autocomplete text field:*/
+			  var input_tag = this.getElementsByTagName(&amp;quot;input&amp;quot;)[0]
+			  inp.value = input_tag.value;
+			  inp.setAttribute(&amp;quot;coordinates&amp;quot;, input_tag.getAttribute(&#39;coordinates&#39;));
+
+			  /*close the list of autocompleted values,
+			  (or any other open lists of autocompleted values:*/
+			  closeAllLists();
+		  });
+		  a.appendChild(b);
+		}
+
+	  })
+	  .catch(error =&amp;gt; {
+	console.error(&#39;There has been a problem with your fetch operation:&#39;, error);
+	});
+
+
+	  });
+  // });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener(&amp;quot;keydown&amp;quot;, function(e) {
+	  var x = document.getElementById(this.id + &amp;quot;autocomplete-list&amp;quot;);
+	  if (x) x = x.getElementsByTagName(&amp;quot;div&amp;quot;);
+	  if (e.keyCode == 40) {
+		/*If the arrow DOWN key is pressed,
+		increase the currentFocus variable:*/
+		currentFocus++;
+		/*and and make the current item more visible:*/
+		addActive(x);
+	  } else if (e.keyCode == 38) { //up
+		/*If the arrow UP key is pressed,
+		decrease the currentFocus variable:*/
+		currentFocus--;
+		/*and and make the current item more visible:*/
+		addActive(x);
+	  } else if (e.keyCode == 13) {
+		/*If the ENTER key is pressed, prevent the form from being submitted,*/
+		e.preventDefault();
+		if (currentFocus &amp;gt; -1) {
+		  /*and simulate a click on the &amp;quot;active&amp;quot; item:*/
+		  if (x) x[currentFocus].click();
+		}
+	  }
+  });
+  function addActive(x) {
+	/*a function to classify an item as &amp;quot;active&amp;quot;:*/
+	if (!x) return false;
+	/*start by removing the &amp;quot;active&amp;quot; class on all items:*/
+	removeActive(x);
+	if (currentFocus &amp;gt;= x.length) currentFocus = 0;
+	if (currentFocus &amp;lt; 0) currentFocus = (x.length - 1);
+	/*add class &amp;quot;autocomplete-active&amp;quot;:*/
+	x[currentFocus].classList.add(&amp;quot;autocomplete-active&amp;quot;);
+  }
+  function removeActive(x) {
+	/*a function to remove the &amp;quot;active&amp;quot; class from all autocomplete items:*/
+	for (var i = 0; i &amp;lt; x.length; i++) {
+	  x[i].classList.remove(&amp;quot;autocomplete-active&amp;quot;);
+	}
+  }
+  function closeAllLists(elmnt) {
+	/*close all autocomplete lists in the document,
+	except the one passed as an argument:*/
+	var x = document.getElementsByClassName(&amp;quot;autocomplete-items&amp;quot;);
+	for (var i = 0; i &amp;lt; x.length; i++) {
+	  if (elmnt != x[i] &amp;amp;&amp;amp; elmnt != inp) {
+		x[i].parentNode.removeChild(x[i]);
+	  }
+	}
+  }
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener(&amp;quot;click&amp;quot;, function (e) {
+	  closeAllLists(e.target);
+  });
+}
+
+/*initiate the autocomplete function on the &amp;quot;myInput&amp;quot; element */
+autocomplete(document.getElementById(&amp;quot;myInput&amp;quot;));
+
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The following is the explanation of the code&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;autocomplete function: The function takes an element as input which needs to be populated. Then we add an event listner which on change in input field, triggers. A GET request is sent across for the input typed and the result is populated in a form of dropdown. We add some styling on key-down so as to select the search.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;At this point, with correct mapbox api access key, we have built the autocomplete functionality.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/ES8bnSO.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;last-steps&#34;&gt;Last steps&lt;/h2&gt;
+&lt;p&gt;We now only need to implement the submit functionality. On click of submit button, the address is located on the map and zoomed in. This is done using a function we call centerMap&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;function CenterMap() {
+	var [long, lat] = document.getElementById(&amp;quot;myInput&amp;quot;).getAttribute(&amp;quot;coordinates&amp;quot;).split(&amp;quot;,&amp;quot;).map(Number)
+    console.log(&amp;quot;Long: &amp;quot; + long + &amp;quot; Lat: &amp;quot; + lat);
+    Projectmap.getView().setCenter(ol.proj.transform([long, lat], &#39;EPSG:4326&#39;, &#39;EPSG:4326&#39;));
+    Projectmap.getView().setZoom(5);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we add the centerMap function on click of submit&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;document.getElementById(&amp;quot;geocodingSubmit&amp;quot;).addEventListener(&#39;click&#39;, function(e){
+
+	e.preventDefault();
+	CenterMap()
+})
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Django How to: Upload Multiple Image</title>
+      <link>amanbagrecha.github.io/post/django/django-image-upload/</link>
+      <pubDate>Mon, 24 May 2021 17:25:54 +0530</pubDate>
+      <guid>amanbagrecha.github.io/post/django/django-image-upload/</guid>
+      <description>&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;project-setup&#34;&gt;Project setup&lt;/h3&gt;
+&lt;p&gt;create project&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;django-admin startproject login_boiler_plate
+create app python manage.py startapp GisMap
+create superuser python manage.py createsuperuser
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;in &lt;code&gt;settings.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;INSTALLED_APPS = [
+	...
+	&#39;GisMap&#39;,
+]
+
+MEDIA_ROOT =  os.path.join(BASE_DIR, &#39;media&#39;) 
+MEDIA_URL = &#39;/media/&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;in &lt;code&gt;models.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from django.db import models
+from django.contrib.auth.models import User
+
+
+class ImageUpload(models.Model):
+	user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+	image = models.ImageField( null=False, blank=False, upload_to = &#39;images/&#39;)
+	date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):
+		return self.user.username + &amp;quot; uploaded: &amp;quot;+ self.image.name
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;in &lt;code&gt;forms.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;  
+from django.forms import ModelForm
+from django.contrib.auth.models import User
+from .models import ImageUpload
+
+class ImageForm(ModelForm):
+	class Meta:
+		model = ImageUpload
+		fields = (&#39;image&#39;,)
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;in &lt;code&gt;urls.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from django.conf import settings
+from django.conf.urls.static import static
+if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;in &lt;code&gt;home.html&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;                  &amp;lt;!-- Modal --&amp;gt;
+                  &amp;lt;form method = &amp;quot;post&amp;quot; enctype=&amp;quot;multipart/form-data&amp;quot;&amp;gt;
+                  &amp;lt;div class=&amp;quot;modal fade&amp;quot; id=&amp;quot;exampleModal&amp;quot; tabindex=&amp;quot;-1&amp;quot; role=&amp;quot;dialog&amp;quot; aria-labelledby=&amp;quot;exampleModalLabel&amp;quot; aria-hidden=&amp;quot;true&amp;quot; &amp;gt;
+                    {% csrf_token %}
+                    &amp;lt;div class=&amp;quot;modal-dialog&amp;quot; role=&amp;quot;document&amp;quot;&amp;gt;
+                      &amp;lt;div class=&amp;quot;modal-content&amp;quot;&amp;gt;
+                        &amp;lt;div class=&amp;quot;modal-header&amp;quot;&amp;gt;
+                          &amp;lt;h5 class=&amp;quot;modal-title&amp;quot; id=&amp;quot;exampleModalLabel&amp;quot;&amp;gt;Upload Image&amp;lt;/h5&amp;gt;
+                          &amp;lt;button type=&amp;quot;button&amp;quot; class=&amp;quot;close&amp;quot; data-dismiss=&amp;quot;modal&amp;quot; aria-label=&amp;quot;Close&amp;quot;&amp;gt;
+                            &amp;lt;span aria-hidden=&amp;quot;true&amp;quot;&amp;gt;&amp;amp;times;&amp;lt;/span&amp;gt;
+                          &amp;lt;/button&amp;gt;
+                        &amp;lt;/div&amp;gt;
+                        &amp;lt;div class=&amp;quot;modal-body&amp;quot;&amp;gt;
+                          {{ image_form.image }}
+                        &amp;lt;/div&amp;gt;
+                        &amp;lt;div class=&amp;quot;modal-footer&amp;quot;&amp;gt;
+                          &amp;lt;button type=&amp;quot;button&amp;quot; class=&amp;quot;btn btn-secondary&amp;quot; data-dismiss=&amp;quot;modal&amp;quot;&amp;gt;Close&amp;lt;/button&amp;gt;
+                          &amp;lt;button type=&amp;quot;submit&amp;quot; class=&amp;quot;btn btn-primary&amp;quot;&amp;gt;Save Image&amp;lt;/button&amp;gt;
+                        &amp;lt;/div&amp;gt;
+                      &amp;lt;/div&amp;gt;
+                    &amp;lt;/div&amp;gt;
+                  &amp;lt;/div&amp;gt;
+                  &amp;lt;/form&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;in &lt;code&gt;views.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;@login_required(login_url=&#39;login&#39;)
+def home_page(request):
+
+	if request.method == &#39;POST&#39;:
+		form = ImageForm(request.POST , request.FILES)
+		print(form)
+		if form.is_valid():
+			print(&amp;quot;is valid&amp;quot;)
+			obj = form.save(commit=False)
+			obj.user = request.user
+			obj.save()
+		return redirect(&#39;home&#39;)
+	else:
+		Imageform = ImageForm()
+		return render(request, &amp;quot;GisMap/home.html&amp;quot;, {&#39;Title&#39;: &amp;quot;Home Page&amp;quot;, &amp;quot;image_form&amp;quot;: ImageForm})
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;upload-to-s3-bucket--django&#34;&gt;Upload to S3 bucket : Django&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;django-storages doc&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Install packages to support s3 communication&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip install django-storages
+pip install boto3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;in &lt;code&gt;settings.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;INSTALLED_APPS = [
+	...
+	&#39;storages&#39;,
+]
+
+AWS_ACCESS_KEY_ID = &amp;quot;&amp;quot;
+AWS_SECRET_ACCESS_KEY = &amp;quot;&amp;quot;
+AWS_STORAGE_BUCKET_NAME = &amp;quot;&amp;quot;
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+
+DEFAULT_FILE_STORAGE = &#39;storages.backends.s3boto3.S3Boto3Storage&#39;
+
+AWS_QUERYSTRING_AUTH = False // removes the query string
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;note-in-s3-bucket-make-the-bucket-public-to-be-able-to-access-to-anyone-without-appending-query-string&#34;&gt;&lt;code&gt;NOTE: in S3 bucket, make the bucket public to be able to access to anyone without appending query string.&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-use-case-2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;aws docs&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+  &amp;quot;Version&amp;quot;:&amp;quot;2012-10-17&amp;quot;,
+  &amp;quot;Statement&amp;quot;:[
+    {
+      &amp;quot;Sid&amp;quot;:&amp;quot;PublicRead&amp;quot;,
+      &amp;quot;Effect&amp;quot;:&amp;quot;Allow&amp;quot;,
+      &amp;quot;Principal&amp;quot;: &amp;quot;*&amp;quot;,
+      &amp;quot;Action&amp;quot;:[&amp;quot;s3:GetObject&amp;quot;,&amp;quot;s3:GetObjectVersion&amp;quot;],
+      &amp;quot;Resource&amp;quot;:[&amp;quot;arn:aws:s3:::DOC-EXAMPLE-BUCKET/*&amp;quot;]
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;get-point-data-from-image-meta-deta&#34;&gt;Get Point data from image meta deta&lt;/h2&gt;
+&lt;h3 id=&#34;it-is-called-exchangeable-image-file-format-exif&#34;&gt;It is called Exchangeable image file format (EXIF)&lt;/h3&gt;
+&lt;p&gt;Since GIS data, we need some installs.&lt;/p&gt;
+&lt;p&gt;geodjango&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pip install django-geo
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;NOTE: ensure os4geo is installed: install from here if not done. &lt;a href=&#34;https://qgis.org/en/site/forusers/download.html&#34;&gt;https://qgis.org/en/site/forusers/download.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;and make the following changes in &lt;code&gt;settings.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;INSTALLED_APPS = [
+...
+	&#39;django.contrib.gis&#39;,
+]
+
+DATABASES = {
+	&#39;default&#39;: {
+		# &#39;ENGINE&#39;: &#39;django.db.backends.sqlite3&#39;,
+		&#39;ENGINE&#39;: &#39;django.contrib.gis.db.backends.spatialite&#39;,
+		&#39;NAME&#39;: BASE_DIR / &#39;db.sqlite3&#39;,
+	}
+}
+
+
+import os
+import posixpath
+if os.name == &#39;nt&#39;:
+	import platform
+	OSGEO4W = r&amp;quot;C:\OSGeo4W&amp;quot;
+	if &#39;64&#39; in platform.architecture()[0]:
+		OSGEO4W += &amp;quot;64&amp;quot;
+	assert os.path.isdir(OSGEO4W), &amp;quot;Directory does not exist: &amp;quot; + OSGEO4W
+	os.environ[&#39;OSGEO4W_ROOT&#39;] = OSGEO4W
+	os.environ[&#39;GDAL_DATA&#39;] = OSGEO4W + r&amp;quot;\share\gdal&amp;quot;
+	os.environ[&#39;PROJ_LIB&#39;] = OSGEO4W + r&amp;quot;\share\proj&amp;quot;
+	os.environ[&#39;PATH&#39;] = OSGEO4W + r&amp;quot;\bin;&amp;quot; + os.environ[&#39;PATH&#39;]
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;in &lt;code&gt;models.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from django.contrib.gis.db import models
+class ImageUpload():
+  ...  
+  geom = models.PointField( null=True)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;in &lt;code&gt;views.py&lt;/code&gt;, courtesy of &lt;a href=&#34;https://developer.here.com/blog/getting-started-with-geocoding-exif-image-metadata-in-python3&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jayson DeLancey&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+#________________________________________FUNCTIONS FOR IMAGE EXIF DATA______________________________________________________________________________#
+
+
+
+from PIL import Image
+from urllib.request import urlopen
+from PIL.ExifTags import GPSTAGS
+from PIL.ExifTags import TAGS
+
+def get_decimal_from_dms(dms, ref):
+
+	degrees = dms[0]
+	minutes = dms[1] / 60.0
+	seconds = dms[2] / 3600.0
+
+	if ref in [&#39;S&#39;, &#39;W&#39;]:
+		degrees = -degrees
+		minutes = -minutes
+		seconds = -seconds
+
+	return round(degrees + minutes + seconds, 5)
+
+def get_coordinates(geotags):
+	lat = get_decimal_from_dms(geotags[&#39;GPSLatitude&#39;], geotags[&#39;GPSLatitudeRef&#39;])
+
+	lon = get_decimal_from_dms(geotags[&#39;GPSLongitude&#39;], geotags[&#39;GPSLongitudeRef&#39;])
+
+	return (lon, lat)
+
+
+
+def get_geotagging(exif):
+	if not exif:
+		raise ValueError(&amp;quot;No EXIF metadata found&amp;quot;)
+
+	geotagging = {}
+	for (idx, tag) in TAGS.items():
+		if tag == &#39;GPSInfo&#39;:
+			if idx not in exif:
+				raise ValueError(&amp;quot;No EXIF geotagging found&amp;quot;)
+
+			for (key, val) in GPSTAGS.items():
+				if key in exif[idx]:
+					geotagging[val] = exif[idx][key]
+
+	return geotagging
+
+#_______________________________________________________________________________________________________________________________________#
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In &lt;code&gt;views.py/home_page&lt;/code&gt; function&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from django.contrib.gis.geos import Point
+
+@login_required(login_url=&#39;login&#39;)
+def home_page(request):
+	if request.method == &#39;POST&#39;:
+		form = ImageForm(request.POST , request.FILES)
+		img = Image.open(request.FILES.get(&#39;image&#39;))
+		if form.is_valid():
+			try:
+				obj = form.save(commit=False)
+				obj.user = request.user
+				obj.image_url = obj.image.url
+				geotags = get_geotagging(img._getexif())
+				print(get_coordinates(geotags))
+				obj.geom = Point(get_coordinates(geotags)) # X is longitude, Y is latitude, Point(X,Y)
+				print(obj.geom) 
+				obj.save()
+				messages.success(request, f&#39;image uploaded succesfully&#39;)
+			except ValueError as e:
+				messages.warning(request, e)
+		else:
+			messages.warning(request, f&#39;Invalid image type&#39;)
+		return redirect(&#39;home&#39;)
+	else:
+		Imageform = ImageForm()
+		return render(request, &amp;quot;GisMap/home.html&amp;quot;, {&#39;Title&#39;: &amp;quot;Home Page&amp;quot;, &amp;quot;image_form&amp;quot;: ImageForm})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;upload-multiple-image&#34;&gt;Upload multiple image&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/34006994/how-to-upload-multiple-images-to-a-blog-post-in-django&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;stackoverflow answer&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Make a  model which or accepts image data&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;class Photos(models.Model):
+
+	user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+	image = models.ImageField(upload_to=&#39;photos/&#39;,null=True,blank=False)
+	date_created = models.DateTimeField(auto_now_add=True, null=True)
+	image_url = models.URLField(max_length=250, null=True, blank=False)
+
+	class Meta:
+		verbose_name = &#39;Photo&#39;
+		verbose_name_plural = &#39;Photos&#39;
+
+	def __str__(self):
+		return self.user.username + &amp;quot; uploaded image &amp;quot;+ self.image.name
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Make a new form which accepts multiple image files to be uploaded at once.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;class PhotoForm(forms.ModelForm):
+	images = forms.FileField(widget=forms.ClearableFileInput(attrs={&#39;multiple&#39;: True}))
+
+	class Meta:
+		model = Photos
+		fields = (&#39;images&#39;,)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;in &lt;code&gt;views.py&lt;/code&gt; file&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;	if request.method == &amp;quot;POST&amp;quot;:
+		#images will be in request.FILES
+		post_request, files_request = request.POST, request.FILES #  returns &amp;lt;MultiValueDict: {&#39;images&#39;: [&amp;lt;InMemoryUploadedFile: DSCN0021.jpg (image/jpeg)&amp;gt;, &amp;lt;InMemoryUploadedFile: Canon_PowerShot_S40.jpg (image/jpeg)&amp;gt;]}&amp;gt; &amp;lt;QueryDict: {&#39;csrfmiddlewaretoken&#39;: [&#39;ypDkNUtuh1l0oQZcBk4Nz48AEapw9rC0uLHydJIf6rRwqcavPqgo918hAjuQHUgE&#39;]}&amp;gt;
+	
+		form = PhotoForm(post_request or None, files_request or None)
+		files = request.FILES.getlist(&#39;images&#39;) # returns files: [&amp;lt;InMemoryUploadedFile: DSCN0021.jpg (image/jpeg)&amp;gt;, &amp;lt;InMemoryUploadedFile: Canon_PowerShot_S40.jpg (image/jpeg)&amp;gt;]
+		if form.is_valid():
+			user = request.user
+			for f in files:
+				
+				img = Image.open(f) # returns &amp;lt;PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=480x360 at 0x1ED0CCC6280&amp;gt;
+				try:
+					geotags = get_geotagging(img._getexif())
+					geoimage = ImageUpload(user=user, image=f)
+					geoimageimg_upload.image_url = geoimage.image.url 
+					geoimage.geom = Point(get_coordinates(geotags)) # X is longitude, Y is latitude, Point(X,Y) ; returns SRID=4326;POINT (11.88454 43.46708)
+					geoimage.save()
+				except:
+					nongeoimage = Photos(user=user,image=f)
+					nongeoimage.image_url = nongeoimage.image.url
+					nongeoimage.save()
+		else:
+			print(&amp;quot;Form invalid&amp;quot;)
+		return redirect(&#39;home&#39;)
+	else:
+
+		Imageform = PhotoForm()
+		return render(request, &amp;quot;GisMap/home.html&amp;quot;, {&#39;Title&#39;: &amp;quot;Home Page&amp;quot;, &amp;quot;image_form&amp;quot;: ImageForm})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;in &lt;code&gt;home.html&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;				&amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+				&amp;lt;label for=&amp;quot;note-image&amp;quot;&amp;gt;&amp;lt;/label&amp;gt;
+				&amp;lt;input type=&amp;quot;file&amp;quot; name=&amp;quot;images&amp;quot; class=&amp;quot;form-control-file&amp;quot; id=&amp;quot;note-image&amp;quot; multiple&amp;gt;
+				&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Full Fledged CRUD application using DRF and Token Authentication</title>
+      <link>amanbagrecha.github.io/post/django/crud-in-django-rest-framework/</link>
+      <pubDate>Mon, 24 May 2021 15:13:58 +0530</pubDate>
+      <guid>amanbagrecha.github.io/post/django/crud-in-django-rest-framework/</guid>
+      <description>&lt;hr style=&#34;border:1px solid lightgray&#34;&gt; &lt;/hr&gt;
+&lt;br&gt;
+&lt;h2 id=&#34;what-will-you-learn&#34;&gt;What will you learn&lt;/h2&gt;
+&lt;p&gt;&lt;span style=&#34;color: grey;font-size: 18px;&#34;&gt;Too Long; Didn&amp;rsquo;t Read &lt;/span&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Markdown&lt;/th&gt;
+&lt;th&gt;Less&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;DRF&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Create API end points for CRUD&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Token Authentication&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Add security and authorised access&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Fetch API calls&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Consume API from front-end&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Password Reset&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Send email to reset your forgotton password&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-step-one--basic-django-project-setup&#34;&gt;1. Step one : Basic Django Project setup&lt;/h2&gt;
+&lt;p&gt;Create virtual environment&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;conda create --name djangoEnv
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Activate the environment&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;conda activate djangoEnv
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Install the dependencies&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;conda install django
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, in your command line&lt;/p&gt;
+&lt;p&gt;create project &lt;code&gt;django-admin startproject tutorial&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;create app &lt;code&gt;python manage.py startapp Accountsapp&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;create superuser &lt;code&gt;python manage.py createsuperuser&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Now that we have the project and app installed your structure should look like this (insert picture here)&lt;/p&gt;
+&lt;p&gt;Register the app in  file as follows&lt;/p&gt;
+&lt;p&gt;In &lt;code&gt;settings.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Installed_apps = [ 
+    &#39;Accountsapp.apps.AccountsappConfig&#39;,
+    ...
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We now create our own custom model named &lt;em&gt;&lt;strong&gt;MyAccounts&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In &lt;code&gt;models.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
+
+
+class MyAccountManager(BaseUserManager):
+	def create_user(self, email, username, password=None):
+		if not email:
+			raise ValueError(&#39;Users must have an email address&#39;)
+		if not username:
+			raise ValueError(&#39;Users must have a username&#39;)
+
+
+		user = self.model(
+			email=self.normalize_email(email),
+			username=username,
+		)
+
+		user.set_password(password)
+		user.save(using=self._db)
+		return user
+
+	def create_superuser(self, email, username, password):
+		user = self.create_user(
+			email=self.normalize_email(email),
+			password=password,
+			username=username,
+			
+		)
+		user.is_admin = True
+		user.is_staff = True
+		user.is_superuser = True
+		user.save(using=self._db)
+		return user
+
+# creating custom model of &amp;quot;User&amp;quot; base model. 
+class MyAccount(AbstractBaseUser):
+	email 					= models.EmailField(verbose_name=&amp;quot;email&amp;quot;, max_length=60, unique=True)
+	username 				= models.CharField(max_length=30, unique=True)
+	date_joined				= models.DateTimeField(verbose_name=&#39;date joined&#39;, auto_now_add=True)
+	last_login				= models.DateTimeField(verbose_name=&#39;last login&#39;, auto_now=True)
+	is_admin				= models.BooleanField(default=False)
+	is_active				= models.BooleanField(default=True)
+	is_staff				= models.BooleanField(default=False)
+	is_superuser			= models.BooleanField(default=False)
+
+
+	USERNAME_FIELD = &#39;email&#39;   # username_field is the one which should be unique and will be compared by django for not creating multiple users with same email.
+
+	REQUIRED_FIELDS = [&#39;username&#39;] 
+
+	objects = MyAccountManager()
+
+	def __str__(self):
+		return self.email
+
+	# For checking permissions. to keep it simple all admin have ALL permissons
+	def has_perm(self, perm, obj=None):
+		return self.is_admin
+
+	# Does this user have permission to view this app? (ALWAYS YES FOR SIMPLICITY)
+	def has_module_perms(self, app_label):
+		return True
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To tell django we are overwriting the default user model, we do the following&lt;/p&gt;
+&lt;p&gt;In &lt;code&gt;settings.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;AUTH_USER_MODEL = Accounts.MyAccounts
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we makemigrates to register the model in our database&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python manage.py makemigrations
+python manage.py migrate
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And for the model to be visible in admin section we do the following&lt;/p&gt;
+&lt;p&gt;In &lt;code&gt;admin.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from django.contrib import admin
+from .models import MyAccount
+
+admin.site.register(MyAccount) # Register your models here.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For now the our project is setup. We move to Django Rest Framework setup&lt;/p&gt;
+&lt;h2 id=&#34;2-setup-django-rest-framework-with-authentication&#34;&gt;2. Setup Django Rest Framework with Authentication&lt;/h2&gt;
+&lt;p&gt;Install dependeny&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;conda install djangorestframework
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Like any other app, django rest framework is also an app. so we add it to the list of installed apps. 
+We additionally add authtoken app for user authentication which we are shortly going to intergrate in our CRUD application&lt;/p&gt;
+&lt;p&gt;In &lt;code&gt;settings.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;INSTALLED_APPS = [
+    # my apps
+    &#39;Accountsapp.apps.AccountsappConfig&#39;,
+    # restframework
+    &#39;rest_framework&#39;,
+    &#39;rest_framework.authtoken&#39;,
+    ...
+    
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We are going to be using Token Authentication in this application. DRF documentation recommends it as the default. 
+Let Us setup the Default authentication class before actually utilising it.&lt;/p&gt;
+&lt;p&gt;In &lt;code&gt;settings.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;REST_FRAMEWORK = {
+    &#39;DEFAULT_AUTHENTICATION_CLASSES&#39;: [
+        &#39;rest_framework.authentication.TokenAuthentication&#39;,
+        
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The last thing before we actually start writing code is to perform migration. The &lt;code&gt;rest_framework.authtoken&lt;/code&gt; app provides Django database migrations.&lt;/p&gt;
+&lt;p&gt;As done previously on command line&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python manage.py makemigrations
+python manage.py migrate
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We have completed the logistics for setting up DRF&lt;/p&gt;
+&lt;h2 id=&#34;3-building-crud-application&#34;&gt;3. Building CRUD application&lt;/h2&gt;
+&lt;p&gt;We would first create a folder called &lt;strong&gt;api&lt;/strong&gt; inside our to seperate codebase for API and vanila CRUD&lt;/p&gt;
+&lt;p&gt;Inside API folder create four files,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;__init__.py&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;serializers.py&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;views.py&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;urls.py&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In &lt;code&gt;serializers.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from rest_framework import serializers 
+from Accountsapp.models import MyAccount # import our custom model
+
+
+# provide fields in meta, expression and in MyAccount. for admin page login and edit,  is_admin and is_staff should be true
+class RegistrationSerializer(serializers.ModelSerializer):
+
+    # additional fields 
+	password2 = serializers.CharField(style={&#39;input_type&#39;: &#39;password&#39;}, write_only=True)
+	is_superuser =serializers.BooleanField(write_only=True)
+	
+    class Meta:
+		model = MyAccount
+        # mention the fields you want to display when request is sent. 
+		fields = [&#39;id&#39;,&#39;email&#39;, &#39;username&#39;, &#39;password&#39;, &#39;password2&#39;,  &#39;is_superuser&#39;]
+		extra_kwargs = {
+				&#39;password&#39;: {&#39;write_only&#39;: True},  # tells django to not display the password for others to see
+		}	
+
+
+	def	save(self):
+
+		account = MyAccount(
+					email=self.validated_data[&#39;email&#39;],
+					username=self.validated_data[&#39;username&#39;],
+					# is_admin=self.validated_data[&#39;is_admin&#39;],
+					is_superuser= self.validated_data[&#39;is_superuser&#39;],
+				)
+		password = self.validated_data[&#39;password&#39;]
+		password2 = self.validated_data[&#39;password2&#39;]
+		if password != password2:
+			raise serializers.ValidationError({&#39;password&#39;: &#39;Passwords must match.&#39;})
+		account.set_password(password)
+		account.save()
+		return account
+
+
+class UpdateSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = MyAccount
+		# mention the fields you want to display when request is sent. 
+		fields = [&#39;id&#39;, &#39;username&#39;, &#39;email&#39;]
+		extra_kwargs = {
+				&#39;password&#39;: {&#39;read_only&#39;: True},  #  password cannot be edited from here
+		}
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; : Do not try to update the password from serializers. There is another technique which we will deal with in later section.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The serializers in REST framework work very similarly to Django’s Form and ModelForm classes. The two major serializers that are most popularly used are ModelSerializer and HyperLinkedModelSerialzer.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In &lt;code&gt;views.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from django.contrib.auth import authenticate
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+
+from . import serializers 
+from Accountsapp.models import MyAccount
+from rest_framework.authtoken.models import Token
+
+# user views
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+from django.core.exceptions import ObjectDoesNotExist
+import json
+
+# login {built-in django}
+from django.contrib.auth import login 
+from django.contrib.auth.decorators import login_required
+
+
+
+# get all users
+@api_view([&amp;quot;GET&amp;quot;])
+@csrf_exempt
+@permission_classes([IsAuthenticated,])
+@authentication_classes([TokenAuthentication])
+def get_users(request):
+    try:
+        user_profile = MyAccount.objects.all() 
+        serializer = serializers.RegistrationSerializer(user_profile, many=True)
+        return Response( {&#39;USER_PROFILE&#39;:serializer.data}, status= status.HTTP_200_OK)
+    except ObjectDoesNotExist:
+        return JsonResponse({&#39;Response&#39;: &#39;You do not have authorization to access this page&#39;}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+
+# get given user
+@api_view([&#39;GET&#39;])
+@csrf_exempt
+@permission_classes([IsAuthenticated,])
+@authentication_classes([TokenAuthentication])
+def get_given_user(request, pk):
+    try:
+        user_profile = MyAccount.objects.get(pk=pk)
+    except ObjectDoesNotExist:
+        return JsonResponse({&amp;quot;missing&amp;quot;: &amp;quot;The requested object does not exist&amp;quot;}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == &#39;GET&#39;:  
+        serializer = serializers.RegistrationSerializer(user_profile)
+        token = Token.objects.get(user=user_profile).key
+        return JsonResponse({&#39;given_user_profile&#39;: serializer.data, &#39;token&#39;:token})
+   
+
+
+# add user
+@csrf_exempt
+@api_view([&#39;POST&#39;])
+def user_add_view(request):
+        serializer = serializers.RegistrationSerializer( data=request.data)
+        if serializer.is_valid():
+            account = serializer.save()
+            token, _ = Token.objects.get_or_create(user=account)
+            return Response(serializer.data, status=status.HTTP_201_CREATED,  headers={&#39;Authorization&#39;: &#39;Token &#39; + token.key})
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+# update user
+@api_view([&amp;quot;PUT&amp;quot;,&#39;GET&#39;])
+@csrf_exempt
+@permission_classes([IsAuthenticated,])
+@authentication_classes([TokenAuthentication])
+def update_user(request, pk):
+
+    try:
+        user_profile = MyAccount.objects.get(id=pk)
+    except ObjectDoesNotExist:
+        return Response({&#39;response&#39;: &amp;quot;given object does not exist&amp;quot;}, status=status.HTTP_404_NOT_FOUND)
+
+    user = request.user
+    try:
+        data =  {i:j for i,j in request.query_params.items()}
+        print(data)
+        serializer = serializers.UpdateSerializer(user_profile, data=data)
+        if serializer.is_valid():
+            user= serializer.save()
+            token, _ = Token.objects.get_or_create(user=user)
+            return Response({&amp;quot;response&amp;quot;: &amp;quot;success&amp;quot;, &#39;data&#39; :serializer.data}, status=status.HTTP_201_CREATED,  headers={&#39;Authorization&#39;: &#39;Token &#39; + token.key})
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    except ObjectDoesNotExist as e:
+        return JsonResponse({&#39;error&#39;: str(e)}, safe=False, status=status.HTTP_404_NOT_FOUND)
+    except Exception:
+        return JsonResponse({&#39;error&#39;: &#39;Something terrible went wrong&#39;}, safe=False, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+# delete user
+@api_view([&amp;quot;DELETE&amp;quot;,&#39;GET&#39;]) 
+@csrf_exempt
+@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
+def delete_user(request, pk):
+
+    try:
+        user_profile = MyAccount.objects.get(id=pk)
+    except ObjectDoesNotExist:
+        return JsonResponse({&#39;response&#39;: &amp;quot;given object does not exist&amp;quot;}, safe=False, status=status.HTTP_404_NOT_FOUND)
+
+    user = request.user
+    if user_profile != user: 
+        return JsonResponse({&#39;response&#39;:&amp;quot;You don&#39;t have permission to delete the record.&amp;quot;}, safe=False, status=status.HTTP_401_UNAUTHORIZED)
+
+    try:
+        user_profile.delete()  #retuns 1 or 0
+        return JsonResponse({&#39;user_delete&#39;: &amp;quot;record deleted&amp;quot;}, safe=False, status=status.HTTP_200_OK)
+    except ObjectDoesNotExist as e:
+        return JsonResponse({&#39;error&#39;: str(e)}, safe=False, status=status.HTTP_404_NOT_FOUND)
+    except Exception:
+        return JsonResponse({&#39;error&#39;: &#39;Something terrible went wrong&#39;}, safe=False, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+# login view and get token
+@api_view([&amp;quot;POST&amp;quot;, ])
+def drflogin(request):
+
+    email = request.data.get(&amp;quot;email&amp;quot;)
+    username = request.data.get(&amp;quot;username&amp;quot;)
+    password = request.data.get(&amp;quot;password&amp;quot;)
+    account = MyAccount.objects.filter(email=email) | MyAccount.objects.filter(username=username)
+    if not account:
+        return Response({&amp;quot;error&amp;quot;: &amp;quot;Login failed&amp;quot;}, status=status.HTTP_401_UNAUTHORIZED)
+    # authenticate(email=email, password=password)  # returns none if not authenticated
+    account = authenticate(email=account[0].email, password=password)
+    token, _ = Token.objects.get_or_create(user=account)
+    login(request,account)  
+    renderer= Response({&amp;quot;response&amp;quot; : &amp;quot;Successfully authenticated&amp;quot;,  &amp;quot;pk&amp;quot;: account.pk, &amp;quot;username&amp;quot;: account.username, &amp;quot;token&amp;quot;: token.key }, template_name= &amp;quot;Accountsapp/loginuser.html&amp;quot;, headers={&#39;Authorization&#39;: &#39;Token &#39; + token.key})
+    return renderer
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Setup end points for our API&lt;/p&gt;
+&lt;p&gt;In &lt;code&gt;views.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+from django.urls import path, include
+from . import views as drf_views
+
+
+app_name = &#39;Accountsapp&#39;
+
+urlpatterns = [
+
+    path(&#39;drf_users/&#39;, drf_views.get_users, name= &#39;drf_users&#39;),
+    path(&#39;drf_user/&amp;lt;int:pk&amp;gt;/&#39;, drf_views.get_given_user, name= &#39;drf_get_user&#39;),
+    path(&#39;drf_updateuser/&amp;lt;int:pk&amp;gt;/&#39;, drf_views.update_user, name= &#39;drf_updateusers&#39;),
+    path(&#39;drf_deleteuser/&amp;lt;int:pk&amp;gt;/&#39;, drf_views.delete_user, name= &#39;drf_deleteuser&#39;),
+    path(&#39;drf_adduser/&#39;, drf_views.user_add_view, name= &#39;drf_adduser&#39;),
+    path(&#39;drf_login/&#39;, drf_views.drflogin, name=&#39;drf_login&#39;),
+
+    
+]
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We first create users and then test  delete, update and show users functionality of our API. We will use Postman for timebeing. Later we will built the front-end to perform all these actions.&lt;/p&gt;
+&lt;h2 id=&#34;span-style-colororange-post-span-request-add-user&#34;&gt;&lt;span style= &#34;color:orange&#34;&gt; POST &lt;/span&gt; REQUEST: &lt;strong&gt;ADD USER&lt;/strong&gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;http://127.0.0.1:8000/drf_adduser/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/Ea8W3Bj.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;span-style-colorgreen-get-span-request-get-users&#34;&gt;&lt;span style= &#34;color:green&#34;&gt; GET &lt;/span&gt; REQUEST: &lt;strong&gt;GET USERS&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;API end point&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;http://127.0.0.1:8000/drf_users/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Using curl and passing authorization token&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl --location --request GET &#39;http://127.0.0.1:8000/drf_users/&#39; \
+--header &#39;Authorization: Token 92cc8c32edb7bd111b89552a3031f918d2df5613&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Using postman&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/dPnv4J4.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;span-style-colorred-del-span-request-delete-user&#34;&gt;&lt;span style= &#34;color:RED&#34;&gt; DEL &lt;/span&gt; REQUEST: &lt;strong&gt;DELETE USER&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;API end point&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;http://127.0.0.1:8000/drf_deleteuser/&amp;lt;int:pk&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Using curl and passing authorization token&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl --location --request DELETE &#39;http://127.0.0.1:8000/drf_deleteuser/21&#39; \
+--header &#39;Authorization: Token 1529e77c59999f819649828a5e9174ba44bd6bb4&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Using postman&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/6IFah1s.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;span-style-colordodgerblue-put-span-request-update-user&#34;&gt;&lt;span style= &#34;color:dodgerblue&#34;&gt; PUT &lt;/span&gt; REQUEST: &lt;strong&gt;UPDATE USER&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;API end point&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;http://127.0.0.1:8000/drf_updateuser/1/?username=updated_username_here&amp;amp;email=updated_email_here
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Using curl and passing authorization token&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl --location --request PUT &#39;http://127.0.0.1:8000/drf_updateuser/8/?username=rcbfl&amp;amp;email=rcbfl@gmail.com&#39; \
+--header &#39;Authorization: Token 506ce0bbf7fa50f613678024586669d9b6bd82a0&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;using postman
+&lt;img src=&#34;https://i.imgur.com/LhVZ34L.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;span-style-colorgreen-get-span-request-get-user&#34;&gt;&lt;span style= &#34;color:green&#34;&gt; GET &lt;/span&gt; REQUEST: &lt;strong&gt;GET USER&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;API end point&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;http://127.0.0.1:8000/drf_user/&amp;lt;int:pk&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Using curl and passing authorization token&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl --location --request GET &#39;http://127.0.0.1:8000/drf_user/8&#39; \
+--header &#39;Authorization: Token 506ce0bbf7fa50f613678024586669d9b6bd82a0&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;using postman&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/LiPdZIe.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;front-end-setup&#34;&gt;Front end setup&lt;/h2&gt;
+&lt;p&gt;In root directory create folder  &lt;code&gt;templates\Accountsapp\&lt;/code&gt; and create &lt;code&gt;RegiserUser.html&lt;/code&gt; file in it. Create form field in the file as follows&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;          &amp;lt;form class=&amp;quot;form-horizontal&amp;quot; action=&amp;quot;&amp;quot; method=&amp;quot;post&amp;quot;  id=&amp;quot;myForm&amp;quot; autocomplete=&amp;quot;off&amp;quot;&amp;gt;
+          	{% csrf_token %}
+            &amp;lt;!-- Name input--&amp;gt;
+            &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+              &amp;lt;label class=&amp;quot;col-md-3 control-label&amp;quot; for=&amp;quot;username&amp;quot;&amp;gt;Name&amp;lt;/label&amp;gt;
+              &amp;lt;div class=&amp;quot;col-md-9&amp;quot;&amp;gt;
+                &amp;lt;input id=&amp;quot;username&amp;quot; name=&amp;quot;username&amp;quot; type=&amp;quot;text&amp;quot; placeholder=&amp;quot;Your username&amp;quot; class=&amp;quot;form-control&amp;quot;&amp;gt;
+              &amp;lt;/div&amp;gt;
+            &amp;lt;/div&amp;gt;
+            &amp;lt;!-- Email input--&amp;gt;
+            &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+              &amp;lt;label class=&amp;quot;col-md-3 control-label&amp;quot; for=&amp;quot;email&amp;quot;&amp;gt;Your E-mail&amp;lt;/label&amp;gt;
+              &amp;lt;div class=&amp;quot;col-md-9&amp;quot;&amp;gt;
+                &amp;lt;input id=&amp;quot;email&amp;quot; name=&amp;quot;email&amp;quot; type=&amp;quot;email&amp;quot; placeholder=&amp;quot;Your email&amp;quot; class=&amp;quot;form-control&amp;quot;&amp;gt;
+              &amp;lt;/div&amp;gt;
+            &amp;lt;/div&amp;gt;
+            &amp;lt;!-- password body --&amp;gt;
+            &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+              &amp;lt;label class=&amp;quot;col-md-3 control-label&amp;quot; for=&amp;quot;password&amp;quot;&amp;gt;Password&amp;lt;/label&amp;gt;
+              &amp;lt;div class=&amp;quot;col-md-9&amp;quot;&amp;gt;
+                &amp;lt;input id=&amp;quot;password&amp;quot; name=&amp;quot;password&amp;quot; type=&amp;quot;password&amp;quot; placeholder=&amp;quot;Your password&amp;quot; class=&amp;quot;form-control&amp;quot;&amp;gt;
+              &amp;lt;/div&amp;gt;
+            &amp;lt;/div&amp;gt;
+            &amp;lt;!-- password body --&amp;gt;
+            &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+              &amp;lt;label class=&amp;quot;col-md-3 control-label&amp;quot; for=&amp;quot;password2&amp;quot;&amp;gt;Password2&amp;lt;/label&amp;gt;
+              &amp;lt;div class=&amp;quot;col-md-9&amp;quot;&amp;gt;
+                &amp;lt;input id=&amp;quot;password2&amp;quot; name=&amp;quot;password2&amp;quot; type=&amp;quot;password&amp;quot; placeholder=&amp;quot;confirm password&amp;quot; class=&amp;quot;form-control&amp;quot;&amp;gt;
+              &amp;lt;/div&amp;gt;
+            &amp;lt;/div&amp;gt;
+            
+            &amp;lt;!-- superuser input --&amp;gt;
+            &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+              &amp;lt;label class=&amp;quot;col-md-3 control-label&amp;quot; for=&amp;quot;superuser&amp;quot;&amp;gt;Is superuser&amp;lt;/label&amp;gt;
+              &amp;lt;div class=&amp;quot;col-md-3&amp;quot;&amp;gt;
+                &amp;lt;input id=&amp;quot;issuperuser&amp;quot; name=&amp;quot;issuperuser&amp;quot; type=&amp;quot;checkbox&amp;quot;  class=&amp;quot;form-control&amp;quot; &amp;gt;
+              &amp;lt;/div&amp;gt;
+            &amp;lt;/div&amp;gt;
+ 
+    
+            &amp;lt;!-- Form actions --&amp;gt;
+            &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+              &amp;lt;div class=&amp;quot;col-md-6 text-left&amp;quot;&amp;gt;
+                &amp;lt;button type=&amp;quot;submit&amp;quot; class=&amp;quot;btn btn-primary btn-lg&amp;quot;&amp;gt;Submit&amp;lt;/button&amp;gt;
+              &amp;lt;/div&amp;gt;
+
+
+            &amp;lt;/div&amp;gt;
+          &amp;lt;/fieldset&amp;gt;
+          &amp;lt;/form&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once the form is created, we now need to take the input from the form and send to the register user API &lt;code&gt;drf_adduser/&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In &lt;code&gt;RegisterUser.html&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+
+
+			function getCookie(name) {
+		    var cookieValue = null;
+		    if (document.cookie &amp;amp;&amp;amp; document.cookie !== &#39;&#39;) {
+		        var cookies = document.cookie.split(&#39;;&#39;);
+		        for (var i = 0; i &amp;lt; cookies.length; i++) {
+		            var cookie = cookies[i].trim();
+		            // Does this cookie string begin with the name we want?
+		            if (cookie.substring(0, name.length + 1) === (name + &#39;=&#39;)) {
+		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		                break;
+		            }
+		        }
+		    }
+		    return cookieValue;
+		}
+		var csrftoken = getCookie(&#39;csrftoken&#39;);
+
+
+
+function fetchcall(event) {
+
+		event.preventDefault();
+		console.log(&#39;form submitted&#39;);
+	var username = document.getElementById(&amp;quot;username&amp;quot;).value;
+	var email = document.getElementById(&amp;quot;email&amp;quot;).value;
+	var password = document.getElementById(&amp;quot;password&amp;quot;).value;
+	var password2 = document.getElementById(&amp;quot;password2&amp;quot;).value;
+	var issuperuser = document.getElementById((&#39;issuperuser&#39;)).checked;
+	console.log(issuperuser)
+
+		var url = &#39;/drf_adduser/&#39;;
+
+			fetch(url, {
+				method:&#39;POST&#39;,
+				headers:{
+					&#39;Content-type&#39;:&#39;application/json&#39;,
+					&#39;X-CSRFToken&#39;:csrftoken,
+				},
+				body:JSON.stringify({
+					&#39;email&#39;:email,
+					&#39;username&#39;:username,
+					&amp;quot;password&amp;quot;:password,
+					&amp;quot;password2&amp;quot;:password2,
+					&amp;quot;is_superuser&amp;quot;: issuperuser
+				})
+			}
+			).then(function(response){
+				store_response= response;
+				return response.json();
+
+			}).then(function(data){
+				store_data =JSON.stringify(data);
+				document.getElementById(&amp;quot;message&amp;quot;).innerHTML=  store_data;
+			}).catch(function(error){
+			console.error(error);
+		});
+
+	}
+			
+	var myForm = document.getElementById(&amp;quot;myForm&amp;quot;);
+
+		console.log(username, password, myForm);
+	myForm.addEventListener(&#39;submit&#39;, fetchcall);
+	
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To make this work in front-end, we need to register the file to &lt;code&gt;Accountsapp/views.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def register_user(request):
+	# if request.user.is_authenticated:
+	return render(request, &amp;quot;Accountsapp/RegisterUser.html&amp;quot;, {&#39;Title&#39;: &amp;quot;Register new user&amp;quot;})
+
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Django rest framework PDF creation and email via gmail SMTP and reportLab</title>
+      <link>amanbagrecha.github.io/post/django/pdf-and-email-creation/</link>
+      <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
+      <guid>amanbagrecha.github.io/post/django/pdf-and-email-creation/</guid>
+      <description>&lt;h2 id=&#34;step-1--create-view-to-serialise-data&#34;&gt;Step 1 : create view to serialise data&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+SUCCESS = &#39;success&#39;
+ERROR = &#39;error&#39;
+message_list = [&#39;response&#39;, &#39;status&#39;, &#39;message&#39;] # eg: [&amp;quot;success&amp;quot;, 201, &amp;quot;successfully upload the file&amp;quot;]
+
+@csrf_exempt
+@api_view([&#39;POST&#39;,])
+def CreateInspectionReport(request):
+	myresponse = {k: [] for k in message_list}
+	
+	try:
+		myData = request.data.copy()
+		# print(myData)
+		myData[&#39;user&#39;] = request.user.id #get the user id
+		myData[&#39;EmailAddress&#39;] = myData[&#39;EmailAddress&#39;] or request.user.email # user enters the email or take from the account
+
+		if not myData[&#39;EmailAddress&#39;]: # custom validation and response
+			RequestResponse(myresponse,ERROR,status.HTTP_400_BAD_REQUEST,{&amp;quot;Email Address&amp;quot; : [&amp;quot;This field cannot be blank&amp;quot;] })
+			return Response(data = myresponse)
+		try: # check format of date and validate
+			myData[&#39;InspectionDate&#39;] = datetime.strptime(myData[&#39;InspectionDate&#39;], &#39;%m/%d/%Y&#39;).date()
+		except Exception as e:
+			print(e)
+			RequestResponse(myresponse,ERROR,status.HTTP_400_BAD_REQUEST,{&amp;quot;Inspection Date&amp;quot; : [&amp;quot;Incorrect Format. It should be mm/dd/yyyy&amp;quot;] })
+			return Response(data = myresponse)
+		
+		try: # check time
+			myData[&#39;InspectionTime&#39;] = datetime.strptime(request.data[&#39;InspectionDate&#39;] + &#39; &#39; + myData[&#39;InspectionTime&#39;], &#39;%m/%d/%Y %H:%M&#39;)
+		except Exception as e:
+			print(e)
+			RequestResponse(myresponse,ERROR,status.HTTP_400_BAD_REQUEST,{&amp;quot;InspectionTime&amp;quot; : [&amp;quot;Incorrect Format. It should be hh:mm !&amp;quot;] })
+			return Response(data = myresponse)
+		
+		try: # check if the property was selected 
+			int(myData[&#39;InspectionProperty&#39;])
+		except Exception as e:
+			print(e)
+			RequestResponse(myresponse,ERROR,status.HTTP_400_BAD_REQUEST,{&amp;quot;Inspection Property&amp;quot; : [&amp;quot;Select only one property!&amp;quot;] })
+			return Response(data = myresponse)
+		print(myData)
+		
+		serializer = serializers.AddInspectionReportSerializer( data=myData) # serialier the data
+		if serializer.is_valid():
+			try:
+				send(**myData.dict()) # create pdf and send email
+			except Exception as e:
+				print(e)
+				RequestResponse(myresponse,ERROR,status.HTTP_400_BAD_REQUEST,{&amp;quot;Email&amp;quot; : [&amp;quot;Could not send mail!&amp;quot;] })
+				return Response(data = myresponse)
+			account = serializer.save()
+			RequestResponse(myresponse,SUCCESS,status.HTTP_201_CREATED, {&amp;quot;Success&amp;quot;: [f&amp;quot;Inspection Report e-mailed to {account.EmailAddress}!&amp;quot;] })
+			messages.success(request, f&#39;Inspection Report e-mailed to {account.EmailAddress}!&#39;)
+			# print(serializer)
+			return Response(myresponse, )
+		RequestResponse(myresponse,ERROR,status.HTTP_400_BAD_REQUEST,serializer.errors)
+		return Response(data = myresponse)
+	except Exception as e:
+		print(e)
+		RequestResponse(myresponse,ERROR,status.HTTP_500_INTERNAL_SERVER_ERROR, {&amp;quot;Error&amp;quot;: [&amp;quot;Internal Server Error&amp;quot;]})
+		return Response(data= myresponse)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-2-create-pdf&#34;&gt;step 2: create pdf&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def generate_pdf(**Mydata):
+	y = 700
+	buffer = io.BytesIO() # in memory create pdf
+	p = canvas.Canvas(buffer, pagesize=letter)
+	p.setFont(&#39;Helvetica&#39;, 14)
+	p.drawString(220,y,   Mydata[&#39;InspectionTitle&#39;])
+	p.drawString(450, y, &amp;quot;Date:&amp;quot; + timezone.now().strftime(&#39;%Y-%b-%d&#39;))
+	p.line(30, 675, 550, 675)
+	p.drawString(220, y-300, &amp;quot;Time of Inspection: &amp;quot; + str(Mydata[&#39;InspectionTime&#39;]))
+	p.drawString(220, y-200, &amp;quot;Estimated Replacement Cost: &amp;quot; + str(Mydata[&#39;EstReplacementCost&#39;]))
+	p.showPage()
+	p.save()
+	pdf = buffer.getvalue()
+	buffer.close()
+	return pdf
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-3-send-email-using--report-lab&#34;&gt;step 3: send email using  report lab&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# settings.py
+EMAIL_BACKEND = &#39;django.core.mail.backends.smtp.EmailBackend&#39;
+EMAIL_HOST = &amp;quot;smtp.gmail.com&amp;quot;
+EMAIL_HOST_USER = &#39;your_email@gmail.com&#39;
+EMAIL_HOST_PASSWORD = &#39;your_password&#39;
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+# views.py
+def send(**Mydata):
+	pdf = generate_pdf(**Mydata)
+	msg = EmailMessage(Mydata[&#39;InspectionTitle&#39;], &amp;quot; Your Inspection Report is ready! &amp;quot;, settings.EMAIL_HOST_USER, to=[Mydata[&#39;EmailAddress&#39;]])
+	msg.attach(f&amp;quot;{Mydata[&#39;InspectionTitle&#39;]}.pdf&amp;quot;, pdf, &#39;application/pdf&#39;)
+	msg.content_subtype = &amp;quot;html&amp;quot;
+	resp = msg.send()
+	print(&amp;quot;resp:&amp;quot; , resp)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Polygon Selection and  Area Calculating in Openlayers</title>
+      <link>amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculating-in-openlayers/</link>
+      <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
+      <guid>amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculating-in-openlayers/</guid>
+      <description>&lt;h2 id=&#34;step-1&#34;&gt;Step 1:&lt;/h2&gt;
+&lt;h3 id=&#34;link-necessary-cdns&#34;&gt;link necessary cdns&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;
+ &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css&amp;quot; type=&amp;quot;text/css&amp;quot;&amp;gt;
+ &amp;lt;script src=&amp;quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+ 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We are using openlayers to render the request response. since the output of the WFS request is json, we create a new layer with vector source and format as geojson. 
+the &lt;code&gt;strategy:ol.loadingstrategy.bbox&lt;/code&gt; tells openlayers to only load features within the bbox. so if we move to different location, only features within that bbox will appear.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;
+var geoserver_ip = &#39;http://120.0.0.1&#39;
+var geoserver_port = &#39;8080&#39;
+
+var myFlSource = new ol.source.Vector({
+	format: new ol.format.GeoJSON(),
+		url: function (extent){
+			return ( geoserver_ip +&#39;:&#39; + geoserver_port + &#39;/geoserver/dronnav/ows?service=WFS&amp;amp;version=1.1.0&amp;amp;request=GetFeature&amp;amp;typeName=dronnav%3Aflorida_bp&amp;amp;maxFeatures=10000&amp;amp;outputFormat=application/json&amp;amp;srsname=EPSG:4326&amp;amp;&#39; + &#39;bbox=&#39; + extent.join(&#39;,&#39;) + &#39;,EPSG:4326&#39; );
+		},
+		strategy:ol.loadingstrategy.bbox,
+	});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We perform WFS request from geoserver to get our layer &lt;code&gt;florida_bp&lt;/code&gt; in this case. The parameters are as explained as follows&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;service=WFS&lt;/code&gt; :&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;typename=dronnav:florida_bp&lt;/code&gt; :&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;version=1.1.0&lt;/code&gt; :&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;maxFeatures = 10000&lt;/code&gt; : since WFS request is computationaly expensive, we restrict to only load 10000 features.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;request=GetFeature&lt;/code&gt; :&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;outputFormat=application/json&lt;/code&gt; :&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;srsname=EPSG:4326&lt;/code&gt; :&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;bbox=&lt;/code&gt; :&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var floridaLayer = new ol.layer.Vector({
+
+	source: myFlSource,
+	style: new ol.style.Style({
+		fill: new ol.style.Fill({
+			color: &#39;rgba(1, 1, 255, .2)&#39;,
+			}),
+		stroke: new ol.style.Stroke({
+			color: &#39;rgba(1, 1, 255, .5)&#39;,
+			width: 2,
+		}),
+		}),
+		minZoom: 16, // this will allows us to send request only when the zoom is atleast 16
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once the layer is defined, we need to add this layer to the map. We can either use &lt;code&gt;map.addLayer(layername)&lt;/code&gt; or add to array in the map.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// add basemap
+var project_maplayer =    new ol.layer.Tile({
+	source: new ol.source.XYZ({
+		attributions: [&#39;Powered by Esri&#39;,
+										&#39;Source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community&#39;],
+		attributionsCollapsible: false,
+		url: &#39;https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}&#39;,
+		maxZoom: 23
+	}),
+	zIndex: 0
+});
+// add view with projection for the map
+var project_view = new ol.View({
+	projection: &#39;EPSG:4326&#39;,
+	center: [-81.80808208706726, 27.285095000261222],
+	zoom: 7,
+});
+// define the map with all the layers created previously
+var Projectmap = new ol.Map({
+	layers: [project_maplayer, floridaLayer],
+	overlays: [overlay],
+	target: &#39;project_map&#39;, // the div element `id` in html page
+	view: project_view,
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;get-feature-info-on-click&#34;&gt;Get feature info on click&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;
+/* style for selected feature on click  */
+var highlightStyle = new ol.style.Style({
+	fill: new ol.style.Fill({
+	color: &#39;#f0b88b&#39;,
+	}),
+	stroke: new ol.style.Stroke({
+	color: &#39;#f0b88b&#39;,
+	width: 3,
+	}),
+});
+
+/*  function for array sum */
+function getSum(total, num) {
+return total + Math.round(num);
+}
+
+/*  function for calculating area of the polygon (feature) selected */
+function formatArea (polygon){
+ var area = ol.sphere.getArea(polygon.getGeometry().transform(&#39;EPSG:4326&#39;, &#39;EPSG:3857&#39;)); // transform to projected coordinate system.
+ var output;
+ output = Math.round(area * 100*10.7639) / 100  ; //in ft2
+ polygon.getGeometry().transform(&#39;EPSG:3857&#39;, &#39;EPSG:4326&#39; ) //convert back to geographic crc
+ return output;
+}
+
+/*  select ploygon the feature and get area and store the features */
+var selected = []; // contains all features
+var selected_area = []; // contains area of feature, one-to-one
+
+Projectmap.on(&#39;singleclick&#39;, function (e) {
+Projectmap.forEachFeatureAtPixel(e.pixel, function (f, l) {
+	var mycoordinate = e.coordinate
+	storef = f
+	/* if click is on polygon, then select the feature */
+  if ( f.getGeometry()   instanceof  ol.geom.MultiPolygon ) {
+		  
+		var selIndex = selected.indexOf(f);
+			// console.log(selIndex)
+		if (selIndex &amp;lt; 0) {
+			selected.push(f);
+			selected_area.push( formatArea(f) ); // formatArea function returns the area in ft2
+			f.setStyle(highlightStyle);
+		} else {
+			selected.splice(selIndex, 1);
+			selected_area.splice( selIndex, 1);
+			f.setStyle(undefined);
+		}
+ 	 }
+
+	  })
+
+	  /* update the tags with no of selected feature and total area combined */
+	  document.getElementById(&#39;status-selected&#39;).innerHTML = &#39;&amp;amp;nbsp;&#39; + selected.length + &#39; selected features&#39;;
+	  document.getElementById(&#39;status-selected_area&#39;).innerHTML = &#39;&amp;amp;nbsp;&#39; + selected_area.reduce(getSum, 0) + &#39; ft&amp;lt;sup&amp;gt;2&amp;lt;/sup&amp;gt;&#39;;
+	  
+	});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;html_pretty&lt;/code&gt; in the &lt;a href=&#34;https://github.com/yixuan/prettydoc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;prettydoc&lt;/strong&gt;&lt;/a&gt;
+package is a new output format for creating HTML documents from R Markdown files.
+&lt;code&gt;html_pretty&lt;/code&gt; is more lightweight compared to &lt;code&gt;html_document&lt;/code&gt;, and is more
+stylish than &lt;code&gt;html_vignette&lt;/code&gt; when creating package vignettes.&lt;/p&gt;
+&lt;h2 id=&#34;new-styles&#34;&gt;New Styles&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;html_pretty&lt;/code&gt; currently supports three page themes (&lt;code&gt;cayman&lt;/code&gt;, &lt;code&gt;tactile&lt;/code&gt; and
+&lt;code&gt;architect&lt;/code&gt;), and two syntax highlight styles (&lt;code&gt;github&lt;/code&gt; and &lt;code&gt;vignette&lt;/code&gt;).
+The theme and highlight styles can be specified in the document metadata,
+for example:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;your-familiar-tools&#34;&gt;Your Familiar Tools&lt;/h2&gt;
+&lt;p&gt;Feel free to use the &lt;code&gt;knitr&lt;/code&gt; infrastructure with dozens of tunable options in
+your document.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r&#34;&gt;set.seed(123)
+n &amp;lt;- 1000
+x1  &amp;lt;- matrix(rnorm(n), ncol = 2)
+x2  &amp;lt;- matrix(rnorm(n, mean = 3, sd = 1.5), ncol = 2)
+x   &amp;lt;- rbind(x1, x2)
+head(x)
+smoothScatter(x, xlab = &amp;quot;x1&amp;quot;, ylab = &amp;quot;x2&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can include code snippets of languages other than R, but note that
+the block header has no curly brackets around the language name.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;// [[Rcpp::export]]
+NumericVector timesTwo(NumericVector x) {
+    return x * 2;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can also write math expressions, e.g. $Y = X\beta + \epsilon$,
+footnotes^[A footnote here.], and tables, e.g. using &lt;code&gt;knitr::kable()&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r,&#34;&gt;knitr::kable(head(iris, 10))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;stay-tuned&#34;&gt;Stay Tuned&lt;/h2&gt;
+&lt;p&gt;Please visit the &lt;a href=&#34;https://github.com/yixuan/prettydoc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;development page&lt;/a&gt; of the 
+&lt;code&gt;prettydoc&lt;/code&gt; package for latest updates and news. Comments, bug reports and
+pull requests are always welcome.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Upload multiple geotagged images and store POINTS in postgresql database using geodjango</title>
-      <link>https://amanbagrecha.github.io/post/getting-started/</link>
+      <link>amanbagrecha.github.io/post/getting-started/</link>
       <pubDate>Sun, 13 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/post/getting-started/</guid>
+      <guid>amanbagrecha.github.io/post/getting-started/</guid>
       <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;Geodjango is built on top of django and adds spatial functionality such as storing points, lines , polygon and multipolygon. It is prepackaged with Django but requires few additional softwares to make it fully functional. These include- GDAL, PROJ, GEOS, PostGIS. These can be downloaded from osgeo4W which bundles all these libraries. Then application can be added to apps in settings with &lt;code&gt;django.contrib.gis&lt;/code&gt; to the installed apps.&lt;/li&gt;
@@ -341,9 +1816,9 @@ Released under the [MIT](https://github.com/wowchemy/wowchemy-hugo-modules/blob/
     
     <item>
       <title>Hello R Markdown</title>
-      <link>https://amanbagrecha.github.io/post/2020-12-01-r-rmarkdown/</link>
+      <link>amanbagrecha.github.io/post/2020-12-01-r-rmarkdown/</link>
       <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
-      <guid>https://amanbagrecha.github.io/post/2020-12-01-r-rmarkdown/</guid>
+      <guid>amanbagrecha.github.io/post/2020-12-01-r-rmarkdown/</guid>
       <description>
 
 
@@ -380,7 +1855,7 @@ pie(
   init.angle = -50, border = NA
 )&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;https://amanbagrecha.github.io/post/2020-12-01-r-rmarkdown/index.en_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;amanbagrecha.github.io/post/2020-12-01-r-rmarkdown/index.en_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 1: A fancy pie chart.
 &lt;/p&gt;
@@ -391,9 +1866,9 @@ Figure 1: A fancy pie chart.
     
     <item>
       <title>Writing technical content in Academic</title>
-      <link>https://amanbagrecha.github.io/post/writing-technical-content/</link>
+      <link>amanbagrecha.github.io/post/writing-technical-content/</link>
       <pubDate>Fri, 12 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/post/writing-technical-content/</guid>
+      <guid>amanbagrecha.github.io/post/writing-technical-content/</guid>
       <description>&lt;p&gt;Academic is designed to give technical content creators a seamless experience. You can focus on the content and Academic handles the rest.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Highlight your code snippets, take notes on math classes, and draw diagrams from textual representation.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;On this page, you&amp;rsquo;ll find some examples of the types of technical content that can be rendered with Academic.&lt;/p&gt;
@@ -417,7 +1892,7 @@ data.head()
 &lt;p&gt;Demo:&lt;/p&gt;
 
 
-&lt;div id=&#34;chart-853426791&#34; class=&#34;chart&#34;&gt;&lt;/div&gt;
+&lt;div id=&#34;chart-396148572&#34; class=&#34;chart&#34;&gt;&lt;/div&gt;
 &lt;script&gt;
   (function() {
     let a = setInterval( function() {
@@ -427,7 +1902,7 @@ data.head()
       clearInterval( a );
 
       Plotly.d3.json(&#34;./line-chart.json&#34;, function(chart) {
-        Plotly.plot(&#39;chart-853426791&#39;, chart.data, chart.layout, {responsive: true});
+        Plotly.plot(&#39;chart-396148572&#39;, chart.data, chart.layout, {responsive: true});
       });
     }, 500 );
   })();
@@ -655,9 +2130,9 @@ You found me!
     
     <item>
       <title>An example preprint / working paper</title>
-      <link>https://amanbagrecha.github.io/publication/preprint/</link>
+      <link>amanbagrecha.github.io/publication/preprint/</link>
       <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/publication/preprint/</guid>
+      <guid>amanbagrecha.github.io/publication/preprint/</guid>
       <description>&lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
     Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
@@ -669,9 +2144,9 @@ You found me!
     
     <item>
       <title>Display Jupyter Notebooks with Academic</title>
-      <link>https://amanbagrecha.github.io/post/jupyter/</link>
+      <link>amanbagrecha.github.io/post/jupyter/</link>
       <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/post/jupyter/</guid>
+      <guid>amanbagrecha.github.io/post/jupyter/</guid>
       <description>&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from IPython.core.display import Image
 Image(&#39;https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png&#39;)
 &lt;/code&gt;&lt;/pre&gt;
@@ -713,9 +2188,9 @@ date: 2019-09-01
     
     <item>
       <title>Slides</title>
-      <link>https://amanbagrecha.github.io/slides/example/</link>
+      <link>amanbagrecha.github.io/slides/example/</link>
       <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/slides/example/</guid>
+      <guid>amanbagrecha.github.io/slides/example/</guid>
       <description>&lt;h1 id=&#34;introduction-to&#34;&gt;Introduction to&lt;/h1&gt;
 &lt;h2 id=&#34;natural-language-processing&#34;&gt;Natural Language Processing&lt;/h2&gt;
 &lt;p&gt;By &lt;a href=&#34;https://github.com/amanbagrecha&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Aman Bagrecha&lt;/a&gt;&lt;/p&gt;
@@ -843,9 +2318,9 @@ Three
     
     <item>
       <title>CRUD Application using node express api</title>
-      <link>https://amanbagrecha.github.io/project/internal-project/</link>
+      <link>amanbagrecha.github.io/project/internal-project/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/project/internal-project/</guid>
+      <guid>amanbagrecha.github.io/project/internal-project/</guid>
       <description>&lt;h1 id=&#34;project-setup&#34;&gt;Project Setup&lt;/h1&gt;
 &lt;p&gt;create package.json&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;npm init -y
@@ -940,17 +2415,17 @@ const { Mongoose } = pkg;
     
     <item>
       <title>External Project</title>
-      <link>https://amanbagrecha.github.io/project/external-project/</link>
+      <link>amanbagrecha.github.io/project/external-project/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/project/external-project/</guid>
+      <guid>amanbagrecha.github.io/project/external-project/</guid>
       <description></description>
     </item>
     
     <item>
       <title>An example journal article</title>
-      <link>https://amanbagrecha.github.io/publication/journal-article/</link>
+      <link>amanbagrecha.github.io/publication/journal-article/</link>
       <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/publication/journal-article/</guid>
+      <guid>amanbagrecha.github.io/publication/journal-article/</guid>
       <description>&lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
     Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
@@ -967,9 +2442,9 @@ const { Mongoose } = pkg;
     
     <item>
       <title>An example conference paper</title>
-      <link>https://amanbagrecha.github.io/publication/conference-paper/</link>
+      <link>amanbagrecha.github.io/publication/conference-paper/</link>
       <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/publication/conference-paper/</guid>
+      <guid>amanbagrecha.github.io/publication/conference-paper/</guid>
       <description>&lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
     Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
@@ -986,9 +2461,9 @@ const { Mongoose } = pkg;
     
     <item>
       <title></title>
-      <link>https://amanbagrecha.github.io/admin/config.yml</link>
+      <link>amanbagrecha.github.io/admin/config.yml</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/admin/config.yml</guid>
+      <guid>amanbagrecha.github.io/admin/config.yml</guid>
       <description></description>
     </item>
     

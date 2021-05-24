@@ -1,0 +1,1876 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.0.0-beta.3 for Hugo" />
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Aman Bagrecha" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="What will you learn Too Long; Didn&rsquo;t Read 
+   Markdown Less     DRF Create API end points for CRUD   Token Authentication Add security and authorised access   Fetch API calls Consume API from front-end   Password Reset Send email to reset your forgotton password     1." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="amanbagrecha.github.io/post/django/crud-in-django-rest-framework/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/amanbagrecha.github.io/css/wowchemy.05597aa6a76faca3096d08b97f4872b8.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/amanbagrecha.github.io/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/amanbagrecha.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/amanbagrecha.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="amanbagrecha.github.io/post/django/crud-in-django-rest-framework/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Aman Bagrecha" />
+  <meta property="og:url" content="amanbagrecha.github.io/post/django/crud-in-django-rest-framework/" />
+  <meta property="og:title" content="Full Fledged CRUD application using DRF and Token Authentication | Aman Bagrecha" />
+  <meta property="og:description" content="What will you learn Too Long; Didn&rsquo;t Read 
+   Markdown Less     DRF Create API end points for CRUD   Token Authentication Add security and authorised access   Fetch API calls Consume API from front-end   Password Reset Send email to reset your forgotton password     1." /><meta property="og:image" content="/amanbagrecha.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="/amanbagrecha.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta property="article:published_time" content="2021-05-24T15:13:58&#43;05:30" />
+    
+    <meta property="article:modified_time" content="2021-05-24T15:13:58&#43;05:30">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "amanbagrecha.github.io/post/django/crud-in-django-rest-framework/"
+  },
+  "headline": "Full Fledged CRUD application using DRF and Token Authentication",
+  
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "2021-05-24T15:13:58+05:30",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Aman Bagrecha"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Aman Bagrecha",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/amanbagrecha.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "What will you learn Too Long; Didn\u0026rsquo;t Read \n   Markdown Less     DRF Create API end points for CRUD   Token Authentication Add security and authorised access   Fetch API calls Consume API from front-end   Password Reset Send email to reset your forgotton password     1."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Full Fledged CRUD application using DRF and Token Authentication | Aman Bagrecha</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="acb3f40a2c4ddf66f721a5ff94fad7f7" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/amanbagrecha.github.io/js/wowchemy-init.min.b024895df05e271929739bb54886c674.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/amanbagrecha.github.io/">Aman Bagrecha</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/amanbagrecha.github.io/">Aman Bagrecha</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha.github.io/#about"><span>Demo</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha.github.io/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha.github.io/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha.github.io/#talks"><span>Talks</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha.github.io/#featured"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha.github.io/courses/"><span>Courses</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha.github.io/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="https://twitter.com/jainaman588" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Full Fledged CRUD application using DRF and Token Authentication</h1>
+
+  
+  <p class="page-subtitle">How to perform Create, Read, Update and Delete operations in Django Rest Framework</p>
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    May 24, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    9 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="amanbagrecha.github.io/category/drf/">DRF</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <hr style="border:1px solid lightgray"> </hr>
+<br>
+<h2 id="what-will-you-learn">What will you learn</h2>
+<p><span style="color: grey;font-size: 18px;">Too Long; Didn&rsquo;t Read </span></p>
+<table>
+<thead>
+<tr>
+<th>Markdown</th>
+<th>Less</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DRF</strong></td>
+<td>Create API end points for CRUD</td>
+</tr>
+<tr>
+<td><strong>Token Authentication</strong></td>
+<td>Add security and authorised access</td>
+</tr>
+<tr>
+<td><strong>Fetch API calls</strong></td>
+<td>Consume API from front-end</td>
+</tr>
+<tr>
+<td><strong>Password Reset</strong></td>
+<td>Send email to reset your forgotton password</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="1-step-one--basic-django-project-setup">1. Step one : Basic Django Project setup</h2>
+<p>Create virtual environment</p>
+<pre><code>conda create --name djangoEnv
+</code></pre>
+<p>Activate the environment</p>
+<pre><code>conda activate djangoEnv
+</code></pre>
+<p>Install the dependencies</p>
+<pre><code>conda install django
+</code></pre>
+<p>Now, in your command line</p>
+<p>create project <code>django-admin startproject tutorial</code></p>
+<p>create app <code>python manage.py startapp Accountsapp</code></p>
+<p>create superuser <code>python manage.py createsuperuser</code></p>
+<p>Now that we have the project and app installed your structure should look like this (insert picture here)</p>
+<p>Register the app in  file as follows</p>
+<p>In <code>settings.py</code></p>
+<pre><code class="language-python">Installed_apps = [ 
+    'Accountsapp.apps.AccountsappConfig',
+    ...
+]
+</code></pre>
+<p>We now create our own custom model named <em><strong>MyAccounts</strong></em></p>
+<p>In <code>models.py</code></p>
+<pre><code class="language-python">from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
+
+
+class MyAccountManager(BaseUserManager):
+	def create_user(self, email, username, password=None):
+		if not email:
+			raise ValueError('Users must have an email address')
+		if not username:
+			raise ValueError('Users must have a username')
+
+
+		user = self.model(
+			email=self.normalize_email(email),
+			username=username,
+		)
+
+		user.set_password(password)
+		user.save(using=self._db)
+		return user
+
+	def create_superuser(self, email, username, password):
+		user = self.create_user(
+			email=self.normalize_email(email),
+			password=password,
+			username=username,
+			
+		)
+		user.is_admin = True
+		user.is_staff = True
+		user.is_superuser = True
+		user.save(using=self._db)
+		return user
+
+# creating custom model of &quot;User&quot; base model. 
+class MyAccount(AbstractBaseUser):
+	email 					= models.EmailField(verbose_name=&quot;email&quot;, max_length=60, unique=True)
+	username 				= models.CharField(max_length=30, unique=True)
+	date_joined				= models.DateTimeField(verbose_name='date joined', auto_now_add=True)
+	last_login				= models.DateTimeField(verbose_name='last login', auto_now=True)
+	is_admin				= models.BooleanField(default=False)
+	is_active				= models.BooleanField(default=True)
+	is_staff				= models.BooleanField(default=False)
+	is_superuser			= models.BooleanField(default=False)
+
+
+	USERNAME_FIELD = 'email'   # username_field is the one which should be unique and will be compared by django for not creating multiple users with same email.
+
+	REQUIRED_FIELDS = ['username'] 
+
+	objects = MyAccountManager()
+
+	def __str__(self):
+		return self.email
+
+	# For checking permissions. to keep it simple all admin have ALL permissons
+	def has_perm(self, perm, obj=None):
+		return self.is_admin
+
+	# Does this user have permission to view this app? (ALWAYS YES FOR SIMPLICITY)
+	def has_module_perms(self, app_label):
+		return True
+</code></pre>
+<p>To tell django we are overwriting the default user model, we do the following</p>
+<p>In <code>settings.py</code></p>
+<pre><code class="language-python">AUTH_USER_MODEL = Accounts.MyAccounts
+</code></pre>
+<p>Now we makemigrates to register the model in our database</p>
+<pre><code>python manage.py makemigrations
+python manage.py migrate
+</code></pre>
+<p>And for the model to be visible in admin section we do the following</p>
+<p>In <code>admin.py</code></p>
+<pre><code class="language-python">from django.contrib import admin
+from .models import MyAccount
+
+admin.site.register(MyAccount) # Register your models here.
+</code></pre>
+<p>For now the our project is setup. We move to Django Rest Framework setup</p>
+<h2 id="2-setup-django-rest-framework-with-authentication">2. Setup Django Rest Framework with Authentication</h2>
+<p>Install dependeny</p>
+<pre><code>conda install djangorestframework
+</code></pre>
+<p>Like any other app, django rest framework is also an app. so we add it to the list of installed apps. 
+We additionally add authtoken app for user authentication which we are shortly going to intergrate in our CRUD application</p>
+<p>In <code>settings.py</code></p>
+<pre><code class="language-python">INSTALLED_APPS = [
+    # my apps
+    'Accountsapp.apps.AccountsappConfig',
+    # restframework
+    'rest_framework',
+    'rest_framework.authtoken',
+    ...
+    
+]
+</code></pre>
+<p>We are going to be using Token Authentication in this application. DRF documentation recommends it as the default. 
+Let Us setup the Default authentication class before actually utilising it.</p>
+<p>In <code>settings.py</code></p>
+<pre><code class="language-python">REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        
+    ]
+}
+</code></pre>
+<p>The last thing before we actually start writing code is to perform migration. The <code>rest_framework.authtoken</code> app provides Django database migrations.</p>
+<p>As done previously on command line</p>
+<pre><code>python manage.py makemigrations
+python manage.py migrate
+</code></pre>
+<p>We have completed the logistics for setting up DRF</p>
+<h2 id="3-building-crud-application">3. Building CRUD application</h2>
+<p>We would first create a folder called <strong>api</strong> inside our to seperate codebase for API and vanila CRUD</p>
+<p>Inside API folder create four files,</p>
+<ul>
+<li><code>__init__.py</code></li>
+<li><code>serializers.py</code></li>
+<li><code>views.py</code></li>
+<li><code>urls.py</code></li>
+</ul>
+<p>In <code>serializers.py</code></p>
+<pre><code class="language-python">from rest_framework import serializers 
+from Accountsapp.models import MyAccount # import our custom model
+
+
+# provide fields in meta, expression and in MyAccount. for admin page login and edit,  is_admin and is_staff should be true
+class RegistrationSerializer(serializers.ModelSerializer):
+
+    # additional fields 
+	password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True)
+	is_superuser =serializers.BooleanField(write_only=True)
+	
+    class Meta:
+		model = MyAccount
+        # mention the fields you want to display when request is sent. 
+		fields = ['id','email', 'username', 'password', 'password2',  'is_superuser']
+		extra_kwargs = {
+				'password': {'write_only': True},  # tells django to not display the password for others to see
+		}	
+
+
+	def	save(self):
+
+		account = MyAccount(
+					email=self.validated_data['email'],
+					username=self.validated_data['username'],
+					# is_admin=self.validated_data['is_admin'],
+					is_superuser= self.validated_data['is_superuser'],
+				)
+		password = self.validated_data['password']
+		password2 = self.validated_data['password2']
+		if password != password2:
+			raise serializers.ValidationError({'password': 'Passwords must match.'})
+		account.set_password(password)
+		account.save()
+		return account
+
+
+class UpdateSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = MyAccount
+		# mention the fields you want to display when request is sent. 
+		fields = ['id', 'username', 'email']
+		extra_kwargs = {
+				'password': {'read_only': True},  #  password cannot be edited from here
+		}
+
+
+</code></pre>
+<p><strong>Note</strong> : Do not try to update the password from serializers. There is another technique which we will deal with in later section.</p>
+<blockquote>
+<p>The serializers in REST framework work very similarly to Django’s Form and ModelForm classes. The two major serializers that are most popularly used are ModelSerializer and HyperLinkedModelSerialzer.</p>
+</blockquote>
+<p>In <code>views.py</code></p>
+<pre><code class="language-python">from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from django.contrib.auth import authenticate
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+
+from . import serializers 
+from Accountsapp.models import MyAccount
+from rest_framework.authtoken.models import Token
+
+# user views
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+from django.core.exceptions import ObjectDoesNotExist
+import json
+
+# login {built-in django}
+from django.contrib.auth import login 
+from django.contrib.auth.decorators import login_required
+
+
+
+# get all users
+@api_view([&quot;GET&quot;])
+@csrf_exempt
+@permission_classes([IsAuthenticated,])
+@authentication_classes([TokenAuthentication])
+def get_users(request):
+    try:
+        user_profile = MyAccount.objects.all() 
+        serializer = serializers.RegistrationSerializer(user_profile, many=True)
+        return Response( {'USER_PROFILE':serializer.data}, status= status.HTTP_200_OK)
+    except ObjectDoesNotExist:
+        return JsonResponse({'Response': 'You do not have authorization to access this page'}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+
+# get given user
+@api_view(['GET'])
+@csrf_exempt
+@permission_classes([IsAuthenticated,])
+@authentication_classes([TokenAuthentication])
+def get_given_user(request, pk):
+    try:
+        user_profile = MyAccount.objects.get(pk=pk)
+    except ObjectDoesNotExist:
+        return JsonResponse({&quot;missing&quot;: &quot;The requested object does not exist&quot;}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':  
+        serializer = serializers.RegistrationSerializer(user_profile)
+        token = Token.objects.get(user=user_profile).key
+        return JsonResponse({'given_user_profile': serializer.data, 'token':token})
+   
+
+
+# add user
+@csrf_exempt
+@api_view(['POST'])
+def user_add_view(request):
+        serializer = serializers.RegistrationSerializer( data=request.data)
+        if serializer.is_valid():
+            account = serializer.save()
+            token, _ = Token.objects.get_or_create(user=account)
+            return Response(serializer.data, status=status.HTTP_201_CREATED,  headers={'Authorization': 'Token ' + token.key})
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+# update user
+@api_view([&quot;PUT&quot;,'GET'])
+@csrf_exempt
+@permission_classes([IsAuthenticated,])
+@authentication_classes([TokenAuthentication])
+def update_user(request, pk):
+
+    try:
+        user_profile = MyAccount.objects.get(id=pk)
+    except ObjectDoesNotExist:
+        return Response({'response': &quot;given object does not exist&quot;}, status=status.HTTP_404_NOT_FOUND)
+
+    user = request.user
+    try:
+        data =  {i:j for i,j in request.query_params.items()}
+        print(data)
+        serializer = serializers.UpdateSerializer(user_profile, data=data)
+        if serializer.is_valid():
+            user= serializer.save()
+            token, _ = Token.objects.get_or_create(user=user)
+            return Response({&quot;response&quot;: &quot;success&quot;, 'data' :serializer.data}, status=status.HTTP_201_CREATED,  headers={'Authorization': 'Token ' + token.key})
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    except ObjectDoesNotExist as e:
+        return JsonResponse({'error': str(e)}, safe=False, status=status.HTTP_404_NOT_FOUND)
+    except Exception:
+        return JsonResponse({'error': 'Something terrible went wrong'}, safe=False, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+# delete user
+@api_view([&quot;DELETE&quot;,'GET']) 
+@csrf_exempt
+@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
+def delete_user(request, pk):
+
+    try:
+        user_profile = MyAccount.objects.get(id=pk)
+    except ObjectDoesNotExist:
+        return JsonResponse({'response': &quot;given object does not exist&quot;}, safe=False, status=status.HTTP_404_NOT_FOUND)
+
+    user = request.user
+    if user_profile != user: 
+        return JsonResponse({'response':&quot;You don't have permission to delete the record.&quot;}, safe=False, status=status.HTTP_401_UNAUTHORIZED)
+
+    try:
+        user_profile.delete()  #retuns 1 or 0
+        return JsonResponse({'user_delete': &quot;record deleted&quot;}, safe=False, status=status.HTTP_200_OK)
+    except ObjectDoesNotExist as e:
+        return JsonResponse({'error': str(e)}, safe=False, status=status.HTTP_404_NOT_FOUND)
+    except Exception:
+        return JsonResponse({'error': 'Something terrible went wrong'}, safe=False, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+# login view and get token
+@api_view([&quot;POST&quot;, ])
+def drflogin(request):
+
+    email = request.data.get(&quot;email&quot;)
+    username = request.data.get(&quot;username&quot;)
+    password = request.data.get(&quot;password&quot;)
+    account = MyAccount.objects.filter(email=email) | MyAccount.objects.filter(username=username)
+    if not account:
+        return Response({&quot;error&quot;: &quot;Login failed&quot;}, status=status.HTTP_401_UNAUTHORIZED)
+    # authenticate(email=email, password=password)  # returns none if not authenticated
+    account = authenticate(email=account[0].email, password=password)
+    token, _ = Token.objects.get_or_create(user=account)
+    login(request,account)  
+    renderer= Response({&quot;response&quot; : &quot;Successfully authenticated&quot;,  &quot;pk&quot;: account.pk, &quot;username&quot;: account.username, &quot;token&quot;: token.key }, template_name= &quot;Accountsapp/loginuser.html&quot;, headers={'Authorization': 'Token ' + token.key})
+    return renderer
+</code></pre>
+<p>Setup end points for our API</p>
+<p>In <code>views.py</code></p>
+<pre><code class="language-python">
+from django.urls import path, include
+from . import views as drf_views
+
+
+app_name = 'Accountsapp'
+
+urlpatterns = [
+
+    path('drf_users/', drf_views.get_users, name= 'drf_users'),
+    path('drf_user/&lt;int:pk&gt;/', drf_views.get_given_user, name= 'drf_get_user'),
+    path('drf_updateuser/&lt;int:pk&gt;/', drf_views.update_user, name= 'drf_updateusers'),
+    path('drf_deleteuser/&lt;int:pk&gt;/', drf_views.delete_user, name= 'drf_deleteuser'),
+    path('drf_adduser/', drf_views.user_add_view, name= 'drf_adduser'),
+    path('drf_login/', drf_views.drflogin, name='drf_login'),
+
+    
+]
+
+</code></pre>
+<p>We first create users and then test  delete, update and show users functionality of our API. We will use Postman for timebeing. Later we will built the front-end to perform all these actions.</p>
+<h2 id="span-style-colororange-post-span-request-add-user"><span style= "color:orange"> POST </span> REQUEST: <strong>ADD USER</strong></h2>
+<pre><code>http://127.0.0.1:8000/drf_adduser/
+</code></pre>
+<p><img src="https://i.imgur.com/Ea8W3Bj.png" alt=""></p>
+<h2 id="span-style-colorgreen-get-span-request-get-users"><span style= "color:green"> GET </span> REQUEST: <strong>GET USERS</strong></h2>
+<p>API end point</p>
+<pre><code>http://127.0.0.1:8000/drf_users/
+</code></pre>
+<p>Using curl and passing authorization token</p>
+<pre><code>curl --location --request GET 'http://127.0.0.1:8000/drf_users/' \
+--header 'Authorization: Token 92cc8c32edb7bd111b89552a3031f918d2df5613'
+</code></pre>
+<p>Using postman</p>
+<p><img src="https://i.imgur.com/dPnv4J4.png" alt=""></p>
+<h2 id="span-style-colorred-del-span-request-delete-user"><span style= "color:RED"> DEL </span> REQUEST: <strong>DELETE USER</strong></h2>
+<p>API end point</p>
+<pre><code>http://127.0.0.1:8000/drf_deleteuser/&lt;int:pk&gt;
+</code></pre>
+<p>Using curl and passing authorization token</p>
+<pre><code>curl --location --request DELETE 'http://127.0.0.1:8000/drf_deleteuser/21' \
+--header 'Authorization: Token 1529e77c59999f819649828a5e9174ba44bd6bb4'
+</code></pre>
+<p>Using postman</p>
+<p><img src="https://i.imgur.com/6IFah1s.png" alt=""></p>
+<h2 id="span-style-colordodgerblue-put-span-request-update-user"><span style= "color:dodgerblue"> PUT </span> REQUEST: <strong>UPDATE USER</strong></h2>
+<p>API end point</p>
+<pre><code>http://127.0.0.1:8000/drf_updateuser/1/?username=updated_username_here&amp;email=updated_email_here
+</code></pre>
+<p>Using curl and passing authorization token</p>
+<pre><code>curl --location --request PUT 'http://127.0.0.1:8000/drf_updateuser/8/?username=rcbfl&amp;email=rcbfl@gmail.com' \
+--header 'Authorization: Token 506ce0bbf7fa50f613678024586669d9b6bd82a0'
+</code></pre>
+<p>using postman
+<img src="https://i.imgur.com/LhVZ34L.png" alt=""></p>
+<h2 id="span-style-colorgreen-get-span-request-get-user"><span style= "color:green"> GET </span> REQUEST: <strong>GET USER</strong></h2>
+<p>API end point</p>
+<pre><code>http://127.0.0.1:8000/drf_user/&lt;int:pk&gt;
+</code></pre>
+<p>Using curl and passing authorization token</p>
+<pre><code>curl --location --request GET 'http://127.0.0.1:8000/drf_user/8' \
+--header 'Authorization: Token 506ce0bbf7fa50f613678024586669d9b6bd82a0'
+</code></pre>
+<p>using postman</p>
+<p><img src="https://i.imgur.com/LiPdZIe.png" alt=""></p>
+<h2 id="front-end-setup">Front end setup</h2>
+<p>In root directory create folder  <code>templates\Accountsapp\</code> and create <code>RegiserUser.html</code> file in it. Create form field in the file as follows</p>
+<pre><code class="language-html">          &lt;form class=&quot;form-horizontal&quot; action=&quot;&quot; method=&quot;post&quot;  id=&quot;myForm&quot; autocomplete=&quot;off&quot;&gt;
+          	{% csrf_token %}
+            &lt;!-- Name input--&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label class=&quot;col-md-3 control-label&quot; for=&quot;username&quot;&gt;Name&lt;/label&gt;
+              &lt;div class=&quot;col-md-9&quot;&gt;
+                &lt;input id=&quot;username&quot; name=&quot;username&quot; type=&quot;text&quot; placeholder=&quot;Your username&quot; class=&quot;form-control&quot;&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- Email input--&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label class=&quot;col-md-3 control-label&quot; for=&quot;email&quot;&gt;Your E-mail&lt;/label&gt;
+              &lt;div class=&quot;col-md-9&quot;&gt;
+                &lt;input id=&quot;email&quot; name=&quot;email&quot; type=&quot;email&quot; placeholder=&quot;Your email&quot; class=&quot;form-control&quot;&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- password body --&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label class=&quot;col-md-3 control-label&quot; for=&quot;password&quot;&gt;Password&lt;/label&gt;
+              &lt;div class=&quot;col-md-9&quot;&gt;
+                &lt;input id=&quot;password&quot; name=&quot;password&quot; type=&quot;password&quot; placeholder=&quot;Your password&quot; class=&quot;form-control&quot;&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- password body --&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label class=&quot;col-md-3 control-label&quot; for=&quot;password2&quot;&gt;Password2&lt;/label&gt;
+              &lt;div class=&quot;col-md-9&quot;&gt;
+                &lt;input id=&quot;password2&quot; name=&quot;password2&quot; type=&quot;password&quot; placeholder=&quot;confirm password&quot; class=&quot;form-control&quot;&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            
+            &lt;!-- superuser input --&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label class=&quot;col-md-3 control-label&quot; for=&quot;superuser&quot;&gt;Is superuser&lt;/label&gt;
+              &lt;div class=&quot;col-md-3&quot;&gt;
+                &lt;input id=&quot;issuperuser&quot; name=&quot;issuperuser&quot; type=&quot;checkbox&quot;  class=&quot;form-control&quot; &gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+ 
+    
+            &lt;!-- Form actions --&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+              &lt;div class=&quot;col-md-6 text-left&quot;&gt;
+                &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary btn-lg&quot;&gt;Submit&lt;/button&gt;
+              &lt;/div&gt;
+
+
+            &lt;/div&gt;
+          &lt;/fieldset&gt;
+          &lt;/form&gt;
+
+</code></pre>
+<p>Once the form is created, we now need to take the input from the form and send to the register user API <code>drf_adduser/</code>.</p>
+<p>In <code>RegisterUser.html</code></p>
+<pre><code class="language-html">&lt;script type=&quot;text/javascript&quot;&gt;
+
+
+			function getCookie(name) {
+		    var cookieValue = null;
+		    if (document.cookie &amp;&amp; document.cookie !== '') {
+		        var cookies = document.cookie.split(';');
+		        for (var i = 0; i &lt; cookies.length; i++) {
+		            var cookie = cookies[i].trim();
+		            // Does this cookie string begin with the name we want?
+		            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		                break;
+		            }
+		        }
+		    }
+		    return cookieValue;
+		}
+		var csrftoken = getCookie('csrftoken');
+
+
+
+function fetchcall(event) {
+
+		event.preventDefault();
+		console.log('form submitted');
+	var username = document.getElementById(&quot;username&quot;).value;
+	var email = document.getElementById(&quot;email&quot;).value;
+	var password = document.getElementById(&quot;password&quot;).value;
+	var password2 = document.getElementById(&quot;password2&quot;).value;
+	var issuperuser = document.getElementById(('issuperuser')).checked;
+	console.log(issuperuser)
+
+		var url = '/drf_adduser/';
+
+			fetch(url, {
+				method:'POST',
+				headers:{
+					'Content-type':'application/json',
+					'X-CSRFToken':csrftoken,
+				},
+				body:JSON.stringify({
+					'email':email,
+					'username':username,
+					&quot;password&quot;:password,
+					&quot;password2&quot;:password2,
+					&quot;is_superuser&quot;: issuperuser
+				})
+			}
+			).then(function(response){
+				store_response= response;
+				return response.json();
+
+			}).then(function(data){
+				store_data =JSON.stringify(data);
+				document.getElementById(&quot;message&quot;).innerHTML=  store_data;
+			}).catch(function(error){
+			console.error(error);
+		});
+
+	}
+			
+	var myForm = document.getElementById(&quot;myForm&quot;);
+
+		console.log(username, password, myForm);
+	myForm.addEventListener('submit', fetchcall);
+	
+&lt;/script&gt;
+</code></pre>
+<p>To make this work in front-end, we need to register the file to <code>Accountsapp/views.py</code></p>
+<pre><code class="language-python">def register_user(request):
+	# if request.user.is_authenticated:
+	return render(request, &quot;Accountsapp/RegisterUser.html&quot;, {'Title': &quot;Register new user&quot;})
+
+</code></pre>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="amanbagrecha.github.io/tag/django/">Django</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=amanbagrecha.github.io/post/django/crud-in-django-rest-framework/&amp;text=Full%20Fledged%20CRUD%20application%20using%20DRF%20and%20Token%20Authentication" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=amanbagrecha.github.io/post/django/crud-in-django-rest-framework/&amp;t=Full%20Fledged%20CRUD%20application%20using%20DRF%20and%20Token%20Authentication" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Full%20Fledged%20CRUD%20application%20using%20DRF%20and%20Token%20Authentication&amp;body=amanbagrecha.github.io/post/django/crud-in-django-rest-framework/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=amanbagrecha.github.io/post/django/crud-in-django-rest-framework/&amp;title=Full%20Fledged%20CRUD%20application%20using%20DRF%20and%20Token%20Authentication" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Full%20Fledged%20CRUD%20application%20using%20DRF%20and%20Token%20Authentication%20amanbagrecha.github.io/post/django/crud-in-django-rest-framework/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=amanbagrecha.github.io/post/django/crud-in-django-rest-framework/&amp;title=Full%20Fledged%20CRUD%20application%20using%20DRF%20and%20Token%20Authentication" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="amanbagrecha.github.io"><img class="avatar mr-3 avatar-circle" src="/amanbagrecha.github.io/author/aman-bagrecha/avatar_hu8b3e467675822a0c69fe66cbb3600b5d_124233_270x270_fill_q75_lanczos_center.jpg" alt="Aman Bagrecha"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="amanbagrecha.github.io">Aman Bagrecha</a></h5>
+      <h6 class="card-subtitle">Civil Engineering Student</h6>
+      <p class="card-text">My interests include documenting, programming, Deep learning and GIS matter.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/amanbagrecha.github.io/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/jainaman588" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ" target="_blank" rel="noopener">
+        <i class="fab fa-researchgate"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/amanbagrecha" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/amanbagrecha/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="amanbagrecha.github.io/post/getting-started/">Upload multiple geotagged images and store POINTS in postgresql database using geodjango</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    <script src="/amanbagrecha.github.io/js/_vendor/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/amanbagrecha.github.io/en/js/wowchemy.min.2818659d16edc9eb97f7dbc78aefe608.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

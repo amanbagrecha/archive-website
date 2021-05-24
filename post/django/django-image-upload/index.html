@@ -1,0 +1,1595 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.0.0-beta.3 for Hugo" />
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Aman Bagrecha" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Project setup create project
+django-admin startproject login_boiler_platecreate app python manage.py startapp GisMapcreate superuser python manage.py createsuperuser in settings.py
+INSTALLED_APPS = [...&#39;GisMap&#39;,]MEDIA_ROOT = os." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="amanbagrecha.github.io/post/django/django-image-upload/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/amanbagrecha.github.io/css/wowchemy.05597aa6a76faca3096d08b97f4872b8.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/amanbagrecha.github.io/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/amanbagrecha.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/amanbagrecha.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="amanbagrecha.github.io/post/django/django-image-upload/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Aman Bagrecha" />
+  <meta property="og:url" content="amanbagrecha.github.io/post/django/django-image-upload/" />
+  <meta property="og:title" content="Django How to: Upload Multiple Image | Aman Bagrecha" />
+  <meta property="og:description" content="Project setup create project
+django-admin startproject login_boiler_platecreate app python manage.py startapp GisMapcreate superuser python manage.py createsuperuser in settings.py
+INSTALLED_APPS = [...&#39;GisMap&#39;,]MEDIA_ROOT = os." /><meta property="og:image" content="/amanbagrecha.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="/amanbagrecha.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta property="article:published_time" content="2021-05-24T17:25:54&#43;05:30" />
+    
+    <meta property="article:modified_time" content="2021-05-24T17:25:54&#43;05:30">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "amanbagrecha.github.io/post/django/django-image-upload/"
+  },
+  "headline": "Django How to: Upload Multiple Image",
+  
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "2021-05-24T17:25:54+05:30",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Aman Bagrecha"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Aman Bagrecha",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/amanbagrecha.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Project setup create project\ndjango-admin startproject login_boiler_plate\rcreate app python manage.py startapp GisMap\rcreate superuser python manage.py createsuperuser\r in settings.py\nINSTALLED_APPS = [\r...\r'GisMap',\r]\rMEDIA_ROOT = os."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Django How to: Upload Multiple Image | Aman Bagrecha</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="358b17730b7a6c42374df40ddf72985c" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/amanbagrecha.github.io/js/wowchemy-init.min.b024895df05e271929739bb54886c674.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/amanbagrecha.github.io/">Aman Bagrecha</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/amanbagrecha.github.io/">Aman Bagrecha</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha.github.io/#about"><span>Demo</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha.github.io/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha.github.io/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha.github.io/#talks"><span>Talks</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha.github.io/#featured"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha.github.io/courses/"><span>Courses</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha.github.io/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="https://twitter.com/jainaman588" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Django How to: Upload Multiple Image</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    May 24, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    4 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <br>
+<hr>
+<h3 id="project-setup">Project setup</h3>
+<p>create project</p>
+<pre><code class="language-bash">django-admin startproject login_boiler_plate
+create app python manage.py startapp GisMap
+create superuser python manage.py createsuperuser
+</code></pre>
+<p>in <code>settings.py</code></p>
+<pre><code class="language-python">INSTALLED_APPS = [
+	...
+	'GisMap',
+]
+
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
+MEDIA_URL = '/media/'
+</code></pre>
+<p>in <code>models.py</code></p>
+<pre><code class="language-python">from django.db import models
+from django.contrib.auth.models import User
+
+
+class ImageUpload(models.Model):
+	user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+	image = models.ImageField( null=False, blank=False, upload_to = 'images/')
+	date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):
+		return self.user.username + &quot; uploaded: &quot;+ self.image.name
+</code></pre>
+<p>in <code>forms.py</code></p>
+<pre><code class="language-python">  
+from django.forms import ModelForm
+from django.contrib.auth.models import User
+from .models import ImageUpload
+
+class ImageForm(ModelForm):
+	class Meta:
+		model = ImageUpload
+		fields = ('image',)
+
+</code></pre>
+<p>in <code>urls.py</code></p>
+<pre><code class="language-python">from django.conf import settings
+from django.conf.urls.static import static
+if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)
+</code></pre>
+<p>in <code>home.html</code></p>
+<pre><code class="language-html">                  &lt;!-- Modal --&gt;
+                  &lt;form method = &quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+                  &lt;div class=&quot;modal fade&quot; id=&quot;exampleModal&quot; tabindex=&quot;-1&quot; role=&quot;dialog&quot; aria-labelledby=&quot;exampleModalLabel&quot; aria-hidden=&quot;true&quot; &gt;
+                    {% csrf_token %}
+                    &lt;div class=&quot;modal-dialog&quot; role=&quot;document&quot;&gt;
+                      &lt;div class=&quot;modal-content&quot;&gt;
+                        &lt;div class=&quot;modal-header&quot;&gt;
+                          &lt;h5 class=&quot;modal-title&quot; id=&quot;exampleModalLabel&quot;&gt;Upload Image&lt;/h5&gt;
+                          &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;
+                            &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+                          &lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class=&quot;modal-body&quot;&gt;
+                          {{ image_form.image }}
+                        &lt;/div&gt;
+                        &lt;div class=&quot;modal-footer&quot;&gt;
+                          &lt;button type=&quot;button&quot; class=&quot;btn btn-secondary&quot; data-dismiss=&quot;modal&quot;&gt;Close&lt;/button&gt;
+                          &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Save Image&lt;/button&gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;/form&gt;
+
+</code></pre>
+<p>in <code>views.py</code></p>
+<pre><code class="language-python">@login_required(login_url='login')
+def home_page(request):
+
+	if request.method == 'POST':
+		form = ImageForm(request.POST , request.FILES)
+		print(form)
+		if form.is_valid():
+			print(&quot;is valid&quot;)
+			obj = form.save(commit=False)
+			obj.user = request.user
+			obj.save()
+		return redirect('home')
+	else:
+		Imageform = ImageForm()
+		return render(request, &quot;GisMap/home.html&quot;, {'Title': &quot;Home Page&quot;, &quot;image_form&quot;: ImageForm})
+
+</code></pre>
+<h2 id="upload-to-s3-bucket--django">Upload to S3 bucket : Django</h2>
+<p><a href="https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html" target="_blank" rel="noopener">django-storages doc</a></p>
+<p>Install packages to support s3 communication</p>
+<pre><code class="language-bash">pip install django-storages
+pip install boto3
+</code></pre>
+<p>in <code>settings.py</code></p>
+<pre><code class="language-python">INSTALLED_APPS = [
+	...
+	'storages',
+]
+
+AWS_ACCESS_KEY_ID = &quot;&quot;
+AWS_SECRET_ACCESS_KEY = &quot;&quot;
+AWS_STORAGE_BUCKET_NAME = &quot;&quot;
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_QUERYSTRING_AUTH = False // removes the query string
+</code></pre>
+<h2 id="note-in-s3-bucket-make-the-bucket-public-to-be-able-to-access-to-anyone-without-appending-query-string"><code>NOTE: in S3 bucket, make the bucket public to be able to access to anyone without appending query string.</code></h2>
+<p><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-use-case-2" target="_blank" rel="noopener">aws docs</a></p>
+<pre><code class="language-json">{
+  &quot;Version&quot;:&quot;2012-10-17&quot;,
+  &quot;Statement&quot;:[
+    {
+      &quot;Sid&quot;:&quot;PublicRead&quot;,
+      &quot;Effect&quot;:&quot;Allow&quot;,
+      &quot;Principal&quot;: &quot;*&quot;,
+      &quot;Action&quot;:[&quot;s3:GetObject&quot;,&quot;s3:GetObjectVersion&quot;],
+      &quot;Resource&quot;:[&quot;arn:aws:s3:::DOC-EXAMPLE-BUCKET/*&quot;]
+    }
+  ]
+}
+</code></pre>
+<h2 id="get-point-data-from-image-meta-deta">Get Point data from image meta deta</h2>
+<h3 id="it-is-called-exchangeable-image-file-format-exif">It is called Exchangeable image file format (EXIF)</h3>
+<p>Since GIS data, we need some installs.</p>
+<p>geodjango</p>
+<pre><code>pip install django-geo
+</code></pre>
+<p>NOTE: ensure os4geo is installed: install from here if not done. <a href="https://qgis.org/en/site/forusers/download.html">https://qgis.org/en/site/forusers/download.html</a></p>
+<p>and make the following changes in <code>settings.py</code></p>
+<pre><code class="language-python">INSTALLED_APPS = [
+...
+	'django.contrib.gis',
+]
+
+DATABASES = {
+	'default': {
+		# 'ENGINE': 'django.db.backends.sqlite3',
+		'ENGINE': 'django.contrib.gis.db.backends.spatialite',
+		'NAME': BASE_DIR / 'db.sqlite3',
+	}
+}
+
+
+import os
+import posixpath
+if os.name == 'nt':
+	import platform
+	OSGEO4W = r&quot;C:\OSGeo4W&quot;
+	if '64' in platform.architecture()[0]:
+		OSGEO4W += &quot;64&quot;
+	assert os.path.isdir(OSGEO4W), &quot;Directory does not exist: &quot; + OSGEO4W
+	os.environ['OSGEO4W_ROOT'] = OSGEO4W
+	os.environ['GDAL_DATA'] = OSGEO4W + r&quot;\share\gdal&quot;
+	os.environ['PROJ_LIB'] = OSGEO4W + r&quot;\share\proj&quot;
+	os.environ['PATH'] = OSGEO4W + r&quot;\bin;&quot; + os.environ['PATH']
+
+</code></pre>
+<p>in <code>models.py</code></p>
+<pre><code class="language-python">from django.contrib.gis.db import models
+class ImageUpload():
+  ...  
+  geom = models.PointField( null=True)
+</code></pre>
+<p>in <code>views.py</code>, courtesy of <a href="https://developer.here.com/blog/getting-started-with-geocoding-exif-image-metadata-in-python3" target="_blank" rel="noopener">Jayson DeLancey</a></p>
+<pre><code class="language-python">
+#________________________________________FUNCTIONS FOR IMAGE EXIF DATA______________________________________________________________________________#
+
+
+
+from PIL import Image
+from urllib.request import urlopen
+from PIL.ExifTags import GPSTAGS
+from PIL.ExifTags import TAGS
+
+def get_decimal_from_dms(dms, ref):
+
+	degrees = dms[0]
+	minutes = dms[1] / 60.0
+	seconds = dms[2] / 3600.0
+
+	if ref in ['S', 'W']:
+		degrees = -degrees
+		minutes = -minutes
+		seconds = -seconds
+
+	return round(degrees + minutes + seconds, 5)
+
+def get_coordinates(geotags):
+	lat = get_decimal_from_dms(geotags['GPSLatitude'], geotags['GPSLatitudeRef'])
+
+	lon = get_decimal_from_dms(geotags['GPSLongitude'], geotags['GPSLongitudeRef'])
+
+	return (lon, lat)
+
+
+
+def get_geotagging(exif):
+	if not exif:
+		raise ValueError(&quot;No EXIF metadata found&quot;)
+
+	geotagging = {}
+	for (idx, tag) in TAGS.items():
+		if tag == 'GPSInfo':
+			if idx not in exif:
+				raise ValueError(&quot;No EXIF geotagging found&quot;)
+
+			for (key, val) in GPSTAGS.items():
+				if key in exif[idx]:
+					geotagging[val] = exif[idx][key]
+
+	return geotagging
+
+#_______________________________________________________________________________________________________________________________________#
+
+
+</code></pre>
+<p>In <code>views.py/home_page</code> function</p>
+<pre><code class="language-python">from django.contrib.gis.geos import Point
+
+@login_required(login_url='login')
+def home_page(request):
+	if request.method == 'POST':
+		form = ImageForm(request.POST , request.FILES)
+		img = Image.open(request.FILES.get('image'))
+		if form.is_valid():
+			try:
+				obj = form.save(commit=False)
+				obj.user = request.user
+				obj.image_url = obj.image.url
+				geotags = get_geotagging(img._getexif())
+				print(get_coordinates(geotags))
+				obj.geom = Point(get_coordinates(geotags)) # X is longitude, Y is latitude, Point(X,Y)
+				print(obj.geom) 
+				obj.save()
+				messages.success(request, f'image uploaded succesfully')
+			except ValueError as e:
+				messages.warning(request, e)
+		else:
+			messages.warning(request, f'Invalid image type')
+		return redirect('home')
+	else:
+		Imageform = ImageForm()
+		return render(request, &quot;GisMap/home.html&quot;, {'Title': &quot;Home Page&quot;, &quot;image_form&quot;: ImageForm})
+</code></pre>
+<h2 id="upload-multiple-image">Upload multiple image</h2>
+<p><a href="https://stackoverflow.com/questions/34006994/how-to-upload-multiple-images-to-a-blog-post-in-django" target="_blank" rel="noopener">stackoverflow answer</a></p>
+<p>Make a  model which or accepts image data</p>
+<pre><code class="language-python">class Photos(models.Model):
+
+	user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+	image = models.ImageField(upload_to='photos/',null=True,blank=False)
+	date_created = models.DateTimeField(auto_now_add=True, null=True)
+	image_url = models.URLField(max_length=250, null=True, blank=False)
+
+	class Meta:
+		verbose_name = 'Photo'
+		verbose_name_plural = 'Photos'
+
+	def __str__(self):
+		return self.user.username + &quot; uploaded image &quot;+ self.image.name
+</code></pre>
+<p>Make a new form which accepts multiple image files to be uploaded at once.</p>
+<pre><code class="language-python">class PhotoForm(forms.ModelForm):
+	images = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+
+	class Meta:
+		model = Photos
+		fields = ('images',)
+</code></pre>
+<p>in <code>views.py</code> file</p>
+<pre><code class="language-python">	if request.method == &quot;POST&quot;:
+		#images will be in request.FILES
+		post_request, files_request = request.POST, request.FILES #  returns &lt;MultiValueDict: {'images': [&lt;InMemoryUploadedFile: DSCN0021.jpg (image/jpeg)&gt;, &lt;InMemoryUploadedFile: Canon_PowerShot_S40.jpg (image/jpeg)&gt;]}&gt; &lt;QueryDict: {'csrfmiddlewaretoken': ['ypDkNUtuh1l0oQZcBk4Nz48AEapw9rC0uLHydJIf6rRwqcavPqgo918hAjuQHUgE']}&gt;
+	
+		form = PhotoForm(post_request or None, files_request or None)
+		files = request.FILES.getlist('images') # returns files: [&lt;InMemoryUploadedFile: DSCN0021.jpg (image/jpeg)&gt;, &lt;InMemoryUploadedFile: Canon_PowerShot_S40.jpg (image/jpeg)&gt;]
+		if form.is_valid():
+			user = request.user
+			for f in files:
+				
+				img = Image.open(f) # returns &lt;PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=480x360 at 0x1ED0CCC6280&gt;
+				try:
+					geotags = get_geotagging(img._getexif())
+					geoimage = ImageUpload(user=user, image=f)
+					geoimageimg_upload.image_url = geoimage.image.url 
+					geoimage.geom = Point(get_coordinates(geotags)) # X is longitude, Y is latitude, Point(X,Y) ; returns SRID=4326;POINT (11.88454 43.46708)
+					geoimage.save()
+				except:
+					nongeoimage = Photos(user=user,image=f)
+					nongeoimage.image_url = nongeoimage.image.url
+					nongeoimage.save()
+		else:
+			print(&quot;Form invalid&quot;)
+		return redirect('home')
+	else:
+
+		Imageform = PhotoForm()
+		return render(request, &quot;GisMap/home.html&quot;, {'Title': &quot;Home Page&quot;, &quot;image_form&quot;: ImageForm})
+</code></pre>
+<p>in <code>home.html</code></p>
+<pre><code class="language-html">				&lt;div class=&quot;form-group&quot;&gt;
+				&lt;label for=&quot;note-image&quot;&gt;&lt;/label&gt;
+				&lt;input type=&quot;file&quot; name=&quot;images&quot; class=&quot;form-control-file&quot; id=&quot;note-image&quot; multiple&gt;
+				&lt;/div&gt;
+</code></pre>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=amanbagrecha.github.io/post/django/django-image-upload/&amp;text=Django%20How%20to:%20Upload%20Multiple%20Image" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=amanbagrecha.github.io/post/django/django-image-upload/&amp;t=Django%20How%20to:%20Upload%20Multiple%20Image" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Django%20How%20to:%20Upload%20Multiple%20Image&amp;body=amanbagrecha.github.io/post/django/django-image-upload/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=amanbagrecha.github.io/post/django/django-image-upload/&amp;title=Django%20How%20to:%20Upload%20Multiple%20Image" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Django%20How%20to:%20Upload%20Multiple%20Image%20amanbagrecha.github.io/post/django/django-image-upload/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=amanbagrecha.github.io/post/django/django-image-upload/&amp;title=Django%20How%20to:%20Upload%20Multiple%20Image" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="amanbagrecha.github.io"><img class="avatar mr-3 avatar-circle" src="/amanbagrecha.github.io/author/aman-bagrecha/avatar_hu8b3e467675822a0c69fe66cbb3600b5d_124233_270x270_fill_q75_lanczos_center.jpg" alt="Aman Bagrecha"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="amanbagrecha.github.io">Aman Bagrecha</a></h5>
+      <h6 class="card-subtitle">Civil Engineering Student</h6>
+      <p class="card-text">My interests include documenting, programming, Deep learning and GIS matter.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/amanbagrecha.github.io/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/jainaman588" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ" target="_blank" rel="noopener">
+        <i class="fab fa-researchgate"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/amanbagrecha" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/amanbagrecha/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    <script src="/amanbagrecha.github.io/js/_vendor/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/amanbagrecha.github.io/en/js/wowchemy.min.2818659d16edc9eb97f7dbc78aefe608.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>
