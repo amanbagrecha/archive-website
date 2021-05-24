@@ -1,0 +1,1422 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.0.0-beta.3 for Hugo" />
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Aman Bagrecha" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Overview  Geodjango is built on top of django and adds spatial functionality such as storing points, lines , polygon and multipolygon. It is prepackaged with Django but requires few additional softwares to make it fully functional." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://github.com/amanbagrecha/post/getting-started/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/amanbagrecha/css/wowchemy.05597aa6a76faca3096d08b97f4872b8.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/amanbagrecha/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/amanbagrecha/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/amanbagrecha/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="https://github.com/amanbagrecha/post/getting-started/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+  <meta property="og:site_name" content="Aman Bagrecha" />
+  <meta property="og:url" content="https://github.com/amanbagrecha/post/getting-started/" />
+  <meta property="og:title" content="Upload multiple geotagged images and store POINTS in postgresql database using geodjango | Aman Bagrecha" />
+  <meta property="og:description" content="Overview  Geodjango is built on top of django and adds spatial functionality such as storing points, lines , polygon and multipolygon. It is prepackaged with Django but requires few additional softwares to make it fully functional." /><meta property="og:image" content="https://github.com/amanbagrecha/post/getting-started/featured.png" />
+    <meta property="twitter:image" content="https://github.com/amanbagrecha/post/getting-started/featured.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2020-12-13T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2020-12-13T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://github.com/amanbagrecha/post/getting-started/"
+  },
+  "headline": "Upload multiple geotagged images and store POINTS in postgresql database using geodjango",
+  
+  "image": [
+    "https://github.com/amanbagrecha/post/getting-started/featured.png"
+  ],
+  
+  "datePublished": "2020-12-13T00:00:00Z",
+  "dateModified": "2020-12-13T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Aman Bagrecha"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Aman Bagrecha",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://github.com/amanbagrecha/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Overview  Geodjango is built on top of django and adds spatial functionality such as storing points, lines , polygon and multipolygon. It is prepackaged with Django but requires few additional softwares to make it fully functional."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Upload multiple geotagged images and store POINTS in postgresql database using geodjango | Aman Bagrecha</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="279b9966ca9cf3121ce924dca452bb1c" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/amanbagrecha/js/wowchemy-init.min.b024895df05e271929739bb54886c674.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/amanbagrecha/">Aman Bagrecha</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/amanbagrecha/">Aman Bagrecha</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha/#about"><span>Demo</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha/#talks"><span>Talks</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha/#featured"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha/courses/"><span>Courses</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/amanbagrecha/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="https://twitter.com/jainaman588" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+<div class="article-container pt-3">
+  <h1>Upload multiple geotagged images and store POINTS in postgresql database using geodjango</h1>
+
+  
+  <p class="page-subtitle">In this blog, I&rsquo;ll walk through how to upload multiple geotagged images and store the location data as point (WKT format) using geodjango</p>
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  <span >
+      <a href="/amanbagrecha/author/aman-bagrecha/">Aman Bagrecha</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Dec 13, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    4 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/amanbagrecha/category/django/">Django</a></span>
+  
+
+</div>
+
+  
+
+
+
+
+
+</div>
+
+
+<div class="article-header container featured-image-wrapper mt-4 mb-4" style="max-width: 1200px; max-height: 655px;">
+  <div style="position: relative">
+    <img src="/amanbagrecha/post/getting-started/featured_hu218bf3eae578a845ca87e85795a39a77_191386_1200x0_resize_lanczos_2.png" alt="" class="featured-image">
+    <span class="article-header-caption">Image Credit: Aman Bagrecha</span>
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h2 id="overview">Overview</h2>
+<ol>
+<li>Geodjango is built on top of django and adds spatial functionality such as storing points, lines , polygon and multipolygon. It is prepackaged with Django but requires few additional softwares to make it fully functional. These include- GDAL, PROJ, GEOS, PostGIS. These can be downloaded from osgeo4W which bundles all these libraries. Then application can be added to apps in settings with <code>django.contrib.gis</code> to the installed apps.</li>
+<li>An additional setting is required, which is to locate osgeo4w directory in django. If you install osgeo4w in default directory, you need to put the following code within the settings.py file.</li>
+</ol>
+<pre><code class="language-python"># for window os
+import os
+import posixpath
+if os.name == 'nt':
+	import platform
+	OSGEO4W = r&quot;C:\OSGeo4W&quot;
+	if '64' in platform.architecture()[0]:
+		OSGEO4W += &quot;64&quot;
+	assert os.path.isdir(OSGEO4W), &quot;Directory does not exist: &quot; + OSGEO4W
+	os.environ['OSGEO4W_ROOT'] = OSGEO4W
+	os.environ['GDAL_DATA'] = OSGEO4W + r&quot;\share\gdal&quot;
+	os.environ['PROJ_LIB'] = OSGEO4W + r&quot;\share\proj&quot;
+	os.environ['PATH'] = OSGEO4W + r&quot;\bin;&quot; + os.environ['PATH']
+</code></pre>
+<ol start="2">
+<li>Setup the database to postgis instead of postgresql.</li>
+</ol>
+<pre><code class="language-python"># in settings.py file
+DATABASES = {
+	'default': {
+		 'ENGINE': 'django.contrib.gis.db.backends.postgis',
+		 'NAME': 'database_name_here',
+		 'USER': 'postgres',
+		'PASSWORD': 'password_here',
+		'HOST': 'localhost',
+		'PORT': '5432',
+	},
+}
+</code></pre>
+<ol start="3">
+<li>We now create a model to upload geotagged images and store the geolocation as point information into the database. For demo purposes we can have image and geom as mandatory field, rest can be blank.</li>
+</ol>
+<pre><code class="language-python">from django.db import models
+from django.contrib.auth.models import User # our user model
+from django.contrib.gis.db import models # geodjango import
+from django.utils import timezone # to capture date created from metadata
+
+
+class ImageUpload(models.Model):
+	user = models.ForeignKey(User,  on_delete= models.SET_DEFAULT, default=1)
+	image = models.ImageField( null=False, blank=False, upload_to = 'geotaggedimages/') 
+	date_created = models.DateTimeField(default=timezone.now, null=True) # date and time image is uploaded
+	image_url = models.URLField(max_length=250, null=True, blank=True) # grab the url from s3 bucket on save
+	date_captured = models.DateTimeField(null=True, blank = True) # date and time image was captured
+	geom = models.PointField( null=True, blank=False) # grab the geolocation from image and store in database as POINT field
+	class Meta:
+		verbose_name = 'geotagged images'
+		verbose_name_plural = 'geotagged images'
+
+	def __str__(self):
+		return str(self.image.name)
+</code></pre>
+<ol start="4">
+<li>We now run migrations and migrate the model using <code>.\manage.py makemigrations</code> and <code>.\manage.py migrate</code>.</li>
+<li>We now create our view to accept POST/AJAX request from our frontend</li>
+</ol>
+<pre><code class="language-python">from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import  login 
+from django.contrib import messages
+from .models import ImageUpload
+from django.contrib.gis.geos import Point
+from django.http import JsonResponse
+from PIL import Image
+from PIL.ExifTags import GPSTAGS
+from PIL.ExifTags import TAGS
+from datetime import datetime
+#________________________________________FUNCTIONS FOR IMAGE EXIF DATA______________________________________________________________________________#
+# COURTESY OF https://developer.here.com/blog/getting-started-with-geocoding-exif-image-metadata-in-python3
+def get_decimal_from_dms(dms, ref):
+
+	degrees = dms[0]
+	minutes = dms[1] / 60.0
+	seconds = dms[2] / 3600.0
+
+	if ref in ['S', 'W']:
+		degrees = -degrees
+		minutes = -minutes
+		seconds = -seconds
+
+	return round(degrees + minutes + seconds, 5)
+
+def get_coordinates(geotags):
+	lat = get_decimal_from_dms(geotags['GPSLatitude'], geotags['GPSLatitudeRef'])
+
+	lon = get_decimal_from_dms(geotags['GPSLongitude'], geotags['GPSLongitudeRef'])
+
+	return (lon, lat)
+
+def get_geotagging(exif):
+	&quot;&quot;&quot;
+	# 34853 is key for tag GPSInfo
+	&quot;&quot;&quot;
+	if not exif:
+		raise ValueError(&quot;No EXIF metadata found&quot;)
+
+	geotagging = {}
+	for (idx, tag) in TAGS.items():
+		if tag == 'GPSInfo':
+			if idx not in exif:
+				raise ValueError(&quot;No EXIF geotagging found&quot;)
+
+			for (key, val) in GPSTAGS.items():
+				if key in exif[idx]:
+					geotagging[val] = exif[idx][key]
+
+	return geotagging
+	
+#________________________________________END OF FUNCTIONS FOR IMAGE EXIF DATA______________________________________________________________________________#	
+	
+@login_required(login_url='login')
+def home_page(request):
+	
+	user = request.user # get logged in user
+	
+	if request.is_ajax():
+		files = request.FILES.getlist('images') # returns files: eg: [TemporaryUploadedFile: human15-28.png (image/png), ]
+		message = []
+		for f in files: # loop over all images
+			
+			try:
+				with Image.open(f) as img:
+					exif = img._getexif()
+  				geotags = get_geotagging(exif) # this decides if image is geotagged or nongeotagged
+  				get_corrd = get_coordinates(geotags)
+  				print(&quot;get_corrd&quot;,get_corrd)
+  				geoimage = ImageUpload(user=user, image=f) # create an instance of model
+  				geoimage.geom = Point(get_corrd) # X is longitude, Y is latitude, Point(X,Y) ; returns SRID=4326;POINT (11.88454 43.46708) [WKT format]
+  				geoimage.save()
+  			  message.append(f&quot;file {f} uploaded to images/&quot;)
+
+			except Exception as e:
+				message.append(f&quot;{e}&quot;)
+  	
+  	return JsonResponse({&quot;status&quot;: message}, safe=False) #redirect('home')
+	
+	else:
+		return render(request, &quot;GisMap/home.html&quot;, {'Title': &quot;Home Page&quot;}) # name of my app is GisMap, and home.html is the fornt-end from where images are uploaded.
+</code></pre>
+<blockquote>
+<p>These steps will ensure you have multiple images uploaded at once and all the geolocation information can be stored in database, which later can be import to QGIS for data visualisation. Although both postgresql and django admin allows users to use the geometry.</p>
+</blockquote>
+<!---
+## Get Started
+
+- 👉 [**Create a new site**](https://wowchemy.com/templates/)
+- 📚 [**Personalize your site**](https://wowchemy.com/docs/)
+- 💬 [Chat with the **Wowchemy community**](https://discord.gg/z8wNYzb) or [**Hugo community**](https://discourse.gohugo.io)
+- 🐦 Twitter: [@wowchemy](https://twitter.com/wowchemy) [@GeorgeCushen](https://twitter.com/GeorgeCushen) [#MadeWithWowchemy](https://twitter.com/search?q=(%23MadeWithWowchemy%20OR%20%23MadeWithAcademic)&src=typed_query)
+- 💡 [Request a **feature** or report a **bug** for _Wowchemy_](https://github.com/wowchemy/wowchemy-hugo-modules/issues)
+- ⬆️ **Updating Wowchemy?** View the [Update Guide](https://wowchemy.com/docs/guide/update/) and [Release Notes](https://wowchemy.com/updates/)
+
+## Crowd-funded open-source software
+
+To help us develop this template and software sustainably under the MIT license, we ask all individuals and businesses that use it to help support its ongoing maintenance and development via sponsorship.
+
+### [❤️ Click here to become a sponsor and help support Wowchemy's future ❤️](https://wowchemy.com/plans/)
+
+As a token of appreciation for sponsoring, you can **unlock [these](https://wowchemy.com/plans/) awesome rewards and extra features 🦄✨**
+
+## Ecosystem
+
+* **[Hugo Academic CLI](https://github.com/wowchemy/hugo-academic-cli):** Automatically import publications from BibTeX
+
+## Inspiration
+
+[Check out the latest **demo**](https://academic-demo.netlify.com/) of what you'll get in less than 10 minutes, or [view the **showcase**](https://wowchemy.com/user-stories/) of personal, project, and business sites.
+
+## Features
+
+- **Page builder** - Create *anything* with [**widgets**](https://wowchemy.com/docs/page-builder/) and [**elements**](https://wowchemy.com/docs/writing-markdown-latex/)
+- **Edit any type of content** - Blog posts, publications, talks, slides, projects, and more!
+- **Create content** in [**Markdown**](https://wowchemy.com/docs/writing-markdown-latex/), [**Jupyter**](https://wowchemy.com/docs/import/jupyter/), or [**RStudio**](https://wowchemy.com/docs/install-locally/)
+- **Plugin System** - Fully customizable [**color** and **font themes**](https://wowchemy.com/docs/customization/)
+- **Display Code and Math** - Code highlighting and [LaTeX math](https://en.wikibooks.org/wiki/LaTeX/Mathematics) supported
+- **Integrations** - [Google Analytics](https://analytics.google.com), [Disqus commenting](https://disqus.com), Maps, Contact Forms, and more!
+- **Beautiful Site** - Simple and refreshing one page design
+- **Industry-Leading SEO** - Help get your website found on search engines and social media
+- **Media Galleries** - Display your images and videos with captions in a customizable gallery
+- **Mobile Friendly** - Look amazing on every screen with a mobile friendly version of your site
+- **Multi-language** - 34+ language packs including English, 中文, and Português
+- **Multi-user** - Each author gets their own profile page
+- **Privacy Pack** - Assists with GDPR
+- **Stand Out** - Bring your site to life with animation, parallax backgrounds, and scroll effects
+- **One-Click Deployment** - No servers. No databases. Only files.
+
+## Themes
+
+Wowchemy and its templates come with **automatic day (light) and night (dark) mode** built-in. Alternatively, visitors can choose their preferred mode - click the moon icon in the top right of the [Demo](https://academic-demo.netlify.com/) to see it in action! Day/night mode can also be disabled by the site admin in `params.toml`.
+
+[Choose a stunning **theme** and **font**](https://wowchemy.com/docs/customization) for your site. Themes are fully customizable.
+
+## License
+
+Copyright 2016-present [George Cushen](https://georgecushen.com).
+
+Released under the [MIT](https://github.com/wowchemy/wowchemy-hugo-modules/blob/master/LICENSE.md) license.
+--><blockquote>
+</blockquote>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/amanbagrecha/tag/geodjango/">Geodjango</a>
+  
+  <a class="badge badge-light" href="/amanbagrecha/tag/postgis/">postgis</a>
+  
+  <a class="badge badge-light" href="/amanbagrecha/tag/django/">django</a>
+  
+  <a class="badge badge-light" href="/amanbagrecha/tag/osgeo4w/">osGeo4W</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://github.com/amanbagrecha/post/getting-started/&amp;text=Upload%20multiple%20geotagged%20images%20and%20store%20POINTS%20in%20postgresql%20database%20using%20geodjango" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://github.com/amanbagrecha/post/getting-started/&amp;t=Upload%20multiple%20geotagged%20images%20and%20store%20POINTS%20in%20postgresql%20database%20using%20geodjango" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Upload%20multiple%20geotagged%20images%20and%20store%20POINTS%20in%20postgresql%20database%20using%20geodjango&amp;body=https://github.com/amanbagrecha/post/getting-started/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://github.com/amanbagrecha/post/getting-started/&amp;title=Upload%20multiple%20geotagged%20images%20and%20store%20POINTS%20in%20postgresql%20database%20using%20geodjango" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Upload%20multiple%20geotagged%20images%20and%20store%20POINTS%20in%20postgresql%20database%20using%20geodjango%20https://github.com/amanbagrecha/post/getting-started/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://github.com/amanbagrecha/post/getting-started/&amp;title=Upload%20multiple%20geotagged%20images%20and%20store%20POINTS%20in%20postgresql%20database%20using%20geodjango" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    <script src="/amanbagrecha/js/_vendor/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/amanbagrecha/en/js/wowchemy.min.32e11590f88cf06b5f7517054ec2ae6e.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

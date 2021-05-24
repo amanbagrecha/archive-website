@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>osGeo4W | Aman Bagrecha</title>
+    <link>https://github.com/amanbagrecha/tag/osgeo4w/</link>
+      <atom:link href="https://github.com/amanbagrecha/tag/osgeo4w/index.xml" rel="self" type="application/rss+xml" />
+    <description>osGeo4W</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 13 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://github.com/amanbagrecha/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>osGeo4W</title>
+      <link>https://github.com/amanbagrecha/tag/osgeo4w/</link>
+    </image>
+    
+    <item>
+      <title>Upload multiple geotagged images and store POINTS in postgresql database using geodjango</title>
+      <link>https://github.com/amanbagrecha/post/getting-started/</link>
+      <pubDate>Sun, 13 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>https://github.com/amanbagrecha/post/getting-started/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Geodjango is built on top of django and adds spatial functionality such as storing points, lines , polygon and multipolygon. It is prepackaged with Django but requires few additional softwares to make it fully functional. These include- GDAL, PROJ, GEOS, PostGIS. These can be downloaded from osgeo4W which bundles all these libraries. Then application can be added to apps in settings with &lt;code&gt;django.contrib.gis&lt;/code&gt; to the installed apps.&lt;/li&gt;
+&lt;li&gt;An additional setting is required, which is to locate osgeo4w directory in django. If you install osgeo4w in default directory, you need to put the following code within the settings.py file.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# for window os
+import os
+import posixpath
+if os.name == &#39;nt&#39;:
+	import platform
+	OSGEO4W = r&amp;quot;C:\OSGeo4W&amp;quot;
+	if &#39;64&#39; in platform.architecture()[0]:
+		OSGEO4W += &amp;quot;64&amp;quot;
+	assert os.path.isdir(OSGEO4W), &amp;quot;Directory does not exist: &amp;quot; + OSGEO4W
+	os.environ[&#39;OSGEO4W_ROOT&#39;] = OSGEO4W
+	os.environ[&#39;GDAL_DATA&#39;] = OSGEO4W + r&amp;quot;\share\gdal&amp;quot;
+	os.environ[&#39;PROJ_LIB&#39;] = OSGEO4W + r&amp;quot;\share\proj&amp;quot;
+	os.environ[&#39;PATH&#39;] = OSGEO4W + r&amp;quot;\bin;&amp;quot; + os.environ[&#39;PATH&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Setup the database to postgis instead of postgresql.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# in settings.py file
+DATABASES = {
+	&#39;default&#39;: {
+		 &#39;ENGINE&#39;: &#39;django.contrib.gis.db.backends.postgis&#39;,
+		 &#39;NAME&#39;: &#39;database_name_here&#39;,
+		 &#39;USER&#39;: &#39;postgres&#39;,
+		&#39;PASSWORD&#39;: &#39;password_here&#39;,
+		&#39;HOST&#39;: &#39;localhost&#39;,
+		&#39;PORT&#39;: &#39;5432&#39;,
+	},
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;We now create a model to upload geotagged images and store the geolocation as point information into the database. For demo purposes we can have image and geom as mandatory field, rest can be blank.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from django.db import models
+from django.contrib.auth.models import User # our user model
+from django.contrib.gis.db import models # geodjango import
+from django.utils import timezone # to capture date created from metadata
+
+
+class ImageUpload(models.Model):
+	user = models.ForeignKey(User,  on_delete= models.SET_DEFAULT, default=1)
+	image = models.ImageField( null=False, blank=False, upload_to = &#39;geotaggedimages/&#39;) 
+	date_created = models.DateTimeField(default=timezone.now, null=True) # date and time image is uploaded
+	image_url = models.URLField(max_length=250, null=True, blank=True) # grab the url from s3 bucket on save
+	date_captured = models.DateTimeField(null=True, blank = True) # date and time image was captured
+	geom = models.PointField( null=True, blank=False) # grab the geolocation from image and store in database as POINT field
+	class Meta:
+		verbose_name = &#39;geotagged images&#39;
+		verbose_name_plural = &#39;geotagged images&#39;
+
+	def __str__(self):
+		return str(self.image.name)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;We now run migrations and migrate the model using &lt;code&gt;.\manage.py makemigrations&lt;/code&gt; and &lt;code&gt;.\manage.py migrate&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;We now create our view to accept POST/AJAX request from our frontend&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import  login 
+from django.contrib import messages
+from .models import ImageUpload
+from django.contrib.gis.geos import Point
+from django.http import JsonResponse
+from PIL import Image
+from PIL.ExifTags import GPSTAGS
+from PIL.ExifTags import TAGS
+from datetime import datetime
+#________________________________________FUNCTIONS FOR IMAGE EXIF DATA______________________________________________________________________________#
+# COURTESY OF https://developer.here.com/blog/getting-started-with-geocoding-exif-image-metadata-in-python3
+def get_decimal_from_dms(dms, ref):
+
+	degrees = dms[0]
+	minutes = dms[1] / 60.0
+	seconds = dms[2] / 3600.0
+
+	if ref in [&#39;S&#39;, &#39;W&#39;]:
+		degrees = -degrees
+		minutes = -minutes
+		seconds = -seconds
+
+	return round(degrees + minutes + seconds, 5)
+
+def get_coordinates(geotags):
+	lat = get_decimal_from_dms(geotags[&#39;GPSLatitude&#39;], geotags[&#39;GPSLatitudeRef&#39;])
+
+	lon = get_decimal_from_dms(geotags[&#39;GPSLongitude&#39;], geotags[&#39;GPSLongitudeRef&#39;])
+
+	return (lon, lat)
+
+def get_geotagging(exif):
+	&amp;quot;&amp;quot;&amp;quot;
+	# 34853 is key for tag GPSInfo
+	&amp;quot;&amp;quot;&amp;quot;
+	if not exif:
+		raise ValueError(&amp;quot;No EXIF metadata found&amp;quot;)
+
+	geotagging = {}
+	for (idx, tag) in TAGS.items():
+		if tag == &#39;GPSInfo&#39;:
+			if idx not in exif:
+				raise ValueError(&amp;quot;No EXIF geotagging found&amp;quot;)
+
+			for (key, val) in GPSTAGS.items():
+				if key in exif[idx]:
+					geotagging[val] = exif[idx][key]
+
+	return geotagging
+	
+#________________________________________END OF FUNCTIONS FOR IMAGE EXIF DATA______________________________________________________________________________#	
+	
+@login_required(login_url=&#39;login&#39;)
+def home_page(request):
+	
+	user = request.user # get logged in user
+	
+	if request.is_ajax():
+		files = request.FILES.getlist(&#39;images&#39;) # returns files: eg: [TemporaryUploadedFile: human15-28.png (image/png), ]
+		message = []
+		for f in files: # loop over all images
+			
+			try:
+				with Image.open(f) as img:
+					exif = img._getexif()
+  				geotags = get_geotagging(exif) # this decides if image is geotagged or nongeotagged
+  				get_corrd = get_coordinates(geotags)
+  				print(&amp;quot;get_corrd&amp;quot;,get_corrd)
+  				geoimage = ImageUpload(user=user, image=f) # create an instance of model
+  				geoimage.geom = Point(get_corrd) # X is longitude, Y is latitude, Point(X,Y) ; returns SRID=4326;POINT (11.88454 43.46708) [WKT format]
+  				geoimage.save()
+  			  message.append(f&amp;quot;file {f} uploaded to images/&amp;quot;)
+
+			except Exception as e:
+				message.append(f&amp;quot;{e}&amp;quot;)
+  	
+  	return JsonResponse({&amp;quot;status&amp;quot;: message}, safe=False) #redirect(&#39;home&#39;)
+	
+	else:
+		return render(request, &amp;quot;GisMap/home.html&amp;quot;, {&#39;Title&#39;: &amp;quot;Home Page&amp;quot;}) # name of my app is GisMap, and home.html is the fornt-end from where images are uploaded.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;These steps will ensure you have multiple images uploaded at once and all the geolocation information can be stored in database, which later can be import to QGIS for data visualisation. Although both postgresql and django admin allows users to use the geometry.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!---
+## Get Started
+
+- 👉 [**Create a new site**](https://wowchemy.com/templates/)
+- 📚 [**Personalize your site**](https://wowchemy.com/docs/)
+- 💬 [Chat with the **Wowchemy community**](https://discord.gg/z8wNYzb) or [**Hugo community**](https://discourse.gohugo.io)
+- 🐦 Twitter: [@wowchemy](https://twitter.com/wowchemy) [@GeorgeCushen](https://twitter.com/GeorgeCushen) [#MadeWithWowchemy](https://twitter.com/search?q=(%23MadeWithWowchemy%20OR%20%23MadeWithAcademic)&amp;src=typed_query)
+- 💡 [Request a **feature** or report a **bug** for _Wowchemy_](https://github.com/wowchemy/wowchemy-hugo-modules/issues)
+- ⬆️ **Updating Wowchemy?** View the [Update Guide](https://wowchemy.com/docs/guide/update/) and [Release Notes](https://wowchemy.com/updates/)
+
+## Crowd-funded open-source software
+
+To help us develop this template and software sustainably under the MIT license, we ask all individuals and businesses that use it to help support its ongoing maintenance and development via sponsorship.
+
+### [❤️ Click here to become a sponsor and help support Wowchemy&#39;s future ❤️](https://wowchemy.com/plans/)
+
+As a token of appreciation for sponsoring, you can **unlock [these](https://wowchemy.com/plans/) awesome rewards and extra features 🦄✨**
+
+## Ecosystem
+
+* **[Hugo Academic CLI](https://github.com/wowchemy/hugo-academic-cli):** Automatically import publications from BibTeX
+
+## Inspiration
+
+[Check out the latest **demo**](https://academic-demo.netlify.com/) of what you&#39;ll get in less than 10 minutes, or [view the **showcase**](https://wowchemy.com/user-stories/) of personal, project, and business sites.
+
+## Features
+
+- **Page builder** - Create *anything* with [**widgets**](https://wowchemy.com/docs/page-builder/) and [**elements**](https://wowchemy.com/docs/writing-markdown-latex/)
+- **Edit any type of content** - Blog posts, publications, talks, slides, projects, and more!
+- **Create content** in [**Markdown**](https://wowchemy.com/docs/writing-markdown-latex/), [**Jupyter**](https://wowchemy.com/docs/import/jupyter/), or [**RStudio**](https://wowchemy.com/docs/install-locally/)
+- **Plugin System** - Fully customizable [**color** and **font themes**](https://wowchemy.com/docs/customization/)
+- **Display Code and Math** - Code highlighting and [LaTeX math](https://en.wikibooks.org/wiki/LaTeX/Mathematics) supported
+- **Integrations** - [Google Analytics](https://analytics.google.com), [Disqus commenting](https://disqus.com), Maps, Contact Forms, and more!
+- **Beautiful Site** - Simple and refreshing one page design
+- **Industry-Leading SEO** - Help get your website found on search engines and social media
+- **Media Galleries** - Display your images and videos with captions in a customizable gallery
+- **Mobile Friendly** - Look amazing on every screen with a mobile friendly version of your site
+- **Multi-language** - 34+ language packs including English, 中文, and Português
+- **Multi-user** - Each author gets their own profile page
+- **Privacy Pack** - Assists with GDPR
+- **Stand Out** - Bring your site to life with animation, parallax backgrounds, and scroll effects
+- **One-Click Deployment** - No servers. No databases. Only files.
+
+## Themes
+
+Wowchemy and its templates come with **automatic day (light) and night (dark) mode** built-in. Alternatively, visitors can choose their preferred mode - click the moon icon in the top right of the [Demo](https://academic-demo.netlify.com/) to see it in action! Day/night mode can also be disabled by the site admin in `params.toml`.
+
+[Choose a stunning **theme** and **font**](https://wowchemy.com/docs/customization) for your site. Themes are fully customizable.
+
+## License
+
+Copyright 2016-present [George Cushen](https://georgecushen.com).
+
+Released under the [MIT](https://github.com/wowchemy/wowchemy-hugo-modules/blob/master/LICENSE.md) license.
+--&gt;&lt;blockquote&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
