@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>node express; API; CRUD | Aman Bagrecha</title>
-    <link>https://github.com/amanbagrecha/tag/node-express-api-crud/</link>
-      <atom:link href="https://github.com/amanbagrecha/tag/node-express-api-crud/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://amanbagrecha.github.io/tag/node-express-api-crud/</link>
+      <atom:link href="https://amanbagrecha.github.io/tag/node-express-api-crud/index.xml" rel="self" type="application/rss+xml" />
     <description>node express; API; CRUD</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://github.com/amanbagrecha/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <url>https://amanbagrecha.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
       <title>node express; API; CRUD</title>
-      <link>https://github.com/amanbagrecha/tag/node-express-api-crud/</link>
+      <link>https://amanbagrecha.github.io/tag/node-express-api-crud/</link>
     </image>
     
     <item>
       <title>CRUD Application using node express api</title>
-      <link>https://github.com/amanbagrecha/project/internal-project/</link>
+      <link>https://amanbagrecha.github.io/project/internal-project/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://github.com/amanbagrecha/project/internal-project/</guid>
+      <guid>https://amanbagrecha.github.io/project/internal-project/</guid>
       <description>&lt;h1 id=&#34;project-setup&#34;&gt;Project Setup&lt;/h1&gt;
 &lt;p&gt;create package.json&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;npm init -y
