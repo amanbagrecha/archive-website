@@ -5,112 +5,153 @@
     <link>amanbagrecha.github.io/author/aman-bagrecha/</link>
       <atom:link href="amanbagrecha.github.io/author/aman-bagrecha/index.xml" rel="self" type="application/rss+xml" />
     <description>Aman Bagrecha</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 07 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 13 Dec 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/amanbagrecha.github.io/author/aman-bagrecha/avatar_hu8b3e467675822a0c69fe66cbb3600b5d_124233_270x270_fill_q75_lanczos_center.jpg</url>
+      <url>/amanbagrecha.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
       <title>Aman Bagrecha</title>
       <link>amanbagrecha.github.io/author/aman-bagrecha/</link>
     </image>
     
     <item>
-      <title>An example preprint / working paper</title>
-      <link>amanbagrecha.github.io/publication/preprint/</link>
-      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>amanbagrecha.github.io/publication/preprint/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Display Jupyter Notebooks with Academic</title>
-      <link>amanbagrecha.github.io/post/jupyter/</link>
-      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>amanbagrecha.github.io/post/jupyter/</guid>
-      <description>&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from IPython.core.display import Image
-Image(&#39;https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png&#39;)
+      <title>Upload multiple geotagged images and store POINTS in postgresql database using geodjango</title>
+      <link>amanbagrecha.github.io/post/getting-started/</link>
+      <pubDate>Sun, 13 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>amanbagrecha.github.io/post/getting-started/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Geodjango is built on top of django and adds spatial functionality such as storing points, lines , polygon and multipolygon. It is prepackaged with Django but requires few additional softwares to make it fully functional. These include- GDAL, PROJ, GEOS, PostGIS. These can be downloaded from osgeo4W which bundles all these libraries. Then application can be added to apps in settings with &lt;code&gt;django.contrib.gis&lt;/code&gt; to the installed apps.&lt;/li&gt;
+&lt;li&gt;An additional setting is required, which is to locate osgeo4w directory in django. If you install osgeo4w in default directory, you need to put the following code within the settings.py file.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# for window os
+import os
+import posixpath
+if os.name == &#39;nt&#39;:
+	import platform
+	OSGEO4W = r&amp;quot;C:\OSGeo4W&amp;quot;
+	if &#39;64&#39; in platform.architecture()[0]:
+		OSGEO4W += &amp;quot;64&amp;quot;
+	assert os.path.isdir(OSGEO4W), &amp;quot;Directory does not exist: &amp;quot; + OSGEO4W
+	os.environ[&#39;OSGEO4W_ROOT&#39;] = OSGEO4W
+	os.environ[&#39;GDAL_DATA&#39;] = OSGEO4W + r&amp;quot;\share\gdal&amp;quot;
+	os.environ[&#39;PROJ_LIB&#39;] = OSGEO4W + r&amp;quot;\share\proj&amp;quot;
+	os.environ[&#39;PATH&#39;] = OSGEO4W + r&amp;quot;\bin;&amp;quot; + os.environ[&#39;PATH&#39;]
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;./index_1_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(&amp;quot;Welcome to Academic!&amp;quot;)
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Setup the database to postgis instead of postgresql.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# in settings.py file
+DATABASES = {
+	&#39;default&#39;: {
+		 &#39;ENGINE&#39;: &#39;django.contrib.gis.db.backends.postgis&#39;,
+		 &#39;NAME&#39;: &#39;database_name_here&#39;,
+		 &#39;USER&#39;: &#39;postgres&#39;,
+		&#39;PASSWORD&#39;: &#39;password_here&#39;,
+		&#39;HOST&#39;: &#39;localhost&#39;,
+		&#39;PORT&#39;: &#39;5432&#39;,
+	},
+}
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;Welcome to Academic!
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;install-python-and-jupyterlab&#34;&gt;Install Python and JupyterLab&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.anaconda.com/distribution/#download-section&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Install Anaconda&lt;/a&gt; which includes Python 3 and JupyterLab.&lt;/p&gt;
-&lt;p&gt;Alternatively, install JupyterLab with &lt;code&gt;pip3 install jupyterlab&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;create-or-upload-a-jupyter-notebook&#34;&gt;Create or upload a Jupyter notebook&lt;/h2&gt;
-&lt;p&gt;Run the following commands in your Terminal, substituting &lt;code&gt;&amp;lt;MY-WEBSITE-FOLDER&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;SHORT-POST-TITLE&amp;gt;&lt;/code&gt; with the file path to your Academic website folder and a short title for your blog post (use hyphens instead of spaces), respectively:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mkdir -p &amp;lt;MY-WEBSITE-FOLDER&amp;gt;/content/post/&amp;lt;SHORT-POST-TITLE&amp;gt;/
-cd &amp;lt;MY-WEBSITE-FOLDER&amp;gt;/content/post/&amp;lt;SHORT-POST-TITLE&amp;gt;/
-jupyter lab index.ipynb
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;jupyter&lt;/code&gt; command above will launch the JupyterLab editor, allowing us to add Academic metadata and write the content.&lt;/p&gt;
-&lt;h2 id=&#34;edit-your-post-metadata&#34;&gt;Edit your post metadata&lt;/h2&gt;
-&lt;p&gt;The first cell of your Jupter notebook will contain your post metadata (&lt;a href=&#34;https://sourcethemes.com/academic/docs/front-matter/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;front matter&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;In Jupter, choose &lt;em&gt;Markdown&lt;/em&gt; as the type of the first cell and wrap your Academic metadata in three dashes, indicating that it is YAML front matter:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;---
-title: My post&#39;s title
-date: 2019-09-01
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;We now create a model to upload geotagged images and store the geolocation as point information into the database. For demo purposes we can have image and geom as mandatory field, rest can be blank.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from django.db import models
+from django.contrib.auth.models import User # our user model
+from django.contrib.gis.db import models # geodjango import
+from django.utils import timezone # to capture date created from metadata
 
-# Put any other Academic metadata here...
----
+
+class ImageUpload(models.Model):
+	user = models.ForeignKey(User,  on_delete= models.SET_DEFAULT, default=1)
+	image = models.ImageField( null=False, blank=False, upload_to = &#39;geotaggedimages/&#39;) 
+	date_created = models.DateTimeField(default=timezone.now, null=True) # date and time image is uploaded
+	image_url = models.URLField(max_length=250, null=True, blank=True) # grab the url from s3 bucket on save
+	date_captured = models.DateTimeField(null=True, blank = True) # date and time image was captured
+	geom = models.PointField( null=True, blank=False) # grab the geolocation from image and store in database as POINT field
+	class Meta:
+		verbose_name = &#39;geotagged images&#39;
+		verbose_name_plural = &#39;geotagged images&#39;
+
+	def __str__(self):
+		return str(self.image.name)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Edit the metadata of your post, using the &lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;documentation&lt;/a&gt; as a guide to the available options.&lt;/p&gt;
-&lt;p&gt;To set a &lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#featured-image&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;featured image&lt;/a&gt;, place an image named &lt;code&gt;featured&lt;/code&gt; into your post&amp;rsquo;s folder.&lt;/p&gt;
-&lt;p&gt;For other tips, such as using math, see the guide on &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;writing content with Academic&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;convert-notebook-to-markdown&#34;&gt;Convert notebook to Markdown&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;jupyter nbconvert index.ipynb --to markdown --NbConvertApp.output_files_dir=.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
-&lt;p&gt;This post was created with Jupyter. The orginal files can be found at &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&#34;&gt;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>An example journal article</title>
-      <link>amanbagrecha.github.io/publication/journal-article/</link>
-      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
-      <guid>amanbagrecha.github.io/publication/journal-article/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>An example conference paper</title>
-      <link>amanbagrecha.github.io/publication/conference-paper/</link>
-      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
-      <guid>amanbagrecha.github.io/publication/conference-paper/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-  </channel>
-</rss>
-uot;)
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;We now run migrations and migrate the model using &lt;code&gt;.\manage.py makemigrations&lt;/code&gt; and &lt;code&gt;.\manage.py migrate&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;We now create our view to accept POST/AJAX request from our frontend&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import  login 
+from django.contrib import messages
+from .models import ImageUpload
+from django.contrib.gis.geos import Point
+from django.http import JsonResponse
+from PIL import Image
+from PIL.ExifTags import GPSTAGS
+from PIL.ExifTags import TAGS
+from datetime import datetime
+#________________________________________FUNCTIONS FOR IMAGE EXIF DATA______________________________________________________________________________#
+# COURTESY OF https://developer.here.com/blog/getting-started-with-geocoding-exif-image-metadata-in-python3
+def get_decimal_from_dms(dms, ref):
+
+	degrees = dms[0]
+	minutes = dms[1] / 60.0
+	seconds = dms[2] / 3600.0
+
+	if ref in [&#39;S&#39;, &#39;W&#39;]:
+		degrees = -degrees
+		minutes = -minutes
+		seconds = -seconds
+
+	return round(degrees + minutes + seconds, 5)
+
+def get_coordinates(geotags):
+	lat = get_decimal_from_dms(geotags[&#39;GPSLatitude&#39;], geotags[&#39;GPSLatitudeRef&#39;])
+
+	lon = get_decimal_from_dms(geotags[&#39;GPSLongitude&#39;], geotags[&#39;GPSLongitudeRef&#39;])
+
+	return (lon, lat)
+
+def get_geotagging(exif):
+	&amp;quot;&amp;quot;&amp;quot;
+	# 34853 is key for tag GPSInfo
+	&amp;quot;&amp;quot;&amp;quot;
+	if not exif:
+		raise ValueError(&amp;quot;No EXIF metadata found&amp;quot;)
+
+	geotagging = {}
+	for (idx, tag) in TAGS.items():
+		if tag == &#39;GPSInfo&#39;:
+			if idx not in exif:
+				raise ValueError(&amp;quot;No EXIF geotagging found&amp;quot;)
+
+			for (key, val) in GPSTAGS.items():
+				if key in exif[idx]:
+					geotagging[val] = exif[idx][key]
+
+	return geotagging
+	
+#________________________________________END OF FUNCTIONS FOR IMAGE EXIF DATA______________________________________________________________________________#	
+	
+@login_required(login_url=&#39;login&#39;)
+def home_page(request):
+	
+	user = request.user # get logged in user
+	
+	if request.is_ajax():
+		files = request.FILES.getlist(&#39;images&#39;) # returns files: eg: [TemporaryUploadedFile: human15-28.png (image/png), ]
+		message = []
+		for f in files: # loop over all images
+			
+			try:
+				with Image.open(f) as img:
+					exif = img._getexif()
+  				geotags = get_geotagging(exif) # this decides if image is geotagged or nongeotagged
+  				get_corrd = get_coordinates(geotags)
+  				print(&amp;quot;get_corrd&amp;quot;,get_corrd)
+  				geoimage = ImageUpload(user=user, image=f) # create an instance of model
+  				geoimage.geom = Point(get_corrd) # X is longitude, Y is latitude, Point(X,Y) ; returns SRID=4326;POINT (11.88454 43.46708) [WKT format]
+  				geoimage.save()
+  			  message.append(f&amp;quot;file {f} uploaded to images/&amp;quot;)
 
 			except Exception as e:
 				message.append(f&amp;quot;{e}&amp;quot;)
