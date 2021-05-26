@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DRF | Aman Bagrecha</title>
-    <link>amanbagrecha.github.io/category/drf/</link>
-      <atom:link href="amanbagrecha.github.io/category/drf/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://amanbagrecha.github.io/category/drf/</link>
+      <atom:link href="https://amanbagrecha.github.io/category/drf/index.xml" rel="self" type="application/rss+xml" />
     <description>DRF</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 24 May 2021 15:13:58 +0530</lastBuildDate>
     <image>
-      <url>/amanbagrecha.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <url>https://amanbagrecha.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
       <title>DRF</title>
-      <link>amanbagrecha.github.io/category/drf/</link>
+      <link>https://amanbagrecha.github.io/category/drf/</link>
     </image>
     
     <item>
       <title>Full Fledged CRUD application using DRF and Token Authentication</title>
-      <link>amanbagrecha.github.io/post/django/crud-in-django-rest-framework/</link>
+      <link>https://amanbagrecha.github.io/post/django/crud-in-django-rest-framework/</link>
       <pubDate>Mon, 24 May 2021 15:13:58 +0530</pubDate>
-      <guid>amanbagrecha.github.io/post/django/crud-in-django-rest-framework/</guid>
+      <guid>https://amanbagrecha.github.io/post/django/crud-in-django-rest-framework/</guid>
       <description>&lt;hr style=&#34;border:1px solid lightgray&#34;&gt; &lt;/hr&gt;
 &lt;br&gt;
 &lt;h2 id=&#34;what-will-you-learn&#34;&gt;What will you learn&lt;/h2&gt;
@@ -599,9 +599,9 @@ function fetchcall(event) {
     
     <item>
       <title>Django rest framework PDF creation and email via gmail SMTP and reportLab</title>
-      <link>amanbagrecha.github.io/post/django/pdf-and-email-creation/</link>
+      <link>https://amanbagrecha.github.io/post/django/pdf-and-email-creation/</link>
       <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
-      <guid>amanbagrecha.github.io/post/django/pdf-and-email-creation/</guid>
+      <guid>https://amanbagrecha.github.io/post/django/pdf-and-email-creation/</guid>
       <description>&lt;h2 id=&#34;step-1--create-view-to-serialise-data&#34;&gt;Step 1 : create view to serialise data&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
 SUCCESS = &#39;success&#39;

@@ -2,161 +2,161 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>amanbagrecha.github.io/courses/example/python/</loc>
+    <loc>https://amanbagrecha.github.io/courses/example/python/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/courses/example/visualization/</loc>
+    <loc>https://amanbagrecha.github.io/courses/example/visualization/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/courses/example/stats/</loc>
+    <loc>https://amanbagrecha.github.io/courses/example/stats/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/</loc>
+    <loc>https://amanbagrecha.github.io/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/talk/example-talk/</loc>
+    <loc>https://amanbagrecha.github.io/talk/example-talk/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/event/</loc>
+    <loc>https://amanbagrecha.github.io/event/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/categories/</loc>
+    <loc>https://amanbagrecha.github.io/categories/</loc>
     <lastmod>2021-05-24T20:21:39+05:30</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/category/openlayers/</loc>
+    <loc>https://amanbagrecha.github.io/category/openlayers/</loc>
     <lastmod>2021-05-24T20:04:53+05:30</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/post/</loc>
+    <loc>https://amanbagrecha.github.io/post/</loc>
     <lastmod>2021-05-24T20:21:39+05:30</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/post/openlayers/reverse-geocode-using-mapbox-api-with-zoom-functionality/</loc>
+    <loc>https://amanbagrecha.github.io/post/openlayers/reverse-geocode-using-mapbox-api-with-zoom-functionality/</loc>
     <lastmod>2021-05-24T20:04:53+05:30</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/post/django/django-image-upload/</loc>
+    <loc>https://amanbagrecha.github.io/post/django/django-image-upload/</loc>
     <lastmod>2021-05-24T17:25:54+05:30</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/tag/django/</loc>
+    <loc>https://amanbagrecha.github.io/tag/django/</loc>
     <lastmod>2021-05-24T15:13:58+05:30</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/category/drf/</loc>
+    <loc>https://amanbagrecha.github.io/category/drf/</loc>
     <lastmod>2021-05-24T20:21:39+05:30</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/post/django/crud-in-django-rest-framework/</loc>
+    <loc>https://amanbagrecha.github.io/post/django/crud-in-django-rest-framework/</loc>
     <lastmod>2021-05-24T15:13:58+05:30</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/tags/</loc>
+    <loc>https://amanbagrecha.github.io/tags/</loc>
     <lastmod>2021-05-24T15:13:58+05:30</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/post/django/pdf-and-email-creation/</loc>
+    <loc>https://amanbagrecha.github.io/post/django/pdf-and-email-creation/</loc>
     <lastmod>2021-05-24T20:21:39+05:30</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculating-in-openlayers/</loc>
+    <loc>https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculating-in-openlayers/</loc>
     <lastmod>2021-05-24T20:14:45+05:30</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/courses/</loc>
+    <loc>https://amanbagrecha.github.io/courses/</loc>
     <lastmod>2021-01-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/courses/example/</loc>
+    <loc>https://amanbagrecha.github.io/courses/example/</loc>
     <lastmod>2021-01-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/author/aman-bagrecha/</loc>
+    <loc>https://amanbagrecha.github.io/author/aman-bagrecha/</loc>
     <lastmod>2020-12-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/authors/</loc>
+    <loc>https://amanbagrecha.github.io/authors/</loc>
     <lastmod>2020-12-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/category/django/</loc>
+    <loc>https://amanbagrecha.github.io/category/django/</loc>
     <lastmod>2020-12-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/tag/geodjango/</loc>
+    <loc>https://amanbagrecha.github.io/tag/geodjango/</loc>
     <lastmod>2020-12-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/tag/osgeo4w/</loc>
+    <loc>https://amanbagrecha.github.io/tag/osgeo4w/</loc>
     <lastmod>2020-12-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/tag/postgis/</loc>
+    <loc>https://amanbagrecha.github.io/tag/postgis/</loc>
     <lastmod>2020-12-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/post/getting-started/</loc>
+    <loc>https://amanbagrecha.github.io/post/getting-started/</loc>
     <lastmod>2020-12-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/post/2020-12-01-r-rmarkdown/</loc>
+    <loc>https://amanbagrecha.github.io/post/2020-12-01-r-rmarkdown/</loc>
     <lastmod>2020-12-01T21:13:14-05:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/tag/plot/</loc>
+    <loc>https://amanbagrecha.github.io/tag/plot/</loc>
     <lastmod>2020-12-01T21:13:14-05:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/category/r/</loc>
+    <loc>https://amanbagrecha.github.io/category/r/</loc>
     <lastmod>2020-12-01T21:13:14-05:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/tag/r-markdown/</loc>
+    <loc>https://amanbagrecha.github.io/tag/r-markdown/</loc>
     <lastmod>2020-12-01T21:13:14-05:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/tag/regression/</loc>
+    <loc>https://amanbagrecha.github.io/tag/regression/</loc>
     <lastmod>2020-12-01T21:13:14-05:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/post/writing-technical-content/</loc>
+    <loc>https://amanbagrecha.github.io/post/writing-technical-content/</loc>
     <lastmod>2019-07-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/publication-type/3/</loc>
+    <loc>https://amanbagrecha.github.io/publication-type/3/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/author/aman-bagrecha/</loc>
+    <loc>https://amanbagrecha.github.io/author/aman-bagrecha/</loc>
     <lastmod>2019-09-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/publication/preprint/</loc>
+    <loc>https://amanbagrecha.github.io/publication/preprint/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/publication_types/</loc>
+    <loc>https://amanbagrecha.github.io/publication_types/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/publication/</loc>
+    <loc>https://amanbagrecha.github.io/publication/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/tag/source-themes/</loc>
+    <loc>https://amanbagrecha.github.io/tag/source-themes/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/post/jupyter/</loc>
+    <loc>https://amanbagrecha.github.io/post/jupyter/</loc>
     <lastmod>2019-09-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/slides/</loc>
+    <loc>https://amanbagrecha.github.io/slides/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/slides/example/</loc>
+    <loc>https://amanbagrecha.github.io/slides/example/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/project/internal-project/</loc>
+    <loc>https://amanbagrecha.github.io/project/internal-project/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/tag/demo/</loc>
+    <loc>https://amanbagrecha.github.io/tag/demo/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/project/external-project/</loc>
+    <loc>https://amanbagrecha.github.io/project/external-project/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/tag/node-express-api-crud/</loc>
+    <loc>https://amanbagrecha.github.io/tag/node-express-api-crud/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/project/</loc>
+    <loc>https://amanbagrecha.github.io/project/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/publication-type/2/</loc>
+    <loc>https://amanbagrecha.github.io/publication-type/2/</loc>
     <lastmod>2015-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/publication/journal-article/</loc>
+    <loc>https://amanbagrecha.github.io/publication/journal-article/</loc>
     <lastmod>2015-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/author/robert-ford/</loc>
+    <loc>https://amanbagrecha.github.io/author/robert-ford/</loc>
     <lastmod>2015-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/publication-type/1/</loc>
+    <loc>https://amanbagrecha.github.io/publication-type/1/</loc>
     <lastmod>2013-07-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/publication/conference-paper/</loc>
+    <loc>https://amanbagrecha.github.io/publication/conference-paper/</loc>
     <lastmod>2013-07-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>amanbagrecha.github.io/admin/</loc>
+    <loc>https://amanbagrecha.github.io/admin/</loc>
   </url><url>
-    <loc>amanbagrecha.github.io/author/%E5%90%B3%E6%81%A9%E9%81%94/</loc>
+    <loc>https://amanbagrecha.github.io/author/%E5%90%B3%E6%81%A9%E9%81%94/</loc>
   </url>
 </urlset>

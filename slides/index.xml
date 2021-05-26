@@ -2,15 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Slides | Aman Bagrecha</title>
-    <link>amanbagrecha.github.io/slides/</link>
-      <atom:link href="amanbagrecha.github.io/slides/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://amanbagrecha.github.io/slides/</link>
+      <atom:link href="https://amanbagrecha.github.io/slides/index.xml" rel="self" type="application/rss+xml" />
     <description>Slides</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 05 Feb 2019 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Slides</title>
-      <link>amanbagrecha.github.io/slides/example/</link>
+      <link>https://amanbagrecha.github.io/slides/example/</link>
       <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>amanbagrecha.github.io/slides/example/</guid>
+      <guid>https://amanbagrecha.github.io/slides/example/</guid>
       <description>&lt;h1 id=&#34;introduction-to&#34;&gt;Introduction to&lt;/h1&gt;
 &lt;h2 id=&#34;natural-language-processing&#34;&gt;Natural Language Processing&lt;/h2&gt;
 &lt;p&gt;By &lt;a href=&#34;https://github.com/amanbagrecha&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Aman Bagrecha&lt;/a&gt;&lt;/p&gt;
