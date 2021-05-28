@@ -5,12 +5,20 @@
     <link>https://amanbagrecha.github.io/project/</link>
       <atom:link href="https://amanbagrecha.github.io/project/index.xml" rel="self" type="application/rss+xml" />
     <description>Projects</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 27 Feb 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://amanbagrecha.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <url>https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png</url>
       <title>Projects</title>
       <link>https://amanbagrecha.github.io/project/</link>
     </image>
+    
+    <item>
+      <title>Django-rest-framework CRUD Token Authetication Application</title>
+      <link>https://amanbagrecha.github.io/project/external-project/</link>
+      <pubDate>Thu, 27 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/project/external-project/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>CRUD Application using node express api</title>
@@ -18,6 +26,9 @@
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       <guid>https://amanbagrecha.github.io/project/internal-project/</guid>
       <description>&lt;h1 id=&#34;project-setup&#34;&gt;Project Setup&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A project to demostrate rest-api crud operation in node-express application. Node and express allows for easy api building and super easy to create application.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;create package.json&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;npm init -y
 &lt;/code&gt;&lt;/pre&gt;
@@ -107,14 +118,6 @@ import pkg from &#39;mongoose&#39;;
 const { Mongoose } = pkg;
 &lt;/code&gt;&lt;/pre&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>External Project</title>
-      <link>https://amanbagrecha.github.io/project/external-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/project/external-project/</guid>
-      <description></description>
     </item>
     
   </channel>
