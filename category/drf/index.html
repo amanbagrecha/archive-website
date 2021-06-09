@@ -723,7 +723,8 @@
       <h2><a href="/post/django/pdf-and-email-creation/" >Django rest framework PDF creation and email via gmail SMTP and reportLab</a></h2>
       <div class="article-style">
         
-          Step 1 : create view to serialise data SUCCESS = 'success'ERROR = 'error'message_list = ['response', 'status', 'message'] # eg: [&quot;success&quot;, 201, &quot;successfully upload the file&quot;]@csrf_exempt@api_view(['POST',])def CreateInspectionReport(request):myresponse = {k: [] for k in message_list}try:myData = request.
+          Main steps In this blog we create PDF using report lab and email it to the user using gmail SMTP service. All actions are performed in Django.
+Step 1 : create view to serialise data The createInspectionReport is something not to worry about.
         
       </div>
     </div>

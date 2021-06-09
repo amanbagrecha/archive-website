@@ -766,7 +766,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    4 min read
+    3 min read
   </span>
   
 
@@ -796,7 +796,10 @@
   <div class="article-container">
 
     <div class="article-style">
-      <h2 id="step-1">Step 1:</h2>
+      <h2 id="main-steps">Main steps</h2>
+<p>In this small demo-blog we look into how to make polygon selections and calculate the area of that polygon on-the-fly. We use openlayers v6 to add gis functionality.</p>
+<h2 id="step-1">Step 1:</h2>
+<p>Openlayers requires you to add these cdns to add their functionality into our application.</p>
 <h3 id="link-necessary-cdns">link necessary cdns</h3>
 <pre><code class="language-html">
  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css&quot; type=&quot;text/css&quot;&gt;
@@ -823,7 +826,7 @@ var myFlSource = new ol.source.Vector({
 <p><code>service=WFS</code> :</p>
 </li>
 <li>
-<p><code>typename=dronnav:florida_bp</code> :</p>
+<p><code>typename=workspace:florida_bp</code> :</p>
 </li>
 <li>
 <p><code>version=1.1.0</code> :</p>
@@ -944,46 +947,8 @@ Projectmap.forEachFeatureAtPixel(e.pixel, function (f, l) {
 	  
 	});
 </code></pre>
-<p><code>html_pretty</code> in the <a href="https://github.com/yixuan/prettydoc/" target="_blank" rel="noopener"><strong>prettydoc</strong></a>
-package is a new output format for creating HTML documents from R Markdown files.
-<code>html_pretty</code> is more lightweight compared to <code>html_document</code>, and is more
-stylish than <code>html_vignette</code> when creating package vignettes.</p>
-<h2 id="new-styles">New Styles</h2>
-<p><code>html_pretty</code> currently supports three page themes (<code>cayman</code>, <code>tactile</code> and
-<code>architect</code>), and two syntax highlight styles (<code>github</code> and <code>vignette</code>).
-The theme and highlight styles can be specified in the document metadata,
-for example:</p>
-<pre><code class="language-yaml">output:
-  prettydoc::html_pretty:
-    theme: architect
-    highlight: github
-</code></pre>
-<h2 id="your-familiar-tools">Your Familiar Tools</h2>
-<p>Feel free to use the <code>knitr</code> infrastructure with dozens of tunable options in
-your document.</p>
-<pre><code class="language-{r">set.seed(123)
-n &lt;- 1000
-x1  &lt;- matrix(rnorm(n), ncol = 2)
-x2  &lt;- matrix(rnorm(n, mean = 3, sd = 1.5), ncol = 2)
-x   &lt;- rbind(x1, x2)
-head(x)
-smoothScatter(x, xlab = &quot;x1&quot;, ylab = &quot;x2&quot;)
-</code></pre>
-<p>You can include code snippets of languages other than R, but note that
-the block header has no curly brackets around the language name.</p>
-<pre><code class="language-cpp">// [[Rcpp::export]]
-NumericVector timesTwo(NumericVector x) {
-    return x * 2;
-}
-</code></pre>
-<p>You can also write math expressions, e.g. $Y = X\beta + \epsilon$,
-footnotes^[A footnote here.], and tables, e.g. using <code>knitr::kable()</code>.</p>
-<pre><code class="language-{r,">knitr::kable(head(iris, 10))
-</code></pre>
-<h2 id="stay-tuned">Stay Tuned</h2>
-<p>Please visit the <a href="https://github.com/yixuan/prettydoc/" target="_blank" rel="noopener">development page</a> of the 
-<code>prettydoc</code> package for latest updates and news. Comments, bug reports and
-pull requests are always welcome.</p>
+<h2 id="final-comments">Final comments</h2>
+<p>How we are able to select polygon from our <code>florida</code> layer and on click it also computes the area of selection in meters.</p>
 
     </div>
 

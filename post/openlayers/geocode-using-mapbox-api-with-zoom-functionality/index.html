@@ -33,11 +33,10 @@
   
     
   
-  <meta name="description" content="Main steps In this blog we create PDF using report lab and email it to the user using gmail SMTP service. All actions are performed in Django.
-Step 1 : create view to serialise data The createInspectionReport is something not to worry about." />
+  <meta name="description" content="How to bulid geocoding web-app using openlayers" />
 
   
-  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/django/pdf-and-email-creation/" />
+  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/" />
 
   
 
@@ -279,7 +278,7 @@ Step 1 : create view to serialise data The createInspectionReport is something n
   <link rel="icon" type="image/png" href="/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_32x32_fill_lanczos_center_2.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_180x180_fill_lanczos_center_2.png" />
 
-  <link rel="canonical" href="https://amanbagrecha.github.io/post/django/pdf-and-email-creation/" />
+  <link rel="canonical" href="https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/" />
 
   
   
@@ -299,19 +298,15 @@ Step 1 : create view to serialise data The createInspectionReport is something n
     <meta property="twitter:creator" content="@https://twitter.com/aman_bagrecha" />
   
   <meta property="og:site_name" content="Aman Bagrecha" />
-  <meta property="og:url" content="https://amanbagrecha.github.io/post/django/pdf-and-email-creation/" />
-  <meta property="og:title" content="Django rest framework PDF creation and email via gmail SMTP and reportLab | Aman Bagrecha" />
-  <meta property="og:description" content="Main steps In this blog we create PDF using report lab and email it to the user using gmail SMTP service. All actions are performed in Django.
-Step 1 : create view to serialise data The createInspectionReport is something not to worry about." /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
+  <meta property="og:url" content="https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/" />
+  <meta property="og:title" content="Reverse Geocode using Mapbox API with Zoom functionality | Aman Bagrecha" />
+  <meta property="og:description" content="How to bulid geocoding web-app using openlayers" /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
     <meta property="twitter:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
   
     
-      <meta
-        property="article:published_time"
-        content="2021-05-24T00:00:00&#43;00:00"
-      />
+      <meta property="article:published_time" content="2021-05-24T20:04:53&#43;05:30" />
     
-    <meta property="article:modified_time" content="2021-05-24T20:21:39&#43;05:30">
+    <meta property="article:modified_time" content="2021-05-24T20:04:53&#43;05:30">
   
 
   
@@ -335,12 +330,12 @@ Step 1 : create view to serialise data The createInspectionReport is something n
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://amanbagrecha.github.io/post/django/pdf-and-email-creation/"
+    "@id": "https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/"
   },
-  "headline": "Django rest framework PDF creation and email via gmail SMTP and reportLab",
+  "headline": "Reverse Geocode using Mapbox API with Zoom functionality",
   
-  "datePublished": "2021-05-24T00:00:00Z",
-  "dateModified": "2021-05-24T20:21:39+05:30",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "2021-05-24T20:04:53+05:30",
   
   "author": {
     "@type": "Person",
@@ -355,7 +350,7 @@ Step 1 : create view to serialise data The createInspectionReport is something n
       "url": "https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "Main steps In this blog we create PDF using report lab and email it to the user using gmail SMTP service. All actions are performed in Django.\nStep 1 : create view to serialise data The createInspectionReport is something not to worry about."
+  "description": "How to bulid geocoding web-app using openlayers"
 }
 </script>
 
@@ -371,11 +366,11 @@ Step 1 : create view to serialise data The createInspectionReport is something n
 
 
 
-  <title>Django rest framework PDF creation and email via gmail SMTP and reportLab | Aman Bagrecha</title>
+  <title>Reverse Geocode using Mapbox API with Zoom functionality | Aman Bagrecha</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="289a2685a03073bda90bbd566e602118" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="f3c3e376bc0dde891d19e2b7fea666e6" >
 
   
   
@@ -738,7 +733,7 @@ Step 1 : create view to serialise data The createInspectionReport is something n
   
   
 <div class="article-container pt-3">
-  <h1>Django rest framework PDF creation and email via gmail SMTP and reportLab</h1>
+  <h1>Reverse Geocode using Mapbox API with Zoom functionality</h1>
 
   
 
@@ -756,8 +751,6 @@ Step 1 : create view to serialise data The createInspectionReport is something n
     
     
       
-          Last updated on
-      
     
     May 24, 2021
   </span>
@@ -768,7 +761,7 @@ Step 1 : create view to serialise data The createInspectionReport is something n
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    2 min read
+    5 min read
   </span>
   
 
@@ -783,7 +776,7 @@ Step 1 : create view to serialise data The createInspectionReport is something n
   
   <span class="middot-divider"></span>
   <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/category/drf/">DRF</a></span>
+    <i class="fas fa-folder mr-1"></i><a href="/category/openlayers/">openlayers</a></span>
   
 
 </div>
@@ -803,85 +796,265 @@ Step 1 : create view to serialise data The createInspectionReport is something n
 
     <div class="article-style">
       <h2 id="main-steps">Main steps</h2>
-<p>In this blog we create PDF using report lab and email it to the user using gmail SMTP service. All actions are performed in Django.</p>
-<h2 id="step-1--create-view-to-serialise-data">Step 1 : create view to serialise data</h2>
-<p>The createInspectionReport is something not to worry about. It is just a form which takes in input with <code>users, emailaddress</code>. <code>myresponse</code> is a dictionary to store response and return with serialised data.
-The <code>send</code> handles sending creating pdf and emailing to the <code>emailaddress</code> of the users. PDF generation is done using reportlab.</p>
-<pre><code class="language-python">
-SUCCESS = 'success'
-ERROR = 'error'
-message_list = ['response', 'status', 'message'] # eg: [&quot;success&quot;, 201, &quot;successfully upload the file&quot;]
-
-@csrf_exempt
-@api_view(['POST',])
-def CreateInspectionReport(request):
-	myresponse = {k: [] for k in message_list}
-	
-	try:
-		myData = request.data.copy()
-		# print(myData)
-		myData['user'] = request.user.id #get the user id
-		myData['EmailAddress'] = myData['EmailAddress'] or request.user.email # user enters the email or take from the account
-
-		if not myData['EmailAddress']: # custom validation and response
-			RequestResponse(myresponse,ERROR,status.HTTP_400_BAD_REQUEST,{&quot;Email Address&quot; : [&quot;This field cannot be blank&quot;] })
-			return Response(data = myresponse)
-
-		
-		serializer = serializers.AddInspectionReportSerializer( data=myData) # serialier the data
-		if serializer.is_valid():
-			try:
-				send(**myData.dict()) # create pdf and send email
-			except Exception as e:
-				print(e)
-				RequestResponse(myresponse,ERROR,status.HTTP_400_BAD_REQUEST,{&quot;Email&quot; : [&quot;Could not send mail!&quot;] })
-				return Response(data = myresponse)
-			account = serializer.save()
-			RequestResponse(myresponse,SUCCESS,status.HTTP_201_CREATED, {&quot;Success&quot;: [f&quot;Inspection Report e-mailed to {account.EmailAddress}!&quot;] })
-			messages.success(request, f'Inspection Report e-mailed to {account.EmailAddress}!')
-			# print(serializer)
-			return Response(myresponse, )
-		RequestResponse(myresponse,ERROR,status.HTTP_400_BAD_REQUEST,serializer.errors)
-		return Response(data = myresponse)
-	except Exception as e:
-		print(e)
-		RequestResponse(myresponse,ERROR,status.HTTP_500_INTERNAL_SERVER_ERROR, {&quot;Error&quot;: [&quot;Internal Server Error&quot;]})
-		return Response(data= myresponse)
+<p>This blog demonstrates how to geocode an address using mapbox api as the client provider implemented in openlayers v6. Additionally zoom in to the search location as text provided on the search bar.
+This one page appication demostrates only key elements, rest of the customisation is at discretion of the viewer.</p>
+<h3 id="setup-the-project">Setup the project</h3>
+<p>We first create basic single html file to include all elements (javascript, css and html). Ideally, when the application scales, you would create a seperate file for each component.</p>
+<ol>
+<li>Create <code>html</code> file and add basic elements</li>
+</ol>
+<pre><code class="language-html">&lt;html&gt;
+&lt;head&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+ &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css&quot; type=&quot;text/css&quot;&gt;
+ &lt;style type=&quot;text/css&quot;&gt;
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}
+ &lt;/style&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+&lt;h2&gt;Autocomplete&lt;/h2&gt;
+&lt;br&gt;
+&lt;form  method=&quot;post&quot; &gt;
+  &lt;div class=&quot;autocomplete&quot; style=&quot;width:300px;&quot;&gt;
+	&lt;input id=&quot;myInput&quot; type=&quot;text&quot; name=&quot;myCountry&quot; placeholder=&quot;Country&quot;&gt;
+  &lt;/div&gt;
+  &lt;input type=&quot;submit&quot; id = &quot;geocodingSubmit&quot;&gt;
+&lt;/form&gt;
+&lt;div id='project_map', class=&quot;map&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js&quot;&gt;&lt;/script&gt;
+&lt;!-- &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.5.0/proj4.js&quot;&gt;&lt;/script&gt; --&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	 var project_maplayer = new ol.layer.Tile({
+	// source: new ol.source.OSM(),
+	source: new ol.source.XYZ({
+		attributions: ['Powered by Esri',
+									 'Source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community'],
+		attributionsCollapsible: false,
+		url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+		maxZoom: 23
+	}),
+	zIndex: 0
+});
+var project_view = new ol.View({
+	projection: 'EPSG:4326',
+	center: [-81.80808208706726, 27.285095000261222],
+	zoom: 7,
+});
+var Projectmap = new ol.Map({
+	layers: [project_maplayer,],
+	target: 'project_map',
+	view: project_view,
+    constrainOnlyCenter: true,
+});
+&lt;/script&gt;
 </code></pre>
-<h2 id="step-2-create-pdf">step 2: create pdf</h2>
-<pre><code class="language-python">def generate_pdf(**Mydata):
-	y = 700
-	buffer = io.BytesIO() # in memory create pdf
-	p = canvas.Canvas(buffer, pagesize=letter)
-	p.setFont('Helvetica', 14)
-	p.drawString(220,y,   Mydata['InspectionTitle'])
-	p.drawString(450, y, &quot;Date:&quot; + timezone.now().strftime('%Y-%b-%d'))
-	p.line(30, 675, 550, 675)
-	p.drawString(220, y-300, &quot;Time of Inspection: &quot; + str(Mydata['InspectionTime']))
-	p.drawString(220, y-200, &quot;Estimated Replacement Cost: &quot; + str(Mydata['EstReplacementCost']))
-	p.showPage()
-	p.save()
-	pdf = buffer.getvalue()
-	buffer.close()
-	return pdf
+<p>We added the following elements,</p>
+<ol>
+<li>Search bar: we setup the search function to input values as address and wrap it within a form with post request.</li>
+<li>Map : the div element with <code>id=&quot;project_map&quot;</code> holds the map element and the script does the following. First, create layer with ESRI basemap. Second, add the layer to the Map object.</li>
+</ol>
+<p>At this stage the application looks like the following image</p>
+<p><img src="https://i.imgur.com/joNvjw7.jpg" alt=""></p>
+<h2 id="add-autocomplete-functionality">Add autocomplete functionality</h2>
+<p>We fetch from the api and populate our top results in a list format on key press. Also, we style the search bar using css.</p>
+<pre><code class="language-html">&lt;style&gt;
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
 
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+&lt;/style&gt;
+
+&lt;script&gt;
+myHeaders =  {'Content-Type': 'application/json', 'Access-Control-Allow-Credentials' : true,
+					'Access-Control-Allow-Origin':'*',
+					'Accept': 'application/json'}
+
+function autocomplete(inp) {
+  /*the autocomplete function takes one argument,
+  the text field element*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener(&quot;input&quot;, function(e) {
+	  var a, b, i, val = this.value;
+	  var ACCESS_TOKEN_KEY = 'your_token_here'
+	  /*close any already open lists of autocompleted values*/
+	  var URL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${val}.json?access_token=${ACCESS_TOKEN_KEY}&amp;types=address,region,poi,country,district,locality,neighborhood,postcode&amp;country=us`
+	 
+	  fetch(URL,{
+		method: 'GET',
+		headers: myHeaders,
+	  }).then(response =&gt; response.json())
+	  .then(data =&gt; {
+		geocode_data = data;
+		// console.log(data) 
+	  
+	  closeAllLists();
+	  if (!val) { return false;}
+	  currentFocus = -1;
+	  /*create a DIV element that will contain the items (values):*/
+	  a = document.createElement(&quot;DIV&quot;);
+	  a.setAttribute(&quot;id&quot;, this.id + &quot;autocomplete-list&quot;);
+	  a.setAttribute(&quot;class&quot;, &quot;autocomplete-items&quot;);
+	  /*append the DIV element as a child of the autocomplete container:*/
+	  this.parentNode.appendChild(a);
+	  /*for each item in the array...*/
+	  for (i = 0; i &lt; geocode_data.features.length; i++) {
+
+		  b = document.createElement(&quot;DIV&quot;);
+		  /*insert a input field that will hold the current array item's value:*/
+		  b.innerHTML += geocode_data.features[i].place_name;
+		  b.innerHTML += `&lt;input type='hidden' style=&quot;display: none;&quot; id=${i}-center-cc  
+		  coordinates='${geocode_data.features[i].center}' value='${geocode_data.features[i].place_name}'&gt;`;
+		  
+		  /*execute a function when someone clicks on the item value (DIV element):*/
+		  b.addEventListener(&quot;click&quot;, function(e) {
+			  /*insert the value for the autocomplete text field:*/
+			  var input_tag = this.getElementsByTagName(&quot;input&quot;)[0]
+			  inp.value = input_tag.value;
+			  inp.setAttribute(&quot;coordinates&quot;, input_tag.getAttribute('coordinates'));
+
+			  /*close the list of autocompleted values,
+			  (or any other open lists of autocompleted values:*/
+			  closeAllLists();
+		  });
+		  a.appendChild(b);
+		}
+
+	  })
+	  .catch(error =&gt; {
+	console.error('There has been a problem with your fetch operation:', error);
+	});
+
+
+	  });
+  // });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener(&quot;keydown&quot;, function(e) {
+	  var x = document.getElementById(this.id + &quot;autocomplete-list&quot;);
+	  if (x) x = x.getElementsByTagName(&quot;div&quot;);
+	  if (e.keyCode == 40) {
+		/*If the arrow DOWN key is pressed,
+		increase the currentFocus variable:*/
+		currentFocus++;
+		/*and and make the current item more visible:*/
+		addActive(x);
+	  } else if (e.keyCode == 38) { //up
+		/*If the arrow UP key is pressed,
+		decrease the currentFocus variable:*/
+		currentFocus--;
+		/*and and make the current item more visible:*/
+		addActive(x);
+	  } else if (e.keyCode == 13) {
+		/*If the ENTER key is pressed, prevent the form from being submitted,*/
+		e.preventDefault();
+		if (currentFocus &gt; -1) {
+		  /*and simulate a click on the &quot;active&quot; item:*/
+		  if (x) x[currentFocus].click();
+		}
+	  }
+  });
+  function addActive(x) {
+	/*a function to classify an item as &quot;active&quot;:*/
+	if (!x) return false;
+	/*start by removing the &quot;active&quot; class on all items:*/
+	removeActive(x);
+	if (currentFocus &gt;= x.length) currentFocus = 0;
+	if (currentFocus &lt; 0) currentFocus = (x.length - 1);
+	/*add class &quot;autocomplete-active&quot;:*/
+	x[currentFocus].classList.add(&quot;autocomplete-active&quot;);
+  }
+  function removeActive(x) {
+	/*a function to remove the &quot;active&quot; class from all autocomplete items:*/
+	for (var i = 0; i &lt; x.length; i++) {
+	  x[i].classList.remove(&quot;autocomplete-active&quot;);
+	}
+  }
+  function closeAllLists(elmnt) {
+	/*close all autocomplete lists in the document,
+	except the one passed as an argument:*/
+	var x = document.getElementsByClassName(&quot;autocomplete-items&quot;);
+	for (var i = 0; i &lt; x.length; i++) {
+	  if (elmnt != x[i] &amp;&amp; elmnt != inp) {
+		x[i].parentNode.removeChild(x[i]);
+	  }
+	}
+  }
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener(&quot;click&quot;, function (e) {
+	  closeAllLists(e.target);
+  });
+}
+
+/*initiate the autocomplete function on the &quot;myInput&quot; element */
+autocomplete(document.getElementById(&quot;myInput&quot;));
+
+&lt;/script&gt;
 </code></pre>
-<h2 id="step-3-send-email-using--report-lab">step 3: send email using  report lab</h2>
-<pre><code class="language-python"># settings.py
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = &quot;smtp.gmail.com&quot;
-EMAIL_HOST_USER = 'your_email@gmail.com'
-EMAIL_HOST_PASSWORD = 'your_password'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-# views.py
-def send(**Mydata):
-	pdf = generate_pdf(**Mydata)
-	msg = EmailMessage(Mydata['InspectionTitle'], &quot; Your Inspection Report is ready! &quot;, settings.EMAIL_HOST_USER, to=[Mydata['EmailAddress']])
-	msg.attach(f&quot;{Mydata['InspectionTitle']}.pdf&quot;, pdf, 'application/pdf')
-	msg.content_subtype = &quot;html&quot;
-	resp = msg.send()
-	print(&quot;resp:&quot; , resp)
+<p>The following is the explanation of the code</p>
+<ol>
+<li>autocomplete function: The function takes an element as input which needs to be populated. Then we add an event listner which on change in input field, triggers. A GET request is sent across for the input typed and the result is populated in a form of dropdown. We add some styling on key-down so as to select the search.</li>
+</ol>
+<p>At this point, with correct mapbox api access key, we have built the autocomplete functionality.</p>
+<p><img src="https://i.imgur.com/ES8bnSO.gif" alt=""></p>
+<h2 id="last-steps">Last steps</h2>
+<p>We now only need to implement the submit functionality. On click of submit button, the address is located on the map and zoomed in. This is done using a function we call centerMap</p>
+<pre><code class="language-javascript">function CenterMap() {
+	var [long, lat] = document.getElementById(&quot;myInput&quot;).getAttribute(&quot;coordinates&quot;).split(&quot;,&quot;).map(Number)
+    console.log(&quot;Long: &quot; + long + &quot; Lat: &quot; + lat);
+    Projectmap.getView().setCenter(ol.proj.transform([long, lat], 'EPSG:4326', 'EPSG:4326'));
+    Projectmap.getView().setZoom(5);
+}
+</code></pre>
+<p>Now we add the centerMap function on click of submit</p>
+<pre><code class="language-javascript">document.getElementById(&quot;geocodingSubmit&quot;).addEventListener('click', function(e){
+
+	e.preventDefault();
+	CenterMap()
+})
 </code></pre>
 
     </div>
@@ -906,7 +1079,7 @@ def send(**Mydata):
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://amanbagrecha.github.io/post/django/pdf-and-email-creation/&amp;text=Django%20rest%20framework%20PDF%20creation%20and%20email%20via%20gmail%20SMTP%20and%20reportLab" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/&amp;text=Reverse%20Geocode%20using%20Mapbox%20API%20with%20Zoom%20functionality" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -919,7 +1092,7 @@ def send(**Mydata):
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://amanbagrecha.github.io/post/django/pdf-and-email-creation/&amp;t=Django%20rest%20framework%20PDF%20creation%20and%20email%20via%20gmail%20SMTP%20and%20reportLab" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/&amp;t=Reverse%20Geocode%20using%20Mapbox%20API%20with%20Zoom%20functionality" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -932,7 +1105,7 @@ def send(**Mydata):
       
       
       <li>
-        <a href="mailto:?subject=Django%20rest%20framework%20PDF%20creation%20and%20email%20via%20gmail%20SMTP%20and%20reportLab&amp;body=https://amanbagrecha.github.io/post/django/pdf-and-email-creation/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Reverse%20Geocode%20using%20Mapbox%20API%20with%20Zoom%20functionality&amp;body=https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -945,7 +1118,7 @@ def send(**Mydata):
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://amanbagrecha.github.io/post/django/pdf-and-email-creation/&amp;title=Django%20rest%20framework%20PDF%20creation%20and%20email%20via%20gmail%20SMTP%20and%20reportLab" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/&amp;title=Reverse%20Geocode%20using%20Mapbox%20API%20with%20Zoom%20functionality" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -958,7 +1131,7 @@ def send(**Mydata):
       
       
       <li>
-        <a href="whatsapp://send?text=Django%20rest%20framework%20PDF%20creation%20and%20email%20via%20gmail%20SMTP%20and%20reportLab%20https://amanbagrecha.github.io/post/django/pdf-and-email-creation/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=Reverse%20Geocode%20using%20Mapbox%20API%20with%20Zoom%20functionality%20https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -971,7 +1144,7 @@ def send(**Mydata):
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://amanbagrecha.github.io/post/django/pdf-and-email-creation/&amp;title=Django%20rest%20framework%20PDF%20creation%20and%20email%20via%20gmail%20SMTP%20and%20reportLab" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/&amp;title=Reverse%20Geocode%20using%20Mapbox%20API%20with%20Zoom%20functionality" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>

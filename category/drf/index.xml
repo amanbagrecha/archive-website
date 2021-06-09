@@ -602,7 +602,11 @@ function fetchcall(event) {
       <link>https://amanbagrecha.github.io/post/django/pdf-and-email-creation/</link>
       <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
       <guid>https://amanbagrecha.github.io/post/django/pdf-and-email-creation/</guid>
-      <description>&lt;h2 id=&#34;step-1--create-view-to-serialise-data&#34;&gt;Step 1 : create view to serialise data&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;main-steps&#34;&gt;Main steps&lt;/h2&gt;
+&lt;p&gt;In this blog we create PDF using report lab and email it to the user using gmail SMTP service. All actions are performed in Django.&lt;/p&gt;
+&lt;h2 id=&#34;step-1--create-view-to-serialise-data&#34;&gt;Step 1 : create view to serialise data&lt;/h2&gt;
+&lt;p&gt;The createInspectionReport is something not to worry about. It is just a form which takes in input with &lt;code&gt;users, emailaddress&lt;/code&gt;. &lt;code&gt;myresponse&lt;/code&gt; is a dictionary to store response and return with serialised data.
+The &lt;code&gt;send&lt;/code&gt; handles sending creating pdf and emailing to the &lt;code&gt;emailaddress&lt;/code&gt; of the users. PDF generation is done using reportlab.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
 SUCCESS = &#39;success&#39;
 ERROR = &#39;error&#39;
@@ -622,27 +626,7 @@ def CreateInspectionReport(request):
 		if not myData[&#39;EmailAddress&#39;]: # custom validation and response
 			RequestResponse(myresponse,ERROR,status.HTTP_400_BAD_REQUEST,{&amp;quot;Email Address&amp;quot; : [&amp;quot;This field cannot be blank&amp;quot;] })
 			return Response(data = myresponse)
-		try: # check format of date and validate
-			myData[&#39;InspectionDate&#39;] = datetime.strptime(myData[&#39;InspectionDate&#39;], &#39;%m/%d/%Y&#39;).date()
-		except Exception as e:
-			print(e)
-			RequestResponse(myresponse,ERROR,status.HTTP_400_BAD_REQUEST,{&amp;quot;Inspection Date&amp;quot; : [&amp;quot;Incorrect Format. It should be mm/dd/yyyy&amp;quot;] })
-			return Response(data = myresponse)
-		
-		try: # check time
-			myData[&#39;InspectionTime&#39;] = datetime.strptime(request.data[&#39;InspectionDate&#39;] + &#39; &#39; + myData[&#39;InspectionTime&#39;], &#39;%m/%d/%Y %H:%M&#39;)
-		except Exception as e:
-			print(e)
-			RequestResponse(myresponse,ERROR,status.HTTP_400_BAD_REQUEST,{&amp;quot;InspectionTime&amp;quot; : [&amp;quot;Incorrect Format. It should be hh:mm !&amp;quot;] })
-			return Response(data = myresponse)
-		
-		try: # check if the property was selected 
-			int(myData[&#39;InspectionProperty&#39;])
-		except Exception as e:
-			print(e)
-			RequestResponse(myresponse,ERROR,status.HTTP_400_BAD_REQUEST,{&amp;quot;Inspection Property&amp;quot; : [&amp;quot;Select only one property!&amp;quot;] })
-			return Response(data = myresponse)
-		print(myData)
+
 		
 		serializer = serializers.AddInspectionReportSerializer( data=myData) # serialier the data
 		if serializer.is_valid():

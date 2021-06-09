@@ -14,12 +14,14 @@
     
     <item>
       <title>Reverse Geocode using Mapbox API with Zoom functionality</title>
-      <link>https://amanbagrecha.github.io/post/openlayers/reverse-geocode-using-mapbox-api-with-zoom-functionality/</link>
+      <link>https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/</link>
       <pubDate>Mon, 24 May 2021 20:04:53 +0530</pubDate>
-      <guid>https://amanbagrecha.github.io/post/openlayers/reverse-geocode-using-mapbox-api-with-zoom-functionality/</guid>
+      <guid>https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/</guid>
       <description>&lt;h2 id=&#34;main-steps&#34;&gt;Main steps&lt;/h2&gt;
-&lt;p&gt;This one page appication demostrates only key elements, rest of the customisation is at discretion of the viewer.&lt;/p&gt;
+&lt;p&gt;This blog demonstrates how to geocode an address using mapbox api as the client provider implemented in openlayers v6. Additionally zoom in to the search location as text provided on the search bar.
+This one page appication demostrates only key elements, rest of the customisation is at discretion of the viewer.&lt;/p&gt;
 &lt;h3 id=&#34;setup-the-project&#34;&gt;Setup the project&lt;/h3&gt;
+&lt;p&gt;We first create basic single html file to include all elements (javascript, css and html). Ideally, when the application scales, you would create a seperate file for each component.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Create &lt;code&gt;html&lt;/code&gt; file and add basic elements&lt;/li&gt;
 &lt;/ol&gt;
@@ -95,6 +97,7 @@ var Projectmap = new ol.Map({
 &lt;p&gt;At this stage the application looks like the following image&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/joNvjw7.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;add-autocomplete-functionality&#34;&gt;Add autocomplete functionality&lt;/h2&gt;
+&lt;p&gt;We fetch from the api and populate our top results in a list format on key press. Also, we style the search bar using css.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;style&amp;gt;
 .autocomplete-items {
   position: absolute;
