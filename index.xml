@@ -5,7 +5,7 @@
     <link>https://amanbagrecha.github.io/</link>
       <atom:link href="https://amanbagrecha.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Aman Bagrecha</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 24 May 2021 20:04:53 +0530</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 09 Jun 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png</url>
       <title>Aman Bagrecha</title>
@@ -105,6 +105,67 @@ The variance of the distribution is $\sigma^{2}$.
   &lt;summary&gt;What is the parameter $\mu$?&lt;/summary&gt;
   &lt;p&gt;The parameter $\mu$ is the mean or expectation of the distribution.&lt;/p&gt;
 &lt;/details&gt;</description>
+    </item>
+    
+    <item>
+      <title>Validating LULC classes in QGIS</title>
+      <link>https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/</link>
+      <pubDate>Wed, 09 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/</guid>
+      <description>&lt;h1 id=&#34;the-problem-statement&#34;&gt;The problem statement&lt;/h1&gt;
+&lt;p&gt;Any land-use land cover classification needs to be validated with ground-truth data to measure the accuracy. A key single-valued statistic to determine the effectiveness of classification is Cohen’s kappa. This validation metric has been fairly widely used for unbalanced classification as well which expresses a level of agreement between two annotators on a classification problem.&lt;/p&gt;
+&lt;p&gt;The objective of this quality assessment was to validate the land cover map performed on June, 2020 sentinel-2 imagery by k-means classification algorithm, thus providing a statistical measure of overall class predictions. The validation was done using an independent set of sample points (~500) generated randomly following stratified random sampling design, to capture the variance within the class&lt;/p&gt;
+&lt;p&gt;After running the tool, the sample points were manually assigned to the ground-truth class. The ground-truth dataset was taken to be Bing-satellite imagery as a proxy for field data. Each sample point was labelled by visual inspection on the ground-truth dataset.&lt;/p&gt;
+&lt;h1 id=&#34;step-1-classify-image&#34;&gt;Step 1: Classify Image&lt;/h1&gt;
+&lt;h3 id=&#34;--load-raster-image&#34;&gt;- Load raster Image&lt;/h3&gt;
+&lt;h3 id=&#34;--open-k-means-clustering-for-grids-under-saga-tools-select-the-raster-image-as-grid-and-in-this-case-we-specify-4-classes&#34;&gt;- Open &lt;code&gt;K-means clustering for grids&lt;/code&gt; under SAGA tools. Select the raster Image as &lt;code&gt;grid&lt;/code&gt; and in this case we specify 4 classes&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/xdx5Tsn.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;--click-run&#34;&gt;- Click &lt;code&gt;Run&lt;/code&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;At this stage we have unsupervised k-means clustering output ready.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/eW0cOXE.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;classification of rr nagar, bangalore. Forest, Urban, water, Bareland&lt;/em&gt;&lt;/p&gt;
+&lt;h1 id=&#34;step-2-convert-to-polygon-vector-format&#34;&gt;Step 2: Convert to polygon (vector format)&lt;/h1&gt;
+&lt;h3 id=&#34;--select-polygonize-raster-to-vector-tool-under-gdal-raster-conversion&#34;&gt;- Select &lt;code&gt;Polygonize (Raster to Vector)&lt;/code&gt; tool under &lt;code&gt;GDAL-&amp;gt;Raster Conversion&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;--select-the-classified-image-as-input-leave-everything-else-as-default-the-output-would-be-a-vectorised-scratch-layer&#34;&gt;- Select the classified image as input. Leave everything else as default. The output would be a &lt;code&gt;Vectorised&lt;/code&gt; scratch layer.&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/36nk2tF.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;--fix-geometries-this-step-is-important-here-to-avoid-any-error-in-further-steps-vector-geometry-fix-geometry&#34;&gt;- Fix geometries (this step is important here to avoid any error in further steps) &lt;code&gt;Vector Geometry-&amp;gt;Fix Geometry&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/gG9gBIc.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Output: &lt;code&gt;Fix Geometry&lt;/code&gt; scratch layer&lt;/em&gt;&lt;/p&gt;
+&lt;h1 id=&#34;step-3-dissolve-the-layer-on-dn-field&#34;&gt;Step 3: Dissolve the layer on DN field&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In this step we dissolve the layer based on the DN value. This will ensure that each polygon can be evaluated based on the land class type which is needed for stratified random sampling.
+&lt;img src=&#34;https://i.imgur.com/gm1ihfT.png&#34; alt=&#34;&#34;&gt;
+Make sure to select dissolve field as &lt;code&gt;DN&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;step-4-create-stratified-random-samples&#34;&gt;Step 4: Create stratified random samples&lt;/h1&gt;
+&lt;h2 id=&#34;vector-research-tools--random-points-inside-polygon&#34;&gt;&lt;code&gt;Vector-&amp;gt;research tools-&amp;gt; Random Points inside Polygon&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/1LB6R5L.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;step-5-extract-raster-values-to-sample-layer&#34;&gt;step 5: Extract raster values to sample layer&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We extract the raster value, which is essentially the land cover class for the classified image. We use &lt;code&gt;Sample Raster Values&lt;/code&gt; function here. The input layer is the random points we generated earlier and the the raster layer is the classified image. The output adds a new column to the sample points layer with the prediction class of the land-cover. 
+&lt;img src=&#34;https://i.imgur.com/s2RXNOZ.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;AND THE CORRESPONDING ATTRIBUTE TABLE&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/GG9wgNK.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;step-6-ground-truth-labelling-using-bing-maps&#34;&gt;Step 6: Ground Truth Labelling using Bing maps&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;At this stage we are ready to validate the image using Bing maps as ground truth. We turn on the edit mode and create new field named Actual class. THen we visvually inspect the class on the map and note the land-cover class. Once we inspect all the sample points we can use cohens statistics to determine the validation result. alternatively, simply calculate the accuracy would also suffice the need.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Add other field to the attribute table with reclassification&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&#34;language-py&#34;&gt;CASE WHEN PREDICTED_1 is 2 THEN &#39;Urban&#39; 
+WHEN PREDICTED_1 is 1 THEN &#39;Bareland&#39;
+WHEN PREDICTED_1 is 4 THEN &#39;Forest&#39;
+WHEN PREDICTED_1 is 3 THEN &#39;Urban&#39;
+END
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/3CBAK6X.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -1897,7 +1958,7 @@ data.head()
 &lt;p&gt;Demo:&lt;/p&gt;
 
 
-&lt;div id=&#34;chart-149732586&#34; class=&#34;chart&#34;&gt;&lt;/div&gt;
+&lt;div id=&#34;chart-614385279&#34; class=&#34;chart&#34;&gt;&lt;/div&gt;
 &lt;script&gt;
   (function() {
     let a = setInterval( function() {
@@ -1907,7 +1968,7 @@ data.head()
       clearInterval( a );
 
       Plotly.d3.json(&#34;./line-chart.json&#34;, function(chart) {
-        Plotly.plot(&#39;chart-149732586&#39;, chart.data, chart.layout, {responsive: true});
+        Plotly.plot(&#39;chart-614385279&#39;, chart.data, chart.layout, {responsive: true});
       });
     }, 500 );
   })();

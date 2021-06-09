@@ -33,10 +33,10 @@
   
     
   
-  <meta name="description" content="Civil Engineering Student" />
+  <meta name="description" content="The objective of this quality assessment was to validate the land cover map performed on June, 2020 sentinel-2 imagery by k-means classification algorithm in QGIS" />
 
   
-  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/author/aman-bagrecha/" />
+  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/" />
 
   
 
@@ -270,8 +270,6 @@
   
 
   
-    <link rel="alternate" href="/author/aman-bagrecha/index.xml" type="application/rss+xml" title="Aman Bagrecha" />
-  
 
   
     <link rel="manifest" href="/index.webmanifest" />
@@ -280,7 +278,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_32x32_fill_lanczos_center_2.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_180x180_fill_lanczos_center_2.png" />
 
-  <link rel="canonical" href="https://amanbagrecha.github.io/author/aman-bagrecha/" />
+  <link rel="canonical" href="https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/" />
 
   
   
@@ -300,33 +298,82 @@
     <meta property="twitter:creator" content="@https://twitter.com/aman_bagrecha" />
   
   <meta property="og:site_name" content="Aman Bagrecha" />
-  <meta property="og:url" content="https://amanbagrecha.github.io/author/aman-bagrecha/" />
-  <meta property="og:title" content="Aman Bagrecha | Aman Bagrecha" />
-  <meta property="og:description" content="Civil Engineering Student" /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
+  <meta property="og:url" content="https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/" />
+  <meta property="og:title" content="Validating LULC classes in QGIS | Aman Bagrecha" />
+  <meta property="og:description" content="The objective of this quality assessment was to validate the land cover map performed on June, 2020 sentinel-2 imagery by k-means classification algorithm in QGIS" /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
     <meta property="twitter:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
   
     
-      <meta property="og:updated_time" content="2020-12-13T00:00:00&#43;00:00" />
+      <meta
+        property="article:published_time"
+        content="2021-06-09T00:00:00&#43;00:00"
+      />
     
+    <meta property="article:modified_time" content="2021-06-07T17:12:46&#43;05:30">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/"
+  },
+  "headline": "Validating LULC classes in QGIS",
+  
+  "datePublished": "2021-06-09T00:00:00Z",
+  "dateModified": "2021-06-07T17:12:46+05:30",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Aman Bagrecha"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Aman Bagrecha",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "The objective of this quality assessment was to validate the land cover map performed on June, 2020 sentinel-2 imagery by k-means classification algorithm in QGIS"
+}
+</script>
+
+  
+
+  
+
   
 
   
 
 
 
-  
-
-  
 
 
-
-
-
-  <title>Aman Bagrecha | Aman Bagrecha</title>
+  <title>Validating LULC classes in QGIS | Aman Bagrecha</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   "  >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="3a45a2ad16d50fc70c8522d1f84ada9f" >
 
   
   
@@ -668,36 +715,375 @@
   </div>
 
   <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Validating LULC classes in QGIS</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Jun 7, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
     
 
 
 
-<div class="universal-wrapper pt-3">
-  <h1>Aman Bagrecha</h1>
+
+
+  
 </div>
 
 
-<section id="profile-page" class="pt-5">
-  <div class="container">
-    
-    
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h1 id="the-problem-statement">The problem statement</h1>
+<p>Any land-use land cover classification needs to be validated with ground-truth data to measure the accuracy. A key single-valued statistic to determine the effectiveness of classification is Cohen’s kappa. This validation metric has been fairly widely used for unbalanced classification as well which expresses a level of agreement between two annotators on a classification problem.</p>
+<p>The objective of this quality assessment was to validate the land cover map performed on June, 2020 sentinel-2 imagery by k-means classification algorithm, thus providing a statistical measure of overall class predictions. The validation was done using an independent set of sample points (~500) generated randomly following stratified random sampling design, to capture the variance within the class</p>
+<p>After running the tool, the sample points were manually assigned to the ground-truth class. The ground-truth dataset was taken to be Bing-satellite imagery as a proxy for field data. Each sample point was labelled by visual inspection on the ground-truth dataset.</p>
+<h1 id="step-1-classify-image">Step 1: Classify Image</h1>
+<h3 id="--load-raster-image">- Load raster Image</h3>
+<h3 id="--open-k-means-clustering-for-grids-under-saga-tools-select-the-raster-image-as-grid-and-in-this-case-we-specify-4-classes">- Open <code>K-means clustering for grids</code> under SAGA tools. Select the raster Image as <code>grid</code> and in this case we specify 4 classes</h3>
+<p><img src="https://i.imgur.com/xdx5Tsn.png" alt=""></p>
+<h3 id="--click-run">- Click <code>Run</code></h3>
+<blockquote>
+<p>At this stage we have unsupervised k-means clustering output ready.</p>
+</blockquote>
+<p><img src="https://i.imgur.com/eW0cOXE.png" alt="">
+<em>classification of rr nagar, bangalore. Forest, Urban, water, Bareland</em></p>
+<h1 id="step-2-convert-to-polygon-vector-format">Step 2: Convert to polygon (vector format)</h1>
+<h3 id="--select-polygonize-raster-to-vector-tool-under-gdal-raster-conversion">- Select <code>Polygonize (Raster to Vector)</code> tool under <code>GDAL-&gt;Raster Conversion</code></h3>
+<h3 id="--select-the-classified-image-as-input-leave-everything-else-as-default-the-output-would-be-a-vectorised-scratch-layer">- Select the classified image as input. Leave everything else as default. The output would be a <code>Vectorised</code> scratch layer.</h3>
+<p><img src="https://i.imgur.com/36nk2tF.png" alt=""></p>
+<h3 id="--fix-geometries-this-step-is-important-here-to-avoid-any-error-in-further-steps-vector-geometry-fix-geometry">- Fix geometries (this step is important here to avoid any error in further steps) <code>Vector Geometry-&gt;Fix Geometry</code></h3>
+<p><img src="https://i.imgur.com/gG9gBIc.png" alt="">
+<em>Output: <code>Fix Geometry</code> scratch layer</em></p>
+<h1 id="step-3-dissolve-the-layer-on-dn-field">Step 3: Dissolve the layer on DN field</h1>
+<blockquote>
+<p>In this step we dissolve the layer based on the DN value. This will ensure that each polygon can be evaluated based on the land class type which is needed for stratified random sampling.
+<img src="https://i.imgur.com/gm1ihfT.png" alt="">
+Make sure to select dissolve field as <code>DN</code></p>
+</blockquote>
+<h1 id="step-4-create-stratified-random-samples">Step 4: Create stratified random samples</h1>
+<h2 id="vector-research-tools--random-points-inside-polygon"><code>Vector-&gt;research tools-&gt; Random Points inside Polygon</code></h2>
+<p><img src="https://i.imgur.com/1LB6R5L.png" alt=""></p>
+<h1 id="step-5-extract-raster-values-to-sample-layer">step 5: Extract raster values to sample layer</h1>
+<blockquote>
+<p>We extract the raster value, which is essentially the land cover class for the classified image. We use <code>Sample Raster Values</code> function here. The input layer is the random points we generated earlier and the the raster layer is the classified image. The output adds a new column to the sample points layer with the prediction class of the land-cover. 
+<img src="https://i.imgur.com/s2RXNOZ.png" alt=""></p>
+</blockquote>
+<blockquote>
+<p>AND THE CORRESPONDING ATTRIBUTE TABLE</p>
+</blockquote>
+<p><img src="https://i.imgur.com/GG9wgNK.png" alt=""></p>
+<h1 id="step-6-ground-truth-labelling-using-bing-maps">Step 6: Ground Truth Labelling using Bing maps</h1>
+<blockquote>
+<p>At this stage we are ready to validate the image using Bing maps as ground truth. We turn on the edit mode and create new field named Actual class. THen we visvually inspect the class on the map and note the land-cover class. Once we inspect all the sample points we can use cohens statistics to determine the validation result. alternatively, simply calculate the accuracy would also suffice the need.</p>
+</blockquote>
+<blockquote>
+<p>Add other field to the attribute table with reclassification</p>
+</blockquote>
+<pre><code class="language-py">CASE WHEN PREDICTED_1 is 2 THEN 'Urban' 
+WHEN PREDICTED_1 is 1 THEN 'Bareland'
+WHEN PREDICTED_1 is 4 THEN 'Forest'
+WHEN PREDICTED_1 is 3 THEN 'Urban'
+END
+</code></pre>
+<p><img src="https://i.imgur.com/3CBAK6X.jpg" alt=""></p>
+
+    </div>
 
     
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/qgis/">qgis</a>
+  
+  <a class="badge badge-light" href="/tag/machine-learning/">machine learning</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/&amp;text=Validating%20LULC%20classes%20in%20QGIS" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/&amp;t=Validating%20LULC%20classes%20in%20QGIS" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Validating%20LULC%20classes%20in%20QGIS&amp;body=https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/&amp;title=Validating%20LULC%20classes%20in%20QGIS" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Validating%20LULC%20classes%20in%20QGIS%20https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/&amp;title=Validating%20LULC%20classes%20in%20QGIS" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://amanbagrecha.github.io/"><img class="avatar mr-3 avatar-circle" src="/author/aman-bagrecha/avatar_hu8b3e467675822a0c69fe66cbb3600b5d_124233_270x270_fill_q75_lanczos_center.jpg" alt="Aman Bagrecha"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://amanbagrecha.github.io/">Aman Bagrecha</a></h5>
+      <h6 class="card-subtitle">Civil Engineering Student</h6>
+      <p class="card-text">My interests include documenting, programming, Deep learning and GIS matter.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
     
     
-    <div class="article-widget content-widget-hr">
-      <h3>Latest</h3>
-      <ul>
-        
-        <li>
-          <a href="/post/getting-started/">Upload multiple geotagged images and store POINTS in postgresql database using geodjango</a>
-        </li>
-        
-      </ul>
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/aman_bagrecha" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ" target="_blank" rel="noopener">
+        <i class="fab fa-researchgate"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/amanbagrecha" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/amanbagrecha/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
     </div>
-    
   </div>
-</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
   </div>
 
   <div class="page-footer">
