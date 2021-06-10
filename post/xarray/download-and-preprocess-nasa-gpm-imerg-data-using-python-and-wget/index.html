@@ -1,0 +1,1293 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.0.0-beta.3 for Hugo" />
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Aman Bagrecha" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="In this blog post we look into how to download precipitation data from NASA website. I show you two methods, one- directly reading the data using `request` module and preprocessing the file using `pandas`. Two- To download netCDF file using wget and using `xarray` to preprocess and visualise the data." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.05597aa6a76faca3096d08b97f4872b8.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+    <meta property="twitter:site" content="@https://twitter.com/aman_bagrecha" />
+    <meta property="twitter:creator" content="@https://twitter.com/aman_bagrecha" />
+  
+  <meta property="og:site_name" content="Aman Bagrecha" />
+  <meta property="og:url" content="https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/" />
+  <meta property="og:title" content="Download and preprocess NASA GPM IMERG Data using python and wget | Aman Bagrecha" />
+  <meta property="og:description" content="In this blog post we look into how to download precipitation data from NASA website. I show you two methods, one- directly reading the data using `request` module and preprocessing the file using `pandas`. Two- To download netCDF file using wget and using `xarray` to preprocess and visualise the data." /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-06-10T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-06-10T21:33:25&#43;05:30">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/"
+  },
+  "headline": "Download and preprocess NASA GPM IMERG Data using python and wget",
+  
+  "datePublished": "2021-06-10T00:00:00Z",
+  "dateModified": "2021-06-10T21:33:25+05:30",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Aman Bagrecha"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Aman Bagrecha",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "In this blog post we look into how to download precipitation data from NASA website. I show you two methods, one- directly reading the data using `request` module and preprocessing the file using `pandas`. Two- To download netCDF file using wget and using `xarray` to preprocess and visualise the data."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Download and preprocess NASA GPM IMERG Data using python and wget | Aman Bagrecha</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="f149a5d405f6a8e7107a6f885ad432c0" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.b024895df05e271929739bb54886c674.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Aman Bagrecha</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Aman Bagrecha</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-center" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#talks"><span>Presentations</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#featured"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="https://twitter.com/aman_bagrecha" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Download and preprocess NASA GPM IMERG Data using python and wget</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Jun 10, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    5 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/python/">python</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p>In this blog post we look into how to download precipitation data from NASA website. I show you two methods, one- directly reading the data using <code>request</code> module and preprocessing the file using <code>pandas</code>. Two- To download netCDF file using wget and using <code>xarray</code> to preprocess and visualise the data.</p>
+<p><strong>We will use xarray to preprocess the data and visualisation. We are going to work with <a href="https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary" target="_blank" rel="noopener">GPM IMERG Late Precipitation L3 Half Hourly 0.1 degree x 0.1 degree V06 (GPM_3IMERGHHL)</a> data provided by NASA which gives half-hourly precipitation values for entire globe.</strong></p>
+<h2 id="method-1-using-python-to-read-on-the-fly-and-preprocess-the-data">Method 1: Using python to read on-the-fly and preprocess the data.</h2>
+<h3 id="let-us-first-look-at-one-file-which-we-need-to-read">Let us first look at one file which we need to read.</h3>
+<pre><code>Dataset: 3B-HHR.MS.MRG.3IMERG.20200502-S000000-E002959.0000.V06B.HDF5
+precipitationCal[0][0], 0, 0, 0
+precipitationCal[0][1], 0, 0, 0
+precipitationCal[0][2], 0, 0, 0
+precipitationCal[0][3], 0, 0, 0
+lat, 12.85, 12.95, 13.05
+lon, 77.45, 77.55, 77.65, 77.75
+time, 1588377600
+</code></pre>
+<p>As can be seen the first line contains information on satellite, start-time and date, end-time and date. It also lists the sensor on board the satellite.
+The second to fifth line lists the values for grid points. When selecting the subset from the NASA website, we choose a bounding box and here we see that we have 12 values: 4 rows and 3 columns. Each value is the centroid of the grid which spans 0.1 by 0.1 degree units. The the <code>lat</code> and <code>lon</code> rows are the centroid position on the map. The last row is the time since launch of the satellite in seconds.</p>
+<p><strong>Note: we would need to have authorization in order to make GET request to the API. In google colab you need to first create <code>.netrc</code> file with credientials <code>machine urs.earthdata.nasa.gov login your_login_username password your_password</code> stored in the file. Then paste that file inside <code>/root</code> folder. Only then will you be authorised to fetch the data</strong></p>
+<p>We will be using google colab to process and read the file. The format we read in will be ASCII format.</p>
+<pre><code class="language-python">from google.colab import files
+import pandas as pd
+import numpy as np
+import datetime
+import re
+import requests
+</code></pre>
+<p>our subset.txt file looks like the following.
+<img src="https://i.imgur.com/njlFhPT.png" alt=""></p>
+<pre><code class="language-python">df = pd.read_csv('/content/subset.txt', header=None, sep='\n')[0] # dataframe to read the text file which contains all the download links
+_df = pd.DataFrame() # dataframe to store the result
+
+for i in range(len(df)):
+    url = df[i] # reading the content of the file, line by line
+    result = requests.get(url)
+    try:
+        result.raise_for_status()
+        f = result.content.decode(&quot;utf-8&quot;).splitlines() # decode the content recieved and split the line
+        date_str = re.findall('3IMERG.(.*?)-', f[0])[0] #yyyymmdd use regex to find the date str in `3B-HHR.MS.MRG.3IMERG.20200502-S000000-E002959.0000.V06B.HDF5`
+        time_str = re.findall('-S(.*?)-', f[0])[0] #HHMMSS use regex to find the time str in `3B-HHR.MS.MRG.3IMERG.20200502-S000000-E002959.0000.V06B.HDF5`
+        date_obj = datetime.datetime.strptime(date_str, '%Y%m%d').date() # convert the date str to date object
+        time_obj = datetime.datetime.strptime(time_str, '%H%M%S').time() # convert the time str to time object
+        l1 = list(map(func1, f)) # map the content of the file by func1 and convert to list  
+        l2= list(map(func2, l1[1:4])) # # map the content of the file by func2 and convert to list 
+        avg = sum(l2)/len(l2) # take avg of all the resulting precipitation value
+        _df.loc[date_obj, time_obj] = avg
+    except:
+    
+        print('requests.get() returned an error code '+str(result.status_code))
+
+_df.to_csv('output.csv')
+</code></pre>
+<p>In the above snippet, we first read the file using request module and decode the content. We use regex to find the match (in our case to find the precipitation value) and convert to date-time objects. Then, we take the average of all the values (precipitation) and store in a new dataframe. This dataframe will be our final product having <code>date_obj</code> number of rows and <code>time_obj</code> number of columns. The functions <code>func1</code> and <code>func2</code> are used here to calculate the average rainfall in mm/hr for half-hourly period.</p>
+<pre><code class="language-python"># we split the string on comma and extract the precipitation value alone
+def func1(f):
+    return f.split(',')[-2:]
+# we take the sum of the all the precipitation value which will be later used to take the average across all the ROI
+def func2(f):
+    return sum(list(map(float, f)))
+</code></pre>
+<p>At this stage all the files are read and the dataframe can now be exported to csv. Our csv looks like the following.
+<img src="https://i.imgur.com/BcQfaFu.png" alt=""></p>
+<h2 id="method-2-using-wget-to-download-and-then-preprocess-using-xarray-simple-and-easy">Method 2: Using wget to download and then preprocess using xarray (simple and easy)</h2>
+<p>We first download all files using wget having stored all the urls stored in a text file. These files are then read using xarray which makes it really easy to process and get the information we require. 
+We first run shell command inside colab.</p>
+<pre><code class="language-sh">! wget --load-cookies /.urs_cookies --save-cookies /root/.urs_cookies --auth-no-challenge=on --user=your_user_name --ask-password --content-disposition -i &lt;url text file&gt;
+</code></pre>
+<pre><code class="language-python">import xarray as xr
+import glob
+
+
+ds = xr.merge([xr.open_dataset(f) for f in glob.glob('/content/*.nc4')]) # merge all the netcdf files into a single xarray dataset
+ds1.precipitationCal.mean(dim=('lon', 'lat')).plot() # calculate the average precipitation on half-hourly basis.
+</code></pre>
+<p>At this stage we have the data preprocessed and is now ready to be used for various modelling and analysis phase.</p>
+<h2 id="final-comments">Final Comments</h2>
+<p>In this tech-blog we looked into how to download and preprocess netCDF data provided by <a href="https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary" target="_blank" rel="noopener">NASA GES DISC</a>.
+We looked at two methods, one with request and pandas while the other with wget and xarray. All performed on google colab. 
+It is to note that, there is setup required i.e, to create a new .netrc file and store inside root directory of colab else it returns an authorisation error. We looked at how easy it is to process netCDF data in xarray and how wget command can be run on colab.</p>
+<blockquote>
+<p>Data courtesy: Huffman, G.J., E.F. Stocker, D.T. Bolvin, E.J. Nelkin, Jackson Tan (2019), GPM IMERG Late Precipitation L3 Half Hourly 0.1 degree x 0.1 degree V06, Greenbelt, MD, Goddard Earth Sciences Data and Information Services Center (GES DISC), Accessed: [Data Access Date], 10.5067/GPM/IMERG/3B-HH-L/06</p>
+</blockquote>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/xarray/">xarray</a>
+  
+  <a class="badge badge-light" href="/tag/colab/">colab</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/&amp;text=Download%20and%20preprocess%20NASA%20GPM%20IMERG%20Data%20using%20python%20and%20wget" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/&amp;t=Download%20and%20preprocess%20NASA%20GPM%20IMERG%20Data%20using%20python%20and%20wget" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Download%20and%20preprocess%20NASA%20GPM%20IMERG%20Data%20using%20python%20and%20wget&amp;body=https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/&amp;title=Download%20and%20preprocess%20NASA%20GPM%20IMERG%20Data%20using%20python%20and%20wget" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Download%20and%20preprocess%20NASA%20GPM%20IMERG%20Data%20using%20python%20and%20wget%20https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/&amp;title=Download%20and%20preprocess%20NASA%20GPM%20IMERG%20Data%20using%20python%20and%20wget" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://amanbagrecha.github.io/"><img class="avatar mr-3 avatar-circle" src="/author/aman-bagrecha/avatar_hu8b3e467675822a0c69fe66cbb3600b5d_124233_270x270_fill_q75_lanczos_center.jpg" alt="Aman Bagrecha"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://amanbagrecha.github.io/">Aman Bagrecha</a></h5>
+      <h6 class="card-subtitle">Civil Engineering Student</h6>
+      <p class="card-text">My interests include documenting, programming, Deep learning and GIS matter.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/aman_bagrecha" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ" target="_blank" rel="noopener">
+        <i class="fab fa-researchgate"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/amanbagrecha" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/amanbagrecha/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/javascript.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    <script src="/js/_vendor/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.f3e5a2ed0c33ddcaef88a720b0abe966.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

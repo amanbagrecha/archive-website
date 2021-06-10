@@ -5,7 +5,7 @@
     <link>https://amanbagrecha.github.io/</link>
       <atom:link href="https://amanbagrecha.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Aman Bagrecha</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 09 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 10 Jun 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png</url>
       <title>Aman Bagrecha</title>
@@ -105,6 +105,93 @@ The variance of the distribution is $\sigma^{2}$.
   &lt;summary&gt;What is the parameter $\mu$?&lt;/summary&gt;
   &lt;p&gt;The parameter $\mu$ is the mean or expectation of the distribution.&lt;/p&gt;
 &lt;/details&gt;</description>
+    </item>
+    
+    <item>
+      <title>Download and preprocess NASA GPM IMERG Data using python and wget</title>
+      <link>https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/</link>
+      <pubDate>Thu, 10 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/</guid>
+      <description>&lt;p&gt;In this blog post we look into how to download precipitation data from NASA website. I show you two methods, one- directly reading the data using &lt;code&gt;request&lt;/code&gt; module and preprocessing the file using &lt;code&gt;pandas&lt;/code&gt;. Two- To download netCDF file using wget and using &lt;code&gt;xarray&lt;/code&gt; to preprocess and visualise the data.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;We will use xarray to preprocess the data and visualisation. We are going to work with &lt;a href=&#34;https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GPM IMERG Late Precipitation L3 Half Hourly 0.1 degree x 0.1 degree V06 (GPM_3IMERGHHL)&lt;/a&gt; data provided by NASA which gives half-hourly precipitation values for entire globe.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;method-1-using-python-to-read-on-the-fly-and-preprocess-the-data&#34;&gt;Method 1: Using python to read on-the-fly and preprocess the data.&lt;/h2&gt;
+&lt;h3 id=&#34;let-us-first-look-at-one-file-which-we-need-to-read&#34;&gt;Let us first look at one file which we need to read.&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;Dataset: 3B-HHR.MS.MRG.3IMERG.20200502-S000000-E002959.0000.V06B.HDF5
+precipitationCal[0][0], 0, 0, 0
+precipitationCal[0][1], 0, 0, 0
+precipitationCal[0][2], 0, 0, 0
+precipitationCal[0][3], 0, 0, 0
+lat, 12.85, 12.95, 13.05
+lon, 77.45, 77.55, 77.65, 77.75
+time, 1588377600
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As can be seen the first line contains information on satellite, start-time and date, end-time and date. It also lists the sensor on board the satellite.
+The second to fifth line lists the values for grid points. When selecting the subset from the NASA website, we choose a bounding box and here we see that we have 12 values: 4 rows and 3 columns. Each value is the centroid of the grid which spans 0.1 by 0.1 degree units. The the &lt;code&gt;lat&lt;/code&gt; and &lt;code&gt;lon&lt;/code&gt; rows are the centroid position on the map. The last row is the time since launch of the satellite in seconds.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note: we would need to have authorization in order to make GET request to the API. In google colab you need to first create &lt;code&gt;.netrc&lt;/code&gt; file with credientials &lt;code&gt;machine urs.earthdata.nasa.gov login your_login_username password your_password&lt;/code&gt; stored in the file. Then paste that file inside &lt;code&gt;/root&lt;/code&gt; folder. Only then will you be authorised to fetch the data&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;We will be using google colab to process and read the file. The format we read in will be ASCII format.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from google.colab import files
+import pandas as pd
+import numpy as np
+import datetime
+import re
+import requests
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;our subset.txt file looks like the following.
+&lt;img src=&#34;https://i.imgur.com/njlFhPT.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;df = pd.read_csv(&#39;/content/subset.txt&#39;, header=None, sep=&#39;\n&#39;)[0] # dataframe to read the text file which contains all the download links
+_df = pd.DataFrame() # dataframe to store the result
+
+for i in range(len(df)):
+    url = df[i] # reading the content of the file, line by line
+    result = requests.get(url)
+    try:
+        result.raise_for_status()
+        f = result.content.decode(&amp;quot;utf-8&amp;quot;).splitlines() # decode the content recieved and split the line
+        date_str = re.findall(&#39;3IMERG.(.*?)-&#39;, f[0])[0] #yyyymmdd use regex to find the date str in `3B-HHR.MS.MRG.3IMERG.20200502-S000000-E002959.0000.V06B.HDF5`
+        time_str = re.findall(&#39;-S(.*?)-&#39;, f[0])[0] #HHMMSS use regex to find the time str in `3B-HHR.MS.MRG.3IMERG.20200502-S000000-E002959.0000.V06B.HDF5`
+        date_obj = datetime.datetime.strptime(date_str, &#39;%Y%m%d&#39;).date() # convert the date str to date object
+        time_obj = datetime.datetime.strptime(time_str, &#39;%H%M%S&#39;).time() # convert the time str to time object
+        l1 = list(map(func1, f)) # map the content of the file by func1 and convert to list  
+        l2= list(map(func2, l1[1:4])) # # map the content of the file by func2 and convert to list 
+        avg = sum(l2)/len(l2) # take avg of all the resulting precipitation value
+        _df.loc[date_obj, time_obj] = avg
+    except:
+    
+        print(&#39;requests.get() returned an error code &#39;+str(result.status_code))
+
+_df.to_csv(&#39;output.csv&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the above snippet, we first read the file using request module and decode the content. We use regex to find the match (in our case to find the precipitation value) and convert to date-time objects. Then, we take the average of all the values (precipitation) and store in a new dataframe. This dataframe will be our final product having &lt;code&gt;date_obj&lt;/code&gt; number of rows and &lt;code&gt;time_obj&lt;/code&gt; number of columns. The functions &lt;code&gt;func1&lt;/code&gt; and &lt;code&gt;func2&lt;/code&gt; are used here to calculate the average rainfall in mm/hr for half-hourly period.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# we split the string on comma and extract the precipitation value alone
+def func1(f):
+    return f.split(&#39;,&#39;)[-2:]
+# we take the sum of the all the precipitation value which will be later used to take the average across all the ROI
+def func2(f):
+    return sum(list(map(float, f)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;At this stage all the files are read and the dataframe can now be exported to csv. Our csv looks like the following.
+&lt;img src=&#34;https://i.imgur.com/BcQfaFu.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;method-2-using-wget-to-download-and-then-preprocess-using-xarray-simple-and-easy&#34;&gt;Method 2: Using wget to download and then preprocess using xarray (simple and easy)&lt;/h2&gt;
+&lt;p&gt;We first download all files using wget having stored all the urls stored in a text file. These files are then read using xarray which makes it really easy to process and get the information we require. 
+We first run shell command inside colab.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;! wget --load-cookies /.urs_cookies --save-cookies /root/.urs_cookies --auth-no-challenge=on --user=your_user_name --ask-password --content-disposition -i &amp;lt;url text file&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import xarray as xr
+import glob
+
+
+ds = xr.merge([xr.open_dataset(f) for f in glob.glob(&#39;/content/*.nc4&#39;)]) # merge all the netcdf files into a single xarray dataset
+ds1.precipitationCal.mean(dim=(&#39;lon&#39;, &#39;lat&#39;)).plot() # calculate the average precipitation on half-hourly basis.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;At this stage we have the data preprocessed and is now ready to be used for various modelling and analysis phase.&lt;/p&gt;
+&lt;h2 id=&#34;final-comments&#34;&gt;Final Comments&lt;/h2&gt;
+&lt;p&gt;In this tech-blog we looked into how to download and preprocess netCDF data provided by &lt;a href=&#34;https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NASA GES DISC&lt;/a&gt;.
+We looked at two methods, one with request and pandas while the other with wget and xarray. All performed on google colab. 
+It is to note that, there is setup required i.e, to create a new .netrc file and store inside root directory of colab else it returns an authorisation error. We looked at how easy it is to process netCDF data in xarray and how wget command can be run on colab.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Data courtesy: Huffman, G.J., E.F. Stocker, D.T. Bolvin, E.J. Nelkin, Jackson Tan (2019), GPM IMERG Late Precipitation L3 Half Hourly 0.1 degree x 0.1 degree V06, Greenbelt, MD, Goddard Earth Sciences Data and Information Services Center (GES DISC), Accessed: [Data Access Date], 10.5067/GPM/IMERG/3B-HH-L/06&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
     </item>
     
     <item>
