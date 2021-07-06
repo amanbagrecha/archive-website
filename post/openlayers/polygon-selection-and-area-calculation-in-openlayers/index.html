@@ -33,10 +33,10 @@
   
     
   
-  <meta name="description" content="The objective of this quality assessment was to validate the land cover map performed on June, 2020 sentinel-2 imagery by k-means classification algorithm in QGIS" />
+  <meta name="description" content="Select multiple polygons (parcels) and calculate area on the fly in openlayers" />
 
   
-  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/" />
+  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/" />
 
   
 
@@ -278,7 +278,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_32x32_fill_lanczos_center_2.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_180x180_fill_lanczos_center_2.png" />
 
-  <link rel="canonical" href="https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/" />
+  <link rel="canonical" href="https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/" />
 
   
   
@@ -298,18 +298,18 @@
     <meta property="twitter:creator" content="@https://twitter.com/aman_bagrecha" />
   
   <meta property="og:site_name" content="Aman Bagrecha" />
-  <meta property="og:url" content="https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/" />
-  <meta property="og:title" content="Validating LULC classes in QGIS | Aman Bagrecha" />
-  <meta property="og:description" content="The objective of this quality assessment was to validate the land cover map performed on June, 2020 sentinel-2 imagery by k-means classification algorithm in QGIS" /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
+  <meta property="og:url" content="https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/" />
+  <meta property="og:title" content="Polygon Selection and  Area Calculation in Openlayers | Aman Bagrecha" />
+  <meta property="og:description" content="Select multiple polygons (parcels) and calculate area on the fly in openlayers" /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
     <meta property="twitter:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
   
     
       <meta
         property="article:published_time"
-        content="2021-06-09T00:00:00&#43;00:00"
+        content="2021-05-24T00:00:00&#43;00:00"
       />
     
-    <meta property="article:modified_time" content="2021-06-07T17:12:46&#43;05:30">
+    <meta property="article:modified_time" content="2021-05-24T20:14:45&#43;05:30">
   
 
   
@@ -333,12 +333,12 @@
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/"
+    "@id": "https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/"
   },
-  "headline": "Validating LULC classes in QGIS",
+  "headline": "Polygon Selection and  Area Calculation in Openlayers",
   
-  "datePublished": "2021-06-09T00:00:00Z",
-  "dateModified": "2021-06-07T17:12:46+05:30",
+  "datePublished": "2021-05-24T00:00:00Z",
+  "dateModified": "2021-05-24T20:14:45+05:30",
   
   "author": {
     "@type": "Person",
@@ -353,7 +353,7 @@
       "url": "https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "The objective of this quality assessment was to validate the land cover map performed on June, 2020 sentinel-2 imagery by k-means classification algorithm in QGIS"
+  "description": "Select multiple polygons (parcels) and calculate area on the fly in openlayers"
 }
 </script>
 
@@ -369,11 +369,11 @@
 
 
 
-  <title>Validating LULC classes in QGIS | Aman Bagrecha</title>
+  <title>Polygon Selection and  Area Calculation in Openlayers | Aman Bagrecha</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="3a45a2ad16d50fc70c8522d1f84ada9f" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="5b67cf10fb9f49f2ef304c7a0f7c09f4" >
 
   
   
@@ -736,7 +736,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>Validating LULC classes in QGIS</h1>
+  <h1>Polygon Selection and  Area Calculation in Openlayers</h1>
 
   
 
@@ -757,7 +757,7 @@
           Last updated on
       
     
-    Jun 7, 2021
+    May 24, 2021
   </span>
   
 
@@ -766,7 +766,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    4 min read
+    5 min read
   </span>
   
 
@@ -796,95 +796,180 @@
   <div class="article-container">
 
     <div class="article-style">
-      <h2 id="the-problem-statement"><strong>The problem statement</strong></h2>
-<p>Any land-use land cover classification needs to be validated with ground-truth data to measure the accuracy. A key single-valued statistic to determine the effectiveness of classification is Cohen’s kappa. This validation metric has been fairly widely used for unbalanced classification as well which expresses a level of agreement between two annotators on a classification problem.</p>
-<p>The objective of this quality assessment was to validate the land cover map performed on June, 2020 sentinel-2 imagery by k-means classification algorithm, thus providing a statistical measure of overall class predictions. The validation was done using an independent set of sample points (~500) generated randomly following stratified random sampling design, to capture the variance within the class</p>
-<p>After running the tool, the sample points were manually assigned to the ground-truth class. The ground-truth dataset was taken to be Bing-satellite imagery as a proxy for field data. Each sample point was labelled by visual inspection on the ground-truth dataset.</p>
-<h2 id="step-1-classify-image"><strong>Step 1: Classify Image</strong></h2>
+      <h2 id="overview"><strong>Overview</strong></h2>
+<p>In this small demo-blog we look into how to make polygon selections on the map and calculate the area of that polygon on-the-fly. We use openlayers v6 for client side and geoserver to save our vector layers for this exercise.<br>
+I assume readers to have familiarity with setting up geoserver and basics of openlayers.</p>
+<h2 id="step-1-setup-openlayers"><strong>Step 1: Setup openlayers</strong></h2>
+<p>Openlayers requires you to add these cdns to add their functionality into our application.</p>
+<h3 id="link-necessary-cdns">link necessary cdns</h3>
+<pre><code class="language-html">
+ &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css&quot; type=&quot;text/css&quot;&gt;
+ &lt;script src=&quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js&quot;&gt;&lt;/script&gt;
+ 
+</code></pre>
+<p>We are using openlayers to render the request response. since the output of the WFS request is json, we create a new layer with vector source and format as geojson. 
+The <code>strategy:ol.loadingstrategy.bbox</code> tells openlayers to only load features within the bbox. Simply put, if we move to different location, only features within that bbox will appear.</p>
+<pre><code class="language-javascript">
+// setup geoserver port
+var geoserver_ip = 'http://120.0.0.1'
+var geoserver_port = '8080'
+
+// define vector source
+var myFlSource = new ol.source.Vector({
+	format: new ol.format.GeoJSON(),
+		url: function (extent){
+			return ( geoserver_ip +':' + geoserver_port + '/geoserver/dronnav/ows?service=WFS&amp;version=1.1.0&amp;request=GetFeature&amp;typeName=dronnav%3Aflorida_bp&amp;maxFeatures=10000&amp;outputFormat=application/json&amp;srsname=EPSG:4326&amp;' + 'bbox=' + extent.join(',') + ',EPSG:4326' );
+		},
+		strategy:ol.loadingstrategy.bbox,
+	});
+</code></pre>
+<p>We perform WFS request from geoserver to get our layer <code>florida_bp</code> in this case. The parameters are as explained as follows</p>
 <ul>
-<li>Load raster Image</li>
-<li>Open <code>K-means clustering for grids</code> under SAGA tools. Select the raster Image as <code>grid</code> and in this case we specify 4 classes</li>
+<li>
+<p><code>service=WFS</code> : web feature service to perform interaction</p>
+</li>
+<li>
+<p><code>typename=workspace:florida_bp</code> : specify the workspace and layer name</p>
+</li>
+<li>
+<p><code>version=1.1.0</code> : version number</p>
+</li>
+<li>
+<p><code>maxFeatures = 10000</code> : since WFS request is computationaly expensive, we restrict to only load 10000 features.</p>
+</li>
+<li>
+<p><code>request=GetFeature</code> : request type. There are several other which can be found here</p>
+</li>
+<li>
+<p><code>outputFormat=application/json</code> : the output format as response</p>
+</li>
+<li>
+<p><code>srsname=EPSG:4326</code> : coordinate reference system to display on the map</p>
+</li>
+<li>
+<p><code>bbox=</code> : bounding box</p>
+</li>
 </ul>
-<figure>
-<p><img src="https://i.imgur.com/xdx5Tsn.png" alt=""></p>
-<figcaption align = "center"><b><i>Fig.1 -K-means clustering on sentinel-2 Image</i></b></figcaption>
-</figure>
-<ul>
-<li>Click <code>Run</code></li>
-</ul>
-<blockquote>
-<p>At this stage we have unsupervised k-means clustering output ready <code>(Fig.2)</code>.</p>
-</blockquote>
-<figure>
-<p><img src="https://i.imgur.com/eW0cOXE.png" alt=""></p>
-<figcaption align = "center"><b><i>Fig.2 -classification of RR Nagar, Bengaluru. Classes- Forest, Urban, water, Bareland</i></b></figcaption>
-</figure>
-<hr>
-<h2 id="step-2-convert-to-polygon-vector-format"><strong>Step 2: Convert to polygon (vector format)</strong></h2>
-<ul>
-<li>Select <code>Polygonize (Raster to Vector)</code> tool under <code>GDAL</code>-&gt;<code>Raster Conversion</code></li>
-<li>Select the classified image as input. Leave everything else as default. The output would be a <code>Vectorised</code> scratch layer.</li>
-</ul>
-<figure>
-<p><img src="https://i.imgur.com/36nk2tF.png" alt=""></p>
-<figcaption align = "center"><b><i>Fig.3 -Convert Raster to vector</i></b></figcaption>
-</figure>
-<blockquote>
-<p>Note the name of the field (<code>DN</code> here). This will be used later.</p>
-</blockquote>
-<ul>
-<li>Fix geometries (this step is important here to avoid any error in further steps) <code>Vector Geometry</code>-&gt;<code>Fix Geometry</code></li>
-</ul>
-<figure>
-<p><img src="https://i.imgur.com/gG9gBIc.png" alt=""></p>
-<figcaption align = "center"><b><i>Fig.4 -Fixing topology issues with <code>Fix Geometry</code> Toolbox</i></b></figcaption>
-</figure>
-<hr>
-<h2 id="step-3-dissolve-the-layer-on-dn-field"><strong>Step 3: Dissolve the layer on DN field</strong></h2>
-<p>In this step we dissolve the layer based on the <code>DN</code> value. This will ensure that each polygon can be evaluated based on the land class type which is needed for stratified random sampling.</p>
-<figure>
-<p><img src="https://i.imgur.com/gm1ihfT.png" alt=""></p>
-<figcaption align = "center"><b><i>Fig.5 -<code>Dissolve</code> toolbox to dissolve polygon on <code> DN </code> value</i></b></figcaption>
-</figure>
-<blockquote>
-<p>Make sure to select dissolve field as <code>DN</code></p>
-</blockquote>
-<hr>
-<h2 id="step-4-create-stratified-random-samples"><strong>Step 4: Create stratified random samples</strong></h2>
-<p>Go to <code>Vector-&gt;research tools-&gt; Random Points inside Polygon</code> and set <code>Sampling Strategy</code> = <code>Points Density</code> and <code>Point count or density</code> = <code>0.001</code>.</p>
-<p>Note: The value <code>0.001</code> signify <code>1</code> point for <code>1/0.001</code> m2 of area, given that the units is meters.</p>
-<figure>
-<p><img src="https://i.imgur.com/1LB6R5L.png" alt=""></p>
-<figcaption align = "center"><b><i>Fig.6 - One sample point is generated for each 1000 m2 of area</i></b></figcaption>
-</figure>
-<hr>
-<h2 id="step-5-extract-raster-values-to-sample-layer"><strong>Step 5: Extract raster values to sample layer</strong></h2>
-<p>We extract the raster value, which is essentially the land cover class for the classified image. We use <code>Sample Raster Values</code> function here (<code>Fig.7</code>). The input layer is the random points we generated earlier and the the raster layer is the classified image. The output adds a new column to the sample points layer with the prediction class of the land-cover (<code>Fig.8</code>).</p>
-<figure>
-<p><img src="https://i.imgur.com/s2RXNOZ.png" alt=""></p>
-<figcaption align = "center"><b><i>Fig.7 -Running <code>Sample Raster Value</code> to extract Raster values for the input points</i></b></figcaption>
-</figure>
-<figure>
-<p><img src="https://i.imgur.com/GG9wgNK.png" alt=""></p>
-<figcaption align = "center"><b><i>Fig.8 -The corresponding Attribute Table with Predicted Class <code> PREDICTED_1</code> for each feature</i></b></figcaption>
-</figure>
-<hr>
-<h2 id="step-6-ground-truth-labelling-using-bing-maps"><strong>Step 6: Ground Truth Labelling using Bing maps</strong></h2>
-<p>At this stage we are ready to validate the image using Bing maps as ground truth. We turn on the edit mode and create new field named Actual class. THen we visually inspect the class on the map and note the land-cover class. Once we inspect all the sample points we can use cohens Kappa statistics to determine the validation result. Alternatively, simply calculating the accuracy would also suffice the need.</p>
-<h2 id="step-7-add-other-field-to-the-attribute-table-with-reclassification"><strong>Step 7: Add other field to the attribute table with reclassification</strong></h2>
-<p>We can use the <code>Field Calculator</code> to generate verbose text for each label in our feature class and display labels for the prediction.</p>
-<pre><code class="language-sql">-- in field calculator to increase verbosity
-CASE WHEN PREDICTED_1 is 2 THEN 'Urban' 
-WHEN PREDICTED_1 is 1 THEN 'Bareland'
-WHEN PREDICTED_1 is 4 THEN 'Forest'
-WHEN PREDICTED_1 is 3 THEN 'Urban'
-END
+<pre><code class="language-javascript">// define vector layer
+var floridaLayer = new ol.layer.Vector({
+	source: myFlSource,
+	style: new ol.style.Style({
+		fill: new ol.style.Fill({
+			color: 'rgba(1, 1, 255, .2)',
+			}),
+		stroke: new ol.style.Stroke({
+			color: 'rgba(1, 1, 255, .5)',
+			width: 2,
+		}),
+		}),
+		minZoom: 16, // this will allows us to send request only when the zoom is atleast 16
+});
+</code></pre>
+<p>Once the layer is defined, we need to add this layer to the map. We can either use <code>map.addLayer(layername)</code> or add to array in the map (<code>Fig.1</code>)</p>
+<pre><code class="language-javascript">// add ESRI basemap
+var project_maplayer =    new ol.layer.Tile({
+	source: new ol.source.XYZ({
+		attributions: ['Powered by Esri',
+										'Source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community'],
+		attributionsCollapsible: false,
+		url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+		maxZoom: 23
+	}),
+	zIndex: 0
+});
+
+// add view with projection set to EPSG 4326 for the map
+var project_view = new ol.View({
+	projection: 'EPSG:4326',
+	center: [-81.80808208706726, 27.285095000261222],
+	zoom: 7,
+});
+
+// define the map with all the layers created previously
+var Projectmap = new ol.Map({
+	layers: [project_maplayer, floridaLayer],
+	overlays: [overlay],
+	target: 'project_map', // the div element `id` in html page
+	view: project_view,
+});
 </code></pre>
 <figure>
-<p><img src="https://i.imgur.com/3CBAK6X.jpg" alt=""></p>
-<figcaption align = "center"><b><i>Fig.9 -Predicted classes (foreground) vs ground truth (background)</i></b></figcaption>
+<p><img src="https://i.imgur.com/jodNbPQ.jpg" alt=""></p>
+<figcaption align = "center"><b><i>Fig.1 -The Map layer with building footprints (<code>floridaLayer</code>) added to the map with the style we specified</code> for each feature</i></b></figcaption>
 </figure>
-<p>With this we come to end of the post. Now, validation accuracy can be reported for k-means classification.</p>
+<h2 id="get-feature-info-on-click"><strong>Get feature info on click</strong></h2>
+<p>After adding basemap and our layer to the map served via geoserver, we are now ready to get information <code>on-click</code>. We use  <code>forEachFeatureAtPixel</code> method on our layer to send a WFS request to our geoserver and recive a response in json format. We change the style of the building on click (<code>Fig.2</code>). The area is calculated using formatArea function which utilises <code>ol.sphere.getArea</code> and <code>transform</code> method to calculate area and change CRS.</p>
+<pre><code class="language-javascript">
+  /*  select ploygon the feature and get area and store the features */
+  var selected = []; // contains all features
+  var selected_area = []; // contains area of feature, one-to-one
+  
+  Projectmap.on('singleclick', function (e) {
+  Projectmap.forEachFeatureAtPixel(e.pixel, function (f, l) {
+  	var mycoordinate = e.coordinate
+  	storef = f  // feature
+  	/* if click is on polygon, then select the feature */
+  if ( f.getGeometry()   instanceof  ol.geom.MultiPolygon ) {
+		  
+		var selIndex = selected.indexOf(f);
+			// console.log(selIndex)
+		if (selIndex &lt; 0) {
+			selected.push(f);
+			selected_area.push( formatArea(f) ); // formatArea function returns the area in ft2
+			f.setStyle(highlightStyle); // change style on click
+		} else {
+			selected.splice(selIndex, 1);
+			selected_area.splice( selIndex, 1);
+			f.setStyle(undefined);
+		}
+ 	 }
+
+	  })
+
+	  /* update the tags with no of selected feature and total area combined */
+	  document.getElementById('status-selected').innerHTML = '&amp;nbsp;' + selected.length + ' selected features';
+	  document.getElementById('status-selected_area').innerHTML = '&amp;nbsp;' + selected_area.reduce(getSum, 0) + ' ft&lt;sup&gt;2&lt;/sup&gt;';
+	  
+	});
+	
+
+	
+  /* style for selected feature on click  */
+  var highlightStyle = new ol.style.Style({
+  	fill: new ol.style.Fill({
+  	color: '#f0b88b',
+  	}),
+  	stroke: new ol.style.Stroke({
+  	color: '#f0b88b',
+  	width: 3,
+  	}),
+  });
+
+
+  /*  function for calculating area of the polygon (feature) selected */
+  function formatArea (polygon){
+   var area = ol.sphere.getArea(polygon.getGeometry().transform('EPSG:4326', 'EPSG:3857')); // transform to projected coordinate system.
+   var output;
+   output = Math.round(area * 100*10.7639) / 100  ; //in ft2
+   polygon.getGeometry().transform('EPSG:3857', 'EPSG:4326' ) //convert back to geographic crc
+   return output;
+  }
+  
+  /*  function for array sum */
+  function getSum(total, num) {
+  return total + Math.round(num);
+  }
+
+</code></pre>
+<figure>
+<p><img src="https://i.imgur.com/TCicCHu.jpg" alt=""></p>
+<figcaption align = "center"><b><i>Fig.2 -The <code>floridaLayer</code> building footprints selected  with the style we specified</code> for each feature</i></b></figcaption>
+</figure>
+<h2 id="final-comments"><strong>Final comments</strong></h2>
+<p>This post demonstrates the use of <code>strategy:ol.loadingstrategy.bbox</code> to load only the features that cover the bounding box. We use this strategy since WFS service is resouce intensive and our server cannot handle millions of HTTP request at once.</p>
+<p>We also see the use of <code>forEachFeatureAtPixel</code> method to select our building footprints. On click of the feature we change the style using <code>setStyle</code> method.</p>
+<p>Additionally, we saw how to change projection on-the-fly using <code>ol.sphere.getArea</code> method. A word of caution while using <code>EPSG:3857</code>. My AOI was on the equator and thus calculating area does not result in significant error. But if the AOI is in temperate zone then adopt suitable projection CRS.</p>
+<p>Layer Credit: Microsoft buidling footprints <a href="https://github.com/microsoft/USBuildingFootprints">https://github.com/microsoft/USBuildingFootprints</a></p>
 
     </div>
 
@@ -894,14 +979,6 @@ END
 
 
 
-
-<div class="article-tags">
-  
-  <a class="badge badge-light" href="/tag/qgis/">qgis</a>
-  
-  <a class="badge badge-light" href="/tag/machine-learning/">machine learning</a>
-  
-</div>
 
 
 
@@ -916,7 +993,7 @@ END
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/&amp;text=Validating%20LULC%20classes%20in%20QGIS" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/&amp;text=Polygon%20Selection%20and%20%20Area%20Calculation%20in%20Openlayers" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -929,7 +1006,7 @@ END
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/&amp;t=Validating%20LULC%20classes%20in%20QGIS" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/&amp;t=Polygon%20Selection%20and%20%20Area%20Calculation%20in%20Openlayers" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -942,7 +1019,7 @@ END
       
       
       <li>
-        <a href="mailto:?subject=Validating%20LULC%20classes%20in%20QGIS&amp;body=https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Polygon%20Selection%20and%20%20Area%20Calculation%20in%20Openlayers&amp;body=https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -955,7 +1032,7 @@ END
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/&amp;title=Validating%20LULC%20classes%20in%20QGIS" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/&amp;title=Polygon%20Selection%20and%20%20Area%20Calculation%20in%20Openlayers" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -968,7 +1045,7 @@ END
       
       
       <li>
-        <a href="whatsapp://send?text=Validating%20LULC%20classes%20in%20QGIS%20https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=Polygon%20Selection%20and%20%20Area%20Calculation%20in%20Openlayers%20https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -981,7 +1058,7 @@ END
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://amanbagrecha.github.io/post/qgis/validating-lulc-classes-in-qgis/&amp;title=Validating%20LULC%20classes%20in%20QGIS" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/&amp;title=Polygon%20Selection%20and%20%20Area%20Calculation%20in%20Openlayers" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>

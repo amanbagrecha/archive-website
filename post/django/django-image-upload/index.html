@@ -33,9 +33,7 @@
   
     
   
-  <meta name="description" content="Project setup create project
-django-admin startproject login_boiler_platecreate app python manage.py startapp GisMapcreate superuser python manage.py createsuperuser in settings.py
-INSTALLED_APPS = [...&#39;GisMap&#39;,]MEDIA_ROOT = os." />
+  <meta name="description" content="Overview In this post, we look into how to upload multiple geo-tagged/non-geotagged images to aws s3 using plain Django and spatialite as databbase. We use GeoDjango to store the latitude, longitude extracted from geo-tagged images into the database." />
 
   
   <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/django/django-image-upload/" />
@@ -301,10 +299,8 @@ INSTALLED_APPS = [...&#39;GisMap&#39;,]MEDIA_ROOT = os." />
   
   <meta property="og:site_name" content="Aman Bagrecha" />
   <meta property="og:url" content="https://amanbagrecha.github.io/post/django/django-image-upload/" />
-  <meta property="og:title" content="Django How to: Upload Multiple Image | Aman Bagrecha" />
-  <meta property="og:description" content="Project setup create project
-django-admin startproject login_boiler_platecreate app python manage.py startapp GisMapcreate superuser python manage.py createsuperuser in settings.py
-INSTALLED_APPS = [...&#39;GisMap&#39;,]MEDIA_ROOT = os." /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
+  <meta property="og:title" content="How to Upload Multiple Images in Django | Aman Bagrecha" />
+  <meta property="og:description" content="Overview In this post, we look into how to upload multiple geo-tagged/non-geotagged images to aws s3 using plain Django and spatialite as databbase. We use GeoDjango to store the latitude, longitude extracted from geo-tagged images into the database." /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
     <meta property="twitter:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
   
     
@@ -336,7 +332,7 @@ INSTALLED_APPS = [...&#39;GisMap&#39;,]MEDIA_ROOT = os." /><meta property="o
     "@type": "WebPage",
     "@id": "https://amanbagrecha.github.io/post/django/django-image-upload/"
   },
-  "headline": "Django How to: Upload Multiple Image",
+  "headline": "How to Upload Multiple Images in Django",
   
   "datePublished": "0001-01-01T00:00:00Z",
   "dateModified": "2021-05-24T17:25:54+05:30",
@@ -354,7 +350,7 @@ INSTALLED_APPS = [...&#39;GisMap&#39;,]MEDIA_ROOT = os." /><meta property="o
       "url": "https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "Project setup create project\ndjango-admin startproject login_boiler_plate\rcreate app python manage.py startapp GisMap\rcreate superuser python manage.py createsuperuser\r in settings.py\nINSTALLED_APPS = [\r...\r'GisMap',\r]\rMEDIA_ROOT = os."
+  "description": "Overview In this post, we look into how to upload multiple geo-tagged/non-geotagged images to aws s3 using plain Django and spatialite as databbase. We use GeoDjango to store the latitude, longitude extracted from geo-tagged images into the database."
 }
 </script>
 
@@ -370,7 +366,7 @@ INSTALLED_APPS = [...&#39;GisMap&#39;,]MEDIA_ROOT = os." /><meta property="o
 
 
 
-  <title>Django How to: Upload Multiple Image | Aman Bagrecha</title>
+  <title>How to Upload Multiple Images in Django | Aman Bagrecha</title>
 </head>
 
 
@@ -737,7 +733,7 @@ INSTALLED_APPS = [...&#39;GisMap&#39;,]MEDIA_ROOT = os." /><meta property="o
   
   
 <div class="article-container pt-3">
-  <h1>Django How to: Upload Multiple Image</h1>
+  <h1>How to Upload Multiple Images in Django</h1>
 
   
 
@@ -765,7 +761,7 @@ INSTALLED_APPS = [...&#39;GisMap&#39;,]MEDIA_ROOT = os." /><meta property="o
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    4 min read
+    6 min read
   </span>
   
 
@@ -795,15 +791,17 @@ INSTALLED_APPS = [...&#39;GisMap&#39;,]MEDIA_ROOT = os." /><meta property="o
   <div class="article-container">
 
     <div class="article-style">
-      <br>
+      <h2 id="overview">Overview</h2>
+<p>In this post, we look into how to upload multiple geo-tagged/non-geotagged images to aws s3 using plain Django and spatialite as databbase. We use GeoDjango to store the latitude, longitude extracted from geo-tagged images into the database.</p>
+<br>
 <hr>
 <h3 id="project-setup">Project setup</h3>
-<p>create project</p>
+<p>create django project</p>
 <pre><code class="language-bash">django-admin startproject login_boiler_plate
 create app python manage.py startapp GisMap
 create superuser python manage.py createsuperuser
 </code></pre>
-<p>in <code>settings.py</code></p>
+<p>In <code>settings.py</code> add the app to <code>installed_app</code> list and setup the default location for media storage.</p>
 <pre><code class="language-python">INSTALLED_APPS = [
 	...
 	'GisMap',
@@ -812,7 +810,7 @@ create superuser python manage.py createsuperuser
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
 MEDIA_URL = '/media/'
 </code></pre>
-<p>in <code>models.py</code></p>
+<p>In <code>models.py</code>, create model for uploading images. <code>DateTimeField</code> and <code>user</code> are not necessary.</p>
 <pre><code class="language-python">from django.db import models
 from django.contrib.auth.models import User
 
@@ -825,7 +823,7 @@ class ImageUpload(models.Model):
 	def __str__(self):
 		return self.user.username + &quot; uploaded: &quot;+ self.image.name
 </code></pre>
-<p>in <code>forms.py</code></p>
+<p>In <code>forms.py</code>, refer to the ImageUpload model for input.</p>
 <pre><code class="language-python">  
 from django.forms import ModelForm
 from django.contrib.auth.models import User
@@ -837,14 +835,14 @@ class ImageForm(ModelForm):
 		fields = ('image',)
 
 </code></pre>
-<p>in <code>urls.py</code></p>
+<p>In <code>urls.py</code>, setup the</p>
 <pre><code class="language-python">from django.conf import settings
 from django.conf.urls.static import static
 if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL,
                               document_root=settings.MEDIA_ROOT)
 </code></pre>
-<p>in <code>home.html</code></p>
+<p>in <code>home.html</code>, create the form to accept image upload</p>
 <pre><code class="language-html">                  &lt;!-- Modal --&gt;
                   &lt;form method = &quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
                   &lt;div class=&quot;modal fade&quot; id=&quot;exampleModal&quot; tabindex=&quot;-1&quot; role=&quot;dialog&quot; aria-labelledby=&quot;exampleModalLabel&quot; aria-hidden=&quot;true&quot; &gt;
@@ -870,7 +868,7 @@ if settings.DEBUG:
                   &lt;/form&gt;
 
 </code></pre>
-<p>in <code>views.py</code></p>
+<p>In <code>views.py</code>, accept the HTTP POST request and save to the database. We will alter this to extract lat, lon later.</p>
 <pre><code class="language-python">@login_required(login_url='login')
 def home_page(request):
 
@@ -888,9 +886,8 @@ def home_page(request):
 		return render(request, &quot;GisMap/home.html&quot;, {'Title': &quot;Home Page&quot;, &quot;image_form&quot;: ImageForm})
 
 </code></pre>
-<h2 id="upload-to-s3-bucket--django">Upload to S3 bucket : Django</h2>
-<p><a href="https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html" target="_blank" rel="noopener">django-storages doc</a></p>
-<p>Install packages to support s3 communication</p>
+<h2 id="upload-to-s3-bucket">Upload to S3 bucket</h2>
+<p>Install boto3 package and django-storages. Add to installed packages. Additionally, provide Key:Value AWS credentials to access the bucket and change the default file storage to S3.</p>
 <pre><code class="language-bash">pip install django-storages
 pip install boto3
 </code></pre>
@@ -911,8 +908,8 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_QUERYSTRING_AUTH = False // removes the query string
 </code></pre>
-<h2 id="note-in-s3-bucket-make-the-bucket-public-to-be-able-to-access-to-anyone-without-appending-query-string"><code>NOTE: in S3 bucket, make the bucket public to be able to access to anyone without appending query string.</code></h2>
-<p><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-use-case-2" target="_blank" rel="noopener">aws docs</a></p>
+<p><strong>NOTE: Make the bucket public to be able to make HTTP request</strong></p>
+<p>Provide policy to make the repo public.</p>
 <pre><code class="language-json">{
   &quot;Version&quot;:&quot;2012-10-17&quot;,
   &quot;Statement&quot;:[
@@ -926,14 +923,11 @@ AWS_QUERYSTRING_AUTH = False // removes the query string
   ]
 }
 </code></pre>
-<h2 id="get-point-data-from-image-meta-deta">Get Point data from image meta deta</h2>
-<h3 id="it-is-called-exchangeable-image-file-format-exif">It is called Exchangeable image file format (EXIF)</h3>
-<p>Since GIS data, we need some installs.</p>
-<p>geodjango</p>
+<h3 id="get-lat-lon-from-image-meta-deta-exchangeable-image-file-format-exif-">Get Lat, lon from image meta deta (Exchangeable image file format [EXIF] )</h3>
+<p>By default geodjango is not installed in the apps list and thus we do it ourself.</p>
 <pre><code>pip install django-geo
 </code></pre>
-<p>NOTE: ensure os4geo is installed: install from here if not done. <a href="https://qgis.org/en/site/forusers/download.html">https://qgis.org/en/site/forusers/download.html</a></p>
-<p>and make the following changes in <code>settings.py</code></p>
+<p>NOTE: ensure os4geo is installed: install from here if not done. <a href="https://qgis.org/en/site/forusers/download.html">https://qgis.org/en/site/forusers/download.html</a> and make the following changes in <code>settings.py</code>. This is to install all the dependencies and let django know about its location.</p>
 <pre><code class="language-python">INSTALLED_APPS = [
 ...
 	'django.contrib.gis',
@@ -962,13 +956,13 @@ if os.name == 'nt':
 	os.environ['PATH'] = OSGEO4W + r&quot;\bin;&quot; + os.environ['PATH']
 
 </code></pre>
-<p>in <code>models.py</code></p>
+<p>In <code>models.py</code>, add a PointField which can store geospatial information (lat,lon)</p>
 <pre><code class="language-python">from django.contrib.gis.db import models
 class ImageUpload():
   ...  
   geom = models.PointField( null=True)
 </code></pre>
-<p>in <code>views.py</code>, courtesy of <a href="https://developer.here.com/blog/getting-started-with-geocoding-exif-image-metadata-in-python3" target="_blank" rel="noopener">Jayson DeLancey</a></p>
+<p>In <code>views.py</code>, define functions to extract meta data from image and convert into right format for GeoDjango to understand it. Courtesy of <a href="https://developer.here.com/blog/getting-started-with-geocoding-exif-image-metadata-in-python3" target="_blank" rel="noopener">Jayson DeLancey</a></p>
 <pre><code class="language-python">
 #________________________________________FUNCTIONS FOR IMAGE EXIF DATA______________________________________________________________________________#
 
@@ -1021,37 +1015,39 @@ def get_geotagging(exif):
 
 
 </code></pre>
-<p>In <code>views.py/home_page</code> function</p>
+<p>In <code>views.py</code>, update home_page function to extract meta data and save the image to database.</p>
 <pre><code class="language-python">from django.contrib.gis.geos import Point
 
 @login_required(login_url='login')
 def home_page(request):
-	if request.method == 'POST':
-		form = ImageForm(request.POST , request.FILES)
-		img = Image.open(request.FILES.get('image'))
-		if form.is_valid():
-			try:
-				obj = form.save(commit=False)
-				obj.user = request.user
-				obj.image_url = obj.image.url
-				geotags = get_geotagging(img._getexif())
-				print(get_coordinates(geotags))
-				obj.geom = Point(get_coordinates(geotags)) # X is longitude, Y is latitude, Point(X,Y)
-				print(obj.geom) 
-				obj.save()
-				messages.success(request, f'image uploaded succesfully')
-			except ValueError as e:
-				messages.warning(request, e)
-		else:
-			messages.warning(request, f'Invalid image type')
-		return redirect('home')
-	else:
-		Imageform = ImageForm()
-		return render(request, &quot;GisMap/home.html&quot;, {'Title': &quot;Home Page&quot;, &quot;image_form&quot;: ImageForm})
+    if request.method == &quot;POST&quot;:
+        form = ImageForm(request.POST, request.FILES)
+        img = Image.open(request.FILES.get(&quot;image&quot;))
+        if form.is_valid():
+            try:
+                obj = form.save(commit=False)
+                obj.user = request.user
+                obj.image_url = obj.image.url
+                geotags = get_geotagging(img._getexif())
+                obj.geom = Point(
+                    get_coordinates(geotags)
+                )  # X is longitude, Y is latitude, Point(X,Y)
+                obj.save()
+                messages.success(request, f&quot;image uploaded succesfully&quot;)
+            except ValueError as e:
+                messages.warning(request, e)
+        else:
+            messages.warning(request, f&quot;Invalid image type&quot;)
+        return redirect(&quot;home&quot;)
+    else:
+        Imageform = ImageForm()
+        return render(
+            request, &quot;GisMap/home.html&quot;, {&quot;Title&quot;: &quot;Home Page&quot;, &quot;image_form&quot;: ImageForm}
+        )
 </code></pre>
-<h2 id="upload-multiple-image">Upload multiple image</h2>
-<p><a href="https://stackoverflow.com/questions/34006994/how-to-upload-multiple-images-to-a-blog-post-in-django" target="_blank" rel="noopener">stackoverflow answer</a></p>
-<p>Make a  model which or accepts image data</p>
+<h2 id="upload-multiple-images">Upload multiple images</h2>
+<p><a href="https://stackoverflow.com/questions/34006994/how-to-upload-multiple-images-to-a-blog-post-in-django" target="_blank" rel="noopener">Additional source</a></p>
+<p>We now make separate model for accepting non-geotagged images similar to <code>ImageUpload</code> model but without <code>PointField</code>.</p>
 <pre><code class="language-python">class Photos(models.Model):
 
 	user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
@@ -1074,42 +1070,57 @@ def home_page(request):
 		model = Photos
 		fields = ('images',)
 </code></pre>
-<p>in <code>views.py</code> file</p>
-<pre><code class="language-python">	if request.method == &quot;POST&quot;:
-		#images will be in request.FILES
-		post_request, files_request = request.POST, request.FILES #  returns &lt;MultiValueDict: {'images': [&lt;InMemoryUploadedFile: DSCN0021.jpg (image/jpeg)&gt;, &lt;InMemoryUploadedFile: Canon_PowerShot_S40.jpg (image/jpeg)&gt;]}&gt; &lt;QueryDict: {'csrfmiddlewaretoken': ['ypDkNUtuh1l0oQZcBk4Nz48AEapw9rC0uLHydJIf6rRwqcavPqgo918hAjuQHUgE']}&gt;
-	
-		form = PhotoForm(post_request or None, files_request or None)
-		files = request.FILES.getlist('images') # returns files: [&lt;InMemoryUploadedFile: DSCN0021.jpg (image/jpeg)&gt;, &lt;InMemoryUploadedFile: Canon_PowerShot_S40.jpg (image/jpeg)&gt;]
-		if form.is_valid():
-			user = request.user
-			for f in files:
-				
-				img = Image.open(f) # returns &lt;PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=480x360 at 0x1ED0CCC6280&gt;
-				try:
-					geotags = get_geotagging(img._getexif())
-					geoimage = ImageUpload(user=user, image=f)
-					geoimageimg_upload.image_url = geoimage.image.url 
-					geoimage.geom = Point(get_coordinates(geotags)) # X is longitude, Y is latitude, Point(X,Y) ; returns SRID=4326;POINT (11.88454 43.46708)
-					geoimage.save()
-				except:
-					nongeoimage = Photos(user=user,image=f)
-					nongeoimage.image_url = nongeoimage.image.url
-					nongeoimage.save()
-		else:
-			print(&quot;Form invalid&quot;)
-		return redirect('home')
-	else:
+<p>In <code>views.py</code> file, extend the home_page function to add a fallback for non-geotagged images.</p>
+<pre><code class="language-python">if request.method == &quot;POST&quot;:
 
-		Imageform = PhotoForm()
-		return render(request, &quot;GisMap/home.html&quot;, {'Title': &quot;Home Page&quot;, &quot;image_form&quot;: ImageForm})
+    # images will be in request.FILES
+    post_request, files_request = request.POST, request.FILES
+
+    form = PhotoForm(post_request or None, files_request or None)
+    files = request.FILES.getlist(
+        &quot;images&quot;
+    )  # returns files: [&lt;InMemoryUploadedFile: Image_name.jpg (image/jpeg)&gt;, &lt;InMemoryUploadedFile: Image_name.jpg (image/jpeg)&gt;]
+    if form.is_valid():
+        user = request.user
+        for f in files:
+
+            # returns &lt;PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=480x360 at 0x1ED0CCC6280&gt;
+            img = Image.open(f)  
+            
+            try:
+                geotags = get_geotagging(img._getexif())
+                geoimage = ImageUpload(user=user, image=f)
+                geoimageimg_upload.image_url = geoimage.image.url
+                # X is longitude, Y is latitude, Point(X,Y) ; returns eg SRID=4326;POINT (11.88454 43.46708)
+                geoimage.geom = Point(get_coordinates(geotags))
+                geoimage.save()
+            except:
+                nongeoimage = Photos(user=user, image=f)
+                nongeoimage.image_url = nongeoimage.image.url
+                nongeoimage.save()
+    else:
+        print(&quot;Form invalid&quot;)
+    return redirect(&quot;home&quot;)
+else:
+    Imageform = PhotoForm()
+    return render(
+        request, &quot;GisMap/home.html&quot;, {&quot;Title&quot;: &quot;Home Page&quot;, &quot;image_form&quot;: ImageForm}
+    )
 </code></pre>
-<p>in <code>home.html</code></p>
+<p>in <code>home.html</code>, add <code>multiple</code> attribute</p>
 <pre><code class="language-html">				&lt;div class=&quot;form-group&quot;&gt;
 				&lt;label for=&quot;note-image&quot;&gt;&lt;/label&gt;
 				&lt;input type=&quot;file&quot; name=&quot;images&quot; class=&quot;form-control-file&quot; id=&quot;note-image&quot; multiple&gt;
 				&lt;/div&gt;
 </code></pre>
+<h2 id="final-note">Final Note:</h2>
+<p>At this point, you should be able to upload multiple Images to the AWS S3 bucket and have coordinates extracted the geo-tagged images and segregate non-geotagged images.</p>
+<p>You learnt-</p>
+<ul>
+<li>How to Setup GeoDjango</li>
+<li>How to Setup AWS S3 bucket</li>
+<li>How to Extract meta data from Image and store in database using PointField</li>
+</ul>
 
     </div>
 
@@ -1133,7 +1144,7 @@ def home_page(request):
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://amanbagrecha.github.io/post/django/django-image-upload/&amp;text=Django%20How%20to:%20Upload%20Multiple%20Image" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://amanbagrecha.github.io/post/django/django-image-upload/&amp;text=How%20to%20Upload%20Multiple%20Images%20in%20Django" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -1146,7 +1157,7 @@ def home_page(request):
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://amanbagrecha.github.io/post/django/django-image-upload/&amp;t=Django%20How%20to:%20Upload%20Multiple%20Image" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://amanbagrecha.github.io/post/django/django-image-upload/&amp;t=How%20to%20Upload%20Multiple%20Images%20in%20Django" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -1159,7 +1170,7 @@ def home_page(request):
       
       
       <li>
-        <a href="mailto:?subject=Django%20How%20to:%20Upload%20Multiple%20Image&amp;body=https://amanbagrecha.github.io/post/django/django-image-upload/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=How%20to%20Upload%20Multiple%20Images%20in%20Django&amp;body=https://amanbagrecha.github.io/post/django/django-image-upload/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -1172,7 +1183,7 @@ def home_page(request):
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://amanbagrecha.github.io/post/django/django-image-upload/&amp;title=Django%20How%20to:%20Upload%20Multiple%20Image" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=https://amanbagrecha.github.io/post/django/django-image-upload/&amp;title=How%20to%20Upload%20Multiple%20Images%20in%20Django" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -1185,7 +1196,7 @@ def home_page(request):
       
       
       <li>
-        <a href="whatsapp://send?text=Django%20How%20to:%20Upload%20Multiple%20Image%20https://amanbagrecha.github.io/post/django/django-image-upload/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=How%20to%20Upload%20Multiple%20Images%20in%20Django%20https://amanbagrecha.github.io/post/django/django-image-upload/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1198,7 +1209,7 @@ def home_page(request):
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://amanbagrecha.github.io/post/django/django-image-upload/&amp;title=Django%20How%20to:%20Upload%20Multiple%20Image" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://amanbagrecha.github.io/post/django/django-image-upload/&amp;title=How%20to%20Upload%20Multiple%20Images%20in%20Django" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
