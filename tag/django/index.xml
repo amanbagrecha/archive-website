@@ -5,7 +5,7 @@
     <link>https://amanbagrecha.github.io/tag/django/</link>
       <atom:link href="https://amanbagrecha.github.io/tag/django/index.xml" rel="self" type="application/rss+xml" />
     <description>Django</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 24 May 2021 15:13:58 +0530</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 22 May 2021 15:13:58 +0530</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png</url>
       <title>Django</title>
@@ -15,7 +15,7 @@
     <item>
       <title>Full Fledged CRUD application using DRF and Token Authentication</title>
       <link>https://amanbagrecha.github.io/post/django/crud-in-django-rest-framework/</link>
-      <pubDate>Mon, 24 May 2021 15:13:58 +0530</pubDate>
+      <pubDate>Sat, 22 May 2021 15:13:58 +0530</pubDate>
       <guid>https://amanbagrecha.github.io/post/django/crud-in-django-rest-framework/</guid>
       <description>&lt;hr style=&#34;border:1px solid lightgray&#34;&gt; &lt;/hr&gt;
 &lt;br&gt;
@@ -807,6 +807,14 @@ Released under the [MIT](https://github.com/wowchemy/wowchemy-hugo-modules/blob/
 --&gt;&lt;blockquote&gt;
 &lt;/blockquote&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>Django-rest-framework CRUD Token Authetication Application</title>
+      <link>https://amanbagrecha.github.io/project/external-project/</link>
+      <pubDate>Thu, 27 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/project/external-project/</guid>
+      <description></description>
     </item>
     
   </channel>

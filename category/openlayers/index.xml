@@ -13,12 +13,14 @@
     </image>
     
     <item>
-      <title>Reverse Geocode using Mapbox API with Zoom functionality</title>
+      <title>Geocoding using Mapbox API with Zoom-in map functionality</title>
       <link>https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/</link>
       <pubDate>Mon, 24 May 2021 20:04:53 +0530</pubDate>
       <guid>https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/</guid>
-      <description>&lt;h2 id=&#34;main-steps&#34;&gt;Main steps&lt;/h2&gt;
-&lt;p&gt;This blog demonstrates how to geocode an address using mapbox api as the client provider implemented in openlayers v6. Additionally zoom in to the search location as text provided on the search bar.
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The big picture of this post can be related to google maps, wherein you type the address and it zooms in to the location of interest. We replicate this exact functionality with mapbox API for geocoding and openlayers for client side zoom to the address of interest.&lt;/p&gt;
+&lt;h2 id=&#34;main-steps&#34;&gt;Main steps&lt;/h2&gt;
+&lt;p&gt;This blog demonstrates how to geocode an address using mapbox api implemented in openlayers v6. Additionally zoom in to the search location as text provided on the search bar.
 This one page appication demostrates only key elements, rest of the customisation is at discretion of the viewer.&lt;/p&gt;
 &lt;h3 id=&#34;setup-the-project&#34;&gt;Setup the project&lt;/h3&gt;
 &lt;p&gt;We first create basic single html file to include all elements (javascript, css and html). Ideally, when the application scales, you would create a seperate file for each component.&lt;/p&gt;
@@ -52,6 +54,7 @@ input[type=submit] {
  &amp;lt;/style&amp;gt;
  &amp;lt;/head&amp;gt;
  &amp;lt;body&amp;gt;
+&amp;lt;!--create search bar for geocoding and style it --&amp;gt;
 &amp;lt;h2&amp;gt;Autocomplete&amp;lt;/h2&amp;gt;
 &amp;lt;br&amp;gt;
 &amp;lt;form  method=&amp;quot;post&amp;quot; &amp;gt;
@@ -65,6 +68,8 @@ input[type=submit] {
 &amp;lt;script src=&amp;quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
 &amp;lt;!-- &amp;lt;script src=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.5.0/proj4.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; --&amp;gt;
 &amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+	 
+	 // create basemap layer
 	 var project_maplayer = new ol.layer.Tile({
 	// source: new ol.source.OSM(),
 	source: new ol.source.XYZ({
@@ -76,11 +81,15 @@ input[type=submit] {
 	}),
 	zIndex: 0
 });
+
+// create view for the layer
 var project_view = new ol.View({
 	projection: &#39;EPSG:4326&#39;,
 	center: [-81.80808208706726, 27.285095000261222],
 	zoom: 7,
 });
+
+// add the basemap to the map
 var Projectmap = new ol.Map({
 	layers: [project_maplayer,],
 	target: &#39;project_map&#39;,

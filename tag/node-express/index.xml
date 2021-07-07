@@ -5,7 +5,7 @@
     <link>https://amanbagrecha.github.io/tag/node-express/</link>
       <atom:link href="https://amanbagrecha.github.io/tag/node-express/index.xml" rel="self" type="application/rss+xml" />
     <description>Node Express</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 27 Apr 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png</url>
       <title>Node Express</title>
@@ -15,7 +15,7 @@
     <item>
       <title>CRUD Application using node express api</title>
       <link>https://amanbagrecha.github.io/project/internal-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
       <guid>https://amanbagrecha.github.io/project/internal-project/</guid>
       <description>&lt;h1 id=&#34;project-setup&#34;&gt;Project Setup&lt;/h1&gt;
 &lt;blockquote&gt;
@@ -110,6 +110,14 @@ import pkg from &#39;mongoose&#39;;
 const { Mongoose } = pkg;
 &lt;/code&gt;&lt;/pre&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>Web application to access store information on click of marker!</title>
+      <link>https://amanbagrecha.github.io/project/node-express-crud/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/project/node-express-crud/</guid>
+      <description></description>
     </item>
     
   </channel>

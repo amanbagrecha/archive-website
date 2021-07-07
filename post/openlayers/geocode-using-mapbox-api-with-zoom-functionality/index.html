@@ -299,7 +299,7 @@
   
   <meta property="og:site_name" content="Aman Bagrecha" />
   <meta property="og:url" content="https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/" />
-  <meta property="og:title" content="Reverse Geocode using Mapbox API with Zoom functionality | Aman Bagrecha" />
+  <meta property="og:title" content="Geocoding using Mapbox API with Zoom-in map functionality | Aman Bagrecha" />
   <meta property="og:description" content="How to bulid geocoding web-app using openlayers" /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
     <meta property="twitter:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
   
@@ -332,7 +332,7 @@
     "@type": "WebPage",
     "@id": "https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/"
   },
-  "headline": "Reverse Geocode using Mapbox API with Zoom functionality",
+  "headline": "Geocoding using Mapbox API with Zoom-in map functionality",
   
   "datePublished": "0001-01-01T00:00:00Z",
   "dateModified": "2021-05-24T20:04:53+05:30",
@@ -366,7 +366,7 @@
 
 
 
-  <title>Reverse Geocode using Mapbox API with Zoom functionality | Aman Bagrecha</title>
+  <title>Geocoding using Mapbox API with Zoom-in map functionality | Aman Bagrecha</title>
 </head>
 
 
@@ -733,7 +733,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>Reverse Geocode using Mapbox API with Zoom functionality</h1>
+  <h1>Geocoding using Mapbox API with Zoom-in map functionality</h1>
 
   
 
@@ -761,7 +761,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    5 min read
+    6 min read
   </span>
   
 
@@ -795,8 +795,10 @@
   <div class="article-container">
 
     <div class="article-style">
-      <h2 id="main-steps">Main steps</h2>
-<p>This blog demonstrates how to geocode an address using mapbox api as the client provider implemented in openlayers v6. Additionally zoom in to the search location as text provided on the search bar.
+      <h2 id="overview">Overview</h2>
+<p>The big picture of this post can be related to google maps, wherein you type the address and it zooms in to the location of interest. We replicate this exact functionality with mapbox API for geocoding and openlayers for client side zoom to the address of interest.</p>
+<h2 id="main-steps">Main steps</h2>
+<p>This blog demonstrates how to geocode an address using mapbox api implemented in openlayers v6. Additionally zoom in to the search location as text provided on the search bar.
 This one page appication demostrates only key elements, rest of the customisation is at discretion of the viewer.</p>
 <h3 id="setup-the-project">Setup the project</h3>
 <p>We first create basic single html file to include all elements (javascript, css and html). Ideally, when the application scales, you would create a seperate file for each component.</p>
@@ -830,6 +832,7 @@ input[type=submit] {
  &lt;/style&gt;
  &lt;/head&gt;
  &lt;body&gt;
+&lt;!--create search bar for geocoding and style it --&gt;
 &lt;h2&gt;Autocomplete&lt;/h2&gt;
 &lt;br&gt;
 &lt;form  method=&quot;post&quot; &gt;
@@ -843,6 +846,8 @@ input[type=submit] {
 &lt;script src=&quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js&quot;&gt;&lt;/script&gt;
 &lt;!-- &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.5.0/proj4.js&quot;&gt;&lt;/script&gt; --&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
+	 
+	 // create basemap layer
 	 var project_maplayer = new ol.layer.Tile({
 	// source: new ol.source.OSM(),
 	source: new ol.source.XYZ({
@@ -854,11 +859,15 @@ input[type=submit] {
 	}),
 	zIndex: 0
 });
+
+// create view for the layer
 var project_view = new ol.View({
 	projection: 'EPSG:4326',
 	center: [-81.80808208706726, 27.285095000261222],
 	zoom: 7,
 });
+
+// add the basemap to the map
 var Projectmap = new ol.Map({
 	layers: [project_maplayer,],
 	target: 'project_map',
@@ -1079,7 +1088,7 @@ autocomplete(document.getElementById(&quot;myInput&quot;));
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/&amp;text=Reverse%20Geocode%20using%20Mapbox%20API%20with%20Zoom%20functionality" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/&amp;text=Geocoding%20using%20Mapbox%20API%20with%20Zoom-in%20map%20functionality" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -1092,7 +1101,7 @@ autocomplete(document.getElementById(&quot;myInput&quot;));
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/&amp;t=Reverse%20Geocode%20using%20Mapbox%20API%20with%20Zoom%20functionality" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/&amp;t=Geocoding%20using%20Mapbox%20API%20with%20Zoom-in%20map%20functionality" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -1105,7 +1114,7 @@ autocomplete(document.getElementById(&quot;myInput&quot;));
       
       
       <li>
-        <a href="mailto:?subject=Reverse%20Geocode%20using%20Mapbox%20API%20with%20Zoom%20functionality&amp;body=https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Geocoding%20using%20Mapbox%20API%20with%20Zoom-in%20map%20functionality&amp;body=https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -1118,7 +1127,7 @@ autocomplete(document.getElementById(&quot;myInput&quot;));
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/&amp;title=Reverse%20Geocode%20using%20Mapbox%20API%20with%20Zoom%20functionality" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/&amp;title=Geocoding%20using%20Mapbox%20API%20with%20Zoom-in%20map%20functionality" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -1131,7 +1140,7 @@ autocomplete(document.getElementById(&quot;myInput&quot;));
       
       
       <li>
-        <a href="whatsapp://send?text=Reverse%20Geocode%20using%20Mapbox%20API%20with%20Zoom%20functionality%20https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=Geocoding%20using%20Mapbox%20API%20with%20Zoom-in%20map%20functionality%20https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1144,7 +1153,7 @@ autocomplete(document.getElementById(&quot;myInput&quot;));
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/&amp;title=Reverse%20Geocode%20using%20Mapbox%20API%20with%20Zoom%20functionality" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/&amp;title=Geocoding%20using%20Mapbox%20API%20with%20Zoom-in%20map%20functionality" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -1182,7 +1191,7 @@ autocomplete(document.getElementById(&quot;myInput&quot;));
 
     <div class="media-body">
       <h5 class="card-title"><a href="https://amanbagrecha.github.io/">Aman Bagrecha</a></h5>
-      <h6 class="card-subtitle">Civil Engineering Student</h6>
+      <h6 class="card-subtitle">GIS and RS fanatic</h6>
       <p class="card-text">My interests include documenting, programming, Deep learning and GIS matter.</p>
       <ul class="network-icon" aria-hidden="true">
   
@@ -1251,6 +1260,23 @@ autocomplete(document.getElementById(&quot;myInput&quot;));
     <li>
       <a href="https://www.linkedin.com/in/amanbagrecha/" target="_blank" rel="noopener">
         <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/jainaman588@gmail.com" >
+        <i class="fas fa-envelope"></i>
       </a>
     </li>
   

@@ -292,12 +292,14 @@ END
     </item>
     
     <item>
-      <title>Reverse Geocode using Mapbox API with Zoom functionality</title>
+      <title>Geocoding using Mapbox API with Zoom-in map functionality</title>
       <link>https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/</link>
       <pubDate>Mon, 24 May 2021 20:04:53 +0530</pubDate>
       <guid>https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/</guid>
-      <description>&lt;h2 id=&#34;main-steps&#34;&gt;Main steps&lt;/h2&gt;
-&lt;p&gt;This blog demonstrates how to geocode an address using mapbox api as the client provider implemented in openlayers v6. Additionally zoom in to the search location as text provided on the search bar.
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The big picture of this post can be related to google maps, wherein you type the address and it zooms in to the location of interest. We replicate this exact functionality with mapbox API for geocoding and openlayers for client side zoom to the address of interest.&lt;/p&gt;
+&lt;h2 id=&#34;main-steps&#34;&gt;Main steps&lt;/h2&gt;
+&lt;p&gt;This blog demonstrates how to geocode an address using mapbox api implemented in openlayers v6. Additionally zoom in to the search location as text provided on the search bar.
 This one page appication demostrates only key elements, rest of the customisation is at discretion of the viewer.&lt;/p&gt;
 &lt;h3 id=&#34;setup-the-project&#34;&gt;Setup the project&lt;/h3&gt;
 &lt;p&gt;We first create basic single html file to include all elements (javascript, css and html). Ideally, when the application scales, you would create a seperate file for each component.&lt;/p&gt;
@@ -331,6 +333,7 @@ input[type=submit] {
  &amp;lt;/style&amp;gt;
  &amp;lt;/head&amp;gt;
  &amp;lt;body&amp;gt;
+&amp;lt;!--create search bar for geocoding and style it --&amp;gt;
 &amp;lt;h2&amp;gt;Autocomplete&amp;lt;/h2&amp;gt;
 &amp;lt;br&amp;gt;
 &amp;lt;form  method=&amp;quot;post&amp;quot; &amp;gt;
@@ -344,6 +347,8 @@ input[type=submit] {
 &amp;lt;script src=&amp;quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
 &amp;lt;!-- &amp;lt;script src=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.5.0/proj4.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; --&amp;gt;
 &amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+	 
+	 // create basemap layer
 	 var project_maplayer = new ol.layer.Tile({
 	// source: new ol.source.OSM(),
 	source: new ol.source.XYZ({
@@ -355,11 +360,15 @@ input[type=submit] {
 	}),
 	zIndex: 0
 });
+
+// create view for the layer
 var project_view = new ol.View({
 	projection: &#39;EPSG:4326&#39;,
 	center: [-81.80808208706726, 27.285095000261222],
 	zoom: 7,
 });
+
+// add the basemap to the map
 var Projectmap = new ol.Map({
 	layers: [project_maplayer,],
 	target: &#39;project_map&#39;,
@@ -899,9 +908,297 @@ else:
     </item>
     
     <item>
+      <title>Django rest framework PDF creation and email via gmail SMTP and reportLab</title>
+      <link>https://amanbagrecha.github.io/post/django/pdf-and-email-creation/</link>
+      <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/post/django/pdf-and-email-creation/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Ever wanted to send email with attachements that too in django? And have the attachments created from the user input? This post tries to solve exactly that.&lt;/p&gt;
+&lt;h2 id=&#34;main-steps&#34;&gt;Main steps&lt;/h2&gt;
+&lt;p&gt;In this blog we create PDF using &lt;code&gt;Report Lab&lt;/code&gt; and email it to the user using gmail SMTP service. All actions are performed in Django.&lt;/p&gt;
+&lt;h2 id=&#34;step-1--create-django-view-to-serialize-data&#34;&gt;Step 1 : create django view to serialize data&lt;/h2&gt;
+&lt;p&gt;To begin with, we create a view &lt;code&gt;CreatePDF&lt;/code&gt; which accepts &lt;code&gt;POST&lt;/code&gt; request and the data gets passed onto &lt;code&gt;CreatePDFSerializer&lt;/code&gt; which serializes our data and validates it. If our data is valid, we generate PDF using &lt;code&gt;generate_pdf&lt;/code&gt; function and email to the recipent (&lt;code&gt;emailaddress&lt;/code&gt; of the users) using the &lt;code&gt;sendPDF&lt;/code&gt; function. If everything does not execute properly, we return an error response else a success.&lt;/p&gt;
+&lt;p&gt;The local variable &lt;code&gt;myresponse&lt;/code&gt; is a dictionary which helps us manage the response for each &lt;code&gt;return&lt;/code&gt; statement in the correct format as expected by &lt;code&gt;response&lt;/code&gt; method.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+SUCCESS = &#39;success&#39;
+ERROR = &#39;error&#39;
+message_list = [&#39;response&#39;, &#39;status&#39;, &#39;message&#39;] # eg: [&amp;quot;success&amp;quot;, 201, &amp;quot;successfully upload the file&amp;quot;]
+
+@csrf_exempt
+@api_view([&#39;POST&#39;,])
+def CreatePDF(request):
+    myresponse = {k: [] for k in message_list}
+
+    try:
+        myData = request.data
+        # serialier the data
+        serializer = serializers.CreatePDFSerializer(data=myData)  
+        if serializer.is_valid():
+            try:
+                sendPDF(**myData.dict())  # create pdf and send email
+            except Exception as e:
+                RequestResponse(
+                    myresponse,
+                    ERROR,
+                    status.HTTP_400_BAD_REQUEST,
+                    {&amp;quot;Email&amp;quot;: [&amp;quot;Could not send mail!&amp;quot;]},
+                )
+                return Response(data=myresponse)
+            
+            account = serializer.save()
+            RequestResponse(
+                myresponse,
+                SUCCESS,
+                status.HTTP_201_CREATED,
+                {&amp;quot;Success&amp;quot;: [f&amp;quot;Inspection Report e-mailed to {account.EmailAddress}!&amp;quot;]},
+            )
+            return Response(data=myresponse)
+
+        RequestResponse(
+            myresponse, ERROR, status.HTTP_400_BAD_REQUEST, serializer.errors
+        )
+        return Response(data=myresponse)
+    
+    except Exception as e:
+        print(e)
+        RequestResponse(
+            myresponse,
+            ERROR,
+            status.HTTP_500_INTERNAL_SERVER_ERROR,
+            {&amp;quot;Error&amp;quot;: [&amp;quot;Internal Server Error&amp;quot;]},
+        )
+        return Response(data=myresponse)
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-2-generate-pdf-using-report-lab&#34;&gt;step 2: Generate PDF using Report Lab&lt;/h2&gt;
+&lt;p&gt;In &lt;code&gt;views.py&lt;/code&gt; we create a function to generate pdf using &lt;code&gt;Report Lab&lt;/code&gt; package. This allows us to define the page size and line strings with text placement to be included.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def generate_pdf(**Mydata):
+    y = 700
+    buffer = io.BytesIO()  # in memory create pdf
+    p = canvas.Canvas(buffer, pagesize=letter)
+    p.setFont(&#39;Helvetica&#39;, 14)
+    p.drawString(220, y, Mydata[&#39;Title&#39;])
+    p.drawString(450, y, &#39;Date:&#39; + timezone.now().strftime(&#39;%Y-%b-%d&#39;))
+    p.line(30, 675, 550, 675)
+    p.drawString(220, y - 300, &#39;Time&#39;
+                 + str(Mydata[&#39;time&#39;]))
+    p.showPage()
+    p.save()
+    pdf = buffer.getvalue()
+    buffer.close()
+    return pdf
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-3-send-email-via-smtp-backend&#34;&gt;step 3: Send Email via SMTP backend&lt;/h2&gt;
+&lt;p&gt;In &lt;code&gt;views.py&lt;/code&gt;, we create &lt;code&gt;sendPDF&lt;/code&gt; function which calls the &lt;code&gt;generate_pdf&lt;/code&gt;to generate PDF and attaches the pdf to the email using the &lt;code&gt;EmailMessage&lt;/code&gt; class method &lt;code&gt;attach&lt;/code&gt;. We additionally need to setup backend for smtp service and host user which is to be done in &lt;code&gt;settings.py&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# views.py
+def sendPDF(**Mydata):
+	pdf = generate_pdf(**Mydata)
+	msg = EmailMessage(Mydata[&#39;Title&#39;], &amp;quot; Your Report is ready! &amp;quot;, settings.EMAIL_HOST_USER, to=[Mydata[&#39;EmailAddress&#39;]])
+	msg.attach(f&amp;quot;{Mydata[&#39;Title&#39;]}.pdf&amp;quot;, pdf, &#39;application/pdf&#39;)
+	msg.content_subtype = &amp;quot;html&amp;quot;
+	resp = msg.send()
+	print(&amp;quot;resp:&amp;quot; , resp)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In &lt;code&gt;settings.py&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# settings.py
+EMAIL_BACKEND = &#39;django.core.mail.backends.smtp.EmailBackend&#39;
+EMAIL_HOST = &amp;quot;smtp.gmail.com&amp;quot;
+EMAIL_HOST_USER = &#39;your_email@gmail.com&#39;
+EMAIL_HOST_PASSWORD = &#39;your_password&#39;
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;At this point we have been able to successfully setup and send email with attachment.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Polygon Selection and  Area Calculation in Openlayers</title>
+      <link>https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/</link>
+      <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;&lt;strong&gt;Overview&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;In this small demo-blog we look into how to make polygon selections on the map and calculate the area of that polygon on-the-fly. We use openlayers v6 for client side and geoserver to save our vector layers for this exercise.&lt;br&gt;
+I assume readers to have familiarity with setting up geoserver and basics of openlayers.&lt;/p&gt;
+&lt;h2 id=&#34;step-1-setup-openlayers&#34;&gt;&lt;strong&gt;Step 1: Setup openlayers&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Openlayers requires you to add these cdns to add their functionality into our application.&lt;/p&gt;
+&lt;h3 id=&#34;link-necessary-cdns&#34;&gt;link necessary cdns&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;
+ &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css&amp;quot; type=&amp;quot;text/css&amp;quot;&amp;gt;
+ &amp;lt;script src=&amp;quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+ 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We are using openlayers to render the request response. since the output of the WFS request is json, we create a new layer with vector source and format as geojson. 
+The &lt;code&gt;strategy:ol.loadingstrategy.bbox&lt;/code&gt; tells openlayers to only load features within the bbox. Simply put, if we move to different location, only features within that bbox will appear.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;
+// setup geoserver port
+var geoserver_ip = &#39;http://120.0.0.1&#39;
+var geoserver_port = &#39;8080&#39;
+
+// define vector source
+var myFlSource = new ol.source.Vector({
+	format: new ol.format.GeoJSON(),
+		url: function (extent){
+			return ( geoserver_ip +&#39;:&#39; + geoserver_port + &#39;/geoserver/dronnav/ows?service=WFS&amp;amp;version=1.1.0&amp;amp;request=GetFeature&amp;amp;typeName=dronnav%3Aflorida_bp&amp;amp;maxFeatures=10000&amp;amp;outputFormat=application/json&amp;amp;srsname=EPSG:4326&amp;amp;&#39; + &#39;bbox=&#39; + extent.join(&#39;,&#39;) + &#39;,EPSG:4326&#39; );
+		},
+		strategy:ol.loadingstrategy.bbox,
+	});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We perform WFS request from geoserver to get our layer &lt;code&gt;florida_bp&lt;/code&gt; in this case. The parameters are as explained as follows&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;service=WFS&lt;/code&gt; : web feature service to perform interaction&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;typename=workspace:florida_bp&lt;/code&gt; : specify the workspace and layer name&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;version=1.1.0&lt;/code&gt; : version number&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;maxFeatures = 10000&lt;/code&gt; : since WFS request is computationaly expensive, we restrict to only load 10000 features.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;request=GetFeature&lt;/code&gt; : request type. There are several other which can be found here&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;outputFormat=application/json&lt;/code&gt; : the output format as response&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;srsname=EPSG:4326&lt;/code&gt; : coordinate reference system to display on the map&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;bbox=&lt;/code&gt; : bounding box&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// define vector layer
+var floridaLayer = new ol.layer.Vector({
+	source: myFlSource,
+	style: new ol.style.Style({
+		fill: new ol.style.Fill({
+			color: &#39;rgba(1, 1, 255, .2)&#39;,
+			}),
+		stroke: new ol.style.Stroke({
+			color: &#39;rgba(1, 1, 255, .5)&#39;,
+			width: 2,
+		}),
+		}),
+		minZoom: 16, // this will allows us to send request only when the zoom is atleast 16
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once the layer is defined, we need to add this layer to the map. We can either use &lt;code&gt;map.addLayer(layername)&lt;/code&gt; or add to array in the map (&lt;code&gt;Fig.1&lt;/code&gt;)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// add ESRI basemap
+var project_maplayer =    new ol.layer.Tile({
+	source: new ol.source.XYZ({
+		attributions: [&#39;Powered by Esri&#39;,
+										&#39;Source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community&#39;],
+		attributionsCollapsible: false,
+		url: &#39;https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}&#39;,
+		maxZoom: 23
+	}),
+	zIndex: 0
+});
+
+// add view with projection set to EPSG 4326 for the map
+var project_view = new ol.View({
+	projection: &#39;EPSG:4326&#39;,
+	center: [-81.80808208706726, 27.285095000261222],
+	zoom: 7,
+});
+
+// define the map with all the layers created previously
+var Projectmap = new ol.Map({
+	layers: [project_maplayer, floridaLayer],
+	overlays: [overlay],
+	target: &#39;project_map&#39;, // the div element `id` in html page
+	view: project_view,
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/jodNbPQ.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 -The Map layer with building footprints (&lt;code&gt;floridaLayer&lt;/code&gt;) added to the map with the style we specified&lt;/code&gt; for each feature&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;get-feature-info-on-click&#34;&gt;&lt;strong&gt;Get feature info on click&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;After adding basemap and our layer to the map served via geoserver, we are now ready to get information &lt;code&gt;on-click&lt;/code&gt;. We use  &lt;code&gt;forEachFeatureAtPixel&lt;/code&gt; method on our layer to send a WFS request to our geoserver and recive a response in json format. We change the style of the building on click (&lt;code&gt;Fig.2&lt;/code&gt;). The area is calculated using formatArea function which utilises &lt;code&gt;ol.sphere.getArea&lt;/code&gt; and &lt;code&gt;transform&lt;/code&gt; method to calculate area and change CRS.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;
+  /*  select ploygon the feature and get area and store the features */
+  var selected = []; // contains all features
+  var selected_area = []; // contains area of feature, one-to-one
+  
+  Projectmap.on(&#39;singleclick&#39;, function (e) {
+  Projectmap.forEachFeatureAtPixel(e.pixel, function (f, l) {
+  	var mycoordinate = e.coordinate
+  	storef = f  // feature
+  	/* if click is on polygon, then select the feature */
+  if ( f.getGeometry()   instanceof  ol.geom.MultiPolygon ) {
+		  
+		var selIndex = selected.indexOf(f);
+			// console.log(selIndex)
+		if (selIndex &amp;lt; 0) {
+			selected.push(f);
+			selected_area.push( formatArea(f) ); // formatArea function returns the area in ft2
+			f.setStyle(highlightStyle); // change style on click
+		} else {
+			selected.splice(selIndex, 1);
+			selected_area.splice( selIndex, 1);
+			f.setStyle(undefined);
+		}
+ 	 }
+
+	  })
+
+	  /* update the tags with no of selected feature and total area combined */
+	  document.getElementById(&#39;status-selected&#39;).innerHTML = &#39;&amp;amp;nbsp;&#39; + selected.length + &#39; selected features&#39;;
+	  document.getElementById(&#39;status-selected_area&#39;).innerHTML = &#39;&amp;amp;nbsp;&#39; + selected_area.reduce(getSum, 0) + &#39; ft&amp;lt;sup&amp;gt;2&amp;lt;/sup&amp;gt;&#39;;
+	  
+	});
+	
+
+	
+  /* style for selected feature on click  */
+  var highlightStyle = new ol.style.Style({
+  	fill: new ol.style.Fill({
+  	color: &#39;#f0b88b&#39;,
+  	}),
+  	stroke: new ol.style.Stroke({
+  	color: &#39;#f0b88b&#39;,
+  	width: 3,
+  	}),
+  });
+
+
+  /*  function for calculating area of the polygon (feature) selected */
+  function formatArea (polygon){
+   var area = ol.sphere.getArea(polygon.getGeometry().transform(&#39;EPSG:4326&#39;, &#39;EPSG:3857&#39;)); // transform to projected coordinate system.
+   var output;
+   output = Math.round(area * 100*10.7639) / 100  ; //in ft2
+   polygon.getGeometry().transform(&#39;EPSG:3857&#39;, &#39;EPSG:4326&#39; ) //convert back to geographic crc
+   return output;
+  }
+  
+  /*  function for array sum */
+  function getSum(total, num) {
+  return total + Math.round(num);
+  }
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/TCicCHu.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.2 -The &lt;code&gt;floridaLayer&lt;/code&gt; building footprints selected  with the style we specified&lt;/code&gt; for each feature&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;final-comments&#34;&gt;&lt;strong&gt;Final comments&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;This post demonstrates the use of &lt;code&gt;strategy:ol.loadingstrategy.bbox&lt;/code&gt; to load only the features that cover the bounding box. We use this strategy since WFS service is resouce intensive and our server cannot handle millions of HTTP request at once.&lt;/p&gt;
+&lt;p&gt;We also see the use of &lt;code&gt;forEachFeatureAtPixel&lt;/code&gt; method to select our building footprints. On click of the feature we change the style using &lt;code&gt;setStyle&lt;/code&gt; method.&lt;/p&gt;
+&lt;p&gt;Additionally, we saw how to change projection on-the-fly using &lt;code&gt;ol.sphere.getArea&lt;/code&gt; method. A word of caution while using &lt;code&gt;EPSG:3857&lt;/code&gt;. My AOI was on the equator and thus calculating area does not result in significant error. But if the AOI is in temperate zone then adopt suitable projection CRS.&lt;/p&gt;
+&lt;p&gt;Layer Credit: Microsoft buidling footprints &lt;a href=&#34;https://github.com/microsoft/USBuildingFootprints&#34;&gt;https://github.com/microsoft/USBuildingFootprints&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Full Fledged CRUD application using DRF and Token Authentication</title>
       <link>https://amanbagrecha.github.io/post/django/crud-in-django-rest-framework/</link>
-      <pubDate>Mon, 24 May 2021 15:13:58 +0530</pubDate>
+      <pubDate>Sat, 22 May 2021 15:13:58 +0530</pubDate>
       <guid>https://amanbagrecha.github.io/post/django/crud-in-django-rest-framework/</guid>
       <description>&lt;hr style=&#34;border:1px solid lightgray&#34;&gt; &lt;/hr&gt;
 &lt;br&gt;
@@ -1484,277 +1781,6 @@ function fetchcall(event) {
     </item>
     
     <item>
-      <title>Django rest framework PDF creation and email via gmail SMTP and reportLab</title>
-      <link>https://amanbagrecha.github.io/post/django/pdf-and-email-creation/</link>
-      <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/post/django/pdf-and-email-creation/</guid>
-      <description>&lt;h2 id=&#34;main-steps&#34;&gt;Main steps&lt;/h2&gt;
-&lt;p&gt;In this blog we create PDF using report lab and email it to the user using gmail SMTP service. All actions are performed in Django.&lt;/p&gt;
-&lt;h2 id=&#34;step-1--create-view-to-serialise-data&#34;&gt;Step 1 : create view to serialise data&lt;/h2&gt;
-&lt;p&gt;The createInspectionReport is something not to worry about. It is just a form which takes in input with &lt;code&gt;users, emailaddress&lt;/code&gt;. &lt;code&gt;myresponse&lt;/code&gt; is a dictionary to store response and return with serialised data.
-The &lt;code&gt;send&lt;/code&gt; handles sending creating pdf and emailing to the &lt;code&gt;emailaddress&lt;/code&gt; of the users. PDF generation is done using reportlab.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
-SUCCESS = &#39;success&#39;
-ERROR = &#39;error&#39;
-message_list = [&#39;response&#39;, &#39;status&#39;, &#39;message&#39;] # eg: [&amp;quot;success&amp;quot;, 201, &amp;quot;successfully upload the file&amp;quot;]
-
-@csrf_exempt
-@api_view([&#39;POST&#39;,])
-def CreateInspectionReport(request):
-	myresponse = {k: [] for k in message_list}
-	
-	try:
-		myData = request.data.copy()
-		# print(myData)
-		myData[&#39;user&#39;] = request.user.id #get the user id
-		myData[&#39;EmailAddress&#39;] = myData[&#39;EmailAddress&#39;] or request.user.email # user enters the email or take from the account
-
-		if not myData[&#39;EmailAddress&#39;]: # custom validation and response
-			RequestResponse(myresponse,ERROR,status.HTTP_400_BAD_REQUEST,{&amp;quot;Email Address&amp;quot; : [&amp;quot;This field cannot be blank&amp;quot;] })
-			return Response(data = myresponse)
-
-		
-		serializer = serializers.AddInspectionReportSerializer( data=myData) # serialier the data
-		if serializer.is_valid():
-			try:
-				send(**myData.dict()) # create pdf and send email
-			except Exception as e:
-				print(e)
-				RequestResponse(myresponse,ERROR,status.HTTP_400_BAD_REQUEST,{&amp;quot;Email&amp;quot; : [&amp;quot;Could not send mail!&amp;quot;] })
-				return Response(data = myresponse)
-			account = serializer.save()
-			RequestResponse(myresponse,SUCCESS,status.HTTP_201_CREATED, {&amp;quot;Success&amp;quot;: [f&amp;quot;Inspection Report e-mailed to {account.EmailAddress}!&amp;quot;] })
-			messages.success(request, f&#39;Inspection Report e-mailed to {account.EmailAddress}!&#39;)
-			# print(serializer)
-			return Response(myresponse, )
-		RequestResponse(myresponse,ERROR,status.HTTP_400_BAD_REQUEST,serializer.errors)
-		return Response(data = myresponse)
-	except Exception as e:
-		print(e)
-		RequestResponse(myresponse,ERROR,status.HTTP_500_INTERNAL_SERVER_ERROR, {&amp;quot;Error&amp;quot;: [&amp;quot;Internal Server Error&amp;quot;]})
-		return Response(data= myresponse)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;step-2-create-pdf&#34;&gt;step 2: create pdf&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def generate_pdf(**Mydata):
-	y = 700
-	buffer = io.BytesIO() # in memory create pdf
-	p = canvas.Canvas(buffer, pagesize=letter)
-	p.setFont(&#39;Helvetica&#39;, 14)
-	p.drawString(220,y,   Mydata[&#39;InspectionTitle&#39;])
-	p.drawString(450, y, &amp;quot;Date:&amp;quot; + timezone.now().strftime(&#39;%Y-%b-%d&#39;))
-	p.line(30, 675, 550, 675)
-	p.drawString(220, y-300, &amp;quot;Time of Inspection: &amp;quot; + str(Mydata[&#39;InspectionTime&#39;]))
-	p.drawString(220, y-200, &amp;quot;Estimated Replacement Cost: &amp;quot; + str(Mydata[&#39;EstReplacementCost&#39;]))
-	p.showPage()
-	p.save()
-	pdf = buffer.getvalue()
-	buffer.close()
-	return pdf
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;step-3-send-email-using--report-lab&#34;&gt;step 3: send email using  report lab&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# settings.py
-EMAIL_BACKEND = &#39;django.core.mail.backends.smtp.EmailBackend&#39;
-EMAIL_HOST = &amp;quot;smtp.gmail.com&amp;quot;
-EMAIL_HOST_USER = &#39;your_email@gmail.com&#39;
-EMAIL_HOST_PASSWORD = &#39;your_password&#39;
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-# views.py
-def send(**Mydata):
-	pdf = generate_pdf(**Mydata)
-	msg = EmailMessage(Mydata[&#39;InspectionTitle&#39;], &amp;quot; Your Inspection Report is ready! &amp;quot;, settings.EMAIL_HOST_USER, to=[Mydata[&#39;EmailAddress&#39;]])
-	msg.attach(f&amp;quot;{Mydata[&#39;InspectionTitle&#39;]}.pdf&amp;quot;, pdf, &#39;application/pdf&#39;)
-	msg.content_subtype = &amp;quot;html&amp;quot;
-	resp = msg.send()
-	print(&amp;quot;resp:&amp;quot; , resp)
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Polygon Selection and  Area Calculation in Openlayers</title>
-      <link>https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/</link>
-      <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/</guid>
-      <description>&lt;h2 id=&#34;overview&#34;&gt;&lt;strong&gt;Overview&lt;/strong&gt;&lt;/h2&gt;
-&lt;p&gt;In this small demo-blog we look into how to make polygon selections on the map and calculate the area of that polygon on-the-fly. We use openlayers v6 for client side and geoserver to save our vector layers for this exercise.&lt;br&gt;
-I assume readers to have familiarity with setting up geoserver and basics of openlayers.&lt;/p&gt;
-&lt;h2 id=&#34;step-1-setup-openlayers&#34;&gt;&lt;strong&gt;Step 1: Setup openlayers&lt;/strong&gt;&lt;/h2&gt;
-&lt;p&gt;Openlayers requires you to add these cdns to add their functionality into our application.&lt;/p&gt;
-&lt;h3 id=&#34;link-necessary-cdns&#34;&gt;link necessary cdns&lt;/h3&gt;
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;
- &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css&amp;quot; type=&amp;quot;text/css&amp;quot;&amp;gt;
- &amp;lt;script src=&amp;quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
- 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We are using openlayers to render the request response. since the output of the WFS request is json, we create a new layer with vector source and format as geojson. 
-The &lt;code&gt;strategy:ol.loadingstrategy.bbox&lt;/code&gt; tells openlayers to only load features within the bbox. Simply put, if we move to different location, only features within that bbox will appear.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;
-// setup geoserver port
-var geoserver_ip = &#39;http://120.0.0.1&#39;
-var geoserver_port = &#39;8080&#39;
-
-// define vector source
-var myFlSource = new ol.source.Vector({
-	format: new ol.format.GeoJSON(),
-		url: function (extent){
-			return ( geoserver_ip +&#39;:&#39; + geoserver_port + &#39;/geoserver/dronnav/ows?service=WFS&amp;amp;version=1.1.0&amp;amp;request=GetFeature&amp;amp;typeName=dronnav%3Aflorida_bp&amp;amp;maxFeatures=10000&amp;amp;outputFormat=application/json&amp;amp;srsname=EPSG:4326&amp;amp;&#39; + &#39;bbox=&#39; + extent.join(&#39;,&#39;) + &#39;,EPSG:4326&#39; );
-		},
-		strategy:ol.loadingstrategy.bbox,
-	});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We perform WFS request from geoserver to get our layer &lt;code&gt;florida_bp&lt;/code&gt; in this case. The parameters are as explained as follows&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;service=WFS&lt;/code&gt; : web feature service to perform interaction&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;typename=workspace:florida_bp&lt;/code&gt; : specify the workspace and layer name&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;version=1.1.0&lt;/code&gt; : version number&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;maxFeatures = 10000&lt;/code&gt; : since WFS request is computationaly expensive, we restrict to only load 10000 features.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;request=GetFeature&lt;/code&gt; : request type. There are several other which can be found here&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;outputFormat=application/json&lt;/code&gt; : the output format as response&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;srsname=EPSG:4326&lt;/code&gt; : coordinate reference system to display on the map&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;bbox=&lt;/code&gt; : bounding box&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// define vector layer
-var floridaLayer = new ol.layer.Vector({
-	source: myFlSource,
-	style: new ol.style.Style({
-		fill: new ol.style.Fill({
-			color: &#39;rgba(1, 1, 255, .2)&#39;,
-			}),
-		stroke: new ol.style.Stroke({
-			color: &#39;rgba(1, 1, 255, .5)&#39;,
-			width: 2,
-		}),
-		}),
-		minZoom: 16, // this will allows us to send request only when the zoom is atleast 16
-});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Once the layer is defined, we need to add this layer to the map. We can either use &lt;code&gt;map.addLayer(layername)&lt;/code&gt; or add to array in the map (&lt;code&gt;Fig.1&lt;/code&gt;)&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// add ESRI basemap
-var project_maplayer =    new ol.layer.Tile({
-	source: new ol.source.XYZ({
-		attributions: [&#39;Powered by Esri&#39;,
-										&#39;Source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community&#39;],
-		attributionsCollapsible: false,
-		url: &#39;https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}&#39;,
-		maxZoom: 23
-	}),
-	zIndex: 0
-});
-
-// add view with projection set to EPSG 4326 for the map
-var project_view = new ol.View({
-	projection: &#39;EPSG:4326&#39;,
-	center: [-81.80808208706726, 27.285095000261222],
-	zoom: 7,
-});
-
-// define the map with all the layers created previously
-var Projectmap = new ol.Map({
-	layers: [project_maplayer, floridaLayer],
-	overlays: [overlay],
-	target: &#39;project_map&#39;, // the div element `id` in html page
-	view: project_view,
-});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;figure&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/jodNbPQ.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 -The Map layer with building footprints (&lt;code&gt;floridaLayer&lt;/code&gt;) added to the map with the style we specified&lt;/code&gt; for each feature&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;h2 id=&#34;get-feature-info-on-click&#34;&gt;&lt;strong&gt;Get feature info on click&lt;/strong&gt;&lt;/h2&gt;
-&lt;p&gt;After adding basemap and our layer to the map served via geoserver, we are now ready to get information &lt;code&gt;on-click&lt;/code&gt;. We use  &lt;code&gt;forEachFeatureAtPixel&lt;/code&gt; method on our layer to send a WFS request to our geoserver and recive a response in json format. We change the style of the building on click (&lt;code&gt;Fig.2&lt;/code&gt;). The area is calculated using formatArea function which utilises &lt;code&gt;ol.sphere.getArea&lt;/code&gt; and &lt;code&gt;transform&lt;/code&gt; method to calculate area and change CRS.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;
-  /*  select ploygon the feature and get area and store the features */
-  var selected = []; // contains all features
-  var selected_area = []; // contains area of feature, one-to-one
-  
-  Projectmap.on(&#39;singleclick&#39;, function (e) {
-  Projectmap.forEachFeatureAtPixel(e.pixel, function (f, l) {
-  	var mycoordinate = e.coordinate
-  	storef = f  // feature
-  	/* if click is on polygon, then select the feature */
-  if ( f.getGeometry()   instanceof  ol.geom.MultiPolygon ) {
-		  
-		var selIndex = selected.indexOf(f);
-			// console.log(selIndex)
-		if (selIndex &amp;lt; 0) {
-			selected.push(f);
-			selected_area.push( formatArea(f) ); // formatArea function returns the area in ft2
-			f.setStyle(highlightStyle); // change style on click
-		} else {
-			selected.splice(selIndex, 1);
-			selected_area.splice( selIndex, 1);
-			f.setStyle(undefined);
-		}
- 	 }
-
-	  })
-
-	  /* update the tags with no of selected feature and total area combined */
-	  document.getElementById(&#39;status-selected&#39;).innerHTML = &#39;&amp;amp;nbsp;&#39; + selected.length + &#39; selected features&#39;;
-	  document.getElementById(&#39;status-selected_area&#39;).innerHTML = &#39;&amp;amp;nbsp;&#39; + selected_area.reduce(getSum, 0) + &#39; ft&amp;lt;sup&amp;gt;2&amp;lt;/sup&amp;gt;&#39;;
-	  
-	});
-	
-
-	
-  /* style for selected feature on click  */
-  var highlightStyle = new ol.style.Style({
-  	fill: new ol.style.Fill({
-  	color: &#39;#f0b88b&#39;,
-  	}),
-  	stroke: new ol.style.Stroke({
-  	color: &#39;#f0b88b&#39;,
-  	width: 3,
-  	}),
-  });
-
-
-  /*  function for calculating area of the polygon (feature) selected */
-  function formatArea (polygon){
-   var area = ol.sphere.getArea(polygon.getGeometry().transform(&#39;EPSG:4326&#39;, &#39;EPSG:3857&#39;)); // transform to projected coordinate system.
-   var output;
-   output = Math.round(area * 100*10.7639) / 100  ; //in ft2
-   polygon.getGeometry().transform(&#39;EPSG:3857&#39;, &#39;EPSG:4326&#39; ) //convert back to geographic crc
-   return output;
-  }
-  
-  /*  function for array sum */
-  function getSum(total, num) {
-  return total + Math.round(num);
-  }
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;figure&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/TCicCHu.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.2 -The &lt;code&gt;floridaLayer&lt;/code&gt; building footprints selected  with the style we specified&lt;/code&gt; for each feature&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;h2 id=&#34;final-comments&#34;&gt;&lt;strong&gt;Final comments&lt;/strong&gt;&lt;/h2&gt;
-&lt;p&gt;This post demonstrates the use of &lt;code&gt;strategy:ol.loadingstrategy.bbox&lt;/code&gt; to load only the features that cover the bounding box. We use this strategy since WFS service is resouce intensive and our server cannot handle millions of HTTP request at once.&lt;/p&gt;
-&lt;p&gt;We also see the use of &lt;code&gt;forEachFeatureAtPixel&lt;/code&gt; method to select our building footprints. On click of the feature we change the style using &lt;code&gt;setStyle&lt;/code&gt; method.&lt;/p&gt;
-&lt;p&gt;Additionally, we saw how to change projection on-the-fly using &lt;code&gt;ol.sphere.getArea&lt;/code&gt; method. A word of caution while using &lt;code&gt;EPSG:3857&lt;/code&gt;. My AOI was on the equator and thus calculating area does not result in significant error. But if the AOI is in temperate zone then adopt suitable projection CRS.&lt;/p&gt;
-&lt;p&gt;Layer Credit: Microsoft buidling footprints &lt;a href=&#34;https://github.com/microsoft/USBuildingFootprints&#34;&gt;https://github.com/microsoft/USBuildingFootprints&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Upload multiple geotagged images and store POINTS in postgresql database using geodjango</title>
       <link>https://amanbagrecha.github.io/post/getting-started/</link>
       <pubDate>Sun, 13 Dec 2020 00:00:00 +0000</pubDate>
@@ -1976,6 +2002,106 @@ Released under the [MIT](https://github.com/wowchemy/wowchemy-hugo-modules/blob/
     </item>
     
     <item>
+      <title>CRUD Application using node express api</title>
+      <link>https://amanbagrecha.github.io/project/internal-project/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/project/internal-project/</guid>
+      <description>&lt;h1 id=&#34;project-setup&#34;&gt;Project Setup&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A project to demostrate rest-api crud operation in node-express application. Node and express allows for easy api building and super easy to create application.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;create package.json&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;npm init -y
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;install express&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;npm install --save express
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;in &lt;code&gt;index.js&lt;/code&gt; file&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;import express from &#39;express&#39;;  // both are same (works with node 14.5 and above..)
+const express = require(&#39;express&#39;); // old version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To enable the first line of code for above we have to make changes in package.json as follows&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;&amp;quot;type&amp;quot; : &amp;quot;module&amp;quot;,
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;run server&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-npm&#34;&gt;npm start
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;install nodemon package to refresh the server on each save&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;npm install --save-dev nodemon
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In &lt;code&gt;package.json&lt;/code&gt; add under scripts. This is done to start application using nodemon.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;quot;start&amp;quot;: &amp;quot;nodemon index.js&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For modularity we create another folder where we would store all our routes
+create a folder &lt;code&gt;routes/users.js&lt;/code&gt; which has the following basic template.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;import express from &#39;express&#39;;
+
+// Use the express.Router class to create modular, mountable route handlers
+const router = express.Router();
+
+// routes here
+// eg: router.get(...)
+
+// export the app `router` so that it can be imported in index.js
+export default router;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now import the exported &lt;code&gt;router&lt;/code&gt; app to &lt;code&gt;index.js&lt;/code&gt; as follows&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;import router from &#39;./routes/users.js&#39;;
+
+app.use(&amp;quot;/people&amp;quot;, router);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;now&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.post(&#39;/&#39;, (req, res) =&amp;gt; {
+    // when making post request, we have access to req.body
+    user_list.push(req.body);  // user_list is list of dictoriay contianing all users
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;next-step-setting-up-mongo-db-database&#34;&gt;Next step: Setting up mongo db database&lt;/h3&gt;
+&lt;p&gt;npm install mongoose&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;import mongoose from &#39;mongoose&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;const CONNECTION_URL = &amp;quot;mongodb+srv://&amp;lt;username&amp;gt;:&amp;lt;password&amp;gt;@cluster0.frghl.mongodb.net/&amp;lt;data_basename&amp;gt;?retryWrites=true&amp;amp;w=majority&amp;quot;;
+mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() =&amp;gt; app.listen(PORT, () =&amp;gt; console.log(`Server Running on Port: http://localhost:${PORT}`))) // what to do when we connection is made
+  .catch((error) =&amp;gt; console.log(`${error} did not connect`)); // what if it goes wrong
+mongoose.set(&#39;useFindAndModify&#39;, false);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We now create schema for our database. Since this is basic crud, we want username, email.
+we do so by creating &lt;code&gt;user_model.js&lt;/code&gt; file inside &lt;code&gt;models&lt;/code&gt; folder in root directory.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;import mongoose from &#39;mongoose&#39;;
+
+const postSchema = mongoose.Schema({
+    firstname: String,
+    lastname: String,
+    email: { // required field
+        type: String,
+        required: true
+    },
+    createdAt: { 
+        type: Date,
+        default: new Date(),
+    },
+})
+
+var user_model = mongoose.model(&#39;user_model&#39;, postSchema);
+
+export default user_model;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After exporting the model, we now import in our &lt;code&gt;functions.js&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;Error messages&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-error&#34;&gt;import { Mongoose } from &#39;mongoose&#39;;
+         ^^^^^^^^
+SyntaxError: Named export &#39;Mongoose&#39; not found. The requested module &#39;mongoose&#39; is a CommonJS module, which may not support all module.exports as named exports.
+CommonJS modules can always be imported via the default export, for example using:
+
+import pkg from &#39;mongoose&#39;;
+const { Mongoose } = pkg;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Feasibility Study of Floating Solar Panels over Lakes in Bengaluru City</title>
       <link>https://amanbagrecha.github.io/publication/conference-paper/</link>
       <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
@@ -2136,103 +2262,11 @@ Three
     </item>
     
     <item>
-      <title>CRUD Application using node express api</title>
-      <link>https://amanbagrecha.github.io/project/internal-project/</link>
+      <title>Web application to access store information on click of marker!</title>
+      <link>https://amanbagrecha.github.io/project/node-express-crud/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/project/internal-project/</guid>
-      <description>&lt;h1 id=&#34;project-setup&#34;&gt;Project Setup&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;A project to demostrate rest-api crud operation in node-express application. Node and express allows for easy api building and super easy to create application.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;create package.json&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;npm init -y
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;install express&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;npm install --save express
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;in &lt;code&gt;index.js&lt;/code&gt; file&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;import express from &#39;express&#39;;  // both are same (works with node 14.5 and above..)
-const express = require(&#39;express&#39;); // old version
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;To enable the first line of code for above we have to make changes in package.json as follows&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;&amp;quot;type&amp;quot; : &amp;quot;module&amp;quot;,
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;run server&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-npm&#34;&gt;npm start
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;install nodemon package to refresh the server on each save&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;npm install --save-dev nodemon
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In &lt;code&gt;package.json&lt;/code&gt; add under scripts. This is done to start application using nodemon.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;quot;start&amp;quot;: &amp;quot;nodemon index.js&amp;quot;;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;For modularity we create another folder where we would store all our routes
-create a folder &lt;code&gt;routes/users.js&lt;/code&gt; which has the following basic template.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;import express from &#39;express&#39;;
-
-// Use the express.Router class to create modular, mountable route handlers
-const router = express.Router();
-
-// routes here
-// eg: router.get(...)
-
-// export the app `router` so that it can be imported in index.js
-export default router;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now import the exported &lt;code&gt;router&lt;/code&gt; app to &lt;code&gt;index.js&lt;/code&gt; as follows&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;import router from &#39;./routes/users.js&#39;;
-
-app.use(&amp;quot;/people&amp;quot;, router);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;now&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.post(&#39;/&#39;, (req, res) =&amp;gt; {
-    // when making post request, we have access to req.body
-    user_list.push(req.body);  // user_list is list of dictoriay contianing all users
-})
-&lt;/code&gt;&lt;/pre&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;next-step-setting-up-mongo-db-database&#34;&gt;Next step: Setting up mongo db database&lt;/h3&gt;
-&lt;p&gt;npm install mongoose&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;import mongoose from &#39;mongoose&#39;;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;const CONNECTION_URL = &amp;quot;mongodb+srv://&amp;lt;username&amp;gt;:&amp;lt;password&amp;gt;@cluster0.frghl.mongodb.net/&amp;lt;data_basename&amp;gt;?retryWrites=true&amp;amp;w=majority&amp;quot;;
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() =&amp;gt; app.listen(PORT, () =&amp;gt; console.log(`Server Running on Port: http://localhost:${PORT}`))) // what to do when we connection is made
-  .catch((error) =&amp;gt; console.log(`${error} did not connect`)); // what if it goes wrong
-mongoose.set(&#39;useFindAndModify&#39;, false);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We now create schema for our database. Since this is basic crud, we want username, email.
-we do so by creating &lt;code&gt;user_model.js&lt;/code&gt; file inside &lt;code&gt;models&lt;/code&gt; folder in root directory.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;import mongoose from &#39;mongoose&#39;;
-
-const postSchema = mongoose.Schema({
-    firstname: String,
-    lastname: String,
-    email: { // required field
-        type: String,
-        required: true
-    },
-    createdAt: { 
-        type: Date,
-        default: new Date(),
-    },
-})
-
-var user_model = mongoose.model(&#39;user_model&#39;, postSchema);
-
-export default user_model;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;After exporting the model, we now import in our &lt;code&gt;functions.js&lt;/code&gt; file.&lt;/p&gt;
-&lt;p&gt;Error messages&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-error&#34;&gt;import { Mongoose } from &#39;mongoose&#39;;
-         ^^^^^^^^
-SyntaxError: Named export &#39;Mongoose&#39; not found. The requested module &#39;mongoose&#39; is a CommonJS module, which may not support all module.exports as named exports.
-CommonJS modules can always be imported via the default export, for example using:
-
-import pkg from &#39;mongoose&#39;;
-const { Mongoose } = pkg;
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <guid>https://amanbagrecha.github.io/project/node-express-crud/</guid>
+      <description></description>
     </item>
     
     <item>
