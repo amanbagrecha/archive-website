@@ -33,7 +33,7 @@
   
     
   
-  <meta name="description" content="we look into how to upload multiple geo-tagged/non-geotagged images to aws s3 using plain Django and spatialite as databbase." />
+  <meta name="description" content="we look into how to upload multiple geo-tagged/non-geotagged images to aws s3 using plain Django and postgresql as databbase." />
 
   
   <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/django/django-image-upload/" />
@@ -289,19 +289,18 @@
   
   
     
-    
   
   
-  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:card" content="summary_large_image" />
   
     <meta property="twitter:site" content="@https://twitter.com/aman_bagrecha" />
     <meta property="twitter:creator" content="@https://twitter.com/aman_bagrecha" />
   
   <meta property="og:site_name" content="Aman Bagrecha" />
   <meta property="og:url" content="https://amanbagrecha.github.io/post/django/django-image-upload/" />
-  <meta property="og:title" content="How to Upload Multiple Images in Django | Aman Bagrecha" />
-  <meta property="og:description" content="we look into how to upload multiple geo-tagged/non-geotagged images to aws s3 using plain Django and spatialite as databbase." /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
-    <meta property="twitter:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:title" content="How to Upload Multiple Geotagged Images in Django | Aman Bagrecha" />
+  <meta property="og:description" content="we look into how to upload multiple geo-tagged/non-geotagged images to aws s3 using plain Django and postgresql as databbase." /><meta property="og:image" content="https://amanbagrecha.github.io/post/django/django-image-upload/featured.jpg" />
+    <meta property="twitter:image" content="https://amanbagrecha.github.io/post/django/django-image-upload/featured.jpg" /><meta property="og:locale" content="en-us" />
   
     
       <meta property="article:published_time" content="2021-05-24T17:25:54&#43;05:30" />
@@ -332,7 +331,11 @@
     "@type": "WebPage",
     "@id": "https://amanbagrecha.github.io/post/django/django-image-upload/"
   },
-  "headline": "How to Upload Multiple Images in Django",
+  "headline": "How to Upload Multiple Geotagged Images in Django",
+  
+  "image": [
+    "https://amanbagrecha.github.io/post/django/django-image-upload/featured.jpg"
+  ],
   
   "datePublished": "0001-01-01T00:00:00Z",
   "dateModified": "2021-05-24T17:25:54+05:30",
@@ -350,7 +353,7 @@
       "url": "https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "we look into how to upload multiple geo-tagged/non-geotagged images to aws s3 using plain Django and spatialite as databbase."
+  "description": "we look into how to upload multiple geo-tagged/non-geotagged images to aws s3 using plain Django and postgresql as databbase."
 }
 </script>
 
@@ -366,7 +369,7 @@
 
 
 
-  <title>How to Upload Multiple Images in Django | Aman Bagrecha</title>
+  <title>How to Upload Multiple Geotagged Images in Django | Aman Bagrecha</title>
 </head>
 
 
@@ -727,18 +730,26 @@
 
 
 
-  
+
+
+
+
+
+
+
 
   
-  
-  
-<div class="article-container pt-3">
-  <h1>How to Upload Multiple Images in Django</h1>
-
-  
-
   
     
+  
+
+
+<div class="article-container pt-3">
+  <h1>How to Upload Multiple Geotagged Images in Django</h1>
+
+  
+
+  
 
 
 <div class="article-metadata">
@@ -761,7 +772,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    6 min read
+    7 min read
   </span>
   
 
@@ -777,13 +788,20 @@
 
 </div>
 
-    
-
-
-
-
-
   
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 393px;">
+  <div style="position: relative">
+    <img src="/post/django/django-image-upload/featured_hu66771e726c9212f3de343fdc5d431339_1095828_720x0_resize_q75_lanczos.jpg" alt="" class="featured-image">
+    <span class="article-header-caption">Image Credit: Author</span>
+  </div>
 </div>
 
 
@@ -810,6 +828,19 @@ create superuser python manage.py createsuperuser
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
 MEDIA_URL = '/media/'
 </code></pre>
+<h3 id="setup-the-database-backend-to-postgis-extenstion-of-postgresql"><strong>Setup the database backend to postgis extenstion of postgresql.</strong></h3>
+<pre><code class="language-python"># in settings.py file
+DATABASES = {
+	'default': {
+		 'ENGINE': 'django.contrib.gis.db.backends.postgis', #imp
+		 'NAME': 'database_name_here',
+		 'USER': 'postgres',
+		'PASSWORD': 'password_here',
+		'HOST': 'localhost',
+		'PORT': '5432',
+	},
+}
+</code></pre>
 <p>In <code>models.py</code>, create model for uploading images. <code>DateTimeField</code> and <code>user</code> are not necessary.</p>
 <pre><code class="language-python">from django.db import models
 from django.contrib.auth.models import User
@@ -835,14 +866,7 @@ class ImageForm(ModelForm):
 		fields = ('image',)
 
 </code></pre>
-<p>In <code>urls.py</code>, setup the</p>
-<pre><code class="language-python">from django.conf import settings
-from django.conf.urls.static import static
-if settings.DEBUG:
-        urlpatterns += static(settings.MEDIA_URL,
-                              document_root=settings.MEDIA_ROOT)
-</code></pre>
-<p>in <code>home.html</code>, create the form to accept image upload</p>
+<p>In <code>home.html</code>, create the form to accept image upload.</p>
 <pre><code class="language-html">                  &lt;!-- Modal --&gt;
                   &lt;form method = &quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
                   &lt;div class=&quot;modal fade&quot; id=&quot;exampleModal&quot; tabindex=&quot;-1&quot; role=&quot;dialog&quot; aria-labelledby=&quot;exampleModalLabel&quot; aria-hidden=&quot;true&quot; &gt;
@@ -868,7 +892,7 @@ if settings.DEBUG:
                   &lt;/form&gt;
 
 </code></pre>
-<p>In <code>views.py</code>, accept the HTTP POST request and save to the database. We will alter this to extract lat, lon later.</p>
+<p>In <code>views.py</code>, accept the HTTP POST request and save to the database. We will alter this to extract latitude, longitude later.</p>
 <pre><code class="language-python">@login_required(login_url='login')
 def home_page(request):
 
@@ -886,60 +910,20 @@ def home_page(request):
 		return render(request, &quot;GisMap/home.html&quot;, {'Title': &quot;Home Page&quot;, &quot;image_form&quot;: ImageForm})
 
 </code></pre>
-<h2 id="upload-to-s3-bucket">Upload to S3 bucket</h2>
-<p>Install boto3 package and django-storages. Add to installed packages. Additionally, provide Key:Value AWS credentials to access the bucket and change the default file storage to S3.</p>
-<pre><code class="language-bash">pip install django-storages
-pip install boto3
-</code></pre>
-<p>in <code>settings.py</code></p>
-<pre><code class="language-python">INSTALLED_APPS = [
-	...
-	'storages',
-]
-
-AWS_ACCESS_KEY_ID = &quot;&quot;
-AWS_SECRET_ACCESS_KEY = &quot;&quot;
-AWS_STORAGE_BUCKET_NAME = &quot;&quot;
-
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
-
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-AWS_QUERYSTRING_AUTH = False // removes the query string
-</code></pre>
-<p><strong>NOTE: Make the bucket public to be able to make HTTP request</strong></p>
-<p>Provide policy to make the repo public.</p>
-<pre><code class="language-json">{
-  &quot;Version&quot;:&quot;2012-10-17&quot;,
-  &quot;Statement&quot;:[
-    {
-      &quot;Sid&quot;:&quot;PublicRead&quot;,
-      &quot;Effect&quot;:&quot;Allow&quot;,
-      &quot;Principal&quot;: &quot;*&quot;,
-      &quot;Action&quot;:[&quot;s3:GetObject&quot;,&quot;s3:GetObjectVersion&quot;],
-      &quot;Resource&quot;:[&quot;arn:aws:s3:::DOC-EXAMPLE-BUCKET/*&quot;]
-    }
-  ]
-}
-</code></pre>
 <h3 id="get-lat-lon-from-image-meta-deta-exchangeable-image-file-format-exif-">Get Lat, lon from image meta deta (Exchangeable image file format [EXIF] )</h3>
+<ol>
+<li>Geodjango is built on top of django and adds spatial functionality such as storing points, lines , polygon and multipolygon. It is prepackaged with Django but requires few additional softwares to make it fully functional. These include- GDAL, PROJ, GEOS, PostGIS. These can be downloaded from osgeo4W which bundles all these libraries. Then application can be added to apps in settings with <code>django.contrib.gis</code> to the installed apps.</li>
+</ol>
 <p>By default geodjango is not installed in the apps list and thus we do it ourself.</p>
 <pre><code>pip install django-geo
 </code></pre>
-<p>NOTE: ensure os4geo is installed: install from here if not done. <a href="https://qgis.org/en/site/forusers/download.html">https://qgis.org/en/site/forusers/download.html</a> and make the following changes in <code>settings.py</code>. This is to install all the dependencies and let django know about its location.</p>
+<p>NOTE- ensure os4geo is installed: install from <a href="https://qgis.org/en/site/forusers/download.html" target="_blank" rel="noopener">here</a> if not done.  And make the following changes in <code>settings.py</code>.</p>
+<p>An additional setting is required, which is to locate osgeo4w directory in django. If you install osgeo4w in default directory, you need to put the following code within the settings.py file.</p>
 <pre><code class="language-python">INSTALLED_APPS = [
 ...
 	'django.contrib.gis',
 ]
 
-DATABASES = {
-	'default': {
-		# 'ENGINE': 'django.db.backends.sqlite3',
-		'ENGINE': 'django.contrib.gis.db.backends.spatialite',
-		'NAME': BASE_DIR / 'db.sqlite3',
-	}
-}
 
 
 import os
@@ -1045,8 +1029,46 @@ def home_page(request):
             request, &quot;GisMap/home.html&quot;, {&quot;Title&quot;: &quot;Home Page&quot;, &quot;image_form&quot;: ImageForm}
         )
 </code></pre>
-<h2 id="upload-multiple-images">Upload multiple images</h2>
-<p><a href="https://stackoverflow.com/questions/34006994/how-to-upload-multiple-images-to-a-blog-post-in-django" target="_blank" rel="noopener">Additional source</a></p>
+<h2 id="upload-to-s3-bucket">Upload to S3 bucket</h2>
+<p>Install boto3 package and django-storages. Add to installed packages. Additionally, provide Key:Value AWS credentials to access the bucket and change the default file storage to S3.</p>
+<pre><code class="language-bash">pip install django-storages
+pip install boto3
+</code></pre>
+<p>in <code>settings.py</code></p>
+<pre><code class="language-python">INSTALLED_APPS = [
+	...
+	'storages',
+]
+
+AWS_ACCESS_KEY_ID = &quot;&quot;
+AWS_SECRET_ACCESS_KEY = &quot;&quot;
+AWS_STORAGE_BUCKET_NAME = &quot;&quot;
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_QUERYSTRING_AUTH = False // removes the query string
+</code></pre>
+<p><strong>NOTE: Make the bucket public to be able to make HTTP request</strong></p>
+<p>Provide policy to make our s3 bucket public. By default, the bucket is private and no read/wrtie access is provided for user from outside the s3 page. There are other ways to access private bucket by either Limiting access to specific IP addresses or Restricting access to a specific HTTP referer. For simplicity we make the bucket public.</p>
+<pre><code class="language-json">{
+  &quot;Version&quot;:&quot;2012-10-17&quot;,
+  &quot;Statement&quot;:[
+    {
+      &quot;Sid&quot;:&quot;PublicRead&quot;,
+      &quot;Effect&quot;:&quot;Allow&quot;,
+      &quot;Principal&quot;: &quot;*&quot;,
+      &quot;Action&quot;:[&quot;s3:GetObject&quot;,&quot;s3:GetObjectVersion&quot;],
+      &quot;Resource&quot;:[&quot;arn:aws:s3:::DOC-EXAMPLE-BUCKET/*&quot;]
+    }
+  ]
+}
+</code></pre>
+<h2 id="accept-non-geotagged-images">Accept non-geotagged images</h2>
+<p>At this point, we should be able to upload geotagged images to s3 bucket. Non-geotagged images are not yet accepted by the model and thus we create seperate model for it.</p>
+<p><a href="https://stackoverflow.com/questions/34006994/how-to-upload-multiple-images-to-a-blog-post-in-django" target="_blank" rel="noopener">Additional resource</a></p>
 <p>We now make separate model for accepting non-geotagged images similar to <code>ImageUpload</code> model but without <code>PointField</code>.</p>
 <pre><code class="language-python">class Photos(models.Model):
 
@@ -1061,14 +1083,6 @@ def home_page(request):
 
 	def __str__(self):
 		return self.user.username + &quot; uploaded image &quot;+ self.image.name
-</code></pre>
-<p>Make a new form which accepts multiple image files to be uploaded at once.</p>
-<pre><code class="language-python">class PhotoForm(forms.ModelForm):
-	images = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
-
-	class Meta:
-		model = Photos
-		fields = ('images',)
 </code></pre>
 <p>In <code>views.py</code> file, extend the home_page function to add a fallback for non-geotagged images.</p>
 <pre><code class="language-python">if request.method == &quot;POST&quot;:
@@ -1107,7 +1121,16 @@ else:
         request, &quot;GisMap/home.html&quot;, {&quot;Title&quot;: &quot;Home Page&quot;, &quot;image_form&quot;: ImageForm}
     )
 </code></pre>
-<p>in <code>home.html</code>, add <code>multiple</code> attribute</p>
+<h2 id="accept-multiple-images">Accept multiple images</h2>
+<p>Make a new form which accepts multiple image files to be uploaded at once.</p>
+<pre><code class="language-python">class PhotoForm(forms.ModelForm):
+	images = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+
+	class Meta:
+		model = Photos
+		fields = ('images',)
+</code></pre>
+<p>In <code>home.html</code>, add <code>multiple</code> attribute to allow for multiple selection of images at once.</p>
 <pre><code class="language-html">				&lt;div class=&quot;form-group&quot;&gt;
 				&lt;label for=&quot;note-image&quot;&gt;&lt;/label&gt;
 				&lt;input type=&quot;file&quot; name=&quot;images&quot; class=&quot;form-control-file&quot; id=&quot;note-image&quot; multiple&gt;
@@ -1121,6 +1144,9 @@ else:
 <li>How to Setup AWS S3 bucket</li>
 <li>How to Extract meta data from Image and store in database using PointField</li>
 </ul>
+<blockquote>
+<p>These steps will ensure you have multiple images uploaded at once and all the geolocation information can be stored in database, which later can be import to QGIS for data visualisation. Although both postgresql and django admin allows users to visualise the data.</p>
+</blockquote>
 
     </div>
 
@@ -1144,7 +1170,7 @@ else:
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://amanbagrecha.github.io/post/django/django-image-upload/&amp;text=How%20to%20Upload%20Multiple%20Images%20in%20Django" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://amanbagrecha.github.io/post/django/django-image-upload/&amp;text=How%20to%20Upload%20Multiple%20Geotagged%20Images%20in%20Django" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -1157,7 +1183,7 @@ else:
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://amanbagrecha.github.io/post/django/django-image-upload/&amp;t=How%20to%20Upload%20Multiple%20Images%20in%20Django" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://amanbagrecha.github.io/post/django/django-image-upload/&amp;t=How%20to%20Upload%20Multiple%20Geotagged%20Images%20in%20Django" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -1170,7 +1196,7 @@ else:
       
       
       <li>
-        <a href="mailto:?subject=How%20to%20Upload%20Multiple%20Images%20in%20Django&amp;body=https://amanbagrecha.github.io/post/django/django-image-upload/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=How%20to%20Upload%20Multiple%20Geotagged%20Images%20in%20Django&amp;body=https://amanbagrecha.github.io/post/django/django-image-upload/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -1183,7 +1209,7 @@ else:
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://amanbagrecha.github.io/post/django/django-image-upload/&amp;title=How%20to%20Upload%20Multiple%20Images%20in%20Django" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=https://amanbagrecha.github.io/post/django/django-image-upload/&amp;title=How%20to%20Upload%20Multiple%20Geotagged%20Images%20in%20Django" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -1196,7 +1222,7 @@ else:
       
       
       <li>
-        <a href="whatsapp://send?text=How%20to%20Upload%20Multiple%20Images%20in%20Django%20https://amanbagrecha.github.io/post/django/django-image-upload/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=How%20to%20Upload%20Multiple%20Geotagged%20Images%20in%20Django%20https://amanbagrecha.github.io/post/django/django-image-upload/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1209,7 +1235,7 @@ else:
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://amanbagrecha.github.io/post/django/django-image-upload/&amp;title=How%20to%20Upload%20Multiple%20Images%20in%20Django" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://amanbagrecha.github.io/post/django/django-image-upload/&amp;title=How%20to%20Upload%20Multiple%20Geotagged%20Images%20in%20Django" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
