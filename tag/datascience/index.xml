@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>python | Aman Bagrecha</title>
-    <link>https://amanbagrecha.github.io/tag/python/</link>
-      <atom:link href="https://amanbagrecha.github.io/tag/python/index.xml" rel="self" type="application/rss+xml" />
-    <description>python</description>
+    <title>datascience | Aman Bagrecha</title>
+    <link>https://amanbagrecha.github.io/tag/datascience/</link>
+      <atom:link href="https://amanbagrecha.github.io/tag/datascience/index.xml" rel="self" type="application/rss+xml" />
+    <description>datascience</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 12 Jul 2021 19:56:56 +0530</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png</url>
-      <title>python</title>
-      <link>https://amanbagrecha.github.io/tag/python/</link>
+      <title>datascience</title>
+      <link>https://amanbagrecha.github.io/tag/datascience/</link>
     </image>
     
     <item>
@@ -17,14 +17,6 @@
       <link>https://amanbagrecha.github.io/project/enrolmentbylevel/enrolment-by-level/</link>
       <pubDate>Mon, 12 Jul 2021 19:56:56 +0530</pubDate>
       <guid>https://amanbagrecha.github.io/project/enrolmentbylevel/enrolment-by-level/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Django-rest-framework CRUD Token Authetication Application</title>
-      <link>https://amanbagrecha.github.io/project/external-project/</link>
-      <pubDate>Thu, 27 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/project/external-project/</guid>
       <description></description>
     </item>
     
