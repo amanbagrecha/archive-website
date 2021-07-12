@@ -5,7 +5,7 @@
     <link>https://amanbagrecha.github.io/</link>
       <atom:link href="https://amanbagrecha.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Aman Bagrecha</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 08 Jul 2021 10:34:27 +0530</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 12 Jul 2021 19:56:56 +0530</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png</url>
       <title>Aman Bagrecha</title>
@@ -105,6 +105,22 @@ The variance of the distribution is $\sigma^{2}$.
   &lt;summary&gt;What is the parameter $\mu$?&lt;/summary&gt;
   &lt;p&gt;The parameter $\mu$ is the mean or expectation of the distribution.&lt;/p&gt;
 &lt;/details&gt;</description>
+    </item>
+    
+    <item>
+      <title>Analyse professional degree student enrolment v/s university count</title>
+      <link>https://amanbagrecha.github.io/project/enrolmentbylevel/enrolment-by-level/</link>
+      <pubDate>Mon, 12 Jul 2021 19:56:56 +0530</pubDate>
+      <guid>https://amanbagrecha.github.io/project/enrolmentbylevel/enrolment-by-level/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Land Surface Temperature</title>
+      <link>https://amanbagrecha.github.io/project/land-surface-temperature/land-surface-temperature/</link>
+      <pubDate>Mon, 12 Jul 2021 19:56:56 +0530</pubDate>
+      <guid>https://amanbagrecha.github.io/project/land-surface-temperature/land-surface-temperature/</guid>
+      <description></description>
     </item>
     
     <item>
@@ -2068,9 +2084,9 @@ Three
     
     <item>
       <title>Web application to access store information on click of marker!</title>
-      <link>https://amanbagrecha.github.io/project/node-express-crud/</link>
+      <link>https://amanbagrecha.github.io/project/store-info-leaflet/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/project/node-express-crud/</guid>
+      <guid>https://amanbagrecha.github.io/project/store-info-leaflet/</guid>
       <description></description>
     </item>
     
