@@ -5,12 +5,20 @@
     <link>https://amanbagrecha.github.io/tag/python/</link>
       <atom:link href="https://amanbagrecha.github.io/tag/python/index.xml" rel="self" type="application/rss+xml" />
     <description>python</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 12 Jul 2021 19:56:56 +0530</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 24 Jul 2021 19:56:56 +0530</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png</url>
       <title>python</title>
       <link>https://amanbagrecha.github.io/tag/python/</link>
     </image>
+    
+    <item>
+      <title>Predicting Age group of Social Media Application users</title>
+      <link>https://amanbagrecha.github.io/project/ml_challenge/social_media_user_group/</link>
+      <pubDate>Sat, 24 Jul 2021 19:56:56 +0530</pubDate>
+      <guid>https://amanbagrecha.github.io/project/ml_challenge/social_media_user_group/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Analyse professional degree student enrolment v/s university count</title>

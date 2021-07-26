@@ -33,10 +33,10 @@
   
     
   
-  <meta name="description" content="Select multiple polygons (parcels) and calculate area on the fly in openlayers" />
+  <meta name="description" content="Overview Most of the time, we are equipped with a discrete set of sample points (of temperature, rainfall etc) and are tasked with generating a continuous surface. This is where spatial interpolation comes into picture." />
 
   
-  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/" />
+  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/qgis/contour-maps-in-qgis/" />
 
   
 
@@ -317,7 +317,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_32x32_fill_lanczos_center_2.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_180x180_fill_lanczos_center_2.png" />
 
-  <link rel="canonical" href="https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/" />
+  <link rel="canonical" href="https://amanbagrecha.github.io/post/qgis/contour-maps-in-qgis/" />
 
   
   
@@ -337,18 +337,18 @@
     <meta property="twitter:creator" content="@https://twitter.com/aman_bagrecha" />
   
   <meta property="og:site_name" content="Aman Bagrecha" />
-  <meta property="og:url" content="https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/" />
-  <meta property="og:title" content="Polygon Selection and  Area Calculation in Openlayers | Aman Bagrecha" />
-  <meta property="og:description" content="Select multiple polygons (parcels) and calculate area on the fly in openlayers" /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
+  <meta property="og:url" content="https://amanbagrecha.github.io/post/qgis/contour-maps-in-qgis/" />
+  <meta property="og:title" content="Contour Maps in QGIS | Aman Bagrecha" />
+  <meta property="og:description" content="Overview Most of the time, we are equipped with a discrete set of sample points (of temperature, rainfall etc) and are tasked with generating a continuous surface. This is where spatial interpolation comes into picture." /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
     <meta property="twitter:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
   
     
       <meta
         property="article:published_time"
-        content="2021-05-24T00:00:00&#43;00:00"
+        content="2021-07-24T00:00:00&#43;00:00"
       />
     
-    <meta property="article:modified_time" content="2021-05-24T20:14:45&#43;05:30">
+    <meta property="article:modified_time" content="2021-07-24T22:06:37&#43;05:30">
   
 
   
@@ -372,12 +372,12 @@
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/"
+    "@id": "https://amanbagrecha.github.io/post/qgis/contour-maps-in-qgis/"
   },
-  "headline": "Polygon Selection and  Area Calculation in Openlayers",
+  "headline": "Contour Maps in QGIS",
   
-  "datePublished": "2021-05-24T00:00:00Z",
-  "dateModified": "2021-05-24T20:14:45+05:30",
+  "datePublished": "2021-07-24T00:00:00Z",
+  "dateModified": "2021-07-24T22:06:37+05:30",
   
   "author": {
     "@type": "Person",
@@ -392,7 +392,7 @@
       "url": "https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "Select multiple polygons (parcels) and calculate area on the fly in openlayers"
+  "description": "Overview Most of the time, we are equipped with a discrete set of sample points (of temperature, rainfall etc) and are tasked with generating a continuous surface. This is where spatial interpolation comes into picture."
 }
 </script>
 
@@ -408,11 +408,11 @@
 
 
 
-  <title>Polygon Selection and  Area Calculation in Openlayers | Aman Bagrecha</title>
+  <title>Contour Maps in QGIS | Aman Bagrecha</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="5b67cf10fb9f49f2ef304c7a0f7c09f4" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="f235d6f7a57733bdf72415c7009b5d10" >
 
   
   
@@ -775,7 +775,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>Polygon Selection and  Area Calculation in Openlayers</h1>
+  <h1>Contour Maps in QGIS</h1>
 
   
 
@@ -796,7 +796,7 @@
           Last updated on
       
     
-    May 24, 2021
+    Jul 24, 2021
   </span>
   
 
@@ -835,180 +835,127 @@
   <div class="article-container">
 
     <div class="article-style">
-      <h2 id="overview"><strong>Overview</strong></h2>
-<p>In this small demo-blog we look into how to make polygon selections on the map and calculate the area of that polygon on-the-fly. We use openlayers v6 for client side and geoserver to save our vector layers for this exercise.<br>
-I assume readers to have familiarity with setting up geoserver and basics of openlayers.</p>
-<h2 id="step-1-setup-openlayers"><strong>Step 1: Setup openlayers</strong></h2>
-<p>Openlayers requires you to add these cdns to add their functionality into our application.</p>
-<h3 id="link-necessary-cdns">link necessary cdns</h3>
-<pre><code class="language-html">
- &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css&quot; type=&quot;text/css&quot;&gt;
- &lt;script src=&quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js&quot;&gt;&lt;/script&gt;
- 
-</code></pre>
-<p>We are using openlayers to render the request response. since the output of the WFS request is json, we create a new layer with vector source and format as geojson. 
-The <code>strategy:ol.loadingstrategy.bbox</code> tells openlayers to only load features within the bbox. Simply put, if we move to different location, only features within that bbox will appear.</p>
-<pre><code class="language-javascript">
-// setup geoserver port
-var geoserver_ip = 'http://120.0.0.1'
-var geoserver_port = '8080'
-
-// define vector source
-var myFlSource = new ol.source.Vector({
-	format: new ol.format.GeoJSON(),
-		url: function (extent){
-			return ( geoserver_ip +':' + geoserver_port + '/geoserver/dronnav/ows?service=WFS&amp;version=1.1.0&amp;request=GetFeature&amp;typeName=dronnav%3Aflorida_bp&amp;maxFeatures=10000&amp;outputFormat=application/json&amp;srsname=EPSG:4326&amp;' + 'bbox=' + extent.join(',') + ',EPSG:4326' );
-		},
-		strategy:ol.loadingstrategy.bbox,
-	});
-</code></pre>
-<p>We perform WFS request from geoserver to get our layer <code>florida_bp</code> in this case. The parameters are as explained as follows</p>
-<ul>
+      <h2 id="overview">Overview</h2>
+<p>Most of the time, we are equipped with a discrete set of sample points (of temperature, rainfall etc) and are tasked with generating a continuous surface.
+This is where spatial interpolation comes into picture. The objective is to estimate the most probable value at an unknown location with a set of known points within the extent of sample points.</p>
+<p>Methods to perform spatial interpolation:</p>
+<ol>
 <li>
-<p><code>service=WFS</code> : web feature service to perform interaction</p>
+<p>TIN: Triangular Irregular Network forms contiguous, non-overlapping triangles by dividing the geographic space on set of sample points</p>
 </li>
 <li>
-<p><code>typename=workspace:florida_bp</code> : specify the workspace and layer name</p>
+<p>IDW: Inverse Distance Weighted interpolation method estimates cell values by weighted average of sample data. The closer the point, the more weight assigned. We can fix the radius of influence or the total sample points to weigh for cell value.</p>
 </li>
 <li>
-<p><code>version=1.1.0</code> : version number</p>
+<p>Spline: Also called french curves. It uses a mathematical function that minimizes overall surface curvature, resulting in a smooth surface that passes through the input points.</p>
 </li>
 <li>
-<p><code>maxFeatures = 10000</code> : since WFS request is computationaly expensive, we restrict to only load 10000 features.</p>
+<p>Kriging: A group of geostatistical techniques to interpolate the value of a random field at an unobserved location from observations of its value at a nearby location. It is implemented using semi-variogram.</p>
 </li>
-<li>
-<p><code>request=GetFeature</code> : request type. There are several other which can be found here</p>
-</li>
-<li>
-<p><code>outputFormat=application/json</code> : the output format as response</p>
-</li>
-<li>
-<p><code>srsname=EPSG:4326</code> : coordinate reference system to display on the map</p>
-</li>
-<li>
-<p><code>bbox=</code> : bounding box</p>
-</li>
-</ul>
-<pre><code class="language-javascript">// define vector layer
-var floridaLayer = new ol.layer.Vector({
-	source: myFlSource,
-	style: new ol.style.Style({
-		fill: new ol.style.Fill({
-			color: 'rgba(1, 1, 255, .2)',
-			}),
-		stroke: new ol.style.Stroke({
-			color: 'rgba(1, 1, 255, .5)',
-			width: 2,
-		}),
-		}),
-		minZoom: 16, // this will allows us to send request only when the zoom is atleast 16
-});
-</code></pre>
-<p>Once the layer is defined, we need to add this layer to the map. We can either use <code>map.addLayer(layername)</code> or add to array in the map (<code>Fig.1</code>)</p>
-<pre><code class="language-javascript">// add ESRI basemap
-var project_maplayer =    new ol.layer.Tile({
-	source: new ol.source.XYZ({
-		attributions: ['Powered by Esri',
-										'Source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community'],
-		attributionsCollapsible: false,
-		url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-		maxZoom: 23
-	}),
-	zIndex: 0
-});
-
-// add view with projection set to EPSG 4326 for the map
-var project_view = new ol.View({
-	projection: 'EPSG:4326',
-	center: [-81.80808208706726, 27.285095000261222],
-	zoom: 7,
-});
-
-// define the map with all the layers created previously
-var Projectmap = new ol.Map({
-	layers: [project_maplayer, floridaLayer],
-	overlays: [overlay],
-	target: 'project_map', // the div element `id` in html page
-	view: project_view,
-});
-</code></pre>
+</ol>
+<p>In this blog, we create surface plots for Rainfall Correction Factors, which is indicative of how much the climate impacts a hydraulic structure based on the return period it is designed for.</p>
+<p>These RCF are useful for hydraulic structures such as dams, storm water drains, and spillways.
+These RCF are derived from Global Climate Models (GCMs) which models future scenarios. Not considering these factors can lead to reduced life time of the structure.</p>
+<p>We calculate the RCF for each point for a grid of lat,lon around the indian subcontinent. These RCF are as a result of intensive computational simulations run in matlab which is out of scope for this blog.</p>
+<h3 id="1-load-points-in-qgis">1. Load points in QGIS</h3>
+<p>Our data is in the csv format with each column of the RP_ family representing the return period the Rainfall Correction Factor is estimated for.</p>
 <figure>
-<p><img src="https://i.imgur.com/jodNbPQ.jpg" alt=""></p>
-<figcaption align = "center"><b><i>Fig.1 -The Map layer with building footprints (<code>floridaLayer</code>) added to the map with the style we specified</code> for each feature</i></b></figcaption>
+<p><img src="https://i.imgur.com/fZpYAK9.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.1 -sample data points with key location and return period of RCF</i></b></figcaption>
 </figure>
-<h2 id="get-feature-info-on-click"><strong>Get feature info on click</strong></h2>
-<p>After adding basemap and our layer to the map served via geoserver, we are now ready to get information <code>on-click</code>. We use  <code>forEachFeatureAtPixel</code> method on our layer to send a WFS request to our geoserver and recive a response in json format. We change the style of the building on click (<code>Fig.2</code>). The area is calculated using formatArea function which utilises <code>ol.sphere.getArea</code> and <code>transform</code> method to calculate area and change CRS.</p>
-<pre><code class="language-javascript">
-  /*  select ploygon the feature and get area and store the features */
-  var selected = []; // contains all features
-  var selected_area = []; // contains area of feature, one-to-one
-  
-  Projectmap.on('singleclick', function (e) {
-  Projectmap.forEachFeatureAtPixel(e.pixel, function (f, l) {
-  	var mycoordinate = e.coordinate
-  	storef = f  // feature
-  	/* if click is on polygon, then select the feature */
-  if ( f.getGeometry()   instanceof  ol.geom.MultiPolygon ) {
-		  
-		var selIndex = selected.indexOf(f);
-			// console.log(selIndex)
-		if (selIndex &lt; 0) {
-			selected.push(f);
-			selected_area.push( formatArea(f) ); // formatArea function returns the area in ft2
-			f.setStyle(highlightStyle); // change style on click
-		} else {
-			selected.splice(selIndex, 1);
-			selected_area.splice( selIndex, 1);
-			f.setStyle(undefined);
-		}
- 	 }
-
-	  })
-
-	  /* update the tags with no of selected feature and total area combined */
-	  document.getElementById('status-selected').innerHTML = '&amp;nbsp;' + selected.length + ' selected features';
-	  document.getElementById('status-selected_area').innerHTML = '&amp;nbsp;' + selected_area.reduce(getSum, 0) + ' ft&lt;sup&gt;2&lt;/sup&gt;';
-	  
-	});
-	
-
-	
-  /* style for selected feature on click  */
-  var highlightStyle = new ol.style.Style({
-  	fill: new ol.style.Fill({
-  	color: '#f0b88b',
-  	}),
-  	stroke: new ol.style.Stroke({
-  	color: '#f0b88b',
-  	width: 3,
-  	}),
-  });
-
-
-  /*  function for calculating area of the polygon (feature) selected */
-  function formatArea (polygon){
-   var area = ol.sphere.getArea(polygon.getGeometry().transform('EPSG:4326', 'EPSG:3857')); // transform to projected coordinate system.
-   var output;
-   output = Math.round(area * 100*10.7639) / 100  ; //in ft2
-   polygon.getGeometry().transform('EPSG:3857', 'EPSG:4326' ) //convert back to geographic crc
-   return output;
-  }
-  
-  /*  function for array sum */
-  function getSum(total, num) {
-  return total + Math.round(num);
-  }
-
-</code></pre>
+<p>This file can be imported into qgis from the layers panel and adding a delimited text layer. Once the layer is added, we export as shapefile so as to ease the process of automating the workflow which comes in handy later at the end of the blog.</p>
 <figure>
-<p><img src="https://i.imgur.com/TCicCHu.jpg" alt=""></p>
-<figcaption align = "center"><b><i>Fig.2 -The <code>floridaLayer</code> building footprints selected  with the style we specified</code> for each feature</i></b></figcaption>
+<p><img src="https://i.imgur.com/MvHcCZx.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.2 -Add the csv file using Add delimited text layer</i></b></figcaption>
 </figure>
-<h2 id="final-comments"><strong>Final comments</strong></h2>
-<p>This post demonstrates the use of <code>strategy:ol.loadingstrategy.bbox</code> to load only the features that cover the bounding box. We use this strategy since WFS service is resouce intensive and our server cannot handle millions of HTTP request at once.</p>
-<p>We also see the use of <code>forEachFeatureAtPixel</code> method to select our building footprints. On click of the feature we change the style using <code>setStyle</code> method.</p>
-<p>Additionally, we saw how to change projection on-the-fly using <code>ol.sphere.getArea</code> method. A word of caution while using <code>EPSG:3857</code>. My AOI was on the equator and thus calculating area does not result in significant error. But if the AOI is in temperate zone then adopt suitable projection CRS.</p>
-<p>Layer Credit: Microsoft buidling footprints <a href="https://github.com/microsoft/USBuildingFootprints">https://github.com/microsoft/USBuildingFootprints</a></p>
+<p>We load the sampled points and add an India boundary as the base vector to later clip the features to our area of Interest.</p>
+<figure>
+<p><img src="https://i.imgur.com/IuoE9pb.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.3 -Points equally spaced around the Indian state. Each point represent a RCF value</i></b></figcaption>
+</figure>
+<h3 id="2-generate-raster-from-points-using-tin-interpolation">2. Generate Raster from points using TIN interpolation</h3>
+<p>For demonstration let us take an example to run through the entire process of generating surface raster and styling which can be later automated using python in qgis.</p>
+<p>We use these sampled locations of points to generate a surface using TIN Interpolation readily available as a toolbox in qgis. The input parameter for the vector layer is our shapefile of points while the interpolation attribute is going to be the RP_ family of columns.</p>
+<figure>
+<p><img src="https://i.imgur.com/nzE5Vj7.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.4 -TIN interpolation in QGIS</i></b></figcaption>
+</figure>
+<p>The output of the interpolation with pixel size of 0.01 is shown below. The extent was set to the boundary of Indian state.</p>
+<figure>
+<p><img src="https://i.imgur.com/1HAjqQ4.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.5 -Output surface raster with 0.01 pixel size</i></b></figcaption>
+</figure>
+<p>We can go a step further and derive contours using the <code>contour</code> toolbox provided in qgis.</p>
+<h3 id="3-generate-contours-from-raster-to-style-the-layer">3. Generate Contours from raster to style the layer</h3>
+<figure>
+<p><img src="https://i.imgur.com/SOKxUmC.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.6 -Generate contours from the surface raster</i></b></figcaption>
+</figure>
+<figure>
+<p><img src="https://i.imgur.com/ExfM0MM.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.7 -Output as contour lines with 0.1 as interval</i></b></figcaption>
+</figure>
+<p>A better way to get the contour lines is by changing the symbology of the raster to contours and providing an interval. This exact method will be employed later in this post.</p>
+<h3 id="automating-the-process">Automating the process</h3>
+<p>So far we have looked into creating surface raster for an individual return period. But we have several other return periods and we do not want to repeat ourselves. Thus we write a tiny python code to automate this workflow.</p>
+<p>We derive the RCFs for return period of 5year, 10year, 25year, 50year</p>
+<pre><code class="language-python"># specify the output location for saving the files
+OUTPATH = 'D:\\gcm_qgis\\'
+
+# loop over different return periods from the shapefile
+for i,j in enumerate(['2y', '10y', '25y', '50y'], 3):
+
+    # specify the shapefile containing the RCP values
+    MYFILE = 'D:\\gcm_qgis\\RCP_avg.shp|layername=RCP_avg::~::0::~::{}::~::0'.format(i)
+
+    # Run interpolation and do not save the output permanently
+    RESULTS = processing.run(&quot;qgis:tininterpolation&quot;, 
+    {'INTERPOLATION_DATA': MYFILE,
+    'METHOD':1,
+    'EXTENT':'68.205600900,97.395561000,6.755997100,37.084107000 [EPSG:4326]',
+    'PIXEL_SIZE':0.01,
+    'OUTPUT':'TEMPORARY_OUTPUT'})
+
+    # clip the temporary output from prev step and save the files.
+    processing.runAndLoadResults(&quot;gdal:cliprasterbymasklayer&quot;, 
+    {'INPUT':RESULTS['OUTPUT'],
+    'MASK':'C:/Users/91911/Downloads/india-osm.geojson.txt|layername=india-osm.geojson',
+    'SOURCE_CRS':None,'TARGET_CRS':None,'NODATA':None,
+    'ALPHA_BAND':False,
+    'CROP_TO_CUTLINE':True,
+    'KEEP_RESOLUTION':False,'SET_RESOLUTION':False,'X_RESOLUTION':None,
+    'Y_RESOLUTION':None,
+    'MULTITHREADING':False,'OPTIONS':'',
+    'DATA_TYPE':0,
+    'EXTRA':'',
+    'OUTPUT':os.path.join(OUTPATH, 'RCP_avg_' + j + '.tif')})
+    iface.messageBar().pushMessage(
+        'Success:', 'Output file written at ', level=Qgis.Success)
+</code></pre>
+<p>Our output would save and display the contour files with RCP_avg_{return_period} where return period ranges from [2,5,10,25,50]</p>
+<p>The code first fetches our shapefile, which is used to</p>
+<ol>
+<li>create temporary TIN interpolation rasters</li>
+<li>clipped to india boundary using <code>clip raster by mask layer</code></li>
+</ol>
+<p>Once we have the rasters for each return period, we style the raster using singleband pseudocolor in <code>Equal Interval</code> mode ranging from 1.0 - 1.8 in steps of 0.1</p>
+<p>We make a copy of the raster layer and place it above it, giving it a contour style at an interval of 0.1</p>
+<p>We copy each return period and set the styling to be of contour as seen in the figure. This allows for a better visual representation of the regions with same the values.</p>
+<figure>
+<p><img src="https://i.imgur.com/tz0DP0k.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.8 -Styling the copy of surface raster</i></b></figcaption>
+</figure>
+<p>The final output can be seen in the below figure.</p>
+<figure>
+<p><img src="https://i.imgur.com/fiX9RA9.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.9 -Final output with contours overlaid on top of surface themself</i></b></figcaption>
+</figure>
+<h2 id="final-comments">Final comments</h2>
+<p>We looked at various spatial interpolation technique and automated workflow to derive spatially interpolated surface raster.</p>
+<p>For our case, we use TIN interpolation technique because:</p>
+<p>Sources:</p>
+<p>a. <a href="https://www.intechopen.com/chapters/52704" target="_blank" rel="noopener">Comparison of Spatial Interpolation Techniques Using Visualization and Quantitative Assessment</a></p>
+<p>b. <a href="https://docs.qgis.org/3.16/en/docs/gentle_gis_introduction/spatial_analysis_interpolation.html" target="_blank" rel="noopener">Spatial Analysis QGIS</a></p>
 
     </div>
 
@@ -1032,7 +979,7 @@ var Projectmap = new ol.Map({
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/&amp;text=Polygon%20Selection%20and%20%20Area%20Calculation%20in%20Openlayers" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://amanbagrecha.github.io/post/qgis/contour-maps-in-qgis/&amp;text=Contour%20Maps%20in%20QGIS" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -1045,7 +992,7 @@ var Projectmap = new ol.Map({
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/&amp;t=Polygon%20Selection%20and%20%20Area%20Calculation%20in%20Openlayers" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://amanbagrecha.github.io/post/qgis/contour-maps-in-qgis/&amp;t=Contour%20Maps%20in%20QGIS" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -1058,7 +1005,7 @@ var Projectmap = new ol.Map({
       
       
       <li>
-        <a href="mailto:?subject=Polygon%20Selection%20and%20%20Area%20Calculation%20in%20Openlayers&amp;body=https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Contour%20Maps%20in%20QGIS&amp;body=https://amanbagrecha.github.io/post/qgis/contour-maps-in-qgis/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -1071,7 +1018,7 @@ var Projectmap = new ol.Map({
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/&amp;title=Polygon%20Selection%20and%20%20Area%20Calculation%20in%20Openlayers" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=https://amanbagrecha.github.io/post/qgis/contour-maps-in-qgis/&amp;title=Contour%20Maps%20in%20QGIS" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -1084,7 +1031,7 @@ var Projectmap = new ol.Map({
       
       
       <li>
-        <a href="whatsapp://send?text=Polygon%20Selection%20and%20%20Area%20Calculation%20in%20Openlayers%20https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=Contour%20Maps%20in%20QGIS%20https://amanbagrecha.github.io/post/qgis/contour-maps-in-qgis/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1097,7 +1044,7 @@ var Projectmap = new ol.Map({
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://amanbagrecha.github.io/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/&amp;title=Polygon%20Selection%20and%20%20Area%20Calculation%20in%20Openlayers" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://amanbagrecha.github.io/post/qgis/contour-maps-in-qgis/&amp;title=Contour%20Maps%20in%20QGIS" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>

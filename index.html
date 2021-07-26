@@ -258,6 +258,45 @@
 
 
 
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q0RGP656H1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-Q0RGP656H1', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
   
 
   
@@ -310,7 +349,7 @@
     <meta property="twitter:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
   
     
-      <meta property="og:updated_time" content="2021-07-16T00:00:00&#43;00:00" />
+      <meta property="og:updated_time" content="2021-07-24T19:56:56&#43;05:30" />
     
   
 
@@ -833,7 +872,7 @@
           
         
         <li>
-          <a href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ" target="_blank" rel="noopener" aria-label="researchgate">
+          <a href="https://www.researchgate.net/profile/Aman-Bagrecha-3" target="_blank" rel="noopener" aria-label="researchgate">
             <i class="fab fa-researchgate big-icon"></i>
           </a>
         </li>
@@ -889,6 +928,23 @@
           </a>
         </li>
         
+        
+        
+        
+          
+        
+        
+        
+        
+        
+          
+        
+        <li>
+          <a href="https://www.quora.com/profile/Aman-Jain-456" target="_blank" rel="noopener" aria-label="blog">
+            <i class="fas fa-blog big-icon"></i>
+          </a>
+        </li>
+        
       </ul>
 
     </div>
@@ -906,7 +962,7 @@ When I&rsquo;m not on my laptop, I&rsquo;m usually seen in the park, jogging and
 <p>If I am a fit for your company, do reach out to me via email.</p>
 <p>👇</p>
 <p>
-  <i class="fas fa-download  pr-1 fa-fw"></i> Download my <a href="/media/amanbagrecha_cv.pdf" target="_blank">resumé</a>.</p>
+  <i class="fas fa-download  pr-1 fa-fw"></i> Download my <a href="https://docs.google.com/document/d/1DBw80s3VtMM3IJsvPjBPe_45ahqY7QV4_cUVZae1gbM/edit?usp=sharing" target="_blank">resumé</a>.</p>
 
     </div>
 
@@ -1603,13 +1659,106 @@ When I&rsquo;m not on my laptop, I&rsquo;m usually seen in the park, jogging and
   <div class="media-body">
 
     <div class="section-subheading article-title mb-0 mt-0">
+      <a href="/post/qgis/contour-maps-in-qgis/" >Contour Maps in QGIS</a>
+    </div>
+
+    
+    <a href="/post/qgis/contour-maps-in-qgis/"  class="summary-link">
+      <div class="article-style">
+        Overview Most of the time, we are equipped with a discrete set of sample points (of temperature, rainfall etc) and are tasked with generating a continuous surface. This is where spatial interpolation comes into picture.
+      </div>
+    </a>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+        
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Jul 24, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    5 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+      
+    </div>
+
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+    
+  
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <div class="section-subheading article-title mb-0 mt-0">
       <a href="/post/geoserver/geoserver-query-builder/" >Geoserver Query Builder</a>
     </div>
 
     
     <a href="/post/geoserver/geoserver-query-builder/"  class="summary-link">
       <div class="article-style">
-        To be updated shortly&hellip; 
+        Displays and query list of all layers on the server from geoserver
       </div>
     </a>
     
@@ -1644,7 +1793,7 @@ When I&rsquo;m not on my laptop, I&rsquo;m usually seen in the park, jogging and
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    5 min read
   </span>
   
 
@@ -1959,102 +2108,6 @@ When I&rsquo;m not on my laptop, I&rsquo;m usually seen in the park, jogging and
 
     
   
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/post/django/django-image-upload/" >How to Upload Multiple Geotagged Images in Django</a>
-    </div>
-
-    
-    <a href="/post/django/django-image-upload/"  class="summary-link">
-      <div class="article-style">
-        we look into how to upload multiple geo-tagged/non-geotagged images to aws s3 using plain Django and postgresql as databbase.
-      </div>
-    </a>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    May 24, 2021
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    7 min read
-  </span>
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-    
-    <a href="/post/django/django-image-upload/" >
-      <img src="/post/django/django-image-upload/featured_hu66771e726c9212f3de343fdc5d431339_1095828_150x0_resize_q75_lanczos.jpg" alt="How to Upload Multiple Geotagged Images in Django" loading="lazy">
-    </a>
-    
-  </div>
-</div>
-
-    
-  
 
   
   
@@ -2237,6 +2290,133 @@ When I&rsquo;m not on my laptop, I&rsquo;m usually seen in the park, jogging and
         
 
 
+<div class="col-12 isotope-item js-id-datascience js-id-python js-id-pandas js-id-matplotlib js-id-sklearn">
+  
+
+
+
+
+
+
+  
+  
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <div class="section-subheading article-title mb-0 mt-0">
+      <a href="https://github.com/amanbagrecha/datascience_project/blob/master/ML_socialMediaAnalysis/dphi_Prediction_model.ipynb" target="_blank" rel="noopener">Predicting Age group of Social Media Application users</a>
+    </div>
+
+    
+    <a href="https://github.com/amanbagrecha/datascience_project/blob/master/ML_socialMediaAnalysis/dphi_Prediction_model.ipynb" target="_blank" rel="noopener" class="summary-link">
+      <div class="article-style">
+        The task at hand is to predict the age group of social media (app) users. Given the data of their users ranging from number of followers they have to hours they spend on the app, we are on the quest to solve what is the demography of the app.
+      </div>
+    </a>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+    </div>
+
+    
+    <div class="btn-links">
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary btn-page-header btn-sm" href="https://github.com/amanbagrecha/datascience_project/blob/master/ML_socialMediaAnalysis/dphi_Prediction_model.ipynb" target="_blank" rel="noopener">
+  Code
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+  <a class="btn btn-outline-primary btn-page-header btn-sm" href="https://twitter.com/aman_bagrecha" target="_blank" rel="noopener">
+    <i class="fab fa-twitter mr-1"></i>
+    Follow
+  </a>
+
+
+    </div>
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+</div>
+
+      
+
+    
+
+      
+      
+      
+        
+        
+      
+
+      
+        
+
+
 <div class="col-12 isotope-item js-id-concrete js-id-ASCE js-id-other">
   
 
@@ -2389,11 +2569,11 @@ When I&rsquo;m not on my laptop, I&rsquo;m usually seen in the park, jogging and
   <div class="media-body">
 
     <div class="section-subheading article-title mb-0 mt-0">
-      <a href="https://github.com/jainaman588/DataScienceProjects/blob/master/enrolmentByLevel/" target="_blank" rel="noopener">Analyse professional degree student enrolment v/s university count</a>
+      <a href="https://github.com/jainaman588/DataScienceProjects/blob/master/enrolmentByLevel/Enrolment%2Bby%2Blevel.ipynb" target="_blank" rel="noopener">Analyse professional degree student enrolment v/s university count</a>
     </div>
 
     
-    <a href="https://github.com/jainaman588/DataScienceProjects/blob/master/enrolmentByLevel/" target="_blank" rel="noopener" class="summary-link">
+    <a href="https://github.com/jainaman588/DataScienceProjects/blob/master/enrolmentByLevel/Enrolment%2Bby%2Blevel.ipynb" target="_blank" rel="noopener" class="summary-link">
       <div class="article-style">
         To evaluate the trend in higher education over the years based on gender, state, and degree program. Further identify which state requires additional university in the Indian State
       </div>
