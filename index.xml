@@ -237,7 +237,6 @@ for i,j in enumerate([&#39;2y&#39;, &#39;10y&#39;, &#39;25y&#39;, &#39;50y&#39;]
 &lt;/figure&gt;
 &lt;h2 id=&#34;final-comments&#34;&gt;Final comments&lt;/h2&gt;
 &lt;p&gt;We looked at various spatial interpolation technique and automated workflow to derive spatially interpolated surface raster.&lt;/p&gt;
-&lt;p&gt;For our case, we use TIN interpolation technique because:&lt;/p&gt;
 &lt;p&gt;Sources:&lt;/p&gt;
 &lt;p&gt;a. &lt;a href=&#34;https://www.intechopen.com/chapters/52704&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Comparison of Spatial Interpolation Techniques Using Visualization and Quantitative Assessment&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;b. &lt;a href=&#34;https://docs.qgis.org/3.16/en/docs/gentle_gis_introduction/spatial_analysis_interpolation.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Spatial Analysis QGIS&lt;/a&gt;&lt;/p&gt;
