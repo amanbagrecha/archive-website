@@ -141,7 +141,7 @@ for i,j in enumerate([&#39;2y&#39;, &#39;10y&#39;, &#39;25y&#39;, &#39;50y&#39;]
     </item>
     
     <item>
-      <title>Geoserver Query Builder</title>
+      <title>Query Geoserver Layer using openlayers</title>
       <link>https://amanbagrecha.github.io/post/geoserver/geoserver-query-builder/</link>
       <pubDate>Fri, 16 Jul 2021 00:00:00 +0000</pubDate>
       <guid>https://amanbagrecha.github.io/post/geoserver/geoserver-query-builder/</guid>
@@ -185,7 +185,10 @@ INSTALLED_APPS = [
 &lt;p&gt;There are other setups such as setting up login page and authentication, creating media url root and setting up the url which we are not going to deal with in this blog post.&lt;/p&gt;
 &lt;p&gt;Once the setup is done, we run migrations to reflect those changes in the admin page.&lt;/p&gt;
 &lt;p&gt;On running &lt;code&gt;python manage.py runserver&lt;/code&gt; you should see this page.&lt;/p&gt;
+&lt;figure&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/zSSpoqV.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 -Page indicating successful installation of Django&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;hr&gt;
 &lt;p&gt;Our focus will be on the frontend, but the full code can be accessed from &lt;a href=&#34;https://github.com/amanbagrecha/openlayers-geoserver-query&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For querying and displaying layers from geoserver, we first need geoserver installed and running. For more info on how to do that can be found &lt;a href=&#34;https://docs.geoserver.org/master/en/user/installation/win_binary.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
@@ -233,7 +236,10 @@ MyHeaders = {&#39;Content-Type&#39;: &#39;application/json&#39;, &#39;Access-Con
 /workspaces/{workspaceName}/layers
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;To see this in action, we display all layers from the &lt;code&gt;sf&lt;/code&gt; workspace, provided in geoserver by default.&lt;/p&gt;
+&lt;figure&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/sSjlZkU.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.2 -Geoserver layers from sf workspace&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;
 var layerList = []; // array to store all the layer info
 var loginInfo = [&amp;quot;admin&amp;quot;, &amp;quot;geoserver&amp;quot;]; // username and password for geoserver
@@ -259,8 +265,11 @@ $.ajax({
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The output of this ajax call returns us a &lt;code&gt;layerList&lt;/code&gt; array containing all the layer name and the url associated with it of size (:, 2)&lt;/p&gt;
 &lt;p&gt;This layer can then be displayed on the frontend by looping over the array and inserting into the div element.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/ZDctdje.jpg&#34; alt=&#34;&#34;&gt;
-Fig shows all the layers of workspace &lt;code&gt;sf&lt;/code&gt; displayed on the map with some styles applied to it&lt;/p&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/ZDctdje.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.3 -The layers of workspace `sf` displayed on the map with some styles applied to it
+&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;hr&gt;
 &lt;p&gt;The next step after displaying all the layers of the workspace is to load the features of the layer on selecting a particular layer.&lt;/p&gt;
 &lt;p&gt;When the layer is ticked we send a request to geoserver to load the features of that layer and add to the map. If the layer is then unticked, we do the opposite and remove the layer from map.&lt;/p&gt;
@@ -287,8 +296,10 @@ Fig shows all the layers of workspace &lt;code&gt;sf&lt;/code&gt; displayed on t
 	  }
   }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/Wgy2YV5.jpg&#34; alt=&#34;&#34;&gt;
-Fig: Displaying checked layer on map&lt;/p&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/Wgy2YV5.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.4 -Displaying layer on map&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;h3 id=&#34;query-layer&#34;&gt;Query layer&lt;/h3&gt;
 &lt;p&gt;We start with the querying the layer by their attributes. We load all the attributes (as columns) and display as dropdown. We use &lt;code&gt;wfs&lt;/code&gt; service and &lt;code&gt;DescribeFeatureType&lt;/code&gt; request to load the attributes.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  function loadprops(layername) {
@@ -361,8 +372,11 @@ function fetch_search_call(query_url){
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The above function queries a feature and adds it to the map as a new layer. If the search is successful, we are zoomed into that location and only the feature queried gets displayed.
 If the fetch call could not find the match it returns an error which is caught by &lt;code&gt;catch&lt;/code&gt; and displays the error to the client.&lt;/p&gt;
+&lt;figure&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/syqvzq0.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;The working application can be viewed &lt;a href=&#34;http://52.90.64.40:8000/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.5 -Displaying Queried layer by attribute value&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;This completes the blog on how to query layer and display on the map. The working application can be viewed &lt;a href=&#34;http://52.90.64.40:8000/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

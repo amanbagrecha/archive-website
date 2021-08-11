@@ -338,7 +338,7 @@
   
   <meta property="og:site_name" content="Aman Bagrecha" />
   <meta property="og:url" content="https://amanbagrecha.github.io/post/geoserver/geoserver-query-builder/" />
-  <meta property="og:title" content="Geoserver Query Builder | Aman Bagrecha" />
+  <meta property="og:title" content="Query Geoserver Layer using openlayers | Aman Bagrecha" />
   <meta property="og:description" content="This blog demonstrates how to display and query all geoserver layers or from a workspace using geoserver REST API. CQL (Common Query Language) filter provided by geoserver is used to query the layer." /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
     <meta property="twitter:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
   
@@ -374,7 +374,7 @@
     "@type": "WebPage",
     "@id": "https://amanbagrecha.github.io/post/geoserver/geoserver-query-builder/"
   },
-  "headline": "Geoserver Query Builder",
+  "headline": "Query Geoserver Layer using openlayers",
   
   "datePublished": "2021-07-16T00:00:00Z",
   "dateModified": "2021-07-16T22:14:01+05:30",
@@ -408,7 +408,7 @@
 
 
 
-  <title>Geoserver Query Builder | Aman Bagrecha</title>
+  <title>Query Geoserver Layer using openlayers | Aman Bagrecha</title>
 </head>
 
 
@@ -775,7 +775,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>Geoserver Query Builder</h1>
+  <h1>Query Geoserver Layer using openlayers</h1>
 
   
 
@@ -805,7 +805,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    5 min read
+    6 min read
   </span>
   
 
@@ -875,7 +875,10 @@ INSTALLED_APPS = [
 <p>There are other setups such as setting up login page and authentication, creating media url root and setting up the url which we are not going to deal with in this blog post.</p>
 <p>Once the setup is done, we run migrations to reflect those changes in the admin page.</p>
 <p>On running <code>python manage.py runserver</code> you should see this page.</p>
+<figure>
 <p><img src="https://i.imgur.com/zSSpoqV.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.1 -Page indicating successful installation of Django</i></b></figcaption>
+</figure>
 <hr>
 <p>Our focus will be on the frontend, but the full code can be accessed from <a href="https://github.com/amanbagrecha/openlayers-geoserver-query" target="_blank" rel="noopener">here</a>.</p>
 <p>For querying and displaying layers from geoserver, we first need geoserver installed and running. For more info on how to do that can be found <a href="https://docs.geoserver.org/master/en/user/installation/win_binary.html" target="_blank" rel="noopener">here</a>.</p>
@@ -923,7 +926,10 @@ MyHeaders = {'Content-Type': 'application/json', 'Access-Control-Allow-Credentia
 /workspaces/{workspaceName}/layers
 </code></pre>
 <p>To see this in action, we display all layers from the <code>sf</code> workspace, provided in geoserver by default.</p>
+<figure>
 <p><img src="https://i.imgur.com/sSjlZkU.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.2 -Geoserver layers from sf workspace</i></b></figcaption>
+</figure>
 <pre><code class="language-javascript">
 var layerList = []; // array to store all the layer info
 var loginInfo = [&quot;admin&quot;, &quot;geoserver&quot;]; // username and password for geoserver
@@ -949,8 +955,11 @@ $.ajax({
 </code></pre>
 <p>The output of this ajax call returns us a <code>layerList</code> array containing all the layer name and the url associated with it of size (:, 2)</p>
 <p>This layer can then be displayed on the frontend by looping over the array and inserting into the div element.</p>
-<p><img src="https://i.imgur.com/ZDctdje.jpg" alt="">
-Fig shows all the layers of workspace <code>sf</code> displayed on the map with some styles applied to it</p>
+<figure>
+<p><img src="https://i.imgur.com/ZDctdje.jpg" alt=""></p>
+<figcaption align = "center"><b><i>Fig.3 -The layers of workspace `sf` displayed on the map with some styles applied to it
+</i></b></figcaption>
+</figure>
 <hr>
 <p>The next step after displaying all the layers of the workspace is to load the features of the layer on selecting a particular layer.</p>
 <p>When the layer is ticked we send a request to geoserver to load the features of that layer and add to the map. If the layer is then unticked, we do the opposite and remove the layer from map.</p>
@@ -977,8 +986,10 @@ Fig shows all the layers of workspace <code>sf</code> displayed on the map with 
 	  }
   }
 </code></pre>
-<p><img src="https://i.imgur.com/Wgy2YV5.jpg" alt="">
-Fig: Displaying checked layer on map</p>
+<figure>
+<p><img src="https://i.imgur.com/Wgy2YV5.jpg" alt=""></p>
+<figcaption align = "center"><b><i>Fig.4 -Displaying layer on map</i></b></figcaption>
+</figure>
 <h3 id="query-layer">Query layer</h3>
 <p>We start with the querying the layer by their attributes. We load all the attributes (as columns) and display as dropdown. We use <code>wfs</code> service and <code>DescribeFeatureType</code> request to load the attributes.</p>
 <pre><code class="language-javascript">  function loadprops(layername) {
@@ -1051,8 +1062,11 @@ function fetch_search_call(query_url){
 </code></pre>
 <p>The above function queries a feature and adds it to the map as a new layer. If the search is successful, we are zoomed into that location and only the feature queried gets displayed.
 If the fetch call could not find the match it returns an error which is caught by <code>catch</code> and displays the error to the client.</p>
+<figure>
 <p><img src="https://i.imgur.com/syqvzq0.gif" alt=""></p>
-<p>The working application can be viewed <a href="http://52.90.64.40:8000/" target="_blank" rel="noopener">here</a>.</p>
+<figcaption align = "center"><b><i>Fig.5 -Displaying Queried layer by attribute value</i></b></figcaption>
+</figure>
+<p>This completes the blog on how to query layer and display on the map. The working application can be viewed <a href="http://52.90.64.40:8000/" target="_blank" rel="noopener">here</a>.</p>
 
     </div>
 
@@ -1084,7 +1098,7 @@ If the fetch call could not find the match it returns an error which is caught b
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://amanbagrecha.github.io/post/geoserver/geoserver-query-builder/&amp;text=Geoserver%20Query%20Builder" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://amanbagrecha.github.io/post/geoserver/geoserver-query-builder/&amp;text=Query%20Geoserver%20Layer%20using%20openlayers" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -1097,7 +1111,7 @@ If the fetch call could not find the match it returns an error which is caught b
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://amanbagrecha.github.io/post/geoserver/geoserver-query-builder/&amp;t=Geoserver%20Query%20Builder" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://amanbagrecha.github.io/post/geoserver/geoserver-query-builder/&amp;t=Query%20Geoserver%20Layer%20using%20openlayers" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -1110,7 +1124,7 @@ If the fetch call could not find the match it returns an error which is caught b
       
       
       <li>
-        <a href="mailto:?subject=Geoserver%20Query%20Builder&amp;body=https://amanbagrecha.github.io/post/geoserver/geoserver-query-builder/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Query%20Geoserver%20Layer%20using%20openlayers&amp;body=https://amanbagrecha.github.io/post/geoserver/geoserver-query-builder/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -1123,7 +1137,7 @@ If the fetch call could not find the match it returns an error which is caught b
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://amanbagrecha.github.io/post/geoserver/geoserver-query-builder/&amp;title=Geoserver%20Query%20Builder" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=https://amanbagrecha.github.io/post/geoserver/geoserver-query-builder/&amp;title=Query%20Geoserver%20Layer%20using%20openlayers" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -1136,7 +1150,7 @@ If the fetch call could not find the match it returns an error which is caught b
       
       
       <li>
-        <a href="whatsapp://send?text=Geoserver%20Query%20Builder%20https://amanbagrecha.github.io/post/geoserver/geoserver-query-builder/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=Query%20Geoserver%20Layer%20using%20openlayers%20https://amanbagrecha.github.io/post/geoserver/geoserver-query-builder/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1149,7 +1163,7 @@ If the fetch call could not find the match it returns an error which is caught b
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://amanbagrecha.github.io/post/geoserver/geoserver-query-builder/&amp;title=Geoserver%20Query%20Builder" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://amanbagrecha.github.io/post/geoserver/geoserver-query-builder/&amp;title=Query%20Geoserver%20Layer%20using%20openlayers" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
