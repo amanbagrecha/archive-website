@@ -187,8 +187,9 @@ INSTALLED_APPS = [
 &lt;p&gt;On running &lt;code&gt;python manage.py runserver&lt;/code&gt; you should see this page.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/zSSpoqV.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;Our focus will be on the frontend, but the full code can be accessed from here.&lt;/p&gt;
-&lt;p&gt;For querying displaying layers from geoserver, we first need geoserver installed and running. For more info on how to do that can be found &lt;a href=&#34;https://docs.geoserver.org/master/en/user/installation/win_binary.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Our focus will be on the frontend, but the full code can be accessed from &lt;a href=&#34;https://github.com/amanbagrecha/openlayers-geoserver-query&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For querying and displaying layers from geoserver, we first need geoserver installed and running. For more info on how to do that can be found &lt;a href=&#34;https://docs.geoserver.org/master/en/user/installation/win_binary.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In the following steps we setup our basemap layer to be ESRI World Imagery and define an empty vector layer to store the result of query.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// map setup
 var maplayer = 	new ol.layer.Tile({
     source: new ol.source.XYZ({
@@ -208,11 +209,11 @@ var view = new ol.View({
   
 var map = new ol.Map({
 	layers: [ maplayer],
-	overlays: [overlay],
 	target: &#39;map&#39;,
 	view: view,
   });
-  
+
+// define empty vector layer to store query result later
 var SearchvectorLayerSource =  new ol.source.Vector({
 	  
 	})
@@ -221,6 +222,7 @@ var SearchvectorLayer = new ol.layer.Vector({
   });
   map.addLayer(SearchvectorLayer);
 
+// define headers for authentication and login
 MyHeaders = {&#39;Content-Type&#39;: &#39;application/json&#39;, &#39;Access-Control-Allow-Credentials&#39; : true,
 				&#39;Access-Control-Allow-Origin&#39;:&#39;*&#39;,
 				&#39;Accept&#39;: &#39;application/json&#39;,
@@ -231,6 +233,7 @@ MyHeaders = {&#39;Content-Type&#39;: &#39;application/json&#39;, &#39;Access-Con
 /workspaces/{workspaceName}/layers
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;To see this in action, we display all layers from the &lt;code&gt;sf&lt;/code&gt; workspace, provided in geoserver by default.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/sSjlZkU.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;
 var layerList = []; // array to store all the layer info
 var loginInfo = [&amp;quot;admin&amp;quot;, &amp;quot;geoserver&amp;quot;]; // username and password for geoserver
@@ -256,10 +259,39 @@ $.ajax({
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The output of this ajax call returns us a &lt;code&gt;layerList&lt;/code&gt; array containing all the layer name and the url associated with it of size (:, 2)&lt;/p&gt;
 &lt;p&gt;This layer can then be displayed on the frontend by looping over the array and inserting into the div element.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/ZDctdje.jpg&#34; alt=&#34;&#34;&gt;
+Fig shows all the layers of workspace &lt;code&gt;sf&lt;/code&gt; displayed on the map with some styles applied to it&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;The next step after displaying all the layers of the workspace is to load the features of the layer on selecting a particular layer.&lt;/p&gt;
-&lt;p&gt;We do that by making a fetch call to wfs service protocol with request as &lt;code&gt;DescribeFeatureType&lt;/code&gt;. This enables us to list all the features of the layer selected. We can later go ahead and use the result to display on the frontend using a dropdown.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;function loadprops(layername) {
+&lt;p&gt;When the layer is ticked we send a request to geoserver to load the features of that layer and add to the map. If the layer is then unticked, we do the opposite and remove the layer from map.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  function toggleLayer(input) {
+	  if (input.checked) {
+		  wmsLayer = new ol.layer.Image({
+			source: new ol.source.ImageWMS({
+			  url: geoserver_ip+ &#39;:&#39;+geoserver_port + &amp;quot;/geoserver/wms&amp;quot;,
+			  imageLoadFunction: tileLoader,
+			  params: { LAYERS: input.value },
+			  serverType: &amp;quot;geoserver&amp;quot;,
+			}),
+			name: input.value,
+		  });
+
+		map.addLayer(wmsLayer);
+					
+	  } else {
+		  map.getLayers().forEach(layer =&amp;gt; {
+			  if (layer.get(&#39;name&#39;) == input.value) {
+				 map.removeLayer(layer);
+			 }
+		 });
+	  }
+  }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/Wgy2YV5.jpg&#34; alt=&#34;&#34;&gt;
+Fig: Displaying checked layer on map&lt;/p&gt;
+&lt;h3 id=&#34;query-layer&#34;&gt;Query layer&lt;/h3&gt;
+&lt;p&gt;We start with the querying the layer by their attributes. We load all the attributes (as columns) and display as dropdown. We use &lt;code&gt;wfs&lt;/code&gt; service and &lt;code&gt;DescribeFeatureType&lt;/code&gt; request to load the attributes.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  function loadprops(layername) {
 	  selectedLayer = layername;
 	  fetch(
 		geoserver_ip+ &#39;:&#39;+geoserver_port+&amp;quot;/geoserver/wfs?service=wfs&amp;amp;version=2.0.0&amp;amp;request=DescribeFeatureType&amp;amp;typeNames=&amp;quot; + 
@@ -275,6 +307,19 @@ $.ajax({
 		})
 		.then(function (json) {
 			var allprops = json.featureTypes[0].properties;
+		  var ColumnnamesSelect = document.getElementById(&amp;quot;Columnnames&amp;quot;);
+			  ColumnnamesSelect.innerHTML = &#39;&#39;
+			for (i = 0; i &amp;lt; allprops.length; i++){
+				if (allprops[i].name != &#39;the_geom&#39;) {
+					ColumnnamesSelect.innerHTML +=
+					  &#39;&amp;lt;option value=&amp;quot;&#39; +
+					  allprops[i].name +
+					  &#39;&amp;quot;&amp;gt; &#39; +
+					  allprops[i].name +
+					  &amp;quot;&amp;lt;/option&amp;gt;&amp;quot;;
+				}
+  
+			}
 		});
   }
 &lt;/code&gt;&lt;/pre&gt;
@@ -311,26 +356,13 @@ function fetch_search_call(query_url){
 			SearchvectorLayer.set(&#39;name&#39;,&#39;search_polygon_layer&#39;)
 			map.getView().fit(SearchvectorLayerSource.getExtent(),  { duration: 1590, size: map.getSize(), padding: [10, 10, 13, 15], maxZoom:16});
 			
-
-var myStyle1 = new ol.style.Style({
-		
-			image: new ol.style.Circle({
-			  radius: 7,
-			  fill: new ol.style.Fill({color: &#39;black&#39;}),
-			  stroke: new ol.style.Stroke({
-				color: [255,0,0], width: 2
-			  })
-			})
-		  })
-
-		  SearchvectorLayer.setStyle(myStyle1)
-		})
 		return fetch_result
   }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The above function is queries a feature and adds it to the map as a new layer. If the search is successful, we are zoomed into that location and only the feature queried gets displayed.
-Additionally, we style with a circle using &lt;code&gt;setStyle&lt;/code&gt; method. If the fetch call could not find the match it returns an error which is caught by &lt;code&gt;catch&lt;/code&gt; and displays the error to the client.&lt;/p&gt;
-&lt;p&gt;To be continued&amp;hellip;&lt;/p&gt;
+&lt;p&gt;The above function queries a feature and adds it to the map as a new layer. If the search is successful, we are zoomed into that location and only the feature queried gets displayed.
+If the fetch call could not find the match it returns an error which is caught by &lt;code&gt;catch&lt;/code&gt; and displays the error to the client.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/syqvzq0.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The working application can be viewed &lt;a href=&#34;http://52.90.64.40:8000/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
