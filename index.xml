@@ -2342,9 +2342,9 @@ const { Mongoose } = pkg;
     
     <item>
       <title>Slides</title>
-      <link>https://amanbagrecha.github.io/slides/example/</link>
+      <link>https://amanbagrecha.github.io/slides/nlp-basics/</link>
       <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/slides/example/</guid>
+      <guid>https://amanbagrecha.github.io/slides/nlp-basics/</guid>
       <description>&lt;h1 id=&#34;introduction-to&#34;&gt;Introduction to&lt;/h1&gt;
 &lt;h2 id=&#34;natural-language-processing&#34;&gt;Natural Language Processing&lt;/h2&gt;
 &lt;p&gt;By &lt;a href=&#34;https://github.com/amanbagrecha&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Aman Bagrecha&lt;/a&gt;&lt;/p&gt;
