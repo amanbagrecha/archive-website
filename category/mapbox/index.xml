@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mapbox | Aman Bagrecha</title>
+    <link>https://amanbagrecha.github.io/category/mapbox/</link>
+      <atom:link href="https://amanbagrecha.github.io/category/mapbox/index.xml" rel="self" type="application/rss+xml" />
+    <description>Mapbox</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 08 Jul 2021 10:34:27 +0530</lastBuildDate>
+    <image>
+      <url>https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png</url>
+      <title>Mapbox</title>
+      <link>https://amanbagrecha.github.io/category/mapbox/</link>
+    </image>
+    
+    <item>
+      <title>Geocoding using Mapbox API</title>
+      <link>https://amanbagrecha.github.io/project/mapbox-api/</link>
+      <pubDate>Thu, 08 Jul 2021 10:34:27 +0530</pubDate>
+      <guid>https://amanbagrecha.github.io/project/mapbox-api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Geocoding using Mapbox API with Zoom-in map functionality</title>
+      <link>https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/</link>
+      <pubDate>Mon, 24 May 2021 20:04:53 +0530</pubDate>
+      <guid>https://amanbagrecha.github.io/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The big picture of this post can be related to google maps, wherein you type the address and it zooms in to the location of interest. We replicate this exact functionality with mapbox API for geocoding and openlayers for client side zoom to the address of interest.&lt;/p&gt;
+&lt;h2 id=&#34;main-steps&#34;&gt;Main steps&lt;/h2&gt;
+&lt;p&gt;This blog demonstrates how to geocode an address using mapbox api implemented in openlayers v6. Additionally zoom in to the search location as text provided on the search bar.
+This one page appication demostrates only key elements, rest of the customisation is at discretion of the viewer.&lt;/p&gt;
+&lt;h3 id=&#34;setup-the-project&#34;&gt;Setup the project&lt;/h3&gt;
+&lt;p&gt;We first create basic single html file to include all elements (javascript, css and html). Ideally, when the application scales, you would create a seperate file for each component.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create &lt;code&gt;html&lt;/code&gt; file and add basic elements&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0&amp;quot;&amp;gt;
+ &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css&amp;quot; type=&amp;quot;text/css&amp;quot;&amp;gt;
+ &amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}
+ &amp;lt;/style&amp;gt;
+ &amp;lt;/head&amp;gt;
+ &amp;lt;body&amp;gt;
+&amp;lt;!--create search bar for geocoding and style it --&amp;gt;
+&amp;lt;h2&amp;gt;Autocomplete&amp;lt;/h2&amp;gt;
+&amp;lt;br&amp;gt;
+&amp;lt;form  method=&amp;quot;post&amp;quot; &amp;gt;
+  &amp;lt;div class=&amp;quot;autocomplete&amp;quot; style=&amp;quot;width:300px;&amp;quot;&amp;gt;
+	&amp;lt;input id=&amp;quot;myInput&amp;quot; type=&amp;quot;text&amp;quot; name=&amp;quot;myCountry&amp;quot; placeholder=&amp;quot;Country&amp;quot;&amp;gt;
+  &amp;lt;/div&amp;gt;
+  &amp;lt;input type=&amp;quot;submit&amp;quot; id = &amp;quot;geocodingSubmit&amp;quot;&amp;gt;
+&amp;lt;/form&amp;gt;
+&amp;lt;div id=&#39;project_map&#39;, class=&amp;quot;map&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;script src=&amp;quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;!-- &amp;lt;script src=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.5.0/proj4.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; --&amp;gt;
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+	 
+	 // create basemap layer
+	 var project_maplayer = new ol.layer.Tile({
+	// source: new ol.source.OSM(),
+	source: new ol.source.XYZ({
+		attributions: [&#39;Powered by Esri&#39;,
+									 &#39;Source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community&#39;],
+		attributionsCollapsible: false,
+		url: &#39;https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}&#39;,
+		maxZoom: 23
+	}),
+	zIndex: 0
+});
+
+// create view for the layer
+var project_view = new ol.View({
+	projection: &#39;EPSG:4326&#39;,
+	center: [-81.80808208706726, 27.285095000261222],
+	zoom: 7,
+});
+
+// add the basemap to the map
+var Projectmap = new ol.Map({
+	layers: [project_maplayer,],
+	target: &#39;project_map&#39;,
+	view: project_view,
+    constrainOnlyCenter: true,
+});
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We added the following elements,&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Search bar: we setup the search function to input values as address and wrap it within a form with post request.&lt;/li&gt;
+&lt;li&gt;Map : the div element with &lt;code&gt;id=&amp;quot;project_map&amp;quot;&lt;/code&gt; holds the map element and the script does the following. First, create layer with ESRI basemap. Second, add the layer to the Map object.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;At this stage the application looks like the following image&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/joNvjw7.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;add-autocomplete-functionality&#34;&gt;Add autocomplete functionality&lt;/h2&gt;
+&lt;p&gt;We fetch from the api and populate our top results in a list format on key press. Also, we style the search bar using css.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;style&amp;gt;
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+&amp;lt;/style&amp;gt;
+
+&amp;lt;script&amp;gt;
+myHeaders =  {&#39;Content-Type&#39;: &#39;application/json&#39;, &#39;Access-Control-Allow-Credentials&#39; : true,
+					&#39;Access-Control-Allow-Origin&#39;:&#39;*&#39;,
+					&#39;Accept&#39;: &#39;application/json&#39;}
+
+function autocomplete(inp) {
+  /*the autocomplete function takes one argument,
+  the text field element*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener(&amp;quot;input&amp;quot;, function(e) {
+	  var a, b, i, val = this.value;
+	  var ACCESS_TOKEN_KEY = &#39;your_token_here&#39;
+	  /*close any already open lists of autocompleted values*/
+	  var URL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${val}.json?access_token=${ACCESS_TOKEN_KEY}&amp;amp;types=address,region,poi,country,district,locality,neighborhood,postcode&amp;amp;country=us`
+	 
+	  fetch(URL,{
+		method: &#39;GET&#39;,
+		headers: myHeaders,
+	  }).then(response =&amp;gt; response.json())
+	  .then(data =&amp;gt; {
+		geocode_data = data;
+		// console.log(data) 
+	  
+	  closeAllLists();
+	  if (!val) { return false;}
+	  currentFocus = -1;
+	  /*create a DIV element that will contain the items (values):*/
+	  a = document.createElement(&amp;quot;DIV&amp;quot;);
+	  a.setAttribute(&amp;quot;id&amp;quot;, this.id + &amp;quot;autocomplete-list&amp;quot;);
+	  a.setAttribute(&amp;quot;class&amp;quot;, &amp;quot;autocomplete-items&amp;quot;);
+	  /*append the DIV element as a child of the autocomplete container:*/
+	  this.parentNode.appendChild(a);
+	  /*for each item in the array...*/
+	  for (i = 0; i &amp;lt; geocode_data.features.length; i++) {
+
+		  b = document.createElement(&amp;quot;DIV&amp;quot;);
+		  /*insert a input field that will hold the current array item&#39;s value:*/
+		  b.innerHTML += geocode_data.features[i].place_name;
+		  b.innerHTML += `&amp;lt;input type=&#39;hidden&#39; style=&amp;quot;display: none;&amp;quot; id=${i}-center-cc  
+		  coordinates=&#39;${geocode_data.features[i].center}&#39; value=&#39;${geocode_data.features[i].place_name}&#39;&amp;gt;`;
+		  
+		  /*execute a function when someone clicks on the item value (DIV element):*/
+		  b.addEventListener(&amp;quot;click&amp;quot;, function(e) {
+			  /*insert the value for the autocomplete text field:*/
+			  var input_tag = this.getElementsByTagName(&amp;quot;input&amp;quot;)[0]
+			  inp.value = input_tag.value;
+			  inp.setAttribute(&amp;quot;coordinates&amp;quot;, input_tag.getAttribute(&#39;coordinates&#39;));
+
+			  /*close the list of autocompleted values,
+			  (or any other open lists of autocompleted values:*/
+			  closeAllLists();
+		  });
+		  a.appendChild(b);
+		}
+
+	  })
+	  .catch(error =&amp;gt; {
+	console.error(&#39;There has been a problem with your fetch operation:&#39;, error);
+	});
+
+
+	  });
+  // });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener(&amp;quot;keydown&amp;quot;, function(e) {
+	  var x = document.getElementById(this.id + &amp;quot;autocomplete-list&amp;quot;);
+	  if (x) x = x.getElementsByTagName(&amp;quot;div&amp;quot;);
+	  if (e.keyCode == 40) {
+		/*If the arrow DOWN key is pressed,
+		increase the currentFocus variable:*/
+		currentFocus++;
+		/*and and make the current item more visible:*/
+		addActive(x);
+	  } else if (e.keyCode == 38) { //up
+		/*If the arrow UP key is pressed,
+		decrease the currentFocus variable:*/
+		currentFocus--;
+		/*and and make the current item more visible:*/
+		addActive(x);
+	  } else if (e.keyCode == 13) {
+		/*If the ENTER key is pressed, prevent the form from being submitted,*/
+		e.preventDefault();
+		if (currentFocus &amp;gt; -1) {
+		  /*and simulate a click on the &amp;quot;active&amp;quot; item:*/
+		  if (x) x[currentFocus].click();
+		}
+	  }
+  });
+  function addActive(x) {
+	/*a function to classify an item as &amp;quot;active&amp;quot;:*/
+	if (!x) return false;
+	/*start by removing the &amp;quot;active&amp;quot; class on all items:*/
+	removeActive(x);
+	if (currentFocus &amp;gt;= x.length) currentFocus = 0;
+	if (currentFocus &amp;lt; 0) currentFocus = (x.length - 1);
+	/*add class &amp;quot;autocomplete-active&amp;quot;:*/
+	x[currentFocus].classList.add(&amp;quot;autocomplete-active&amp;quot;);
+  }
+  function removeActive(x) {
+	/*a function to remove the &amp;quot;active&amp;quot; class from all autocomplete items:*/
+	for (var i = 0; i &amp;lt; x.length; i++) {
+	  x[i].classList.remove(&amp;quot;autocomplete-active&amp;quot;);
+	}
+  }
+  function closeAllLists(elmnt) {
+	/*close all autocomplete lists in the document,
+	except the one passed as an argument:*/
+	var x = document.getElementsByClassName(&amp;quot;autocomplete-items&amp;quot;);
+	for (var i = 0; i &amp;lt; x.length; i++) {
+	  if (elmnt != x[i] &amp;amp;&amp;amp; elmnt != inp) {
+		x[i].parentNode.removeChild(x[i]);
+	  }
+	}
+  }
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener(&amp;quot;click&amp;quot;, function (e) {
+	  closeAllLists(e.target);
+  });
+}
+
+/*initiate the autocomplete function on the &amp;quot;myInput&amp;quot; element */
+autocomplete(document.getElementById(&amp;quot;myInput&amp;quot;));
+
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The following is the explanation of the code&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;autocomplete function: The function takes an element as input which needs to be populated. Then we add an event listner which on change in input field, triggers. A GET request is sent across for the input typed and the result is populated in a form of dropdown. We add some styling on key-down so as to select the search.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;At this point, with correct mapbox api access key, we have built the autocomplete functionality.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/ES8bnSO.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;last-steps&#34;&gt;Last steps&lt;/h2&gt;
+&lt;p&gt;We now only need to implement the submit functionality. On click of submit button, the address is located on the map and zoomed in. This is done using a function we call centerMap&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;function CenterMap() {
+	var [long, lat] = document.getElementById(&amp;quot;myInput&amp;quot;).getAttribute(&amp;quot;coordinates&amp;quot;).split(&amp;quot;,&amp;quot;).map(Number)
+    console.log(&amp;quot;Long: &amp;quot; + long + &amp;quot; Lat: &amp;quot; + lat);
+    Projectmap.getView().setCenter(ol.proj.transform([long, lat], &#39;EPSG:4326&#39;, &#39;EPSG:4326&#39;));
+    Projectmap.getView().setZoom(5);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we add the centerMap function on click of submit&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;document.getElementById(&amp;quot;geocodingSubmit&amp;quot;).addEventListener(&#39;click&#39;, function(e){
+
+	e.preventDefault();
+	CenterMap()
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The associated running application can be found &lt;a href=&#34;https://amanbagrecha.github.io/mapbox-search-functionality/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
