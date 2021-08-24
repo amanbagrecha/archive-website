@@ -516,6 +516,14 @@ If the fetch call could not find the match it returns an error which is caught b
     </item>
     
     <item>
+      <title>Radiant Earth Spot the Crop Hackathon</title>
+      <link>https://amanbagrecha.github.io/project/spot-the-crop-radiantearth/</link>
+      <pubDate>Mon, 12 Jul 2021 19:56:56 +0530</pubDate>
+      <guid>https://amanbagrecha.github.io/project/spot-the-crop-radiantearth/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Geocoding using Mapbox API</title>
       <link>https://amanbagrecha.github.io/project/mapbox-api/</link>
       <pubDate>Thu, 08 Jul 2021 10:34:27 +0530</pubDate>
