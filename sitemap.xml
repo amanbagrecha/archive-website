@@ -12,7 +12,34 @@
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/</loc>
-    <lastmod>2021-08-10T22:17:14+05:30</lastmod>
+    <lastmod>2021-09-08T18:43:06+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/tag/gis/</loc>
+    <lastmod>2021-09-08T14:15:36+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/project/</loc>
+    <lastmod>2021-09-08T14:15:36+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/tag/python/</loc>
+    <lastmod>2021-09-08T14:15:36+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/project/smap-soil-moisture/</loc>
+    <lastmod>2021-09-08T14:15:36+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/tags/</loc>
+    <lastmod>2021-09-08T14:15:36+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/categories/</loc>
+    <lastmod>2021-09-08T18:43:06+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/post/</loc>
+    <lastmod>2021-09-08T18:43:06+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/category/remote-sensing/</loc>
+    <lastmod>2021-09-08T18:43:06+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/post/rs_gis/smap-time-series/</loc>
+    <lastmod>2021-09-08T18:43:06+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/tag/django/</loc>
     <lastmod>2021-08-10T22:17:14+05:30</lastmod>
@@ -27,12 +54,6 @@
     <lastmod>2021-08-10T22:17:14+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/tag/postgis/</loc>
-    <lastmod>2021-08-10T22:17:14+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/project/</loc>
-    <lastmod>2021-08-10T22:17:14+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/tags/</loc>
     <lastmod>2021-08-10T22:17:14+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/tag/webgis/</loc>
@@ -50,19 +71,10 @@
     <loc>https://amanbagrecha.github.io/project/ml_challenge/</loc>
     <lastmod>2021-07-24T19:56:56+05:30</lastmod>
   </url><url>
-    <loc>https://amanbagrecha.github.io/tag/python/</loc>
-    <lastmod>2021-07-24T19:56:56+05:30</lastmod>
-  </url><url>
     <loc>https://amanbagrecha.github.io/tag/sklearn/</loc>
     <lastmod>2021-07-24T19:56:56+05:30</lastmod>
   </url><url>
-    <loc>https://amanbagrecha.github.io/categories/</loc>
-    <lastmod>2021-07-24T22:06:37+05:30</lastmod>
-  </url><url>
     <loc>https://amanbagrecha.github.io/post/qgis/contour-maps-in-qgis/</loc>
-    <lastmod>2021-07-24T22:06:37+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/post/</loc>
     <lastmod>2021-07-24T22:06:37+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/category/qgis/</loc>
@@ -93,9 +105,6 @@
     <lastmod>2021-07-12T19:56:56+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/tag/arcgis/</loc>
-    <lastmod>2021-07-12T19:56:56+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/tag/gis/</loc>
     <lastmod>2021-07-12T19:56:56+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/project/land-surface-temperature/</loc>

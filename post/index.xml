@@ -5,12 +5,134 @@
     <link>https://amanbagrecha.github.io/post/</link>
       <atom:link href="https://amanbagrecha.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 24 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 08 Sep 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
       <link>https://amanbagrecha.github.io/post/</link>
     </image>
+    
+    <item>
+      <title>SMAP Time Series</title>
+      <link>https://amanbagrecha.github.io/post/rs_gis/smap-time-series/</link>
+      <pubDate>Wed, 08 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/post/rs_gis/smap-time-series/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Farmers in parts of India still rely on groundwater for irrigation. For them to help understand the present condition of their farm, SMAP data could fill a significant void.&lt;/p&gt;
+&lt;p&gt;NASA’s Soil Moisture Active Passive (&lt;strong&gt;SMAP&lt;/strong&gt;) satellite. The mission collects the kind of local data agricultural and water managers worldwide need.&lt;/p&gt;
+&lt;p&gt;The main output of this data set is &lt;strong&gt;surface soil moisture&lt;/strong&gt; (SSM)(representing approximately the top 5 cm of the soil column on average, given in cm3 /cm3 ) presented on the global 36 km EASE-Grid 2.0. While there are other measurements, we are only restricting ourselves to SSM&lt;/p&gt;
+&lt;p&gt;The SSM product has three main levels. L1, L2, and the latest being L3. SMAP uses a radiometer to detect microwave signals and process to obtain soil moisture. It initially had radar onboard but failed in 2015. Although the product is primarily available in 36 km resolution, with the help of Sentinel-1 Radar product, we now have access to 9 km resolution daily global product as well post 2016.&lt;/p&gt;
+&lt;p&gt;We are going to work with a 36 km product since a time-series can be memory intensive to download.&lt;/p&gt;
+&lt;p&gt;One such product is &lt;strong&gt;L3_SM_P&lt;/strong&gt;, a daily global product, which is an abbreviation of ( L3 soil moisture ).&lt;/p&gt;
+&lt;p&gt;We choose Bangalore as our area of interest and perform the following three steps in sequence&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Download the SMAP L3 data for the latest one month ( &lt;strong&gt;August 2021&lt;/strong&gt; here).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Extraction of the soil moisture values from SMAP L3 data over Lat, Lon of Bangalore in python.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Plot the time series plot for the extracted soil moisture values for the latest one month.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To download the SMAP L3 data, we head over to &lt;a href=&#34;https://nsidc.org/data/SPL3SMP/versions/7&#34;&gt;https://nsidc.org/data/SPL3SMP/versions/7&lt;/a&gt; and select a time-period ( in our case for the entire month of August 2021) under the download tab. We then click on the download script button as a python file.&lt;/p&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/aoKJnay.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 -Downloading python script for the month of August from NSIDC&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;As can be seen in the picture, we have a download size of 980 mb once we run the python script.
+The next step would be to download the actual files and extract soil moisture value for the selected lat long.
+One thing to note is, since the product has a resolution of 36 km and that the entire pixel represents one value, we have to couple together a set of pixels around bangalore since the entire region does not overlay in one pixel size.&lt;/p&gt;
+&lt;p&gt;We would be using colaboratory in this entire process since it allows for smooth use of the command line within the workspace.&lt;/p&gt;
+&lt;h3 id=&#34;run-the-downloaded-script-it-will-ask-you-for-your-earth-data-credentials-username-and-password&#34;&gt;Run the downloaded script. It will ask you for your earth data credentials (username and password)&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;# Download data: Enter credentials for earth data
+%run /content/download_SPL3.py
+ 
+# move files to data dir
+!mkdir -p data/L3_SM_P
+!mv *h5 data/L3_SM_P
+!rm *.h5*
+ 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Get the lat long for EASE grid 2.0. Since we have to locate Bengaluru (study area) and SMAP uses a specific grid system, we download these lat long files.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;!wget https://github.com/amanbagrecha/smap_time_series_analysis/raw/main/EASE2_M36km.lons.964x406x1.double
+!wget https://github.com/amanbagrecha/smap_time_series_analysis/raw/main/EASE2_M36km.lats.964x406x1.double
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;extract-soil-moisture&#34;&gt;Extract soil moisture&lt;/h3&gt;
+&lt;p&gt;We define a class since there are two half-orbit passes (ascending and descending pass) and we could later combine them easily.&lt;/p&gt;
+&lt;p&gt;We create a &lt;code&gt;read_SML3P&lt;/code&gt; method which reads the hdf5 files using the h5py library as an array and removes noisy elements as defined by the user guide. The filename contains the date of acquisition and we extract that.&lt;/p&gt;
+&lt;p&gt;We next define the &lt;code&gt;generate_time_series&lt;/code&gt; method to subset the array to our area of interest (bangalore)while also taking the mean since there might be more than 1 pixel intersecting the AOI and then return a dataframe with date and the value of Soil Moisture.&lt;/p&gt;
+&lt;p&gt;There are some additional method we define to run and initialise the class which can be read from &lt;a href=&#34;https://github.com/amanbagrecha/smap_time_series_analysis/blob/main/main.py&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class SML3PSoilMoist:
+  &amp;quot;&amp;quot;&amp;quot;
+  get soil moisture from L3 SMAP SCA-V algo for the specified date
+  Parameters
+  ----------
+  soil_moisture: numpy.array
+  flag_id:  [str] Quality flag of retrieved soil moisture using SCA-V
+  var_id: [str] can be replaced with scva algorithm which is the default (baseline)
+  group_id: [str] retrive soil moisture for Ascending or descending pass
+  file_list: [list] of downloaded files; File path of a SMAP L3 HDF5 file
+  -------
+  Returns Soil moisture values and time period as a DataFrame
+  &amp;quot;&amp;quot;&amp;quot;
+ 
+  def __init__(self, file_list : &#39;list&#39;, orbit_pass: &#39;str&#39;):
+    
+    ...
+ 
+  def run_(self):
+    &amp;quot;&amp;quot;&amp;quot;read files and return 3d array and time&amp;quot;&amp;quot;&amp;quot;
+    ...
+ 
+ 
+  def read_SML3P(self, filepath):
+    &#39;&#39;&#39; This function extracts soil moisture from SMAP L3 P HDF5 file.
+    # refer to https://nsidc.org/support/faq/how-do-i-interpret-surface-and-quality-flag-information-level-2-and-3-passive-soil
+
+    &#39;&#39;&#39;    
+    with h5py.File(filepath, &#39;r&#39;) as f:
+ 
+        group_id = self.group_id 
+        flag_id = self.flag_id
+        var_id = self.var_id
+ 
+        flag = f[group_id][flag_id][:,:]
+ 
+        soil_moisture = f[group_id][var_id][:,:]        
+        soil_moisture[soil_moisture==-9999.0]=np.nan;
+        soil_moisture[(flag&amp;gt;&amp;gt;0)&amp;amp;1==1]=np.nan # set to nan expect for 0 and even bits
+ 
+        filename = os.path.basename(filepath)
+        
+        yyyymmdd= filename.split(&#39;_&#39;)[4]
+        yyyy = int(yyyymmdd[0:4]); mm = int(yyyymmdd[4:6]); dd = int(yyyymmdd[6:8])
+        date=dt.datetime(yyyy,mm,dd)
+ 
+    return soil_moisture, date
+ 
+  def generate_time_series(self, bbox: &#39;list -&amp;gt; [N_lat, S_lat, W_lon, E_lon]&#39;):
+    
+    N_lat, S_lat, W_lon, E_lon = bbox
+    subset = (lats&amp;lt;N_lat)&amp;amp;(lats&amp;gt;S_lat)&amp;amp;(lons&amp;gt;W_lon)&amp;amp;(lons&amp;lt;E_lon)
+    sm_time = np.empty([self.time_period]);
+    
+    sm_data_3d, times = self.run_()
+    for i in np.arange(0,self.time_period):
+        sm_2d = sm_data_3d[:,:,i]
+        
+        sm_time[i] = np.nanmean(sm_2d[subset]);
+ 
+    return pd.DataFrame({&#39;time&#39; : times, self.orbit_pass: sm_time })
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Lastly, we plot the dataframe using pandas method &lt;code&gt;plot&lt;/code&gt; and the result is to be shown to the world.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/PngGsda.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Data courtesy: O&amp;rsquo;Neill et al. doi: &lt;a href=&#34;https://doi.org/10.5067/HH4SZ2PXSP6A&#34;&gt;https://doi.org/10.5067/HH4SZ2PXSP6A&lt;/a&gt;. [31st August, 2021].&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
     
     <item>
       <title>Contour Maps in QGIS</title>

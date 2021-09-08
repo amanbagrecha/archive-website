@@ -5,12 +5,22 @@
     <link>https://amanbagrecha.github.io/tag/gis/</link>
       <atom:link href="https://amanbagrecha.github.io/tag/gis/index.xml" rel="self" type="application/rss+xml" />
     <description>gis</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 12 Jul 2021 19:56:56 +0530</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 08 Sep 2021 14:15:36 +0530</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png</url>
       <title>gis</title>
       <link>https://amanbagrecha.github.io/tag/gis/</link>
     </image>
+    
+    <item>
+      <title>SMAP Soil Moisture Time Series Analysis</title>
+      <link>https://amanbagrecha.github.io/project/smap-soil-moisture/</link>
+      <pubDate>Wed, 08 Sep 2021 14:15:36 +0530</pubDate>
+      <guid>https://amanbagrecha.github.io/project/smap-soil-moisture/</guid>
+      <description>&lt;hr&gt;
+&lt;hr&gt;
+</description>
+    </item>
     
     <item>
       <title>Land Surface Temperature</title>
