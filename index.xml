@@ -5,7 +5,7 @@
     <link>https://amanbagrecha.github.io/</link>
       <atom:link href="https://amanbagrecha.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Aman Bagrecha</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 08 Sep 2021 14:15:36 +0530</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 19 Sep 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png</url>
       <title>Aman Bagrecha</title>
@@ -105,6 +105,66 @@ The variance of the distribution is $\sigma^{2}$.
   &lt;summary&gt;What is the parameter $\mu$?&lt;/summary&gt;
   &lt;p&gt;The parameter $\mu$ is the mean or expectation of the distribution.&lt;/p&gt;
 &lt;/details&gt;</description>
+    </item>
+    
+    <item>
+      <title>Overlay cropped raster with vector layer</title>
+      <link>https://amanbagrecha.github.io/post/rs_gis/overlay-cropped-raster-with-vector-layer/</link>
+      <pubDate>Sun, 19 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/post/rs_gis/overlay-cropped-raster-with-vector-layer/</guid>
+      <description>&lt;p&gt;I recently faced a problem of having to plot &amp;ldquo;cropped raster&amp;rdquo; layer and a vector layer on the same axes. It is known that we first need to identify the spatial extent of each layer, having the same coordinate reference system.  Rasterio does offer a plotting function &lt;code&gt;show&lt;/code&gt; which can plot a raster layer with the correct spatial extent for you when we pass the dataset reader object.&lt;/p&gt;
+&lt;p&gt;When we pass a reader object, the spatial extent is automatically read by &lt;code&gt;show&lt;/code&gt; function.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;with rs.open(path_to_file, &amp;quot;r&amp;quot;) as src:  # import rasterio as rs
+    
+    f, ax = plt.subplots(figsize=(9,9))
+    _ = show(src, ax=ax)            # from rasterio.plot import show
+    _ = vector_layer.plot(ax=ax)    # `vector_layer` is a geodataframe (geopandas)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/A33Vopw.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 -Overlay raster with vector layer. Notice the spatial extent&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Moreover, if we pass a numpy array to the &lt;code&gt;show&lt;/code&gt; function,  the spatial extent of that array has to be explicitly passed using the &lt;code&gt;transform&lt;/code&gt; parameter of the &lt;code&gt;show&lt;/code&gt; function since the numpy array does not know the corner location of the raster and thus the plot would begin with x,y: 0,0 as shown below.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;with rs.open(path_to_file, &amp;quot;r&amp;quot;) as src:
+
+    img = src.read(1) # img is a numpy array
+
+    f, ax = plt.subplots(figsize=(9,9))
+    _ = show(img, transform = src.transform, ax=ax)
+    _ = vector_layer.plot(ax=ax)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But what if you want to plot a subset of the raster image, in the sense that you would like to slice the image arbitrarily and plot it. When you slice the image, the affine transformation is not the same anymore and thus plotting the sliced image would result in a plot having the spatial extent of the original image while the sliced image being magnified (Fig. 2).&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;with rs.open(path_to_file, &amp;quot;r&amp;quot;) as src:
+
+    img = src.read(1)[1:-1,1:-1]
+
+    f, ax = plt.subplots(figsize=(9,9))
+    _ = show(img, transform = src.transform, ax=ax)
+    _ = vector_layer.plot(ax=ax)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/ePTM6q0.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.2 - Overlaid cropped raster and vector layer with incorrect spatial extents&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;To avert this problem, we need to find the new affine transformation of the cropped image. Luckily rasterio has a &lt;code&gt;window_transform&lt;/code&gt;  method on the dataset reader which can compute the new transformation from the old one by passing the bounds of the layer. The &lt;code&gt;window_transform&lt;/code&gt; function can either take a 2D N-D array indexer in the form of a tuple &lt;code&gt;((row_start, row_stop), (col_start, col_stop))&lt;/code&gt; or provide offset as written in its &lt;a href=&#34;https://rasterio.readthedocs.io/en/latest/api/rasterio.windows.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;documentation&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;cropped-raster-and-vector-overlay&#34;&gt;Cropped raster and vector overlay&lt;/h2&gt;
+&lt;p&gt;The above method returns the new affine transformation, which can be passed to the &lt;code&gt;show&lt;/code&gt; function for the numpy array through the &lt;code&gt;transform&lt;/code&gt; parameter. We also change the read method instead of slicing the array by window parameter to maintain uniformity&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# load raster
+with rs.open(path_to_file, &amp;quot;r&amp;quot;) as src:
+    # window =  (((row_start), (row_stop)), ((col_start), (col_stop)))
+    img = src.read(1, window = ((1,-1), (1,-1)))
+    f, ax = plt.subplots(figsize=(9,9))
+    show(img, transform=src.window_transform(((1,-1), (1,-1))), ax=ax)
+
+    _ = vector_layer.plot(ax=ax)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/uwVnq4z.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.3 - Overlay of cropped raster and vector. Notice the updated spatial extent &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;The &lt;code&gt;show&lt;/code&gt; method is helpful for plotting rasters or even RGB images for that matter. One of the differences between matplotlib&amp;rsquo;s plotting and &lt;code&gt;show&lt;/code&gt; function is the order of axes. &lt;code&gt;show&lt;/code&gt; expects it the bands to be the last axis while matplotlib, the first. &lt;code&gt;show&lt;/code&gt; can also plot 4d array, which is useful for satellite images.
+While there is an &lt;code&gt;extent&lt;/code&gt; paramter in matplotlib&amp;rsquo;s plotting function, &lt;code&gt;show&lt;/code&gt; function is much tidier and straight-forward to implement cropped raster and overlay vector layer on it.&lt;/p&gt;
+</description>
     </item>
     
     <item>

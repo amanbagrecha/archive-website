@@ -33,10 +33,10 @@
   
     
   
-  <meta name="description" content="GIS, Remote Sensing and Machine Learning" />
+  <meta name="description" content="Plot cropped raster and vector layer on the same figure using rasterio and matplotlib" />
 
   
-  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/" />
+  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/rs_gis/overlay-cropped-raster-with-vector-layer/" />
 
   
 
@@ -309,8 +309,6 @@
   
 
   
-    <link rel="alternate" href="/post/index.xml" type="application/rss+xml" title="Aman Bagrecha" />
-  
 
   
     <link rel="manifest" href="/index.webmanifest" />
@@ -319,7 +317,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_32x32_fill_lanczos_center_2.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_180x180_fill_lanczos_center_2.png" />
 
-  <link rel="canonical" href="https://amanbagrecha.github.io/post/" />
+  <link rel="canonical" href="https://amanbagrecha.github.io/post/rs_gis/overlay-cropped-raster-with-vector-layer/" />
 
   
   
@@ -339,33 +337,82 @@
     <meta property="twitter:creator" content="@https://twitter.com/aman_bagrecha" />
   
   <meta property="og:site_name" content="Aman Bagrecha" />
-  <meta property="og:url" content="https://amanbagrecha.github.io/post/" />
-  <meta property="og:title" content="Posts | Aman Bagrecha" />
-  <meta property="og:description" content="GIS, Remote Sensing and Machine Learning" /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
+  <meta property="og:url" content="https://amanbagrecha.github.io/post/rs_gis/overlay-cropped-raster-with-vector-layer/" />
+  <meta property="og:title" content="Overlay cropped raster with vector layer | Aman Bagrecha" />
+  <meta property="og:description" content="Plot cropped raster and vector layer on the same figure using rasterio and matplotlib" /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
     <meta property="twitter:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
   
     
-      <meta property="og:updated_time" content="2021-09-19T00:00:00&#43;00:00" />
+      <meta
+        property="article:published_time"
+        content="2021-09-19T00:00:00&#43;00:00"
+      />
     
+    <meta property="article:modified_time" content="2021-09-19T10:43:11&#43;05:30">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://amanbagrecha.github.io/post/rs_gis/overlay-cropped-raster-with-vector-layer/"
+  },
+  "headline": "Overlay cropped raster with vector layer",
+  
+  "datePublished": "2021-09-19T00:00:00Z",
+  "dateModified": "2021-09-19T10:43:11+05:30",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Aman Bagrecha"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Aman Bagrecha",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Plot cropped raster and vector layer on the same figure using rasterio and matplotlib"
+}
+</script>
+
+  
+
+  
+
   
 
   
 
 
 
-  
-
-  
 
 
-
-
-
-  <title>Posts | Aman Bagrecha</title>
+  <title>Overlay cropped raster with vector layer | Aman Bagrecha</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="6370009740e1eb2ee0b7974f10ecc91f" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="e7ede856f88e01771f1b41a4c1c7e74e" >
 
   
   
@@ -707,7 +754,9 @@
   </div>
 
   <div class="page-body">
-    
+    <article class="article">
+
+  
 
 
 
@@ -725,37 +774,10 @@
   
   
   
-    
-  
-<div class="universal-wrapper pt-3">
-  <h1>Posts</h1>
+<div class="article-container pt-3">
+  <h1>Overlay cropped raster with vector layer</h1>
 
   
-
-  
-</div>
-
-
-
-<div class="universal-wrapper">
-
-  
-
-  
-  
-    
-      
-
-
-
-
-
-
-
-  
-
-
-<div class="card-simple">
 
   
     
@@ -799,32 +821,76 @@
 
 </div>
 
-  
+    
+
+
+
+
 
   
-  
-  
+</div>
 
-  <div class="section-subheading article-title mb-1 mt-3">
-    <a href="/post/rs_gis/overlay-cropped-raster-with-vector-layer/">Overlay cropped raster with vector layer</a>
-  </div>
 
-  
-  <a href="/post/rs_gis/overlay-cropped-raster-with-vector-layer/" class="summary-link">
+
+  <div class="article-container">
+
     <div class="article-style">
-      <p>Plot cropped raster and vector layer on the same figure using rasterio and matplotlib</p>
+      <p>I recently faced a problem of having to plot &ldquo;cropped raster&rdquo; layer and a vector layer on the same axes. It is known that we first need to identify the spatial extent of each layer, having the same coordinate reference system.  Rasterio does offer a plotting function <code>show</code> which can plot a raster layer with the correct spatial extent for you when we pass the dataset reader object.</p>
+<p>When we pass a reader object, the spatial extent is automatically read by <code>show</code> function.</p>
+<pre><code class="language-python">with rs.open(path_to_file, &quot;r&quot;) as src:  # import rasterio as rs
+    
+    f, ax = plt.subplots(figsize=(9,9))
+    _ = show(src, ax=ax)            # from rasterio.plot import show
+    _ = vector_layer.plot(ax=ax)    # `vector_layer` is a geodataframe (geopandas)
+</code></pre>
+<figure>
+<p><img src="https://i.imgur.com/A33Vopw.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.1 -Overlay raster with vector layer. Notice the spatial extent</i></b></figcaption>
+</figure>
+<p>Moreover, if we pass a numpy array to the <code>show</code> function,  the spatial extent of that array has to be explicitly passed using the <code>transform</code> parameter of the <code>show</code> function since the numpy array does not know the corner location of the raster and thus the plot would begin with x,y: 0,0 as shown below.</p>
+<pre><code class="language-python">with rs.open(path_to_file, &quot;r&quot;) as src:
+
+    img = src.read(1) # img is a numpy array
+
+    f, ax = plt.subplots(figsize=(9,9))
+    _ = show(img, transform = src.transform, ax=ax)
+    _ = vector_layer.plot(ax=ax)
+</code></pre>
+<p>But what if you want to plot a subset of the raster image, in the sense that you would like to slice the image arbitrarily and plot it. When you slice the image, the affine transformation is not the same anymore and thus plotting the sliced image would result in a plot having the spatial extent of the original image while the sliced image being magnified (Fig. 2).</p>
+<pre><code class="language-python">with rs.open(path_to_file, &quot;r&quot;) as src:
+
+    img = src.read(1)[1:-1,1:-1]
+
+    f, ax = plt.subplots(figsize=(9,9))
+    _ = show(img, transform = src.transform, ax=ax)
+    _ = vector_layer.plot(ax=ax)
+</code></pre>
+<figure>
+<p><img src="https://i.imgur.com/ePTM6q0.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.2 - Overlaid cropped raster and vector layer with incorrect spatial extents</i></b></figcaption>
+</figure>
+<p>To avert this problem, we need to find the new affine transformation of the cropped image. Luckily rasterio has a <code>window_transform</code>  method on the dataset reader which can compute the new transformation from the old one by passing the bounds of the layer. The <code>window_transform</code> function can either take a 2D N-D array indexer in the form of a tuple <code>((row_start, row_stop), (col_start, col_stop))</code> or provide offset as written in its <a href="https://rasterio.readthedocs.io/en/latest/api/rasterio.windows.html" target="_blank" rel="noopener">documentation</a></p>
+<h2 id="cropped-raster-and-vector-overlay">Cropped raster and vector overlay</h2>
+<p>The above method returns the new affine transformation, which can be passed to the <code>show</code> function for the numpy array through the <code>transform</code> parameter. We also change the read method instead of slicing the array by window parameter to maintain uniformity</p>
+<pre><code class="language-python"># load raster
+with rs.open(path_to_file, &quot;r&quot;) as src:
+    # window =  (((row_start), (row_stop)), ((col_start), (col_stop)))
+    img = src.read(1, window = ((1,-1), (1,-1)))
+    f, ax = plt.subplots(figsize=(9,9))
+    show(img, transform=src.window_transform(((1,-1), (1,-1))), ax=ax)
+
+    _ = vector_layer.plot(ax=ax)
+</code></pre>
+<figure>
+<p><img src="https://i.imgur.com/uwVnq4z.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.3 - Overlay of cropped raster and vector. Notice the updated spatial extent </i></b></figcaption>
+</figure>
+<p>The <code>show</code> method is helpful for plotting rasters or even RGB images for that matter. One of the differences between matplotlib&rsquo;s plotting and <code>show</code> function is the order of axes. <code>show</code> expects it the bands to be the last axis while matplotlib, the first. <code>show</code> can also plot 4d array, which is useful for satellite images.
+While there is an <code>extent</code> paramter in matplotlib&rsquo;s plotting function, <code>show</code> function is much tidier and straight-forward to implement cropped raster and overlay vector layer on it.</p>
+
     </div>
-  </a>
-  
-
-  
-
-</div>
 
     
-  
-    
-      
 
 
 
@@ -832,803 +898,256 @@
 
 
 
-  
 
-
-<div class="card-simple">
-
-  
-    
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
     
       
-          Last updated on
       
-    
-    Sep 8, 2021
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    5 min read
-  </span>
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/category/remote-sensing/">Remote sensing</a></span>
-  
-
-</div>
-
-  
-
-  
-  
-  
-
-  <div class="section-subheading article-title mb-1 mt-3">
-    <a href="/post/rs_gis/smap-time-series/">SMAP Time Series</a>
-  </div>
-
-  
-  <a href="/post/rs_gis/smap-time-series/" class="summary-link">
-    <div class="article-style">
-      <p>We perform time-series analysis of soil moisture derived from SMAP L3 product for Bengaluru city.</p>
-    </div>
-  </a>
-  
-
-  
-  <div class="btn-links">
-    
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary btn-page-header btn-sm" href="https://github.com/amanbagrecha/smap_time_series_analysis" target="_blank" rel="noopener">
-  Code
-</a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-  
-
-</div>
-
-    
-  
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://amanbagrecha.github.io/post/rs_gis/overlay-cropped-raster-with-vector-layer/&amp;text=Overlay%20cropped%20raster%20with%20vector%20layer" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
     
       
-
-
-
-
-
-
-
-  
-
-
-<div class="card-simple">
-
-  
-    
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://amanbagrecha.github.io/post/rs_gis/overlay-cropped-raster-with-vector-layer/&amp;t=Overlay%20cropped%20raster%20with%20vector%20layer" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
     
       
-          Last updated on
       
-    
-    Jul 24, 2021
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    5 min read
-  </span>
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/category/qgis/">QGIS</a></span>
-  
-
-</div>
-
-  
-
-  
-  
-  
-
-  <div class="section-subheading article-title mb-1 mt-3">
-    <a href="/post/qgis/contour-maps-in-qgis/">Contour Maps in QGIS</a>
-  </div>
-
-  
-  <a href="/post/qgis/contour-maps-in-qgis/" class="summary-link">
-    <div class="article-style">
-      <p>Generate contour maps in QGIS and understand various interpolation methods.</p>
-    </div>
-  </a>
-  
-
-  
-
-</div>
-
-    
-  
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Overlay%20cropped%20raster%20with%20vector%20layer&amp;body=https://amanbagrecha.github.io/post/rs_gis/overlay-cropped-raster-with-vector-layer/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
     
       
-
-
-
-
-
-
-
-  
-
-
-<div class="card-simple">
-
-  
-    
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://amanbagrecha.github.io/post/rs_gis/overlay-cropped-raster-with-vector-layer/&amp;title=Overlay%20cropped%20raster%20with%20vector%20layer" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
     
       
-          Last updated on
       
-    
-    Jul 16, 2021
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    6 min read
-  </span>
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/category/geoserver/">Geoserver</a>, <a href="/category/openlayers/">Openlayers</a></span>
-  
-
-</div>
-
-  
-
-  
-  
-  
-
-  <div class="section-subheading article-title mb-1 mt-3">
-    <a href="/post/geoserver/geoserver-query-builder/">Query Geoserver Layer using openlayers</a>
-  </div>
-
-  
-  <a href="/post/geoserver/geoserver-query-builder/" class="summary-link">
-    <div class="article-style">
-      <p>This blog demonstrates how to display and query all geoserver layers or from a workspace using geoserver REST API. CQL (Common Query Language) filter provided by geoserver is used to query the layer.</p>
-    </div>
-  </a>
-  
-
-  
-
-</div>
-
-    
-  
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Overlay%20cropped%20raster%20with%20vector%20layer%20https://amanbagrecha.github.io/post/rs_gis/overlay-cropped-raster-with-vector-layer/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
     
       
-
-
-
-
-
-
-
-  
-
-
-<div class="card-simple">
-
-  
-    
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
       
-          Last updated on
       
-    
-    Jun 10, 2021
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    5 min read
-  </span>
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/category/python/">python</a></span>
-  
-
-</div>
-
-  
-
-  
-  
-  
-
-  <div class="section-subheading article-title mb-1 mt-3">
-    <a href="/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/">Download and preprocess NASA GPM IMERG Data using python and wget</a>
-  </div>
-
-  
-  <a href="/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/" class="summary-link">
-    <div class="article-style">
-      <p>In this blog post we look into how to download precipitation data from NASA website and process it with <code>xarray</code> and <code>wget</code>.</p>
-    </div>
-  </a>
-  
-
-  
-
-</div>
-
-    
-  
-    
+        
       
-
-
-
-
-
-
-
-  
-
-
-<div class="card-simple">
-
-  
-    
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
       
-          Last updated on
       
-    
-    Jun 7, 2021
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    4 min read
-  </span>
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/category/qgis/">QGIS</a>, <a href="/category/machine-learning/">machine learning</a></span>
-  
-
-</div>
-
-  
-
-  
-  
-  
-
-  <div class="section-subheading article-title mb-1 mt-3">
-    <a href="/post/qgis/validating-lulc-classes-in-qgis/">Validating LULC classes in QGIS</a>
-  </div>
-
-  
-  <a href="/post/qgis/validating-lulc-classes-in-qgis/" class="summary-link">
-    <div class="article-style">
-      <p>The objective of this quality assessment was to validate the land cover map performed on June, 2020 sentinel-2 imagery by k-means classification algorithm in QGIS</p>
-    </div>
-  </a>
-  
-
-  
-
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-  
-
-
-<div class="card-simple">
-
-  
-    
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    May 24, 2021
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    6 min read
-  </span>
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/category/openlayers/">Openlayers</a>, <a href="/category/mapbox/">Mapbox</a></span>
-  
-
-</div>
-
-  
-
-  
-  
-  
-
-  <div class="section-subheading article-title mb-1 mt-3">
-    <a href="/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/">Geocoding using Mapbox API with Zoom-in map functionality</a>
-  </div>
-
-  
-  <a href="/post/openlayers/geocode-using-mapbox-api-with-zoom-functionality/" class="summary-link">
-    <div class="article-style">
-      <p>How to bulid geocoding web-app using openlayers</p>
-    </div>
-  </a>
-  
-
-  
-
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-  
-
-
-<div class="card-simple">
-
-  
-    
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    May 24, 2021
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    7 min read
-  </span>
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/category/django/">Django</a></span>
-  
-
-</div>
-
-  
-
-  
-  
-  
-
-  <div class="section-subheading article-title mb-1 mt-3">
-    <a href="/post/django/django-image-upload/">How to Upload Multiple Geotagged Images in Django</a>
-  </div>
-
-  
-  <a href="/post/django/django-image-upload/" class="summary-link">
-    <div class="article-style">
-      <p>we look into how to upload multiple geo-tagged/non-geotagged images to aws s3 using plain Django and postgresql as databbase.</p>
-    </div>
-  </a>
-  
-
-  
-
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-  
-
-
-<div class="card-simple">
-
-  
-    
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-          Last updated on
-      
-    
-    Jun 12, 2021
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    3 min read
-  </span>
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/category/django/">Django</a></span>
-  
-
-</div>
-
-  
-
-  
-  
-  
-
-  <div class="section-subheading article-title mb-1 mt-3">
-    <a href="/post/django/pdf-and-email-creation/">Django rest framework PDF creation and email via gmail SMTP and reportLab</a>
-  </div>
-
-  
-  <a href="/post/django/pdf-and-email-creation/" class="summary-link">
-    <div class="article-style">
-      <p>In this blog we create PDF using <code>Report Lab</code> and email it to the user using gmail SMTP service. All actions are performed in Django.</p>
-    </div>
-  </a>
-  
-
-  
-
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-  
-
-
-<div class="card-simple">
-
-  
-    
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-          Last updated on
-      
-    
-    May 24, 2021
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    5 min read
-  </span>
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/category/openlayers/">Openlayers</a></span>
-  
-
-</div>
-
-  
-
-  
-  
-  
-
-  <div class="section-subheading article-title mb-1 mt-3">
-    <a href="/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/">Polygon Selection and  Area Calculation in Openlayers</a>
-  </div>
-
-  
-  <a href="/post/openlayers/polygon-selection-and-area-calculation-in-openlayers/" class="summary-link">
-    <div class="article-style">
-      <p>Select multiple polygons (parcels) and calculate area on the fly in openlayers</p>
-    </div>
-  </a>
-  
-
-  
-
-</div>
-
-    
-  
-
-  
-<nav>
-  <ul class="pagination justify-content-center">
-    
-    
-    <li class="page-item"><a class="page-link" href="/post/page/2/">&raquo;</a></li>
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://amanbagrecha.github.io/post/rs_gis/overlay-cropped-raster-with-vector-layer/&amp;title=Overlay%20cropped%20raster%20with%20vector%20layer" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
     
   </ul>
-</nav>
-
-
-
 </div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://amanbagrecha.github.io/"><img class="avatar mr-3 avatar-circle" src="/author/aman-bagrecha/avatar_hu8b3e467675822a0c69fe66cbb3600b5d_124233_270x270_fill_q75_lanczos_center.jpg" alt="Aman Bagrecha"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://amanbagrecha.github.io/">Aman Bagrecha</a></h5>
+      <h6 class="card-subtitle">GIS and RS fanatic</h6>
+      <p class="card-text">My interests include documenting, programming, Deep learning and GIS matter.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/aman_bagrecha" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.researchgate.net/profile/Aman-Bagrecha-3" target="_blank" rel="noopener">
+        <i class="fab fa-researchgate"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/amanbagrecha" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/amanbagrecha/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/jainaman588@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.quora.com/profile/Aman-Jain-456" target="_blank" rel="noopener">
+        <i class="fas fa-blog"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
   </div>
 
   <div class="page-footer">
