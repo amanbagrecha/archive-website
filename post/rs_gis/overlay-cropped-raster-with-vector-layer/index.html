@@ -348,7 +348,7 @@
         content="2021-09-19T00:00:00&#43;00:00"
       />
     
-    <meta property="article:modified_time" content="2021-09-19T10:43:11&#43;05:30">
+    <meta property="article:modified_time" content="2021-09-27T10:43:11&#43;05:30">
   
 
   
@@ -377,7 +377,7 @@
   "headline": "Overlay cropped raster with vector layer",
   
   "datePublished": "2021-09-19T00:00:00Z",
-  "dateModified": "2021-09-19T10:43:11+05:30",
+  "dateModified": "2021-09-27T10:43:11+05:30",
   
   "author": {
     "@type": "Person",
@@ -796,7 +796,7 @@
           Last updated on
       
     
-    Sep 19, 2021
+    Sep 27, 2021
   </span>
   
 
@@ -885,7 +885,7 @@ with rs.open(path_to_file, &quot;r&quot;) as src:
 <p><img src="https://i.imgur.com/uwVnq4z.png" alt=""></p>
 <figcaption align = "center"><b><i>Fig.3 - Overlay of cropped raster and vector. Notice the updated spatial extent </i></b></figcaption>
 </figure>
-<p>The <code>show</code> method is helpful for plotting rasters or even RGB images for that matter. One of the differences between matplotlib&rsquo;s plotting and <code>show</code> function is the order of axes. <code>show</code> expects it the bands to be the last axis while matplotlib, the first. <code>show</code> can also plot 4d array, which is useful for satellite images.
+<p>The <code>show</code> method is helpful for plotting rasters or even RGB images for that matter. One of the differences with matplotlib&rsquo;s plotting is the order of axes. <code>show</code> expects it the bands to be the last axis while matplotlib, the first. It can also plot 4-band image, which is almost always the for satellite images.
 While there is an <code>extent</code> paramter in matplotlib&rsquo;s plotting function, <code>show</code> function is much tidier and straight-forward to implement cropped raster and overlay vector layer on it.</p>
 
     </div>

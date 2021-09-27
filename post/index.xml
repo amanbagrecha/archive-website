@@ -67,7 +67,7 @@ with rs.open(path_to_file, &amp;quot;r&amp;quot;) as src:
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/uwVnq4z.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.3 - Overlay of cropped raster and vector. Notice the updated spatial extent &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;The &lt;code&gt;show&lt;/code&gt; method is helpful for plotting rasters or even RGB images for that matter. One of the differences between matplotlib&amp;rsquo;s plotting and &lt;code&gt;show&lt;/code&gt; function is the order of axes. &lt;code&gt;show&lt;/code&gt; expects it the bands to be the last axis while matplotlib, the first. &lt;code&gt;show&lt;/code&gt; can also plot 4d array, which is useful for satellite images.
+&lt;p&gt;The &lt;code&gt;show&lt;/code&gt; method is helpful for plotting rasters or even RGB images for that matter. One of the differences with matplotlib&amp;rsquo;s plotting is the order of axes. &lt;code&gt;show&lt;/code&gt; expects it the bands to be the last axis while matplotlib, the first. It can also plot 4-band image, which is almost always the for satellite images.
 While there is an &lt;code&gt;extent&lt;/code&gt; paramter in matplotlib&amp;rsquo;s plotting function, &lt;code&gt;show&lt;/code&gt; function is much tidier and straight-forward to implement cropped raster and overlay vector layer on it.&lt;/p&gt;
 </description>
     </item>
