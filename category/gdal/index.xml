@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GDAL | Aman Bagrecha</title>
+    <link>https://amanbagrecha.github.io/category/gdal/</link>
+      <atom:link href="https://amanbagrecha.github.io/category/gdal/index.xml" rel="self" type="application/rss+xml" />
+    <description>GDAL</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 30 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png</url>
+      <title>GDAL</title>
+      <link>https://amanbagrecha.github.io/category/gdal/</link>
+    </image>
+    
+    <item>
+      <title>Polygonize Raster and Compute Zonal-Statistics in Python</title>
+      <link>https://amanbagrecha.github.io/post/rs_gis/polygonize-raster-and-compute-zonal-stats-in-python/</link>
+      <pubDate>Thu, 30 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/post/rs_gis/polygonize-raster-and-compute-zonal-stats-in-python/</guid>
+      <description>&lt;p&gt;The output of a clustering algorithm is a raster. But when you want to compute statistics of the clustered raster, it needs to be polygonized.&lt;/p&gt;
+&lt;p&gt;A simple way to perform this action is using the gdal command line &lt;code&gt;gdal_polygonize.py&lt;/code&gt; script. This script requires the output file format, input raster file and output name of the vector file. You can additionally mask pixel values which you don&amp;rsquo;t want to convert to polygons. For this example, we would consider a single band image.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;python gdal_polygonize.py raster_file -f &amp;quot;ESRI Shapefile&amp;quot; vector_file.shp  layername atrributefieldname
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;--nomask&lt;/code&gt; allows to include nodata values in the shapefile&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;atrributefieldname&lt;/code&gt; should always be preceded with &lt;code&gt;layername&lt;/code&gt; else it would result in an error.&lt;/p&gt;
+&lt;p&gt;The output would result in a vector layer. The number of output polygons is equal to the number of non-NA values. Each neighbouring cell (pixel) which is connected in the raster having the same value is combined to form a single polygon.&lt;/p&gt;
+&lt;p&gt;For instance, consider this 4 x 4 raster. When converted to vector, it resulted in 6 polygons. Note that disconnected similar values form an independent polygon. Each polygon will have an attribute as its pixel value from the raster, in the data type of the image. These would end up being a pair of (polygon, value) for each feature found in the image.&lt;/p&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/xeJ4BGa.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 -Converting Raster to Vector using GDAL. The output polygon has attribute associated with its raster value &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Another way to polygonize raster programmatically is to use the &lt;code&gt;rasterio&lt;/code&gt; library. Since rasterio utilizes GDAL under the hood, it also performs similar action and results in a pair of geometry and raster value. We create a tuple of dictionaries to store each feature output.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# code to polygonize using rasterio
+from rasterio import features
+
+# read the raster and polygonize
+with rasterio.open(cluster_image_path) as src:
+    image = src.read(1, out_dtype=&#39;uint16&#39;) 
+    #Make a mask!
+    mask = image != 0
+# `results` contains a tuple. With each element in the tuple representing a dictionary containing the feature (polygon) and its associated raster value
+results = ( {&#39;properties&#39;: {&#39;cluster_id&#39;: int(v)}, &#39;geometry&#39;: s} 
+            for (s, v) in (features.shapes(image, mask=mask, transform=src.transform)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once we have the raster polygonized, we can use &lt;code&gt;rasterstats&lt;/code&gt; library to calculate zonal statistics. We use this library since there is no in-built functionality for rasterio to calculate it.&lt;/p&gt;
+&lt;p&gt;This library has a function &lt;code&gt;zonal_stats&lt;/code&gt; which takes in a vector layer and a raster to calculate the zonal statistics. Read more &lt;a href=&#34;https://pythonhosted.org/rasterstats/manual.html#zonal-statistics&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The parameters to the function are:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;vectors: path to an vector source or geo-like python objects&lt;/li&gt;
+&lt;li&gt;raster: ndarray or path to a GDAL raster source&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;and various other options which can be found &lt;a href=&#34;https://github.com/perrygeo/python-rasterstats/blob/master/src/rasterstats/main.py#L34&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;To create a vector layer from the tuple &lt;code&gt;results&lt;/code&gt;, we use geopandas. There are other libraries (such as fiona) which can also create vector geometry from shapely objects.&lt;/p&gt;
+&lt;p&gt;For raster, we pass the &lt;code&gt;.tif&lt;/code&gt; file directly to &lt;code&gt;zonal_stats&lt;/code&gt;. The final code looks like the following&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from rasterstats import zonal_stats
+
+in_shp = gpd.GeoDataFrame.from_features(results).set_crs(crs=src.crs)
+
+# stats parameter takes in various statistics that needs to be computed 
+statistics= zonal_stats(in_shp,image,stats=&#39;min, max, mean, median&#39;,
+                geojson_out=True, nodata = -999)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The output is a geojson generator when &lt;code&gt;geojson_out&lt;/code&gt; is True. we can convert the geojson to dataframe and export as csv for further processing.&lt;/p&gt;
+&lt;p&gt;This way, with the help of geopandas, rasterstats and rasterio, we polygonize the raster and calculate zonal statistics.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

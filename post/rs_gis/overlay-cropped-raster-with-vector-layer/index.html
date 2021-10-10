@@ -818,6 +818,10 @@
 
   
   
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/remote-sensing/">Remote sensing</a>, <a href="/category/python/">Python</a></span>
+  
 
 </div>
 
@@ -835,7 +839,8 @@
   <div class="article-container">
 
     <div class="article-style">
-      <p>I recently faced a problem of having to plot &ldquo;cropped raster&rdquo; layer and a vector layer on the same axes. It is known that we first need to identify the spatial extent of each layer, having the same coordinate reference system.  Rasterio does offer a plotting function <code>show</code> which can plot a raster layer with the correct spatial extent for you when we pass the dataset reader object.</p>
+      <p>I recently faced a problem of having to plot &ldquo;cropped raster&rdquo; layer and a vector layer on the same axes. It is known that we first need to identify the spatial extent of each layer, having the same coordinate reference system.<br>
+Rasterio does offer a plotting function <code>show</code> which can plot a raster layer with the correct spatial extent for you when we pass the dataset reader object.</p>
 <p>When we pass a reader object, the spatial extent is automatically read by <code>show</code> function.</p>
 <pre><code class="language-python">with rs.open(path_to_file, &quot;r&quot;) as src:  # import rasterio as rs
     
@@ -898,90 +903,6 @@ While there is an <code>extent</code> paramter in matplotlib&rsquo;s plotting fu
 
 
 
-
-<div class="share-box" aria-hidden="true">
-  <ul class="share">
-    
-      
-      
-      
-        
-      
-      
-      
-      <li>
-        <a href="https://twitter.com/intent/tweet?url=https://amanbagrecha.github.io/post/rs_gis/overlay-cropped-raster-with-vector-layer/&amp;text=Overlay%20cropped%20raster%20with%20vector%20layer" target="_blank" rel="noopener" class="share-btn-twitter">
-          <i class="fab fa-twitter"></i>
-        </a>
-      </li>
-    
-      
-      
-      
-        
-      
-      
-      
-      <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://amanbagrecha.github.io/post/rs_gis/overlay-cropped-raster-with-vector-layer/&amp;t=Overlay%20cropped%20raster%20with%20vector%20layer" target="_blank" rel="noopener" class="share-btn-facebook">
-          <i class="fab fa-facebook"></i>
-        </a>
-      </li>
-    
-      
-      
-      
-        
-      
-      
-      
-      <li>
-        <a href="mailto:?subject=Overlay%20cropped%20raster%20with%20vector%20layer&amp;body=https://amanbagrecha.github.io/post/rs_gis/overlay-cropped-raster-with-vector-layer/" target="_blank" rel="noopener" class="share-btn-email">
-          <i class="fas fa-envelope"></i>
-        </a>
-      </li>
-    
-      
-      
-      
-        
-      
-      
-      
-      <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://amanbagrecha.github.io/post/rs_gis/overlay-cropped-raster-with-vector-layer/&amp;title=Overlay%20cropped%20raster%20with%20vector%20layer" target="_blank" rel="noopener" class="share-btn-linkedin">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-      </li>
-    
-      
-      
-      
-        
-      
-      
-      
-      <li>
-        <a href="whatsapp://send?text=Overlay%20cropped%20raster%20with%20vector%20layer%20https://amanbagrecha.github.io/post/rs_gis/overlay-cropped-raster-with-vector-layer/" target="_blank" rel="noopener" class="share-btn-whatsapp">
-          <i class="fab fa-whatsapp"></i>
-        </a>
-      </li>
-    
-      
-      
-      
-        
-      
-      
-      
-      <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://amanbagrecha.github.io/post/rs_gis/overlay-cropped-raster-with-vector-layer/&amp;title=Overlay%20cropped%20raster%20with%20vector%20layer" target="_blank" rel="noopener" class="share-btn-weibo">
-          <i class="fab fa-weibo"></i>
-        </a>
-      </li>
-    
-  </ul>
-</div>
 
 
 
@@ -1134,6 +1055,28 @@ While there is an <code>extent</code> paramter in matplotlib&rsquo;s plotting fu
 
 
 
+
+<div class="article-widget">
+  
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/post/rs_gis/three-ways-to-change-projection-of-raw-csv/" rel="next">Three ways to Programmatically change projection of raw CSV</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/post/rs_gis/smap-time-series/" rel="prev">SMAP Time Series</a>
+  </div>
+  
+</div>
+
+</div>
 
 
 

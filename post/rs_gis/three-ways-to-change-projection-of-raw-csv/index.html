@@ -33,10 +33,10 @@
   
     
   
-  <meta name="description" content="Determining Land Surface Temperature of Bengaluru in ArcGIS using Landsat 8 product." />
+  <meta name="description" content="Change projection of CSV on-the-fly using GDAL, GeoPandas and pyproj" />
 
   
-  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/project/land-surface-temperature/" />
+  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/rs_gis/three-ways-to-change-projection-of-raw-csv/" />
 
   
 
@@ -317,7 +317,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_32x32_fill_lanczos_center_2.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_180x180_fill_lanczos_center_2.png" />
 
-  <link rel="canonical" href="https://amanbagrecha.github.io/project/land-surface-temperature/" />
+  <link rel="canonical" href="https://amanbagrecha.github.io/post/rs_gis/three-ways-to-change-projection-of-raw-csv/" />
 
   
   
@@ -328,26 +328,27 @@
   
   
     
+    
   
   
-  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:card" content="summary" />
   
     <meta property="twitter:site" content="@https://twitter.com/aman_bagrecha" />
     <meta property="twitter:creator" content="@https://twitter.com/aman_bagrecha" />
   
   <meta property="og:site_name" content="Aman Bagrecha" />
-  <meta property="og:url" content="https://amanbagrecha.github.io/project/land-surface-temperature/" />
-  <meta property="og:title" content="Land Surface Temperature | Aman Bagrecha" />
-  <meta property="og:description" content="Determining Land Surface Temperature of Bengaluru in ArcGIS using Landsat 8 product." /><meta property="og:image" content="https://amanbagrecha.github.io/project/land-surface-temperature/featured.png" />
-    <meta property="twitter:image" content="https://amanbagrecha.github.io/project/land-surface-temperature/featured.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:url" content="https://amanbagrecha.github.io/post/rs_gis/three-ways-to-change-projection-of-raw-csv/" />
+  <meta property="og:title" content="Three ways to Programmatically change projection of raw CSV | Aman Bagrecha" />
+  <meta property="og:description" content="Change projection of CSV on-the-fly using GDAL, GeoPandas and pyproj" /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
   
     
       <meta
         property="article:published_time"
-        content="2021-07-12T19:56:56&#43;05:30"
+        content="2021-09-30T00:00:00&#43;00:00"
       />
     
-    <meta property="article:modified_time" content="2021-07-12T19:56:56&#43;05:30">
+    <meta property="article:modified_time" content="2021-10-10T18:42:47&#43;05:30">
   
 
   
@@ -359,6 +360,8 @@
 
 
 
+
+  
 
 
 
@@ -366,19 +369,15 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://amanbagrecha.github.io/project/land-surface-temperature/"
+    "@id": "https://amanbagrecha.github.io/post/rs_gis/three-ways-to-change-projection-of-raw-csv/"
   },
-  "headline": "Land Surface Temperature",
+  "headline": "Three ways to Programmatically change projection of raw CSV",
   
-  "image": [
-    "https://amanbagrecha.github.io/project/land-surface-temperature/featured.png"
-  ],
-  
-  "datePublished": "2021-07-12T19:56:56+05:30",
-  "dateModified": "2021-07-12T19:56:56+05:30",
+  "datePublished": "2021-09-30T00:00:00Z",
+  "dateModified": "2021-10-10T18:42:47+05:30",
   
   "author": {
     "@type": "Person",
@@ -393,7 +392,7 @@
       "url": "https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "Determining Land Surface Temperature of Bengaluru in ArcGIS using Landsat 8 product."
+  "description": "Change projection of CSV on-the-fly using GDAL, GeoPandas and pyproj"
 }
 </script>
 
@@ -409,11 +408,11 @@
 
 
 
-  <title>Land Surface Temperature | Aman Bagrecha</title>
+  <title>Three ways to Programmatically change projection of raw CSV | Aman Bagrecha</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="f90dcc418ee30215edc19ba49e508e79" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="a3a9949bdcbc8d2838a1aea70c6db3e4" >
 
   
   
@@ -755,7 +754,7 @@
   </div>
 
   <div class="page-body">
-    <article class="article article-project">
+    <article class="article">
 
   
 
@@ -770,26 +769,18 @@
 
 
 
-
-
-
-
-
-
-
+  
 
   
+  
+  
+<div class="article-container pt-3">
+  <h1>Three ways to Programmatically change projection of raw CSV</h1>
+
+  
+
   
     
-  
-
-
-<div class="article-container pt-3">
-  <h1>Land Surface Temperature</h1>
-
-  
-
-  
 
 
 <div class="article-metadata">
@@ -802,106 +793,45 @@
     
     
       
+          Last updated on
+      
     
-    Jul 12, 2021
+    Oct 10, 2021
   </span>
   
 
   
 
   
-
-  
-  
-  
-  
-  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    4 min read
+  </span>
   
 
   
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/python/">Python</a></span>
   
 
 </div>
 
-  
-
-
-
-
-<div class="btn-links mb-3">
-  
-  <a class="btn btn-outline-primary my-1" href="https://github.com/amanbagrecha/MyProjects/tree/master/LST" target="_blank" rel="noopener">Go to Project Site</a>
-  
-  
-
-
-
-
-
-
-
-
-  
     
-  
-
-
-
-<a class="btn btn-outline-primary btn-page-header" href="https://github.com/amanbagrecha/MyProjects/blob/master/LST/LST_MODEL.pdf" target="_blank" rel="noopener">
-  PDF
-</a>
-
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary btn-page-header" href="https://github.com/amanbagrecha/MyProjects/tree/master/LST" target="_blank" rel="noopener">
-  Code
-</a>
-
-
-
-
-
-
-
-
 
 
 
 
 
   
-  
-  
-    
-  
-  
-  
-  
-  
-    
-  
-  <a class="btn btn-outline-primary btn-page-header" href="https://twitter.com/aman_bagrecha" target="_blank" rel="noopener">
-    <i class="fab fa-twitter mr-1"></i>
-    Follow
-  </a>
-
-
-</div>
-
-
-</div>
-
-
-<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 461px;">
-  <div style="position: relative">
-    <img src="/project/land-surface-temperature/featured_hu4bbb1c75e5bbcf2f37115f3d3cf46457_1314445_720x0_resize_lanczos_2.png" alt="" class="featured-image">
-    
-  </div>
 </div>
 
 
@@ -909,7 +839,63 @@
   <div class="article-container">
 
     <div class="article-style">
-      
+      <p>Often, field values are collected in the Geographic Coordinate System as ASCII or CSV so that it can be universally used. But when you want to perform any kind of analysis on these points, there is a need to reproject them into a Projected Coordinate Reference System for the specific area. Although there are many ways that exist now with desktop GIS, these methods can be cumbersome if you have thousands of files to reproject.</p>
+<p>This task of reprojecting raw CSV can be accomplished using GDAL although it is not straightforward. It requires an indication of geographic data of a CSV file which is provided using VRT (GDAL virtual Raster). More advanced tools now exist which are either built on top of GDAL or are very similar. pyproj and GeoPandas are two such libraries which can help us reproject our raw CSV on-the-fly.</p>
+<p>We first look at how this task can be accomplished using the GDAL command line.</p>
+<h3 id="reproject-csv-using-ogr2ogr">Reproject CSV using ogr2ogr</h3>
+<p>This example shows using ogr2ogr to reproject the Coordinate Reference System of a CSV file with the longitude, latitude coordinates stored as columns in the <code>.csv</code> file.</p>
+<pre><code>ogr2ogr -f CSV -lco GEOMETRY=AS_XY -t_srs EPSG:4326 output.csv input.vrt
+</code></pre>
+<p><code>-lco GEOMETRY=AS_XY</code> : Layer creation option with XY columns added in output csv.</p>
+<p>In the above code, <code>input.vrt</code> is a GDAL virtual raster which has to be created prior to running the command. It points to the CSV file which has the location data stored as columns (lon, lat)</p>
+<pre><code class="language-xml">&lt;!--input.vrt pointing to the filename.csv--&gt;
+&lt;OGRVRTDataSource&gt; 
+  &lt;OGRVRTLayer name=&quot;layername&quot;&gt; 
+    &lt;SrcDataSource&gt;filename.csv&lt;/SrcDataSource&gt; 
+    &lt;GeometryType&gt;wkbPoint&lt;/GeometryType&gt; 
+    &lt;LayerSRS&gt;EPSG:4326&lt;/LayerSRS&gt; 
+    &lt;GeometryField encoding=&quot;PointFromColumns&quot; x=&quot;lon&quot; y=&quot;lat&quot;/&gt; 
+  &lt;/OGRVRTLayer&gt; 
+&lt;/OGRVRTDataSource&gt;
+</code></pre>
+<p><strong>Why did we create this vrt file?</strong></p>
+<p>Well, VRT is a virtual gdal driver which allows for lazy processing. Often, we have to save intermediary outputs on our local disk, which could potentially take a lot of space. To avoid that, VRT allows to store the processing in an xml encoding and performs all intermediary action at once, in the final step.</p>
+<p><strong>But what does the above xml mean?</strong></p>
+<p>The first line <code>&lt;OGRVRTDataSource&gt;</code> is the root element. <code>&lt;OGRVRTLayer name=&quot;layername&quot;&gt;</code> corresponds with the <code>&lt;SrcDataSource&gt; filename.csv &lt;/SrcDataSource&gt;</code> and points to the CSV we want to reproject. <code>&lt;LayerSRS&gt;EPSG:4326&lt;/LayerSRS&gt;</code> should correspond with the EPSG of the coordinates stored in the CSV file. <code>&lt;GeometryType&gt; wkbPoint &lt;/GeometryType&gt;</code> is the format that coordinates are stored as. Lastly, <code>&lt;GeometryField encoding=&quot;PointFromColumns&quot; x=&quot;lon&quot; y=&quot;lat&quot;/&gt;</code> indicates the columns corresponding to lon and lat in csv.</p>
+<figure>
+<p><img src="https://i.imgur.com/HefHXvu.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.1 -Reprojecting CSV from EPSG:4326 to EPSG:32644 </i></b></figcaption>
+</figure>
+<p>Hence, by running the above GDAL command, we would be able to reproject our csv. By writing a bash script, this method can be scaled to thousands of files. But the intermediary <code>.vrt</code> file is messy to handle and it would be nice to avoid it. Luckily for us, there are high-level libraries in python which would avoid such hassle.</p>
+<h2 id="using-geopandas">Using GeoPandas</h2>
+<p>The modern geospatial libraries are <em>low code tools</em>. One such excellent library is GeoPandas, which is built on top of fiona, which in-turn is built on top of GDAL. Geopandas allows us to read, project and modify files on-the-fly. Additionally, the ability to create geometry from <code>lat, lon</code> allows us to pass our CSV files and modify its CRS.</p>
+<pre><code class="language-python">in_path = './'
+out_path = './output'
+files= [f for f in os.listdir(in_path) if f.endswith('.csv')]
+input_crs = 'EPSG:4326'
+output_crs = 'EPSG:32644'
+
+if not os.path.exists(out_path):
+    os.mkdir(out_path)
+
+for file in files:
+    df = pd.read_csv(file, header=None)
+    gdf = gpd.GeoDataFrame(
+        df, crs=input_crs , geometry=gpd.points_from_xy(df.iloc[:,0], df.iloc[:,1]))
+
+    gdf.to_crs(output_crs, inplace=True)
+    gdf.iloc[:,0] = gdf.geometry.x # replace x
+    gdf.iloc[:,1] = gdf.geometry.y # replace y
+    
+    # export reprojected csv 
+    gdf.iloc[:,:-1].to_csv(os.path.join(out_path, file), index=False )
+</code></pre>
+<p>In the above code, we loop through our CSV files. For each file, we create a geodataframe and change the CRS. Lastly, we replace the coordinates with reprojected one.</p>
+<p>There is another way using pyproj library which does this exact thing, but geopandas is more intuitive for me personally.</p>
+<p>To read about the pyproj method, refer <a href="https://gis.stackexchange.com/a/168496" target="_blank" rel="noopener">here</a>.</p>
+<h2 id="endnote">EndNote</h2>
+<p>Although there are several other ways to reproject raw CSV, I found these to be concise and efficient. Thanks to <a href="https://gis.stackexchange.com/">https://gis.stackexchange.com/</a> and awesome GIS community, these methods work like a charm 😊</p>
+
     </div>
 
     
@@ -921,11 +907,9 @@
 
 <div class="article-tags">
   
-  <a class="badge badge-light" href="/tag/gis/">gis</a>
+  <a class="badge badge-light" href="/tag/gdal/">GDAL</a>
   
-  <a class="badge badge-light" href="/tag/arcgis/">arcgis</a>
-  
-  <a class="badge badge-light" href="/tag/landsat/">landsat</a>
+  <a class="badge badge-light" href="/tag/python/">Python</a>
   
 </div>
 
@@ -1091,14 +1075,14 @@
   
   <div class="post-nav-item">
     <div class="meta-nav">Next</div>
-    <a href="/project/enrolmentbylevel/" rel="next">Analyse professional degree student enrolment v/s university count</a>
+    <a href="/post/rs_gis/polygonize-raster-and-compute-zonal-stats-in-python/" rel="next">Polygonize Raster and Compute Zonal-Statistics in Python</a>
   </div>
   
   
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/project/spot-the-crop-radiantearth/" rel="prev">Radiant Earth Spot the Crop Hackathon</a>
+    <a href="/post/rs_gis/overlay-cropped-raster-with-vector-layer/" rel="prev">Overlay cropped raster with vector layer</a>
   </div>
   
 </div>
@@ -1115,7 +1099,15 @@
     <h3>Related</h3>
     <ul>
       
+      <li><a href="/post/rs_gis/polygonize-raster-and-compute-zonal-stats-in-python/">Polygonize Raster and Compute Zonal-Statistics in Python</a></li>
+      
       <li><a href="/project/smap-soil-moisture/">SMAP Soil Moisture Time Series Analysis</a></li>
+      
+      <li><a href="/project/ml_challenge/">Predicting Age group of Social Media Application users</a></li>
+      
+      <li><a href="/project/enrolmentbylevel/">Analyse professional degree student enrolment v/s university count</a></li>
+      
+      <li><a href="/project/spot-the-crop-radiantearth/">Radiant Earth Spot the Crop Hackathon</a></li>
       
     </ul>
   </div>
@@ -1125,22 +1117,6 @@
 
 
 
-    <div class="project-related-pages content-widget-hr">
-      
-      
-
-      
-      
-      
-
-      
-      
-      
-
-      
-      
-      
-    </div>
   </div>
 </article>
   </div>
