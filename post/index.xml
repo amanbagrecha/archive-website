@@ -678,7 +678,7 @@ If the fetch call could not find the match it returns an error which is caught b
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/syqvzq0.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.5 -Displaying Queried layer by attribute value&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;This completes the blog on how to query layer and display on the map. The working application can be viewed &lt;a href=&#34;http://52.90.64.40:8000/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This completes the blog on how to query layer and display on the map. Visit the &lt;a href=&#34;https://github.com/amanbagrecha/openlayers-geoserver-query&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;github page&lt;/a&gt; to find the working application.&lt;/p&gt;
 </description>
     </item>
     
