@@ -33,7 +33,7 @@
   
     
   
-  <meta name="description" content="In this blog post we look into how to download precipitation data from NASA website and process it with `xarray` and `wget`." />
+  <meta name="description" content="In this blog post we look into how to download precipitation data from NASA website and process it with `xarray` and/or `wget`." />
 
   
   <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/" />
@@ -338,8 +338,8 @@
   
   <meta property="og:site_name" content="Aman Bagrecha" />
   <meta property="og:url" content="https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/" />
-  <meta property="og:title" content="Download and preprocess NASA GPM IMERG Data using python and wget | Aman Bagrecha" />
-  <meta property="og:description" content="In this blog post we look into how to download precipitation data from NASA website and process it with `xarray` and `wget`." /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
+  <meta property="og:title" content="Download and preprocess NASA GPM IMERG Data using Python and wget | Aman Bagrecha" />
+  <meta property="og:description" content="In this blog post we look into how to download precipitation data from NASA website and process it with `xarray` and/or `wget`." /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
     <meta property="twitter:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
   
     
@@ -374,7 +374,7 @@
     "@type": "WebPage",
     "@id": "https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/"
   },
-  "headline": "Download and preprocess NASA GPM IMERG Data using python and wget",
+  "headline": "Download and preprocess NASA GPM IMERG Data using Python and wget",
   
   "datePublished": "2021-06-10T00:00:00Z",
   "dateModified": "2021-06-10T21:33:25+05:30",
@@ -392,7 +392,7 @@
       "url": "https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "In this blog post we look into how to download precipitation data from NASA website and process it with `xarray` and `wget`."
+  "description": "In this blog post we look into how to download precipitation data from NASA website and process it with `xarray` and/or `wget`."
 }
 </script>
 
@@ -408,7 +408,7 @@
 
 
 
-  <title>Download and preprocess NASA GPM IMERG Data using python and wget | Aman Bagrecha</title>
+  <title>Download and preprocess NASA GPM IMERG Data using Python and wget | Aman Bagrecha</title>
 </head>
 
 
@@ -775,7 +775,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>Download and preprocess NASA GPM IMERG Data using python and wget</h1>
+  <h1>Download and preprocess NASA GPM IMERG Data using Python and wget</h1>
 
   
 
@@ -839,85 +839,87 @@
   <div class="article-container">
 
     <div class="article-style">
-      <p>In this blog post we look into how to download precipitation data from NASA website. I show you two methods, one- directly reading the data using <code>request</code> module and preprocessing the file using <code>pandas</code>. Two- To download netCDF file using wget and using <code>xarray</code> to preprocess and visualise the data.</p>
-<p><strong>We will use xarray to preprocess the data and visualisation. We are going to work with <a href="https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary" target="_blank" rel="noopener">GPM IMERG Late Precipitation L3 Half Hourly 0.1 degree x 0.1 degree V06 (GPM_3IMERGHHL)</a> data provided by NASA which gives half-hourly precipitation values for entire globe.</strong></p>
-<h2 id="method-1-using-python-to-read-on-the-fly-and-preprocess-the-data">Method 1: Using python to read on-the-fly and preprocess the data.</h2>
-<h3 id="let-us-first-look-at-one-file-which-we-need-to-read">Let us first look at one file which we need to read.</h3>
-<pre><code>Dataset: 3B-HHR.MS.MRG.3IMERG.20200502-S000000-E002959.0000.V06B.HDF5
-precipitationCal[0][0], 0, 0, 0
-precipitationCal[0][1], 0, 0, 0
-precipitationCal[0][2], 0, 0, 0
-precipitationCal[0][3], 0, 0, 0
-lat, 12.85, 12.95, 13.05
-lon, 77.45, 77.55, 77.65, 77.75
-time, 1588377600
+      <p>In this blog post we look into how to download precipitation data from NASA website and process it to get information using xarray and wget.</p>
+<p>We are going to work with <a href="https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary" target="_blank" rel="noopener">GPM IMERG Late Precipitation L3 Half Hourly 0.1 degree x 0.1 degree V06 (GPM_3IMERGHHL)</a> data provided by NASA which gives half-hourly precipitation values for entire globe.</p>
+<p>Pre-requisites</p>
+<ul>
+<li>You must have an Earthdata Account</li>
+<li>Link GES DISC with your account</li>
+</ul>
+<p>Refer to <a href="https://daac.gsfc.nasa.gov/earthdata-login" target="_blank" rel="noopener">this</a> page on how to Link GES DISC to your account.</p>
+<p>First method- We would be downloading netCDF data using the <code>request</code> module and preprocessing the file using <code>xarray</code>.</p>
+<p>Second method- To download netCDF file using wget and using <code>xarray</code> to preprocess and visualise the data.</p>
+<h2 id="downloading-link-list">Downloading link list</h2>
+<p>Visit the GPM IMERG website and click on <strong>subset/ Get Data</strong> link at right corner. 
+<img src="https://i.imgur.com/3RH1ot2.png" alt=""></p>
+<p>In the popup, select</p>
+<ol>
+<li><em>Download Method</em> as <em><strong>Get File Subsets using OPeNDAP</strong></em></li>
+<li><em>Refine Date Range</em> as the date you want the data for. In my case, I choose 10 days of data.</li>
+<li>Refine Region to subset data for your area of interest. In my case I choose <code>77.45,12.85,77.75,13.10</code></li>
+<li>Under <em>Variables</em>, select <em><strong>precipitationCal</strong></em>.</li>
+<li>For file format, we choose <em><strong>xarray</strong></em> and click the Get Data button.</li>
+</ol>
+<p><img src="https://i.imgur.com/xCp8Shs.png" alt=""></p>
+<p>This will download a text file, containing all the links to download individual netCDF half hourly data.</p>
+<p>Now we move to google Colab, to download the netCDF files (what we actually require)</p>
+<h2 id="method-1-using-python-to-read-and-preprocess-the-data-inside-google-colab">Method 1: Using Python to read and preprocess the data inside google Colab.</h2>
+<p>Open a new google Colab notebook and upload the downloaded text file. Our uploaded text file looks like the following.</p>
+<p><img src="https://i.imgur.com/njlFhPT.png" alt=""></p>
+<p>As one last requirement, NASA requires authentication to access the data and thus we have to create a &lsquo;.netrc&rsquo; file and save it at specified location (under <code>/root</code> dir in our case).</p>
+<h2 id="creating-netrc-file">Creating .netrc file</h2>
+<p>Open your notepad and type in the following text. Make sure to replace <code>your_login_username</code> and <code>your_password</code> with your earthdata credentials. Now save it as <code>.netrc</code> file.</p>
+<pre><code>machine urs.earthdata.nasa.gov login your_login_username password your_password
 </code></pre>
-<p>As can be seen the first line contains information on satellite, start-time and date, end-time and date. It also lists the sensor on board the satellite.
-The second to fifth line lists the values for grid points. When selecting the subset from the NASA website, we choose a bounding box and here we see that we have 12 values: 4 rows and 3 columns. Each value is the centroid of the grid which spans 0.1 by 0.1 degree units. The the <code>lat</code> and <code>lon</code> rows are the centroid position on the map. The last row is the time since launch of the satellite in seconds.</p>
-<p><strong>Note: we would need to have authorization in order to make GET request to the API. In google colab you need to first create <code>.netrc</code> file with credientials <code>machine urs.earthdata.nasa.gov login your_login_username password your_password</code> stored in the file. Then paste that file inside <code>/root</code> folder. Only then will you be authorised to fetch the data</strong></p>
-<p>We will be using google colab to process and read the file. The format we read in will be ASCII format.</p>
-<pre><code class="language-python">from google.colab import files
-import pandas as pd
+<p>Upload the <code>.netrc</code> file to Colab under <code>root</code> directory as shown in the figure below.</p>
+<p><img src="https://i.imgur.com/oZLeJuY.png" alt=""></p>
+<p>Now we have all the setup done and are ready to code.</p>
+<p>We first load the required libraries. Then, read the text file and loop over every line in it to download from the URL using the <code>request</code> module. Finally, we save the file to Colab&rsquo;s hard drive. If you do not see the files after running code, make sure to wait for at least a day after registering to earthdata to make your account activated. I was late to read about it and had wasted a long time debugging it.</p>
+<pre><code class="language-python">import pandas as pd
 import numpy as np
-import datetime
-import re
-import requests
-</code></pre>
-<p>our subset.txt file looks like the following.
-<img src="https://i.imgur.com/njlFhPT.png" alt=""></p>
-<pre><code class="language-python">df = pd.read_csv('/content/subset.txt', header=None, sep='\n')[0] # dataframe to read the text file which contains all the download links
-_df = pd.DataFrame() # dataframe to store the result
+import xarray as xr
+import requests 
 
-for i in range(len(df)):
-    url = df[i] # reading the content of the file, line by line
-    result = requests.get(url)
-    try:
-        result.raise_for_status()
-        f = result.content.decode(&quot;utf-8&quot;).splitlines() # decode the content recieved and split the line
-        date_str = re.findall('3IMERG.(.*?)-', f[0])[0] #yyyymmdd use regex to find the date str in `3B-HHR.MS.MRG.3IMERG.20200502-S000000-E002959.0000.V06B.HDF5`
-        time_str = re.findall('-S(.*?)-', f[0])[0] #HHMMSS use regex to find the time str in `3B-HHR.MS.MRG.3IMERG.20200502-S000000-E002959.0000.V06B.HDF5`
-        date_obj = datetime.datetime.strptime(date_str, '%Y%m%d').date() # convert the date str to date object
-        time_obj = datetime.datetime.strptime(time_str, '%H%M%S').time() # convert the time str to time object
-        l1 = list(map(func1, f)) # map the content of the file by func1 and convert to list  
-        l2= list(map(func2, l1[1:4])) # # map the content of the file by func2 and convert to list 
-        avg = sum(l2)/len(l2) # take avg of all the resulting precipitation value
-        _df.loc[date_obj, time_obj] = avg
-    except:
-    
-        print('requests.get() returned an error code '+str(result.status_code))
+# dataframe to read the text file which contains all the download links
+ds = pd.read_csv('/content/subset_GPM_3IMERGHH_06_20210611_142330.txt', header = None, sep = '\n')[0]
 
-_df.to_csv('output.csv')
+# Do not forget to add .netrc file in the root dir of Colab. printing `result` should return status code 200
+for file in range(2, len(ds)): # skip first 2 rows as they contain metadata files
+  URL = ds[file]
+  result = requests.get(URL)
+  try:
+    result.raise_for_status()
+    filename = 'test' + str(file) + '.nc'
+    with open(filename, 'wb') as f:
+        f.write(result.content)
+
+  except:
+    print('requests.get() returned an error code '+str(result.status_code))
+
+xr_df = xr.open_mfdataset('test*.nc')
+
+xr_df.mean(dim = ['lat', 'lon']).to_dataframe().to_csv('results.csv')
+
 </code></pre>
-<p>In the above snippet, we first read the file using request module and decode the content. We use regex to find the match (in our case to find the precipitation value) and convert to date-time objects. Then, we take the average of all the values (precipitation) and store in a new dataframe. This dataframe will be our final product having <code>date_obj</code> number of rows and <code>time_obj</code> number of columns. The functions <code>func1</code> and <code>func2</code> are used here to calculate the average rainfall in mm/hr for half-hourly period.</p>
-<pre><code class="language-python"># we split the string on comma and extract the precipitation value alone
-def func1(f):
-    return f.split(',')[-2:]
-# we take the sum of the all the precipitation value which will be later used to take the average across all the ROI
-def func2(f):
-    return sum(list(map(float, f)))
-</code></pre>
-<p>At this stage all the files are read and the dataframe can now be exported to csv. Our csv looks like the following.
-<img src="https://i.imgur.com/BcQfaFu.png" alt=""></p>
-<h2 id="method-2-using-wget-to-download-and-then-preprocess-using-xarray-simple-and-easy">Method 2: Using wget to download and then preprocess using xarray (simple and easy)</h2>
-<p>We first download all files using wget having stored all the urls stored in a text file. These files are then read using xarray which makes it really easy to process and get the information we require. 
-We first run shell command inside colab.</p>
+<p>In the above snippet, what is interesting is the method <code>open_mfdataset</code> which takes in all the netCDF files and gives us a nice, compact output from which we can subset and further process our data.
+Here, we take the average of all the values (precipitation) and convert it into a new dataframe. We are ready to export it as CSV.</p>
+<h2 id="method-2-using-wget-to-download-and-then-preprocess-using-xarray">Method 2: Using wget to download and then preprocess using xarray</h2>
+<p>In this method, we download all the netCDF files using <code>wget</code>. These files are then read using xarray which makes it really easy to process and get the information we require.</p>
+<p>Running the following shell command in Google Colab will download all the data from the text file URLs. Make sure to replace <code>your_user_name</code> , <code>&lt;url text file&gt;</code> within the command. It will ask for password of your earthdata account on running the cell.</p>
 <pre><code class="language-sh">! wget --load-cookies /.urs_cookies --save-cookies /root/.urs_cookies --auth-no-challenge=on --user=your_user_name --ask-password --content-disposition -i &lt;url text file&gt;
 </code></pre>
+<p>Once the above shell command is run on Colab, the following 2 lines of code will give a nice dataframe which can be exported to csv for further analysis.</p>
 <pre><code class="language-python">import xarray as xr
 import glob
 
-
-ds = xr.merge([xr.open_dataset(f) for f in glob.glob('/content/*.nc4')]) # merge all the netcdf files into a single xarray dataset
-ds1.precipitationCal.mean(dim=('lon', 'lat')).plot() # calculate the average precipitation on half-hourly basis.
+ds = xr.open_mfdataset('test*.nc')
+ds.precipitationCal.mean(dim=('lon', 'lat')).plot() # calculate the average precipitation on a half-hourly basis.
 </code></pre>
-<p>At this stage we have the data preprocessed and is now ready to be used for various modelling and analysis phase.</p>
 <h2 id="final-comments">Final Comments</h2>
-<p>In this tech-blog we looked into how to download and preprocess netCDF data provided by <a href="https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary" target="_blank" rel="noopener">NASA GES DISC</a>.
-We looked at two methods, one with request and pandas while the other with wget and xarray. All performed on google colab. 
-It is to note that, there is setup required i.e, to create a new .netrc file and store inside root directory of colab else it returns an authorisation error. We looked at how easy it is to process netCDF data in xarray and how wget command can be run on colab.</p>
-<blockquote>
-<p>Data courtesy: Huffman, G.J., E.F. Stocker, D.T. Bolvin, E.J. Nelkin, Jackson Tan (2019), GPM IMERG Late Precipitation L3 Half Hourly 0.1 degree x 0.1 degree V06, Greenbelt, MD, Goddard Earth Sciences Data and Information Services Center (GES DISC), Accessed: [Data Access Date], 10.5067/GPM/IMERG/3B-HH-L/06</p>
-</blockquote>
+<p>In this post we looked into how to download and preprocess netCDF data provided by <a href="https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary" target="_blank" rel="noopener">NASA GES DISC</a>.
+We looked at two methods, one with pure Python and the other with wget and xarray. All performed on google Colab. 
+It is to be noted that, there is a significant setup required i.e, to create a new <code>.netrc</code> file and store inside the root directory of Colab else it returns an authorisation error. We looked at how easy it is to process netCDF data in xarray and how wget commands can be run on Colab.</p>
+<p>Watch the video tutorial <a href="https://www.youtube.com/watch?v=T_Us4hJxSeI" target="_blank" rel="noopener">here</a>. The notebook for reference is located <a href="https://Colab.research.google.com/drive/1VIKun8K3RT8VvcPJ7DE5uDDC10i10k1T?usp=sharing" target="_blank" rel="noopener">here</a>.</p>
 
     </div>
 
@@ -932,7 +934,7 @@ It is to note that, there is setup required i.e, to create a new .netrc file and
   
   <a class="badge badge-light" href="/tag/xarray/">xarray</a>
   
-  <a class="badge badge-light" href="/tag/colab/">colab</a>
+  <a class="badge badge-light" href="/tag/colab/">Colab</a>
   
 </div>
 
