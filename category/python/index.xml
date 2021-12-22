@@ -197,7 +197,7 @@ While there is an &lt;code&gt;extent&lt;/code&gt; paramter in matplotlib&amp;rsq
       <guid>https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/</guid>
       <description>&lt;p&gt;In this blog post we look into how to download precipitation data from NASA website and process it to get information using xarray and wget.&lt;/p&gt;
 &lt;p&gt;We are going to work with &lt;a href=&#34;https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GPM IMERG Late Precipitation L3 Half Hourly 0.1 degree x 0.1 degree V06 (GPM_3IMERGHHL)&lt;/a&gt; data provided by NASA which gives half-hourly precipitation values for entire globe.&lt;/p&gt;
-&lt;p&gt;Pre-requisites&lt;/p&gt;
+&lt;h2 id=&#34;pre-requisites&#34;&gt;Pre-requisites&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;You must have an Earthdata Account&lt;/li&gt;
 &lt;li&gt;Link GES DISC with your account&lt;/li&gt;
@@ -222,8 +222,8 @@ While there is an &lt;code&gt;extent&lt;/code&gt; paramter in matplotlib&amp;rsq
 &lt;h2 id=&#34;method-1-using-python-to-read-and-preprocess-the-data-inside-google-colab&#34;&gt;Method 1: Using Python to read and preprocess the data inside google Colab.&lt;/h2&gt;
 &lt;p&gt;Open a new google Colab notebook and upload the downloaded text file. Our uploaded text file looks like the following.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/njlFhPT.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;As one last requirement, NASA requires authentication to access the data and thus we have to create a &amp;lsquo;.netrc&amp;rsquo; file and save it at specified location (under &lt;code&gt;/root&lt;/code&gt; dir in our case).&lt;/p&gt;
-&lt;h2 id=&#34;creating-netrc-file&#34;&gt;Creating .netrc file&lt;/h2&gt;
+&lt;p&gt;As one last requirement, NASA requires authentication to access the data and thus we have to create a &lt;code&gt;.netrc&lt;/code&gt; file and save it at specified location (under &lt;code&gt;/root&lt;/code&gt; dir in our case).&lt;/p&gt;
+&lt;h2 id=&#34;creating-netrc-file&#34;&gt;Creating &lt;code&gt;.netrc&lt;/code&gt; file&lt;/h2&gt;
 &lt;p&gt;Open your notepad and type in the following text. Make sure to replace &lt;code&gt;your_login_username&lt;/code&gt; and &lt;code&gt;your_password&lt;/code&gt; with your earthdata credentials. Now save it as &lt;code&gt;.netrc&lt;/code&gt; file.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;machine urs.earthdata.nasa.gov login your_login_username password your_password
 &lt;/code&gt;&lt;/pre&gt;

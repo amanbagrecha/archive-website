@@ -33,10 +33,11 @@
   
     
   
-  <meta name="description" content="In this blog post we look into how to download precipitation data from NASA website and process it with `xarray` and/or `wget`." />
+  <meta name="description" content="In this blog we look at how to serve your geospatial data as vector tiles using pg_tileserv in a docker container.
+What are vector tiles? Vector Tiles are similar to raster tiles, but instead of serving images, vector tiles serve geospatial data which are vectors themselves and not images." />
 
   
-  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/" />
+  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/rs_gis/vector-tiles-and-docker-using-pg-tilerserv/" />
 
   
 
@@ -317,7 +318,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_32x32_fill_lanczos_center_2.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_180x180_fill_lanczos_center_2.png" />
 
-  <link rel="canonical" href="https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/" />
+  <link rel="canonical" href="https://amanbagrecha.github.io/post/rs_gis/vector-tiles-and-docker-using-pg-tilerserv/" />
 
   
   
@@ -337,18 +338,19 @@
     <meta property="twitter:creator" content="@https://twitter.com/aman_bagrecha" />
   
   <meta property="og:site_name" content="Aman Bagrecha" />
-  <meta property="og:url" content="https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/" />
-  <meta property="og:title" content="Download and preprocess NASA GPM IMERG Data using Python and wget | Aman Bagrecha" />
-  <meta property="og:description" content="In this blog post we look into how to download precipitation data from NASA website and process it with `xarray` and/or `wget`." /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
+  <meta property="og:url" content="https://amanbagrecha.github.io/post/rs_gis/vector-tiles-and-docker-using-pg-tilerserv/" />
+  <meta property="og:title" content="Vector tiles and Docker using pg_tilerserv | Aman Bagrecha" />
+  <meta property="og:description" content="In this blog we look at how to serve your geospatial data as vector tiles using pg_tileserv in a docker container.
+What are vector tiles? Vector Tiles are similar to raster tiles, but instead of serving images, vector tiles serve geospatial data which are vectors themselves and not images." /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
     <meta property="twitter:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
   
     
       <meta
         property="article:published_time"
-        content="2021-06-10T00:00:00&#43;00:00"
+        content="2021-12-22T00:00:00&#43;00:00"
       />
     
-    <meta property="article:modified_time" content="2021-06-10T21:33:25&#43;05:30">
+    <meta property="article:modified_time" content="2021-12-22T00:19:15&#43;05:30">
   
 
   
@@ -372,12 +374,12 @@
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/"
+    "@id": "https://amanbagrecha.github.io/post/rs_gis/vector-tiles-and-docker-using-pg-tilerserv/"
   },
-  "headline": "Download and preprocess NASA GPM IMERG Data using Python and wget",
+  "headline": "Vector tiles and Docker using pg_tilerserv",
   
-  "datePublished": "2021-06-10T00:00:00Z",
-  "dateModified": "2021-06-10T21:33:25+05:30",
+  "datePublished": "2021-12-22T00:00:00Z",
+  "dateModified": "2021-12-22T00:19:15+05:30",
   
   "author": {
     "@type": "Person",
@@ -392,7 +394,7 @@
       "url": "https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "In this blog post we look into how to download precipitation data from NASA website and process it with `xarray` and/or `wget`."
+  "description": "In this blog we look at how to serve your geospatial data as vector tiles using pg_tileserv in a docker container.\nWhat are vector tiles? Vector Tiles are similar to raster tiles, but instead of serving images, vector tiles serve geospatial data which are vectors themselves and not images."
 }
 </script>
 
@@ -408,11 +410,11 @@
 
 
 
-  <title>Download and preprocess NASA GPM IMERG Data using Python and wget | Aman Bagrecha</title>
+  <title>Vector tiles and Docker using pg_tilerserv | Aman Bagrecha</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="f149a5d405f6a8e7107a6f885ad432c0" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="483250cd7640f9d2c5aca9435ddb9c7b" >
 
   
   
@@ -775,7 +777,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>Download and preprocess NASA GPM IMERG Data using Python and wget</h1>
+  <h1>Vector tiles and Docker using pg_tilerserv</h1>
 
   
 
@@ -796,7 +798,7 @@
           Last updated on
       
     
-    Jun 10, 2021
+    Dec 22, 2021
   </span>
   
 
@@ -818,10 +820,6 @@
 
   
   
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/category/python/">Python</a></span>
-  
 
 </div>
 
@@ -839,87 +837,82 @@
   <div class="article-container">
 
     <div class="article-style">
-      <p>In this blog post we look into how to download precipitation data from NASA website and process it to get information using xarray and wget.</p>
-<p>We are going to work with <a href="https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary" target="_blank" rel="noopener">GPM IMERG Late Precipitation L3 Half Hourly 0.1 degree x 0.1 degree V06 (GPM_3IMERGHHL)</a> data provided by NASA which gives half-hourly precipitation values for entire globe.</p>
-<h2 id="pre-requisites">Pre-requisites</h2>
-<ul>
-<li>You must have an Earthdata Account</li>
-<li>Link GES DISC with your account</li>
-</ul>
-<p>Refer to <a href="https://daac.gsfc.nasa.gov/earthdata-login" target="_blank" rel="noopener">this</a> page on how to Link GES DISC to your account.</p>
-<p>First method- We would be downloading netCDF data using the <code>request</code> module and preprocessing the file using <code>xarray</code>.</p>
-<p>Second method- To download netCDF file using wget and using <code>xarray</code> to preprocess and visualise the data.</p>
-<h2 id="downloading-link-list">Downloading link list</h2>
-<p>Visit the GPM IMERG website and click on <strong>subset/ Get Data</strong> link at right corner. 
-<img src="https://i.imgur.com/3RH1ot2.png" alt=""></p>
-<p>In the popup, select</p>
+      <p>In this blog we look at how to serve your geospatial data as vector tiles using pg_tileserv in a docker container.</p>
+<h2 id="what-are-vector-tiles">What are vector tiles?</h2>
+<p>Vector Tiles are similar to raster tiles, but instead of serving images, vector tiles serve geospatial data which are vectors themselves and not images. This allows for reduced data transfer over a network, faster loading while allowing client side rendering. Moreover, vector tiles allow for flexible styling of your geospatial data since it renders on the client side. All this is not possible with raster tiles and hence vector tiles have gained traction in the last few years.</p>
+<p>One of the most popular specifications to serve vector tiles is mapbox vector tiles, utilized by many open source tile servers.</p>
+<p>Because PostGIS can create mapbox vector tiles from vector data, it becomes easy to serve them over the web. Many tileservers use the power of this postGIS functionality to serve vector tiles over the web.</p>
+<p>As for a visual understanding as to what is different between vector and raster tiles, the following image illustrates that. The red bounding box is the response to clients request to serve vector tiles. Notice the format is <code>pbf</code> as opposed to <code>png</code> for raster tiles.</p>
+<p><img src="https://i.imgur.com/S5uzLpN.png" alt=""></p>
+<h2 id="why-use-docker-for-this">Why use docker for this?</h2>
+<p>Using docker would expedite the process of starting and &ldquo;actually&rdquo; using the applications. It is like sharing your machine with others so that they do not have to install anything to get started. For this reason, it makes complete sense to use docker for moderate to high complexity projects.</p>
+<h2 id="what-is-pg_tileserve">What is pg_tileserve?</h2>
+<p>To create vector tiles, and serve them on the web, you need a middleware that can talk to the database and also serve them on the web. Since pg_tileserve uses a postgis function under the hood, it becomes a default choice to add a lightweight service to serve vector tiles. pg_tileserv returns Mapbox Vector tiles on input of vector geometry. In addition to reading tables from the database, it can handle complex functions to meet our needs.</p>
+<p>ST_asMVT, an aggregate function which is used under the hood for pg_tileserv, returns mapbox vector tile format based on google protobuf. While there are other formats such as MBtiles which is sqlite based binary file (can be opened in sqlite), Mapbox Vector Tile format seems to be winning this race and is thus the most popular format currently.</p>
+<h3 id="to-get-started-with-serving-your-vector-data-to-the-web-using-pg_tileserv-we-follow-the-below-mentioned-steps">To get started with serving your vector data to the web using pg_tileserv, we follow the below mentioned steps</h3>
 <ol>
-<li><em>Download Method</em> as <em><strong>Get File Subsets using OPeNDAP</strong></em></li>
-<li><em>Refine Date Range</em> as the date you want the data for. In my case, I choose 10 days of data.</li>
-<li>Refine Region to subset data for your area of interest. In my case I choose <code>77.45,12.85,77.75,13.10</code></li>
-<li>Under <em>Variables</em>, select <em><strong>precipitationCal</strong></em>.</li>
-<li>For file format, we choose <em><strong>xarray</strong></em> and click the Get Data button.</li>
+<li>Download <a href="https://github.com/CrunchyData/pg_tileserv" target="_blank" rel="noopener">pg_tileserv</a> folder from <a href="https://downgit.github.io/#/home" target="_blank" rel="noopener">down-git</a> website and save it to your local directory. 
+<img src="https://i.imgur.com/QkF6OF9.png" alt=""></li>
 </ol>
-<p><img src="https://i.imgur.com/xCp8Shs.png" alt=""></p>
-<p>This will download a text file, containing all the links to download individual netCDF half hourly data.</p>
-<p>Now we move to google Colab, to download the netCDF files (what we actually require)</p>
-<h2 id="method-1-using-python-to-read-and-preprocess-the-data-inside-google-colab">Method 1: Using Python to read and preprocess the data inside google Colab.</h2>
-<p>Open a new google Colab notebook and upload the downloaded text file. Our uploaded text file looks like the following.</p>
-<p><img src="https://i.imgur.com/njlFhPT.png" alt=""></p>
-<p>As one last requirement, NASA requires authentication to access the data and thus we have to create a <code>.netrc</code> file and save it at specified location (under <code>/root</code> dir in our case).</p>
-<h2 id="creating-netrc-file">Creating <code>.netrc</code> file</h2>
-<p>Open your notepad and type in the following text. Make sure to replace <code>your_login_username</code> and <code>your_password</code> with your earthdata credentials. Now save it as <code>.netrc</code> file.</p>
-<pre><code>machine urs.earthdata.nasa.gov login your_login_username password your_password
+<p>The folder contains all the files required to start a docker container and serve vector tiles.</p>
+<pre><code>└───data/  — would contain all your vector data
+└───load-data.sh — shell script to load data into PostgreSQL
+└───pg_tileserv.env — database URL to connect
+└───docker-compose.yml — 
+└───pg.env — environment variable for database
+└───cleanup.sh — assemble multiple containers
+└───README — guide to setup docker by Just van den Broecke
 </code></pre>
-<p>Upload the <code>.netrc</code> file to Colab under <code>root</code> directory as shown in the figure below.</p>
-<p><img src="https://i.imgur.com/oZLeJuY.png" alt=""></p>
-<p>Now we have all the setup done and are ready to code.</p>
-<p>We first load the required libraries. Then, read the text file and loop over every line in it to download from the URL using the <code>request</code> module. Finally, we save the file to Colab&rsquo;s hard drive. If you do not see the files after running code, make sure to wait for at least a day after registering to earthdata to make your account activated. I was late to read about it and had wasted a long time debugging it.</p>
-<pre><code class="language-python">import pandas as pd
-import numpy as np
-import xarray as xr
-import requests 
-
-# dataframe to read the text file which contains all the download links
-ds = pd.read_csv('/content/subset_GPM_3IMERGHH_06_20210611_142330.txt', header = None, sep = '\n')[0]
-
-# Do not forget to add .netrc file in the root dir of Colab. printing `result` should return status code 200
-for file in range(2, len(ds)): # skip first 2 rows as they contain metadata files
-  URL = ds[file]
-  result = requests.get(URL)
-  try:
-    result.raise_for_status()
-    filename = 'test' + str(file) + '.nc'
-    with open(filename, 'wb') as f:
-        f.write(result.content)
-
-  except:
-    print('requests.get() returned an error code '+str(result.status_code))
-
-xr_df = xr.open_mfdataset('test*.nc')
-
-xr_df.mean(dim = ['lat', 'lon']).to_dataframe().to_csv('results.csv')
-
+<ol start="2">
+<li>Next, Modify <code>docker-compose.yml</code> file under <strong>build-&gt;context</strong> to point to the docker file <a href="https://github.com/CrunchyData/pg_tileserv.git">https://github.com/CrunchyData/pg_tileserv.git</a>. Since we did not clone the repository, we specify the Dockerfile using the git link.</li>
+</ol>
+<p><img src="https://i.imgur.com/AzclY3c.png" alt=""></p>
+<ol start="3">
+<li>
+<p>Dump all your geospatial data into <code>data</code> dir. This directory will be <em>mounted</em> to the container, once we start it.</p>
+</li>
+<li>
+<p>Change the <code>pg_tileserv.env</code> environment file as you wish, to specify the name and password of your database.</p>
+</li>
+</ol>
+<p>Notes on env files:</p>
+<ul>
+<li><code>pg_tilerserv.env</code> file contains the database url which is of the format <code>postgres://your-username:your-password@localhost:5432/your-database-name</code> while <code>pg.env</code> contains credentials for postgres database.</li>
+</ul>
+<p>Notes on docker-compose file</p>
+<ul>
+<li>We are mounting <code>data</code> dir from our local system to the work dir in the docker container.</li>
+<li>We are mapping port 7800 from our local machine to 7800 to the pg_tileserv container.</li>
+</ul>
+<p>Start Docker Desktop and run <code>docker-compose build</code> in the command line. It will download the image needed from the dockerfile specified. It only downloads the latest alpine image and all other dependencies are installed in the build.</p>
+<p>Once the database setup is done, we now load data into the database by running either <code>load-data.sh</code> shell script (or) the following command,</p>
+<pre><code class="language-sh">#Load data using shp2pgsql 
+docker-compose exec pg_tileserv_db sh -c &quot;shp2pgsql -D -s 4326 /work/ne_50m_admin_0_countries.shp | psql -U tileserv -d tileserv&quot;
 </code></pre>
-<p>In the above snippet, what is interesting is the method <code>open_mfdataset</code> which takes in all the netCDF files and gives us a nice, compact output from which we can subset and further process our data.
-Here, we take the average of all the values (precipitation) and convert it into a new dataframe. We are ready to export it as CSV.</p>
-<h2 id="method-2-using-wget-to-download-and-then-preprocess-using-xarray">Method 2: Using wget to download and then preprocess using xarray</h2>
-<p>In this method, we download all the netCDF files using <code>wget</code>. These files are then read using xarray which makes it really easy to process and get the information we require.</p>
-<p>Running the following shell command in Google Colab will download all the data from the text file URLs. Make sure to replace <code>your_user_name</code> , <code>&lt;url text file&gt;</code> within the command. It will ask for password of your earthdata account on running the cell.</p>
-<pre><code class="language-sh">! wget --load-cookies /.urs_cookies --save-cookies /root/.urs_cookies --auth-no-challenge=on --user=your_user_name --ask-password --content-disposition -i &lt;url text file&gt;
-</code></pre>
-<p>Once the above shell command is run on Colab, the following 2 lines of code will give a nice dataframe which can be exported to csv for further analysis.</p>
-<pre><code class="language-python">import xarray as xr
-import glob
-
-ds = xr.open_mfdataset('test*.nc')
-ds.precipitationCal.mean(dim=('lon', 'lat')).plot() # calculate the average precipitation on a half-hourly basis.
-</code></pre>
-<h2 id="final-comments">Final Comments</h2>
-<p>In this post we looked into how to download and preprocess netCDF data provided by <a href="https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary" target="_blank" rel="noopener">NASA GES DISC</a>.
-We looked at two methods, one with pure Python and the other with wget and xarray. All performed on google Colab. 
-It is to be noted that, there is a significant setup required i.e, to create a new <code>.netrc</code> file and store inside the root directory of Colab else it returns an authorisation error. We looked at how easy it is to process netCDF data in xarray and how wget commands can be run on Colab.</p>
-<p>Watch the video tutorial <a href="https://www.youtube.com/watch?v=T_Us4hJxSeI" target="_blank" rel="noopener">here</a>. The notebook for reference is located <a href="https://Colab.research.google.com/drive/1VIKun8K3RT8VvcPJ7DE5uDDC10i10k1T?usp=sharing" target="_blank" rel="noopener">here</a>.</p>
+<p>The above command opens a terminal inside the pg_tileserv_db container and runs the <code>shp2pgsql</code> command.</p>
+<p>We can use <code>ogr2ogr</code> command line tool if your data is anything other than shapefile. Read this blog by <a href="https://blog.crunchydata.com/blog/loading-data-into-postgis-an-overview" target="_blank" rel="noopener">Kat Batuigas</a> to know how to do it.</p>
+<p>Finally, run <code>docker-compose up</code> to start the service. You&rsquo;d see both containers starting up and your web app being served on port 7800. If you do not see this, stop the container and run again.</p>
+<p><img src="https://i.imgur.com/Gy4QlTL.png" alt=""></p>
+<p>On running the web app in the browser we see our tables visible under Table Layers and the schema it belongs to. We added a few additional layers (public.hydrants and a function layer following steps from <code>README.md</code>) to play around with it.</p>
+<p><img src="https://i.imgur.com/CwmhUdK.png" alt=""></p>
+<h2 id="endnote">Endnote</h2>
+<p>We looked at serving vector data as tiles using pg_tileserv and docker container. Docker enables reproducibility and expedites the process of running a web app. Although there are numerous open-source tile servers available, each has its use case and would require testing them out to identify the best tileserver for your use case. You can read a long list of tileservers <a href="https://github.com/mapbox/awesome-vector-tiles" target="_blank" rel="noopener">here</a>.</p>
+<p>So next time you think to serve large vector data on the web app, make sure to use vector tiles built inside a docker container. It will surely simplify things!</p>
+<p>Source:</p>
+<ol>
+<li>
+<p>CrunchyData/pg_tileserv: A very thin PostGIS-only tile server in Go. Takes in HTTP tile requests, executes SQL, returns MVT tiles. (<a href="https://github.com/CrunchyData/pg_tileserv/">https://github.com/CrunchyData/pg_tileserv/</a>)</p>
+</li>
+<li>
+<p>Lightweight PostGIS Web Services Using pg tileserv and pg featureserv (<a href="https://www.youtube.com/watch?v=TXPtocZWr78&amp;t=1s&amp;ab_channel=CrunchyData">https://www.youtube.com/watch?v=TXPtocZWr78&amp;t=1s&amp;ab_channel=CrunchyData</a>)</p>
+</li>
+<li>
+<p>Reference | Vector tiles | Mapbox (<a href="https://docs.mapbox.com/vector-tiles/reference/">https://docs.mapbox.com/vector-tiles/reference/</a>)</p>
+</li>
+<li>
+<p>Vector Tiles – Geoinformation HSR (<a href="https://giswiki.hsr.ch/Vector_Tiles">https://giswiki.hsr.ch/Vector_Tiles</a>)</p>
+</li>
+</ol>
 
     </div>
 
@@ -929,14 +922,6 @@ It is to be noted that, there is a significant setup required i.e, to create a n
 
 
 
-
-<div class="article-tags">
-  
-  <a class="badge badge-light" href="/tag/xarray/">xarray</a>
-  
-  <a class="badge badge-light" href="/tag/colab/">Colab</a>
-  
-</div>
 
 
 
@@ -1097,15 +1082,8 @@ It is to be noted that, there is a significant setup required i.e, to create a n
   
   
   <div class="post-nav-item">
-    <div class="meta-nav">Next</div>
-    <a href="/post/geoserver/geoserver-query-builder/" rel="next">Query Geoserver Layer using openlayers</a>
-  </div>
-  
-  
-  
-  <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/post/qgis/validating-lulc-classes-in-qgis/" rel="prev">Validating LULC classes in QGIS</a>
+    <a href="/post/rs_gis/polygonize-raster-and-compute-zonal-stats-in-python/" rel="prev">Polygonize Raster and Compute Zonal-Statistics in Python</a>
   </div>
   
 </div>

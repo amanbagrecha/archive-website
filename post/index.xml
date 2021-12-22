@@ -5,12 +5,96 @@
     <link>https://amanbagrecha.github.io/post/</link>
       <atom:link href="https://amanbagrecha.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 30 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 22 Dec 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
       <link>https://amanbagrecha.github.io/post/</link>
     </image>
+    
+    <item>
+      <title>Vector tiles and Docker using pg_tilerserv</title>
+      <link>https://amanbagrecha.github.io/post/rs_gis/vector-tiles-and-docker-using-pg-tilerserv/</link>
+      <pubDate>Wed, 22 Dec 2021 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/post/rs_gis/vector-tiles-and-docker-using-pg-tilerserv/</guid>
+      <description>&lt;p&gt;In this blog we look at how to serve your geospatial data as vector tiles using pg_tileserv in a docker container.&lt;/p&gt;
+&lt;h2 id=&#34;what-are-vector-tiles&#34;&gt;What are vector tiles?&lt;/h2&gt;
+&lt;p&gt;Vector Tiles are similar to raster tiles, but instead of serving images, vector tiles serve geospatial data which are vectors themselves and not images. This allows for reduced data transfer over a network, faster loading while allowing client side rendering. Moreover, vector tiles allow for flexible styling of your geospatial data since it renders on the client side. All this is not possible with raster tiles and hence vector tiles have gained traction in the last few years.&lt;/p&gt;
+&lt;p&gt;One of the most popular specifications to serve vector tiles is mapbox vector tiles, utilized by many open source tile servers.&lt;/p&gt;
+&lt;p&gt;Because PostGIS can create mapbox vector tiles from vector data, it becomes easy to serve them over the web. Many tileservers use the power of this postGIS functionality to serve vector tiles over the web.&lt;/p&gt;
+&lt;p&gt;As for a visual understanding as to what is different between vector and raster tiles, the following image illustrates that. The red bounding box is the response to clients request to serve vector tiles. Notice the format is &lt;code&gt;pbf&lt;/code&gt; as opposed to &lt;code&gt;png&lt;/code&gt; for raster tiles.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/S5uzLpN.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;why-use-docker-for-this&#34;&gt;Why use docker for this?&lt;/h2&gt;
+&lt;p&gt;Using docker would expedite the process of starting and &amp;ldquo;actually&amp;rdquo; using the applications. It is like sharing your machine with others so that they do not have to install anything to get started. For this reason, it makes complete sense to use docker for moderate to high complexity projects.&lt;/p&gt;
+&lt;h2 id=&#34;what-is-pg_tileserve&#34;&gt;What is pg_tileserve?&lt;/h2&gt;
+&lt;p&gt;To create vector tiles, and serve them on the web, you need a middleware that can talk to the database and also serve them on the web. Since pg_tileserve uses a postgis function under the hood, it becomes a default choice to add a lightweight service to serve vector tiles. pg_tileserv returns Mapbox Vector tiles on input of vector geometry. In addition to reading tables from the database, it can handle complex functions to meet our needs.&lt;/p&gt;
+&lt;p&gt;ST_asMVT, an aggregate function which is used under the hood for pg_tileserv, returns mapbox vector tile format based on google protobuf. While there are other formats such as MBtiles which is sqlite based binary file (can be opened in sqlite), Mapbox Vector Tile format seems to be winning this race and is thus the most popular format currently.&lt;/p&gt;
+&lt;h3 id=&#34;to-get-started-with-serving-your-vector-data-to-the-web-using-pg_tileserv-we-follow-the-below-mentioned-steps&#34;&gt;To get started with serving your vector data to the web using pg_tileserv, we follow the below mentioned steps&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Download &lt;a href=&#34;https://github.com/CrunchyData/pg_tileserv&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;pg_tileserv&lt;/a&gt; folder from &lt;a href=&#34;https://downgit.github.io/#/home&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;down-git&lt;/a&gt; website and save it to your local directory. 
+&lt;img src=&#34;https://i.imgur.com/QkF6OF9.png&#34; alt=&#34;&#34;&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The folder contains all the files required to start a docker container and serve vector tiles.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;└───data/  — would contain all your vector data
+└───load-data.sh — shell script to load data into PostgreSQL
+└───pg_tileserv.env — database URL to connect
+└───docker-compose.yml — 
+└───pg.env — environment variable for database
+└───cleanup.sh — assemble multiple containers
+└───README — guide to setup docker by Just van den Broecke
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Next, Modify &lt;code&gt;docker-compose.yml&lt;/code&gt; file under &lt;strong&gt;build-&amp;gt;context&lt;/strong&gt; to point to the docker file &lt;a href=&#34;https://github.com/CrunchyData/pg_tileserv.git&#34;&gt;https://github.com/CrunchyData/pg_tileserv.git&lt;/a&gt;. Since we did not clone the repository, we specify the Dockerfile using the git link.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/AzclY3c.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Dump all your geospatial data into &lt;code&gt;data&lt;/code&gt; dir. This directory will be &lt;em&gt;mounted&lt;/em&gt; to the container, once we start it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Change the &lt;code&gt;pg_tileserv.env&lt;/code&gt; environment file as you wish, to specify the name and password of your database.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Notes on env files:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;pg_tilerserv.env&lt;/code&gt; file contains the database url which is of the format &lt;code&gt;postgres://your-username:your-password@localhost:5432/your-database-name&lt;/code&gt; while &lt;code&gt;pg.env&lt;/code&gt; contains credentials for postgres database.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Notes on docker-compose file&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We are mounting &lt;code&gt;data&lt;/code&gt; dir from our local system to the work dir in the docker container.&lt;/li&gt;
+&lt;li&gt;We are mapping port 7800 from our local machine to 7800 to the pg_tileserv container.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Start Docker Desktop and run &lt;code&gt;docker-compose build&lt;/code&gt; in the command line. It will download the image needed from the dockerfile specified. It only downloads the latest alpine image and all other dependencies are installed in the build.&lt;/p&gt;
+&lt;p&gt;Once the database setup is done, we now load data into the database by running either &lt;code&gt;load-data.sh&lt;/code&gt; shell script (or) the following command,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;#Load data using shp2pgsql 
+docker-compose exec pg_tileserv_db sh -c &amp;quot;shp2pgsql -D -s 4326 /work/ne_50m_admin_0_countries.shp | psql -U tileserv -d tileserv&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The above command opens a terminal inside the pg_tileserv_db container and runs the &lt;code&gt;shp2pgsql&lt;/code&gt; command.&lt;/p&gt;
+&lt;p&gt;We can use &lt;code&gt;ogr2ogr&lt;/code&gt; command line tool if your data is anything other than shapefile. Read this blog by &lt;a href=&#34;https://blog.crunchydata.com/blog/loading-data-into-postgis-an-overview&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Kat Batuigas&lt;/a&gt; to know how to do it.&lt;/p&gt;
+&lt;p&gt;Finally, run &lt;code&gt;docker-compose up&lt;/code&gt; to start the service. You&amp;rsquo;d see both containers starting up and your web app being served on port 7800. If you do not see this, stop the container and run again.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/Gy4QlTL.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;On running the web app in the browser we see our tables visible under Table Layers and the schema it belongs to. We added a few additional layers (public.hydrants and a function layer following steps from &lt;code&gt;README.md&lt;/code&gt;) to play around with it.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/CwmhUdK.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;endnote&#34;&gt;Endnote&lt;/h2&gt;
+&lt;p&gt;We looked at serving vector data as tiles using pg_tileserv and docker container. Docker enables reproducibility and expedites the process of running a web app. Although there are numerous open-source tile servers available, each has its use case and would require testing them out to identify the best tileserver for your use case. You can read a long list of tileservers &lt;a href=&#34;https://github.com/mapbox/awesome-vector-tiles&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So next time you think to serve large vector data on the web app, make sure to use vector tiles built inside a docker container. It will surely simplify things!&lt;/p&gt;
+&lt;p&gt;Source:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;CrunchyData/pg_tileserv: A very thin PostGIS-only tile server in Go. Takes in HTTP tile requests, executes SQL, returns MVT tiles. (&lt;a href=&#34;https://github.com/CrunchyData/pg_tileserv/&#34;&gt;https://github.com/CrunchyData/pg_tileserv/&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Lightweight PostGIS Web Services Using pg tileserv and pg featureserv (&lt;a href=&#34;https://www.youtube.com/watch?v=TXPtocZWr78&amp;amp;t=1s&amp;amp;ab_channel=CrunchyData&#34;&gt;https://www.youtube.com/watch?v=TXPtocZWr78&amp;amp;t=1s&amp;amp;ab_channel=CrunchyData&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Reference | Vector tiles | Mapbox (&lt;a href=&#34;https://docs.mapbox.com/vector-tiles/reference/&#34;&gt;https://docs.mapbox.com/vector-tiles/reference/&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Vector Tiles – Geoinformation HSR (&lt;a href=&#34;https://giswiki.hsr.ch/Vector_Tiles&#34;&gt;https://giswiki.hsr.ch/Vector_Tiles&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
     
     <item>
       <title>Polygonize Raster and Compute Zonal-Statistics in Python</title>
@@ -689,7 +773,7 @@ If the fetch call could not find the match it returns an error which is caught b
       <guid>https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/</guid>
       <description>&lt;p&gt;In this blog post we look into how to download precipitation data from NASA website and process it to get information using xarray and wget.&lt;/p&gt;
 &lt;p&gt;We are going to work with &lt;a href=&#34;https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GPM IMERG Late Precipitation L3 Half Hourly 0.1 degree x 0.1 degree V06 (GPM_3IMERGHHL)&lt;/a&gt; data provided by NASA which gives half-hourly precipitation values for entire globe.&lt;/p&gt;
-&lt;p&gt;Pre-requisites&lt;/p&gt;
+&lt;h2 id=&#34;pre-requisites&#34;&gt;Pre-requisites&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;You must have an Earthdata Account&lt;/li&gt;
 &lt;li&gt;Link GES DISC with your account&lt;/li&gt;
@@ -714,8 +798,8 @@ If the fetch call could not find the match it returns an error which is caught b
 &lt;h2 id=&#34;method-1-using-python-to-read-and-preprocess-the-data-inside-google-colab&#34;&gt;Method 1: Using Python to read and preprocess the data inside google Colab.&lt;/h2&gt;
 &lt;p&gt;Open a new google Colab notebook and upload the downloaded text file. Our uploaded text file looks like the following.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/njlFhPT.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;As one last requirement, NASA requires authentication to access the data and thus we have to create a &amp;lsquo;.netrc&amp;rsquo; file and save it at specified location (under &lt;code&gt;/root&lt;/code&gt; dir in our case).&lt;/p&gt;
-&lt;h2 id=&#34;creating-netrc-file&#34;&gt;Creating .netrc file&lt;/h2&gt;
+&lt;p&gt;As one last requirement, NASA requires authentication to access the data and thus we have to create a &lt;code&gt;.netrc&lt;/code&gt; file and save it at specified location (under &lt;code&gt;/root&lt;/code&gt; dir in our case).&lt;/p&gt;
+&lt;h2 id=&#34;creating-netrc-file&#34;&gt;Creating &lt;code&gt;.netrc&lt;/code&gt; file&lt;/h2&gt;
 &lt;p&gt;Open your notepad and type in the following text. Make sure to replace &lt;code&gt;your_login_username&lt;/code&gt; and &lt;code&gt;your_password&lt;/code&gt; with your earthdata credentials. Now save it as &lt;code&gt;.netrc&lt;/code&gt; file.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;machine urs.earthdata.nasa.gov login your_login_username password your_password
 &lt;/code&gt;&lt;/pre&gt;
