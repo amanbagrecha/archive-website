@@ -33,8 +33,7 @@
   
     
   
-  <meta name="description" content="In this blog we look at how to serve your geospatial data as vector tiles using pg_tileserv in a docker container.
-What are vector tiles? Vector Tiles are similar to raster tiles, but instead of serving images, vector tiles serve geospatial data which are vectors themselves and not images." />
+  <meta name="description" content="Serve your geospatial data as Vector Tiles using pg_tileserv in a Docker container" />
 
   
   <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/rs_gis/vector-tiles-and-docker-using-pg-tilerserv/" />
@@ -84,14 +83,6 @@ What are vector tiles? Vector Tiles are similar to raster tiles, but instead of 
     
       
     
-    
-      
-      
-        
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
-        
-      
     
 
     
@@ -329,10 +320,9 @@ What are vector tiles? Vector Tiles are similar to raster tiles, but instead of 
   
   
     
-    
   
   
-  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:card" content="summary_large_image" />
   
     <meta property="twitter:site" content="@https://twitter.com/aman_bagrecha" />
     <meta property="twitter:creator" content="@https://twitter.com/aman_bagrecha" />
@@ -340,9 +330,8 @@ What are vector tiles? Vector Tiles are similar to raster tiles, but instead of 
   <meta property="og:site_name" content="Aman Bagrecha" />
   <meta property="og:url" content="https://amanbagrecha.github.io/post/rs_gis/vector-tiles-and-docker-using-pg-tilerserv/" />
   <meta property="og:title" content="Vector tiles and Docker using pg_tilerserv | Aman Bagrecha" />
-  <meta property="og:description" content="In this blog we look at how to serve your geospatial data as vector tiles using pg_tileserv in a docker container.
-What are vector tiles? Vector Tiles are similar to raster tiles, but instead of serving images, vector tiles serve geospatial data which are vectors themselves and not images." /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" />
-    <meta property="twitter:image" content="https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:description" content="Serve your geospatial data as Vector Tiles using pg_tileserv in a Docker container" /><meta property="og:image" content="https://amanbagrecha.github.io/post/rs_gis/vector-tiles-and-docker-using-pg-tilerserv/featured.png" />
+    <meta property="twitter:image" content="https://amanbagrecha.github.io/post/rs_gis/vector-tiles-and-docker-using-pg-tilerserv/featured.png" /><meta property="og:locale" content="en-us" />
   
     
       <meta
@@ -378,6 +367,10 @@ What are vector tiles? Vector Tiles are similar to raster tiles, but instead of 
   },
   "headline": "Vector tiles and Docker using pg_tilerserv",
   
+  "image": [
+    "https://amanbagrecha.github.io/post/rs_gis/vector-tiles-and-docker-using-pg-tilerserv/featured.png"
+  ],
+  
   "datePublished": "2021-12-22T00:00:00Z",
   "dateModified": "2021-12-22T00:19:15+05:30",
   
@@ -394,7 +387,7 @@ What are vector tiles? Vector Tiles are similar to raster tiles, but instead of 
       "url": "https://amanbagrecha.github.io/media/icon_hu34b7b96a7941bf879d4219a76e82104f_4254_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "In this blog we look at how to serve your geospatial data as vector tiles using pg_tileserv in a docker container.\nWhat are vector tiles? Vector Tiles are similar to raster tiles, but instead of serving images, vector tiles serve geospatial data which are vectors themselves and not images."
+  "description": "Serve your geospatial data as Vector Tiles using pg_tileserv in a Docker container"
 }
 </script>
 
@@ -771,18 +764,26 @@ What are vector tiles? Vector Tiles are similar to raster tiles, but instead of 
 
 
 
-  
+
+
+
+
+
+
+
 
   
   
+    
   
+
+
 <div class="article-container pt-3">
   <h1>Vector tiles and Docker using pg_tilerserv</h1>
 
   
 
   
-    
 
 
 <div class="article-metadata">
@@ -820,16 +821,27 @@ What are vector tiles? Vector Tiles are similar to raster tiles, but instead of 
 
   
   
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/docker/">Docker</a>, <a href="/category/vector-tiles/">Vector-tiles</a></span>
+  
 
 </div>
 
-    
-
-
-
-
-
   
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 323px;">
+  <div style="position: relative">
+    <img src="/post/rs_gis/vector-tiles-and-docker-using-pg-tilerserv/featured_hu13520afca2b0a4b1d2bb034df1eb352b_314623_720x0_resize_lanczos_2.png" alt="" class="featured-image">
+    
+  </div>
 </div>
 
 
@@ -922,6 +934,14 @@ docker-compose exec pg_tileserv_db sh -c &quot;shp2pgsql -D -s 4326 /work/ne_50m
 
 
 
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/docker/">Docker</a>
+  
+  <a class="badge badge-light" href="/tag/vector-tiles/">Vector-tiles</a>
+  
+</div>
 
 
 
@@ -1192,18 +1212,6 @@ docker-compose exec pg_tileserv_db sh -c &quot;shp2pgsql -D -s 4326 /work/ne_50m
       
 
       
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/javascript.min.js"></script>
-        
-      
 
     
 
@@ -1270,7 +1278,7 @@ docker-compose exec pg_tileserv_db sh -c &quot;shp2pgsql -D -s 4326 /work/ne_50m
       
     
     
-    <script src="/en/js/wowchemy.min.f3e5a2ed0c33ddcaef88a720b0abe966.js"></script>
+    <script src="/en/js/wowchemy.min.c94d0fe1afcc7ce01dd92c78f1ddb5e6.js"></script>
 
     
   <script async defer src="https://buttons.github.io/buttons.js"></script>
