@@ -5,7 +5,7 @@
     <link>https://amanbagrecha.github.io/author/aman-bagrecha/</link>
       <atom:link href="https://amanbagrecha.github.io/author/aman-bagrecha/index.xml" rel="self" type="application/rss+xml" />
     <description>Aman Bagrecha</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 01 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 03 Dec 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/author/aman-bagrecha/avatar_hu8b3e467675822a0c69fe66cbb3600b5d_124233_270x270_fill_q75_lanczos_center.jpg</url>
       <title>Aman Bagrecha</title>
@@ -15,9 +15,18 @@
     <item>
       <title>Feasibility Study of Floating Solar Panels over Lakes in Bengaluru City</title>
       <link>https://amanbagrecha.github.io/publication/conference-paper/</link>
-      <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 03 Dec 2021 00:00:00 +0000</pubDate>
       <guid>https://amanbagrecha.github.io/publication/conference-paper/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Feasibility study of floating solar panels over lakes in Bengaluru City</title>
+      <link></link>
+      <pubDate>Fri, 03 Dec 2021 00:00:00 +0000</pubDate>
+      <guid></guid>
+      <description>&lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -26,25 +35,6 @@
       <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
       <guid></guid>
       <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>An example journal article</title>
-      <link></link>
-      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
-      <guid></guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
     Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
   &lt;/div&gt;

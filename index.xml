@@ -192,6 +192,14 @@ docker-compose exec pg_tileserv_db sh -c &amp;quot;shp2pgsql -D -s 4326 /work/ne
     </item>
     
     <item>
+      <title>Feasibility Study of Floating Solar Panels over Lakes in Bengaluru City</title>
+      <link>https://amanbagrecha.github.io/publication/conference-paper/</link>
+      <pubDate>Fri, 03 Dec 2021 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/publication/conference-paper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Polygonize Raster and Compute Zonal-Statistics in Python</title>
       <link>https://amanbagrecha.github.io/post/rs_gis/polygonize-raster-and-compute-zonal-stats-in-python/</link>
       <pubDate>Thu, 30 Sep 2021 00:00:00 +0000</pubDate>
@@ -374,9 +382,7 @@ While there is an &lt;code&gt;extent&lt;/code&gt; paramter in matplotlib&amp;rsq
       <link>https://amanbagrecha.github.io/project/smap-soil-moisture/</link>
       <pubDate>Wed, 08 Sep 2021 14:15:36 +0530</pubDate>
       <guid>https://amanbagrecha.github.io/project/smap-soil-moisture/</guid>
-      <description>&lt;hr&gt;
-&lt;hr&gt;
-</description>
+      <description></description>
     </item>
     
     <item>
@@ -2728,14 +2734,6 @@ import pkg from &#39;mongoose&#39;;
 const { Mongoose } = pkg;
 &lt;/code&gt;&lt;/pre&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>Feasibility Study of Floating Solar Panels over Lakes in Bengaluru City</title>
-      <link>https://amanbagrecha.github.io/publication/conference-paper/</link>
-      <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/publication/conference-paper/</guid>
-      <description></description>
     </item>
     
     <item>
