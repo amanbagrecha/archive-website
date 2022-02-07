@@ -851,7 +851,7 @@
     <div class="article-style">
       <p>Oftentimes you are required to download satellite images for your Area of Interest (AOI) and Google Earth Engine is probably a good place to avail processed satellite images for free and more importantly, only for the area you need.</p>
 <p>One hindrance when you download from earth engine is that the images get saved in google drive, which can fill up fast for large numbers of downloads. To avoid this additional step, there is a hacky trick to download images directly.</p>
-<p>Note: Earth Engine does provide downloadURL option, but is limited in the size of download and thus not feasible in this case. Pixel grid dimensions for <a href="https://developers.google.com/earth-engine/apidocs/ee-image-getdownloadurl" target="_blank" rel="noopener">getDownloadURL</a> must be less than or equal to 10000 i.e, you can have a maximum of 100 x 100 pixel size images.</p>
+<p>Note: Earth Engine does provide getDownloadURL option, but is limited in the size of download and thus not feasible in this case. Pixel grid dimensions for <a href="https://developers.google.com/earth-engine/apidocs/ee-image-getdownloadurl" target="_blank" rel="noopener">getDownloadURL</a> must be less than or equal to 10000 i.e, you can have a maximum of 100 x 100 pixel size images.</p>
 <p>In this post I show a trick which can let you download upto 100 times larger size images, directly to your local machine. Spoiler: <a href="https://developers.google.com/earth-engine/apidocs/ee-imagecollection-getregion" target="_blank" rel="noopener">getRegion</a> method plays a significant role to help accomplish this task. Added to that, creating a gridded bounding box for our AOI, with spacing equivalent to the pixel size will aid in our task.</p>
 <p>We will utilize earth engine python client so that all the geopython goodies can be simultaneously utilised.</p>
 <p>To begin with, I have a geopackage containing a polygon, which is our AOI. We aim to download sentinel-2 B4 band for the region. The ideal way would be to use the in-built <code>Export</code> option, but in our case we would use the <a href="https://developers.google.com/earth-engine/apidocs/ee-imagecollection-getregion" target="_blank" rel="noopener">getRegion</a> method along with creating a point grid over our AOI with spacing equivalent to the pixel size.</p>
@@ -874,7 +874,7 @@ for each_x in x_pt:
     for each_y in y_pt:
         create_Point(each_x, each_y)
 </code></pre>
-<p>x_pt and y_pt are generated from the geopackage (AOI) using geopandas library as follows</p>
+<p>x_pt and y_pt are generated from the geopackage (AOI) using GeoPandas library as follows</p>
 <pre><code class="language-python">def generatePoints(file_name, pixel_size):
 
     # read the farm and convert to geojson
