@@ -118,7 +118,10 @@ The variance of the distribution is $\sigma^{2}$.
 &lt;p&gt;In this post I show a trick which can let you download upto 100 times larger size images, directly to your local machine. Spoiler: &lt;a href=&#34;https://developers.google.com/earth-engine/apidocs/ee-imagecollection-getregion&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;getRegion&lt;/a&gt; method plays a significant role to help accomplish this task. Added to that, creating a gridded bounding box for our AOI, with spacing equivalent to the pixel size will aid in our task.&lt;/p&gt;
 &lt;p&gt;We will utilize earth engine python client so that all the geopython goodies can be simultaneously utilised.&lt;/p&gt;
 &lt;p&gt;To begin with, I have a geopackage containing a polygon, which is our AOI. We aim to download sentinel-2 B4 band for the region. The ideal way would be to use the in-built &lt;code&gt;Export&lt;/code&gt; option, but in our case we would use the &lt;a href=&#34;https://developers.google.com/earth-engine/apidocs/ee-imagecollection-getregion&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;getRegion&lt;/a&gt; method along with creating a point grid over our AOI with spacing equivalent to the pixel size.&lt;/p&gt;
+&lt;figure&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/IA5OTuN.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 -Left: Our Area of Interest over which to download satellite data. Right: Grid points over AOI bounding box at pixel spacing&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;p&gt;To accomplish creation of points at spacing equal to pixel width and height, we use the following function&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# generate points
 def xcor(y_pt, crs):
@@ -169,7 +172,10 @@ transform = rasterio.transform.from_origin(minx, maxy, pixel_size, pixel_size)
 save_tiff(&amp;quot;output.tif&amp;quot;, data_matrix, transform, CRS)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The above code first gets the count of points in each of the 2-dimensions followed by fetching the dataframe which contains the lat, lon and pixel value as shown in the image.&lt;/p&gt;
+&lt;figure&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/5SjjW0E.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.2 -Output of getRegion results in lat, lon, pixel value in sequential order&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;p&gt;Now we reshape the dataframe and flip it to make the pixel arrange in image format. Lastly, we save the image by passing the transformation of the image. Make sure to have an imageCollection for the &lt;code&gt;getRegion&lt;/code&gt; method to work. Currently, the above code can only download 1 band at a time, but with simple modification to the &lt;code&gt;getDataframe&lt;/code&gt; function, that too can be changed.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def getDataframe(img_col, feature, input_band, crs):
    
