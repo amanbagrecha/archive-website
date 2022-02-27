@@ -2,13 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://amanbagrecha.github.io/courses/example/python/</loc>
+    <loc>https://amanbagrecha.github.io/courses/aws-notes/python/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://amanbagrecha.github.io/courses/example/visualization/</loc>
+    <loc>https://amanbagrecha.github.io/courses/example-notes/python/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://amanbagrecha.github.io/courses/example/stats/</loc>
+    <loc>https://amanbagrecha.github.io/courses/gdal-notes/python/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/courses/aws-notes/visualization/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/courses/example-notes/visualization/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/courses/gdal-notes/visualization/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/courses/aws-notes/stats/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/courses/example-notes/stats/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/courses/gdal-notes/stats/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/</loc>
@@ -236,10 +254,16 @@
     <loc>https://amanbagrecha.github.io/post/django/crud-in-django-rest-framework/</loc>
     <lastmod>2021-05-22T15:13:58+05:30</lastmod>
   </url><url>
-    <loc>https://amanbagrecha.github.io/courses/</loc>
+    <loc>https://amanbagrecha.github.io/courses/aws-notes/</loc>
     <lastmod>2021-01-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://amanbagrecha.github.io/courses/example/</loc>
+    <loc>https://amanbagrecha.github.io/courses/example-notes/</loc>
+    <lastmod>2021-01-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/courses/gdal-notes/</loc>
+    <lastmod>2021-01-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/courses/</loc>
     <lastmod>2021-01-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/talk/analysis-of-flood-prone-region-with-sar-imagery-using-gee/</loc>
