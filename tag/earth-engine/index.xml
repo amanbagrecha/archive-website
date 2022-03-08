@@ -85,7 +85,7 @@ save_tiff(&amp;quot;output.tif&amp;quot;, data_matrix, transform, CRS)
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def getDataframe(img_col, feature, input_band, crs):
    
     imgcol = ee.ImageCollection(img_col).select(input_band)
-    df = pd.DataFrame(imgcol.[getRegion](https://developers.google.com/earth-engine/apidocs/ee-imagecollection-getregion)(feature.geometry(), 10, crs).getInfo())
+    df = pd.DataFrame(imgcol.getRegion(feature.geometry(), 10, crs).getInfo())
     df, df.columns = df[1:], df.iloc[0]
     df = df.drop([&amp;quot;id&amp;quot;, &amp;quot;time&amp;quot;], axis=1)
 

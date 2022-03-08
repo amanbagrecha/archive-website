@@ -86,10 +86,8 @@
     
       
       
-        
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/atom-one-dark.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/atom-one-dark.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
       
     
 
@@ -425,7 +423,7 @@
   
   
   
-  <script src="/js/wowchemy-init.min.b024895df05e271929739bb54886c674.js"></script>
+  <script src="/js/wowchemy-init.min.0cc6cb45f7588160ecc3520c60a1e941.js"></script>
 
   
 
@@ -727,23 +725,6 @@
 
       
       
-      <li class="nav-item dropdown theme-dropdown">
-        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
-          <i class="fas fa-moon" aria-hidden="true"></i>
-        </a>
-        <div class="dropdown-menu">
-          <a href="#" class="dropdown-item js-set-theme-light">
-            <span>Light</span>
-          </a>
-          <a href="#" class="dropdown-item js-set-theme-dark">
-            <span>Dark</span>
-          </a>
-          <a href="#" class="dropdown-item js-set-theme-auto">
-            <span>Automatic</span>
-          </a>
-        </div>
-      </li>
-      
 
       
       
@@ -925,7 +906,7 @@ save_tiff(&quot;output.tif&quot;, data_matrix, transform, CRS)
 <pre><code class="language-python">def getDataframe(img_col, feature, input_band, crs):
    
     imgcol = ee.ImageCollection(img_col).select(input_band)
-    df = pd.DataFrame(imgcol.[getRegion](https://developers.google.com/earth-engine/apidocs/ee-imagecollection-getregion)(feature.geometry(), 10, crs).getInfo())
+    df = pd.DataFrame(imgcol.getRegion(feature.geometry(), 10, crs).getInfo())
     df, df.columns = df[1:], df.iloc[0]
     df = df.drop([&quot;id&quot;, &quot;time&quot;], axis=1)
 
@@ -1127,6 +1108,13 @@ def saveTiff(output_name, data_array, transform, crs):
   
   
   <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/post/rs_gis/when-not-to-use-cogs-an-experiment/" rel="next">When not to use COGs: An Experiment</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
     <a href="/post/rs_gis/vector-tiles-and-docker-using-pg-tilerserv/" rel="prev">Vector tiles and Docker using pg_tilerserv</a>
   </div>
@@ -1288,6 +1276,8 @@ def saveTiff(output_name, data_array, transform, crs):
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/javascript.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/bash.min.js"></script>
         
       
 
