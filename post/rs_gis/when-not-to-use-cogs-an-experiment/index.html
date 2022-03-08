@@ -855,7 +855,7 @@
 </tr>
 <tr>
 <td><strong>Overview levels</strong></td>
-<td>How does Block and overview affect me</td>
+<td>How does Block and Overview affect me</td>
 </tr>
 <tr>
 <td><strong>Experiments</strong></td>
@@ -876,11 +876,11 @@
   Image Structure Metadata:
     NBITS=15
 </code></pre>
-<p>The <code>block</code> parameter represents the shape of tile (width x height) in the raster image. For example a <code>Block=256X256</code> represents a tile of width of 256 by 256 pixels. Figure 1 illustrates a tile as displayed on a web application.</p>
+<p>The <code>block</code> parameter represents the shape of tile (width x height) in the raster image. For example a <code>Block=256X256</code> represents a tile of width of 256 and height of 256 pixels. Fig. 1 illustrates a tile as displayed on a web application.</p>
 <figure>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Tiled_web_map_Stevage.png" alt=""></p>
 <figcaption align = "center"><b><i>Fig.1 -
-Example of Web Map Tiles. Each Block is typically a square.</i></b></figcaption>
+Example of Web Map Tiles. Each Block is typically a square.</ href> </i></b></figcaption>
 </figure>
 <h3 id="what-is-a-block-">What is a <code>block</code> ?</h3>
 <blockquote>
@@ -903,6 +903,7 @@ Higher the pyramid level you move (zoom in), more detailed information from the 
 <p>In Fig.2 above, it should be clear that <code>tiling</code> is splitting up the raster into multiple blocks, while <code>overview</code> is reducing the resolution (downsampling) of the raster. Both overview levels and tile size has to be tuned to improve the performance for serving/rendering raster on our application.</p>
 <p>Using a large tile size might reduce the overall number of GET requests but it will also mean more data transfer per request. Moreover, having many pyramid levels (overviews) can reduce the response time but the data overhead to create these overviews can turn out to be quite expensive (about 33% for each additional level).</p>
 <h3 id="experiments">Experiments</h3>
+<p>With the aim to create COGs, I ended up experimenting with GeoTIFF and JP2000 formats.</p>
 <p>On running <code>gdal_translate -of GTiff .\T43PHP_20210123T051121_B03_20m.jp2 b03.tif</code> &amp; <code>gdalinfo .\b04.tif</code> to convert <code>.jp2</code> to <code>.tif</code>, it resulted in file size = 55.2 MB, and</p>
 <pre><code class="language-bash">Band 1 Block=5490x1 Type=UInt16, ColorInterp=Gray
   Description = Grayscale

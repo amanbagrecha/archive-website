@@ -38,7 +38,7 @@
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;strong&gt;Overview levels&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;How does Block and overview affect me&lt;/td&gt;
+&lt;td&gt;How does Block and Overview affect me&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;strong&gt;Experiments&lt;/strong&gt;&lt;/td&gt;
@@ -59,11 +59,11 @@
   Image Structure Metadata:
     NBITS=15
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;block&lt;/code&gt; parameter represents the shape of tile (width x height) in the raster image. For example a &lt;code&gt;Block=256X256&lt;/code&gt; represents a tile of width of 256 by 256 pixels. Figure 1 illustrates a tile as displayed on a web application.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;block&lt;/code&gt; parameter represents the shape of tile (width x height) in the raster image. For example a &lt;code&gt;Block=256X256&lt;/code&gt; represents a tile of width of 256 and height of 256 pixels. Fig. 1 illustrates a tile as displayed on a web application.&lt;/p&gt;
 &lt;figure&gt;
 &lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/0/03/Tiled_web_map_Stevage.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 -
-Example of Web Map Tiles. Each Block is typically a square.&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+Example of Web Map Tiles. Each Block is typically a square.&lt;/ href&gt; &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;h3 id=&#34;what-is-a-block-&#34;&gt;What is a &lt;code&gt;block&lt;/code&gt; ?&lt;/h3&gt;
 &lt;blockquote&gt;
@@ -86,6 +86,7 @@ Higher the pyramid level you move (zoom in), more detailed information from the 
 &lt;p&gt;In Fig.2 above, it should be clear that &lt;code&gt;tiling&lt;/code&gt; is splitting up the raster into multiple blocks, while &lt;code&gt;overview&lt;/code&gt; is reducing the resolution (downsampling) of the raster. Both overview levels and tile size has to be tuned to improve the performance for serving/rendering raster on our application.&lt;/p&gt;
 &lt;p&gt;Using a large tile size might reduce the overall number of GET requests but it will also mean more data transfer per request. Moreover, having many pyramid levels (overviews) can reduce the response time but the data overhead to create these overviews can turn out to be quite expensive (about 33% for each additional level).&lt;/p&gt;
 &lt;h3 id=&#34;experiments&#34;&gt;Experiments&lt;/h3&gt;
+&lt;p&gt;With the aim to create COGs, I ended up experimenting with GeoTIFF and JP2000 formats.&lt;/p&gt;
 &lt;p&gt;On running &lt;code&gt;gdal_translate -of GTiff .\T43PHP_20210123T051121_B03_20m.jp2 b03.tif&lt;/code&gt; &amp;amp; &lt;code&gt;gdalinfo .\b04.tif&lt;/code&gt; to convert &lt;code&gt;.jp2&lt;/code&gt; to &lt;code&gt;.tif&lt;/code&gt;, it resulted in file size = 55.2 MB, and&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Band 1 Block=5490x1 Type=UInt16, ColorInterp=Gray
   Description = Grayscale
