@@ -109,7 +109,7 @@ Higher the pyramid level you move (zoom in), more detailed information from the 
 &lt;/blockquote&gt;
 &lt;p&gt;Cloud Optimized GeoTIFFs (COGs) are great! I use them in my work and they allow for easy and rendering of rasters on-the-fly. What makes it great is that it supports HTTP Range requests. This allows you to only fetch data where you are requesting it.&lt;/p&gt;
 &lt;p&gt;To create COGs using GDAL, it is as simple as typing&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gdalwarp .\T43PHP_20210123T051121_B03_20m.jp2 b03_cog.tif
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gdalwarp -of COG .\T43PHP_20210123T051121_B03_20m.jp2 b03_cog.tif
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The result from the above command results in a file size of 87.5 MB and,&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Band 1 Block=512x512 Type=UInt16, ColorInterp=Gray
