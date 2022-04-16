@@ -112,13 +112,5 @@ const { Mongoose } = pkg;
 </description>
     </item>
     
-    <item>
-      <title>Django-rest-framework CRUD Token Authetication Application</title>
-      <link>https://amanbagrecha.github.io/project/external-project/</link>
-      <pubDate>Thu, 27 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/project/external-project/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>
