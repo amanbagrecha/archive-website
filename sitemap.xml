@@ -32,14 +32,29 @@
     <loc>https://amanbagrecha.github.io/</loc>
     <lastmod>2022-03-06T21:13:15+05:30</lastmod>
   </url><url>
+    <loc>https://amanbagrecha.github.io/categories/</loc>
+    <lastmod>2022-02-07T22:19:19+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/tag/colab/</loc>
+    <lastmod>2021-06-10T21:33:25+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/</loc>
+    <lastmod>2021-06-10T21:33:25+05:30</lastmod>
+  </url><url>
     <loc>https://amanbagrecha.github.io/post/</loc>
     <lastmod>2022-03-06T21:13:15+05:30</lastmod>
   </url><url>
+    <loc>https://amanbagrecha.github.io/category/python/</loc>
+    <lastmod>2021-10-10T18:42:47+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/tags/</loc>
+    <lastmod>2022-02-07T22:19:19+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/tag/xarray/</loc>
+    <lastmod>2021-06-10T21:33:25+05:30</lastmod>
+  </url><url>
     <loc>https://amanbagrecha.github.io/post/rs_gis/when-not-to-use-cogs-an-experiment/</loc>
     <lastmod>2022-03-06T21:13:15+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/categories/</loc>
-    <lastmod>2022-02-07T22:19:19+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/tag/earth-engine/</loc>
     <lastmod>2022-02-07T22:19:19+05:30</lastmod>
@@ -51,9 +66,6 @@
     <lastmod>2022-02-07T22:19:19+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/tag/python/</loc>
-    <lastmod>2022-02-07T22:19:19+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/tags/</loc>
     <lastmod>2022-02-07T22:19:19+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/tag/docker/</loc>
@@ -112,9 +124,6 @@
   </url><url>
     <loc>https://amanbagrecha.github.io/post/rs_gis/polygonize-raster-and-compute-zonal-stats-in-python/</loc>
     <lastmod>2021-10-09T18:51:08+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/category/python/</loc>
-    <lastmod>2021-10-10T18:42:47+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/post/rs_gis/three-ways-to-change-projection-of-raw-csv/</loc>
     <lastmod>2021-10-10T18:42:47+05:30</lastmod>
@@ -217,15 +226,6 @@
   </url><url>
     <loc>https://amanbagrecha.github.io/category/mapbox/</loc>
     <lastmod>2021-07-08T10:34:27+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/tag/colab/</loc>
-    <lastmod>2021-06-10T21:33:25+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/</loc>
-    <lastmod>2021-06-10T21:33:25+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/tag/xarray/</loc>
-    <lastmod>2021-06-10T21:33:25+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/tag/machine-learning/</loc>
     <lastmod>2021-06-07T17:12:46+05:30</lastmod>
