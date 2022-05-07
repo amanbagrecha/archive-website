@@ -33,10 +33,10 @@
   
     
   
-  <meta name="description" content="Computing zonal statistics over raster using GDAL and Python" />
+  <meta name="description" content="Change projection of CSV on-the-fly using GDAL, GeoPandas" />
 
   
-  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/rs_gis/polygonize-raster-and-compute-zonal-stats-in-python/" />
+  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/rs_gis/two-ways-to-change-projection-of-raw-csv/" />
 
   
 
@@ -315,7 +315,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_32x32_fill_lanczos_center_2.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_180x180_fill_lanczos_center_2.png" />
 
-  <link rel="canonical" href="https://amanbagrecha.github.io/post/rs_gis/polygonize-raster-and-compute-zonal-stats-in-python/" />
+  <link rel="canonical" href="https://amanbagrecha.github.io/post/rs_gis/two-ways-to-change-projection-of-raw-csv/" />
 
   
   
@@ -335,9 +335,9 @@
     <meta property="twitter:creator" content="@https://twitter.com/aman_bagrecha" />
   
   <meta property="og:site_name" content="Aman Bagrecha" />
-  <meta property="og:url" content="https://amanbagrecha.github.io/post/rs_gis/polygonize-raster-and-compute-zonal-stats-in-python/" />
-  <meta property="og:title" content="Polygonize Raster and Compute Zonal-Statistics in Python | Aman Bagrecha" />
-  <meta property="og:description" content="Computing zonal statistics over raster using GDAL and Python" /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_512x512_fill_lanczos_center_2.png" />
+  <meta property="og:url" content="https://amanbagrecha.github.io/post/rs_gis/two-ways-to-change-projection-of-raw-csv/" />
+  <meta property="og:title" content="Two ways to Programmatically change projection of raw CSV | Aman Bagrecha" />
+  <meta property="og:description" content="Change projection of CSV on-the-fly using GDAL, GeoPandas" /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_512x512_fill_lanczos_center_2.png" />
     <meta property="twitter:image" content="https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
   
     
@@ -346,7 +346,7 @@
         content="2021-09-30T00:00:00&#43;00:00"
       />
     
-    <meta property="article:modified_time" content="2021-10-09T18:51:08&#43;05:30">
+    <meta property="article:modified_time" content="2021-10-10T18:42:47&#43;05:30">
   
 
   
@@ -370,12 +370,12 @@
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://amanbagrecha.github.io/post/rs_gis/polygonize-raster-and-compute-zonal-stats-in-python/"
+    "@id": "https://amanbagrecha.github.io/post/rs_gis/two-ways-to-change-projection-of-raw-csv/"
   },
-  "headline": "Polygonize Raster and Compute Zonal-Statistics in Python",
+  "headline": "Two ways to Programmatically change projection of raw CSV",
   
   "datePublished": "2021-09-30T00:00:00Z",
-  "dateModified": "2021-10-09T18:51:08+05:30",
+  "dateModified": "2021-10-10T18:42:47+05:30",
   
   "author": {
     "@type": "Person",
@@ -390,7 +390,7 @@
       "url": "https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "Computing zonal statistics over raster using GDAL and Python"
+  "description": "Change projection of CSV on-the-fly using GDAL, GeoPandas"
 }
 </script>
 
@@ -406,11 +406,11 @@
 
 
 
-  <title>Polygonize Raster and Compute Zonal-Statistics in Python | Aman Bagrecha</title>
+  <title>Two ways to Programmatically change projection of raw CSV | Aman Bagrecha</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="6b06ee27a1cc6196d880f15b2a96ad87" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="a3a9949bdcbc8d2838a1aea70c6db3e4" >
 
   
   
@@ -756,7 +756,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>Polygonize Raster and Compute Zonal-Statistics in Python</h1>
+  <h1>Two ways to Programmatically change projection of raw CSV</h1>
 
   
 
@@ -777,7 +777,7 @@
           Last updated on
       
     
-    Oct 9, 2021
+    Oct 10, 2021
   </span>
   
 
@@ -786,7 +786,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    3 min read
+    4 min read
   </span>
   
 
@@ -801,7 +801,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/category/gdal/">GDAL</a>, <a href="/category/python/">Python</a></span>
+    <i class="fas fa-folder mr-1"></i><a href="/category/python/">Python</a></span>
   
 
 </div>
@@ -820,51 +820,76 @@
   <div class="article-container">
 
     <div class="article-style">
-      <p>The output of a clustering algorithm is a raster. But when you want to compute statistics of the clustered raster, it needs to be polygonized.</p>
-<p>A simple way to perform this action is using the gdal command line <code>gdal_polygonize.py</code> script. This script requires the output file format, input raster file and output name of the vector file. You can additionally mask pixel values which you don&rsquo;t want to convert to polygons. For this example, we would consider a single band image.</p>
-<pre><code class="language-shell">python gdal_polygonize.py raster_file -f &quot;ESRI Shapefile&quot; vector_file.shp  layername atrributefieldname
-</code></pre>
-<p><code>--nomask</code> allows to include nodata values in the shapefile</p>
-<p><code>atrributefieldname</code> should always be preceded with <code>layername</code> else it would result in an error.</p>
-<p>The output would result in a vector layer. The number of output polygons is equal to the number of non-NA values. Each neighbouring cell (pixel) which is connected in the raster having the same value is combined to form a single polygon.</p>
-<p>For instance, consider this 4 x 4 raster. When converted to vector, it resulted in 6 polygons. Note that disconnected similar values form an independent polygon. Each polygon will have an attribute as its pixel value from the raster, in the data type of the image. These would end up being a pair of (polygon, value) for each feature found in the image.</p>
+      <p>Often, field values are collected in the Geographic Coordinate Reference System as CSV or ASCII so that it can be universally used. But when you want to perform any kind of analysis on these values, there is a need to reproject them into a Projected Coordinate Reference System for the specific area. Although there are many ways that exist now with desktop GIS, these methods can be cumbersome if you have thousands of files to reproject.</p>
+<p>This task of reprojecting raw CSV can be accomplished using GDAL although it is not straightforward. It requires an indication of geographic data of a CSV file which is provided using VRT (GDAL virtual Raster). More advanced tools now exist which are either built on top of GDAL or are very similar. <strong>GeoPandas</strong> and <strong>pyproj</strong> are two such libraries which can help us reproject our raw CSV on-the-fly.</p>
+<p>We first look at how this task can be accomplished using the GDAL command line.</p>
+<h3 id="reproject-csv-using-ogr2ogr">Reproject CSV using <code>ogr2ogr</code></h3>
 <figure>
-<p><img src="https://i.imgur.com/xeJ4BGa.png" alt=""></p>
-<figcaption align = "center"><b><i>Fig.1 -Converting Raster to Vector using GDAL. The output polygon has attribute associated with its raster value </i></b></figcaption>
+<p><img src="https://i.imgur.com/Udf4gdV.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.1 — Raw <b style="color:red;">input.csv</b> with <b>lat</b> & <b>lon</b> geometry column </i></b></figcaption>
 </figure>
-<p>Another way to polygonize raster programmatically is to use the <code>rasterio</code> library. Since rasterio utilizes GDAL under the hood, it also performs similar action and results in a pair of geometry and raster value. We create a tuple of dictionaries to store each feature output.</p>
-<pre><code class="language-python"># code to polygonize using rasterio
-from rasterio import features
-
-# read the raster and polygonize
-with rasterio.open(cluster_image_path) as src:
-    image = src.read(1, out_dtype='uint16') 
-    #Make a mask!
-    mask = image != 0
-# `results` contains a tuple. With each element in the tuple representing a dictionary containing the feature (polygon) and its associated raster value
-results = ( {'properties': {'cluster_id': int(v)}, 'geometry': s} 
-            for (s, v) in (features.shapes(image, mask=mask, transform=src.transform)))
+<p>This example shows using <code>ogr2ogr</code> to reproject the CRS of CSV file with the latitude, longitude coordinates stored as columns <strong>lat</strong>, <strong>lon</strong> in the <code>input.csv</code> file.</p>
+<pre><code class="language-sh">ogr2ogr -f CSV -lco GEOMETRY=AS_XY -t_srs EPSG:32644 output.csv input.vrt
 </code></pre>
-<p>Once we have the raster polygonized, we can use <code>rasterstats</code> library to calculate zonal statistics. We use this library since there is no in-built functionality for rasterio to calculate it.</p>
-<p>This library has a function <code>zonal_stats</code> which takes in a vector layer and a raster to calculate the zonal statistics. Read more <a href="https://pythonhosted.org/rasterstats/manual.html#zonal-statistics" target="_blank" rel="noopener">here</a></p>
-<p>The parameters to the function are:</p>
+<p>Following is the explanation of the above command,</p>
 <ol>
-<li>vectors: path to an vector source or geo-like python objects</li>
-<li>raster: ndarray or path to a GDAL raster source</li>
+<li><code>-lco GEOMETRY=AS_XY</code> : Layer creation option with XY columns added in output CSV.</li>
+<li><code>input.vrt</code> : Input Virtual Raster file containing information about CSV and its geometry.</li>
+<li><code>-t_srs EPSG:32644</code> : Set target CRS to EPSG:32644</li>
+<li><code>-f CSV</code> : specify the output file format</li>
+<li><code>output.csv</code> : output CSV with reprojected coordinates</li>
 </ol>
-<p>and various other options which can be found <a href="https://github.com/perrygeo/python-rasterstats/blob/master/src/rasterstats/main.py#L34" target="_blank" rel="noopener">here</a></p>
-<p>To create a vector layer from the tuple <code>results</code>, we use geopandas. There are other libraries (such as fiona) which can also create vector geometry from shapely objects.</p>
-<p>For raster, we pass the <code>.tif</code> file directly to <code>zonal_stats</code>. The final code looks like the following</p>
-<pre><code class="language-python">from rasterstats import zonal_stats
-
-in_shp = gpd.GeoDataFrame.from_features(results).set_crs(crs=src.crs)
-
-# stats parameter takes in various statistics that needs to be computed 
-statistics= zonal_stats(in_shp,image,stats='min, max, mean, median',
-                geojson_out=True, nodata = -999)
+<p>In the above code, <code>input.vrt</code> is a GDAL virtual raster which has to be created prior to running the command. It points to the CSV file which has the location data stored as columns (lon, lat)</p>
+<pre><code class="language-xml">&lt;!--input.vrt pointing to the input.csv--&gt;
+&lt;OGRVRTDataSource&gt; 
+  &lt;OGRVRTLayer name=&quot;input&quot;&gt; 
+    &lt;SrcDataSource&gt;input.csv&lt;/SrcDataSource&gt; 
+    &lt;GeometryType&gt;wkbPoint&lt;/GeometryType&gt; 
+    &lt;LayerSRS&gt;EPSG:4326&lt;/LayerSRS&gt; 
+    &lt;GeometryField encoding=&quot;PointFromColumns&quot; x=&quot;lon&quot; y=&quot;lat&quot;/&gt; 
+  &lt;/OGRVRTLayer&gt; 
+&lt;/OGRVRTDataSource&gt;
 </code></pre>
-<p>The output is a geojson generator when <code>geojson_out</code> is True. we can convert the geojson to dataframe and export as csv for further processing.</p>
-<p>This way, with the help of geopandas, rasterstats and rasterio, we polygonize the raster and calculate zonal statistics.</p>
+<p><strong>But what does the above xml mean?</strong></p>
+<p>The above xml is a virtual raster (VRT) which allows for lazy processing. Often, we have to save intermediary outputs on our local disk, which could potentially take a lot of space. To avoid that, VRT allows to store the processing in an xml encoding and performs all intermediary action at once, in the final step.</p>
+<ol>
+<li>The first line <code>&lt;OGRVRTDataSource&gt;</code> is the root element.</li>
+<li><code>&lt;OGRVRTLayer name=&quot;input&quot;&gt;</code> corresponds with the <code>&lt;SrcDataSource&gt; input.csv &lt;/SrcDataSource&gt;</code> and points to the <code>input.csv</code> file we want to reproject.</li>
+<li><code>&lt;LayerSRS&gt;EPSG:4326&lt;/LayerSRS&gt;</code> specifies the CRS of our <code>input.csv</code> file.</li>
+<li><code>&lt;GeometryType&gt; wkbPoint &lt;/GeometryType&gt;</code> is the format that coordinates are stored in.</li>
+<li>Lastly, <code>&lt;GeometryField encoding=&quot;PointFromColumns&quot; x=&quot;lon&quot; y=&quot;lat&quot;/&gt;</code> indicates the columns corresponding to lon and lat in csv. Read more about converting CSV to VRT <a href="https://gdal.org/drivers/vector/csv.html#reading-csv-containing-spatial-information" target="_blank" rel="noopener">here</a>.</li>
+</ol>
+<figure>
+<p><img src="https://i.imgur.com/HefHXvu.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.2 — Reprojecting CSV from EPSG:4326 to EPSG:32644 using GDAL </i></b></figcaption>
+</figure>
+<p>Hence, by running the above GDAL command, we would be able to reproject our CSV. By writing a bash script, this method can be scaled to thousands of files. But the intermediary <code>VRT</code> file is messy to handle and it would be nice to avoid it. Luckily for us, there are libraries built on top of GDAL which would help us avoid the hassle of creating intermediary files.</p>
+<h2 id="using-geopandas">Using GeoPandas</h2>
+<p>With its simple and intuitive API, GeoPandas allows us to read, reproject CRS and write files on-the-fly.</p>
+<pre><code class="language-python">in_path = './'
+out_path = './output'
+files= [f for f in os.listdir(in_path) if f.endswith('.csv')]
+input_crs = 'EPSG:4326'
+output_crs = 'EPSG:32644'
+
+if not os.path.exists(out_path):
+    os.mkdir(out_path)
+
+for file in files:
+    df = pd.read_csv(file, header=None)
+    gdf = gpd.GeoDataFrame(
+        df, crs=input_crs , geometry=gpd.points_from_xy(df.iloc[:,0], df.iloc[:,1]))
+
+    gdf.to_crs(output_crs, inplace=True)
+    gdf.iloc[:,0] = gdf.geometry.x # replace x
+    gdf.iloc[:,1] = gdf.geometry.y # replace y
+    
+    # export reprojected csv 
+    gdf.iloc[:,:-1].to_csv(os.path.join(out_path, file), index=False )
+</code></pre>
+<p>In the above code, we loop through our CSV files. For each file, we create a GeoDataFrame and change the CRS. Lastly, we replace the coordinates with reprojected one.</p>
+<h3 id="endnote">Endnote</h3>
+<p>There is another way I found by using <strong>pyproj</strong> library which is quite verbose but performs reprojection on-the-fly. To read about the <strong>pyproj</strong> method, refer <a href="https://gis.stackexchange.com/a/168496" target="_blank" rel="noopener">here</a>.</p>
 
     </div>
 
@@ -1025,14 +1050,14 @@ statistics= zonal_stats(in_shp,image,stats='min, max, mean, median',
   
   <div class="post-nav-item">
     <div class="meta-nav">Next</div>
-    <a href="/post/rs_gis/vector-tiles-and-docker-using-pg-tilerserv/" rel="next">Vector tiles and Docker using pg_tilerserv</a>
+    <a href="/post/rs_gis/polygonize-raster-and-compute-zonal-stats-in-python/" rel="next">Polygonize Raster and Compute Zonal-Statistics in Python</a>
   </div>
   
   
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/post/rs_gis/two-ways-to-change-projection-of-raw-csv/" rel="prev">Two ways to Programmatically change projection of raw CSV</a>
+    <a href="/post/rs_gis/overlay-cropped-raster-with-vector-layer/" rel="prev">Overlay cropped raster with vector layer</a>
   </div>
   
 </div>
@@ -1049,7 +1074,7 @@ statistics= zonal_stats(in_shp,image,stats='min, max, mean, median',
     <h3>Related</h3>
     <ul>
       
-      <li><a href="/post/rs_gis/two-ways-to-change-projection-of-raw-csv/">Two ways to Programmatically change projection of raw CSV</a></li>
+      <li><a href="/post/rs_gis/polygonize-raster-and-compute-zonal-stats-in-python/">Polygonize Raster and Compute Zonal-Statistics in Python</a></li>
       
       <li><a href="/post/rs_gis/how-to-save-earth-engine-image-directly-to-your-local-machine/">How to save Earth Engine Image directly to your local machine</a></li>
       

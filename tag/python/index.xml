@@ -168,40 +168,56 @@ statistics= zonal_stats(in_shp,image,stats=&#39;min, max, mean, median&#39;,
     </item>
     
     <item>
-      <title>Three ways to Programmatically change projection of raw CSV</title>
-      <link>https://amanbagrecha.github.io/post/rs_gis/three-ways-to-change-projection-of-raw-csv/</link>
+      <title>Two ways to Programmatically change projection of raw CSV</title>
+      <link>https://amanbagrecha.github.io/post/rs_gis/two-ways-to-change-projection-of-raw-csv/</link>
       <pubDate>Thu, 30 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/post/rs_gis/three-ways-to-change-projection-of-raw-csv/</guid>
-      <description>&lt;p&gt;Often, field values are collected in the Geographic Coordinate System as ASCII or CSV so that it can be universally used. But when you want to perform any kind of analysis on these points, there is a need to reproject them into a Projected Coordinate Reference System for the specific area. Although there are many ways that exist now with desktop GIS, these methods can be cumbersome if you have thousands of files to reproject.&lt;/p&gt;
-&lt;p&gt;This task of reprojecting raw CSV can be accomplished using GDAL although it is not straightforward. It requires an indication of geographic data of a CSV file which is provided using VRT (GDAL virtual Raster). More advanced tools now exist which are either built on top of GDAL or are very similar. pyproj and GeoPandas are two such libraries which can help us reproject our raw CSV on-the-fly.&lt;/p&gt;
+      <guid>https://amanbagrecha.github.io/post/rs_gis/two-ways-to-change-projection-of-raw-csv/</guid>
+      <description>&lt;p&gt;Often, field values are collected in the Geographic Coordinate Reference System as CSV or ASCII so that it can be universally used. But when you want to perform any kind of analysis on these values, there is a need to reproject them into a Projected Coordinate Reference System for the specific area. Although there are many ways that exist now with desktop GIS, these methods can be cumbersome if you have thousands of files to reproject.&lt;/p&gt;
+&lt;p&gt;This task of reprojecting raw CSV can be accomplished using GDAL although it is not straightforward. It requires an indication of geographic data of a CSV file which is provided using VRT (GDAL virtual Raster). More advanced tools now exist which are either built on top of GDAL or are very similar. &lt;strong&gt;GeoPandas&lt;/strong&gt; and &lt;strong&gt;pyproj&lt;/strong&gt; are two such libraries which can help us reproject our raw CSV on-the-fly.&lt;/p&gt;
 &lt;p&gt;We first look at how this task can be accomplished using the GDAL command line.&lt;/p&gt;
-&lt;h3 id=&#34;reproject-csv-using-ogr2ogr&#34;&gt;Reproject CSV using ogr2ogr&lt;/h3&gt;
-&lt;p&gt;This example shows using ogr2ogr to reproject the Coordinate Reference System of a CSV file with the longitude, latitude coordinates stored as columns in the &lt;code&gt;.csv&lt;/code&gt; file.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;ogr2ogr -f CSV -lco GEOMETRY=AS_XY -t_srs EPSG:4326 output.csv input.vrt
+&lt;h3 id=&#34;reproject-csv-using-ogr2ogr&#34;&gt;Reproject CSV using &lt;code&gt;ogr2ogr&lt;/code&gt;&lt;/h3&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/Udf4gdV.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 — Raw &lt;b style=&#34;color:red;&#34;&gt;input.csv&lt;/b&gt; with &lt;b&gt;lat&lt;/b&gt; &amp; &lt;b&gt;lon&lt;/b&gt; geometry column &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;This example shows using &lt;code&gt;ogr2ogr&lt;/code&gt; to reproject the CRS of CSV file with the latitude, longitude coordinates stored as columns &lt;strong&gt;lat&lt;/strong&gt;, &lt;strong&gt;lon&lt;/strong&gt; in the &lt;code&gt;input.csv&lt;/code&gt; file.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;ogr2ogr -f CSV -lco GEOMETRY=AS_XY -t_srs EPSG:32644 output.csv input.vrt
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;-lco GEOMETRY=AS_XY&lt;/code&gt; : Layer creation option with XY columns added in output csv.&lt;/p&gt;
+&lt;p&gt;Following is the explanation of the above command,&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;-lco GEOMETRY=AS_XY&lt;/code&gt; : Layer creation option with XY columns added in output CSV.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;input.vrt&lt;/code&gt; : Input Virtual Raster file containing information about CSV and its geometry.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-t_srs EPSG:32644&lt;/code&gt; : Set target CRS to EPSG:32644&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-f CSV&lt;/code&gt; : specify the output file format&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;output.csv&lt;/code&gt; : output CSV with reprojected coordinates&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;In the above code, &lt;code&gt;input.vrt&lt;/code&gt; is a GDAL virtual raster which has to be created prior to running the command. It points to the CSV file which has the location data stored as columns (lon, lat)&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;!--input.vrt pointing to the filename.csv--&amp;gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;!--input.vrt pointing to the input.csv--&amp;gt;
 &amp;lt;OGRVRTDataSource&amp;gt; 
-  &amp;lt;OGRVRTLayer name=&amp;quot;layername&amp;quot;&amp;gt; 
-    &amp;lt;SrcDataSource&amp;gt;filename.csv&amp;lt;/SrcDataSource&amp;gt; 
+  &amp;lt;OGRVRTLayer name=&amp;quot;input&amp;quot;&amp;gt; 
+    &amp;lt;SrcDataSource&amp;gt;input.csv&amp;lt;/SrcDataSource&amp;gt; 
     &amp;lt;GeometryType&amp;gt;wkbPoint&amp;lt;/GeometryType&amp;gt; 
     &amp;lt;LayerSRS&amp;gt;EPSG:4326&amp;lt;/LayerSRS&amp;gt; 
     &amp;lt;GeometryField encoding=&amp;quot;PointFromColumns&amp;quot; x=&amp;quot;lon&amp;quot; y=&amp;quot;lat&amp;quot;/&amp;gt; 
   &amp;lt;/OGRVRTLayer&amp;gt; 
 &amp;lt;/OGRVRTDataSource&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Why did we create this vrt file?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Well, VRT is a virtual gdal driver which allows for lazy processing. Often, we have to save intermediary outputs on our local disk, which could potentially take a lot of space. To avoid that, VRT allows to store the processing in an xml encoding and performs all intermediary action at once, in the final step.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;But what does the above xml mean?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The first line &lt;code&gt;&amp;lt;OGRVRTDataSource&amp;gt;&lt;/code&gt; is the root element. &lt;code&gt;&amp;lt;OGRVRTLayer name=&amp;quot;layername&amp;quot;&amp;gt;&lt;/code&gt; corresponds with the &lt;code&gt;&amp;lt;SrcDataSource&amp;gt; filename.csv &amp;lt;/SrcDataSource&amp;gt;&lt;/code&gt; and points to the CSV we want to reproject. &lt;code&gt;&amp;lt;LayerSRS&amp;gt;EPSG:4326&amp;lt;/LayerSRS&amp;gt;&lt;/code&gt; should correspond with the EPSG of the coordinates stored in the CSV file. &lt;code&gt;&amp;lt;GeometryType&amp;gt; wkbPoint &amp;lt;/GeometryType&amp;gt;&lt;/code&gt; is the format that coordinates are stored as. Lastly, &lt;code&gt;&amp;lt;GeometryField encoding=&amp;quot;PointFromColumns&amp;quot; x=&amp;quot;lon&amp;quot; y=&amp;quot;lat&amp;quot;/&amp;gt;&lt;/code&gt; indicates the columns corresponding to lon and lat in csv.&lt;/p&gt;
+&lt;p&gt;The above xml is a virtual raster (VRT) which allows for lazy processing. Often, we have to save intermediary outputs on our local disk, which could potentially take a lot of space. To avoid that, VRT allows to store the processing in an xml encoding and performs all intermediary action at once, in the final step.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The first line &lt;code&gt;&amp;lt;OGRVRTDataSource&amp;gt;&lt;/code&gt; is the root element.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;OGRVRTLayer name=&amp;quot;input&amp;quot;&amp;gt;&lt;/code&gt; corresponds with the &lt;code&gt;&amp;lt;SrcDataSource&amp;gt; input.csv &amp;lt;/SrcDataSource&amp;gt;&lt;/code&gt; and points to the &lt;code&gt;input.csv&lt;/code&gt; file we want to reproject.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;LayerSRS&amp;gt;EPSG:4326&amp;lt;/LayerSRS&amp;gt;&lt;/code&gt; specifies the CRS of our &lt;code&gt;input.csv&lt;/code&gt; file.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;GeometryType&amp;gt; wkbPoint &amp;lt;/GeometryType&amp;gt;&lt;/code&gt; is the format that coordinates are stored in.&lt;/li&gt;
+&lt;li&gt;Lastly, &lt;code&gt;&amp;lt;GeometryField encoding=&amp;quot;PointFromColumns&amp;quot; x=&amp;quot;lon&amp;quot; y=&amp;quot;lat&amp;quot;/&amp;gt;&lt;/code&gt; indicates the columns corresponding to lon and lat in csv. Read more about converting CSV to VRT &lt;a href=&#34;https://gdal.org/drivers/vector/csv.html#reading-csv-containing-spatial-information&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
 &lt;figure&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/HefHXvu.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 -Reprojecting CSV from EPSG:4326 to EPSG:32644 &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.2 — Reprojecting CSV from EPSG:4326 to EPSG:32644 using GDAL &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;Hence, by running the above GDAL command, we would be able to reproject our csv. By writing a bash script, this method can be scaled to thousands of files. But the intermediary &lt;code&gt;.vrt&lt;/code&gt; file is messy to handle and it would be nice to avoid it. Luckily for us, there are high-level libraries in python which would avoid such hassle.&lt;/p&gt;
+&lt;p&gt;Hence, by running the above GDAL command, we would be able to reproject our CSV. By writing a bash script, this method can be scaled to thousands of files. But the intermediary &lt;code&gt;VRT&lt;/code&gt; file is messy to handle and it would be nice to avoid it. Luckily for us, there are libraries built on top of GDAL which would help us avoid the hassle of creating intermediary files.&lt;/p&gt;
 &lt;h2 id=&#34;using-geopandas&#34;&gt;Using GeoPandas&lt;/h2&gt;
-&lt;p&gt;The modern geospatial libraries are &lt;em&gt;low code tools&lt;/em&gt;. One such excellent library is GeoPandas, which is built on top of fiona, which in-turn is built on top of GDAL. Geopandas allows us to read, project and modify files on-the-fly. Additionally, the ability to create geometry from &lt;code&gt;lat, lon&lt;/code&gt; allows us to pass our CSV files and modify its CRS.&lt;/p&gt;
+&lt;p&gt;With its simple and intuitive API, GeoPandas allows us to read, reproject CRS and write files on-the-fly.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;in_path = &#39;./&#39;
 out_path = &#39;./output&#39;
 files= [f for f in os.listdir(in_path) if f.endswith(&#39;.csv&#39;)]
@@ -223,11 +239,9 @@ for file in files:
     # export reprojected csv 
     gdf.iloc[:,:-1].to_csv(os.path.join(out_path, file), index=False )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In the above code, we loop through our CSV files. For each file, we create a geodataframe and change the CRS. Lastly, we replace the coordinates with reprojected one.&lt;/p&gt;
-&lt;p&gt;There is another way using pyproj library which does this exact thing, but geopandas is more intuitive for me personally.&lt;/p&gt;
-&lt;p&gt;To read about the pyproj method, refer &lt;a href=&#34;https://gis.stackexchange.com/a/168496&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;endnote&#34;&gt;EndNote&lt;/h2&gt;
-&lt;p&gt;Although there are several other ways to reproject raw CSV, I found these to be concise and efficient. Thanks to &lt;a href=&#34;https://gis.stackexchange.com/&#34;&gt;https://gis.stackexchange.com/&lt;/a&gt; and awesome GIS community, these methods work like a charm 😊&lt;/p&gt;
+&lt;p&gt;In the above code, we loop through our CSV files. For each file, we create a GeoDataFrame and change the CRS. Lastly, we replace the coordinates with reprojected one.&lt;/p&gt;
+&lt;h3 id=&#34;endnote&#34;&gt;Endnote&lt;/h3&gt;
+&lt;p&gt;There is another way I found by using &lt;strong&gt;pyproj&lt;/strong&gt; library which is quite verbose but performs reprojection on-the-fly. To read about the &lt;strong&gt;pyproj&lt;/strong&gt; method, refer &lt;a href=&#34;https://gis.stackexchange.com/a/168496&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
