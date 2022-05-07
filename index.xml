@@ -388,12 +388,12 @@ It is to be noted that, there is a significant setup required i.e, to create a n
     </item>
     
     <item>
-      <title>When not to use COGs: An Experiment</title>
-      <link>https://amanbagrecha.github.io/post/rs_gis/when-not-to-use-cogs-an-experiment/</link>
+      <title>COGs as the Stand-in Replacement for GeoTIFFs</title>
+      <link>https://amanbagrecha.github.io/post/rs_gis/cogs-as-standin-replacement/</link>
       <pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate>
-      <guid>https://amanbagrecha.github.io/post/rs_gis/when-not-to-use-cogs-an-experiment/</guid>
-      <description>&lt;p&gt;I decided to write this blog when my twitter feed was buzzing with the usefulness of Cloud Optimized GeoTIFF (COGs) and how it is a paradigm shift in the way we serve raster on any client application. I had read no downsides of using COGs up until I read a blog titled &lt;a href=&#34;https://medium.com/@_VincentS_/do-you-really-want-people-using-your-data-ec94cd94dc3f&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Do you really want people using your data?&lt;/em&gt;&lt;/a&gt; by Vincent Sarago.&lt;/p&gt;
-&lt;p&gt;So, this post will mostly focus on COGs and when I would &lt;em&gt;not&lt;/em&gt; use them. Also, we would look at associated jargons when you want to create a COG. I aim to dump my thoughts once and for all and hopefully help others on the way.&lt;/p&gt;
+      <guid>https://amanbagrecha.github.io/post/rs_gis/cogs-as-standin-replacement/</guid>
+      <description>&lt;p&gt;I decided to write this blog when my twitter feed was buzzing with the usefulness of Cloud Optimized GeoTIFF (COGs) and how it is a paradigm shift in the way we serve raster on any client application. I also look at potential gotchas when creating COGs and when it might end up &lt;strong&gt;not&lt;/strong&gt; being useful.&lt;/p&gt;
+&lt;p&gt;So, this post will mostly focus on COGs and why I would also use them over plain GeoTIFFs. Also, we would look at associated jargons when you want to create a COG. I aim to dump my thoughts once and for all and hopefully help others on the way.&lt;/p&gt;
 &lt;h3 id=&#34;table-of-content&#34;&gt;Table of Content&lt;/h3&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -421,12 +421,12 @@ It is to be noted that, there is a significant setup required i.e, to create a n
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;strong&gt;COGs&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;When I would not use COGs&lt;/td&gt;
+&lt;td&gt;COGs as Stand-in replacement&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;While looking at generating a COG on my local machine, I encountered some fancy jargons — Block, Tile, Overview and Pyramid. Understanding them is essential to get the most out of COGs. Although I had known about them from when I started my GIS career, but you truly understand anything only when you apply it, don&amp;rsquo;t you?&lt;/p&gt;
-&lt;p&gt;To comprehend the above terms, let us take an example and experiment with it. I have a sentinel-2 L2A band 03 downloaded from &lt;a href=&#34;https://scihub.copernicus.eu/dhus/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;scihub&lt;/a&gt;. The data is in JPEG2000 format (which I found is not a cloud optimized format).&lt;/p&gt;
+&lt;p&gt;While looking at &amp;ldquo;How to generate a COG&amp;rdquo;, I encountered some fancy jargons — Block, Tile, Overview and Pyramid. Understanding them is essential to get the most out of COGs. Although I had known about them from when I started my GIS career, but you truly understand anything only when you apply it, don&amp;rsquo;t you?&lt;/p&gt;
+&lt;p&gt;To comprehend the above terms, let us take an example and experiment with it. I have a sentinel-2 L2A band 03 downloaded from &lt;a href=&#34;https://scihub.copernicus.eu/dhus/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;scihub&lt;/a&gt;. The data is in JPEG2000 format (which is not a cloud optimized format).&lt;/p&gt;
 &lt;p&gt;On performing &lt;code&gt;gdalinfo .\T43PHP_20210123T051121_B03_20m.jp2&lt;/code&gt;, the output gives a detailed description of the dataset. We focus on last few lines,&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Band 1 Block=256x256 Type=UInt16, ColorInterp=Gray
   Description = Grayscale
@@ -434,11 +434,11 @@ It is to be noted that, there is a significant setup required i.e, to create a n
   Image Structure Metadata:
     NBITS=15
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;block&lt;/code&gt; parameter represents the shape of tile (width x height) in the raster image. For example a &lt;code&gt;Block=256X256&lt;/code&gt; represents a tile of width of 256 and height of 256 pixels. Fig. 1 illustrates a tile as displayed on a web application.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;block&lt;/code&gt; parameter represents the shape of tile (width x height) in the raster image. For example a &lt;code&gt;Block=256X256&lt;/code&gt; represents a tile of width of 256 and height of 256 pixels. &lt;strong&gt;Fig. 1&lt;/strong&gt; illustrates a tile as displayed on a web application.&lt;/p&gt;
 &lt;figure&gt;
 &lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/0/03/Tiled_web_map_Stevage.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 -
-Example of Web Map Tiles. Each Block is typically a square.&lt;/ href&gt; &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+Example of Web Map Tiles. The squares represent a &lt;b&gt;block&lt;/b&gt;.&lt;/ href&gt; &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;h3 id=&#34;what-is-a-block-&#34;&gt;What is a &lt;code&gt;block&lt;/code&gt; ?&lt;/h3&gt;
 &lt;blockquote&gt;
@@ -448,8 +448,8 @@ Example of Web Map Tiles. Each Block is typically a square.&lt;/ href&gt; &lt;/i
 &lt;p&gt;Also notice the output contains &lt;code&gt;Overviews: 2745x2745, 1372x1372, 686x686, 343x343, 171x171&lt;/code&gt;. What are these numbers? Let&amp;rsquo;s find out!&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;what-is-an-overview&#34;&gt;What is an overview?&lt;/h3&gt;
-&lt;p&gt;Overviews are reduced/downsampled versions of the raster. Overviews can also be termed interchangeably with pyramids in GIS. When you want to pan, zoom around the raster, it helps to have overviews. The concept is to reduce the dimension of the raster to facilitate faster rendering of Raster on our application. Each overview is a half the size of its previous dimension. They can be built both externally and internally. Having an external overview would generate an &lt;code&gt;.ovr&lt;/code&gt; file which contains the information about the downsampled raster. While internal overviews alter the existing file permanently.&lt;/p&gt;
-&lt;p&gt;The above numbers for overviews tells us that the sentinel-2 image we are using here has internal overviews and tiling baked in it. Interestingly enough I found that it is not possible to build external overviews for &lt;code&gt;.jp2&lt;/code&gt; (JPEG2000) format.&lt;/p&gt;
+&lt;p&gt;Overviews are reduced/downsampled versions of the raster. Overviews can also be termed interchangeably with &lt;strong&gt;pyramids&lt;/strong&gt; in GIS. When you want to pan, zoom around the raster, it helps to have overviews. The concept is to reduce the dimension of the raster to facilitate faster rendering of Raster on our application. Each overview is a half the size of its previous dimension. They can be built both externally and internally. Having an external overview would generate an &lt;code&gt;.ovr&lt;/code&gt; file which contains the information about the downsampled raster. While internal overviews alter the existing file permanently.&lt;/p&gt;
+&lt;p&gt;The above numbers for overviews (&lt;code&gt;2745x...&lt;/code&gt;) tells us that the sentinel-2 image we are using here has internal overviews and tiling baked in it. Interestingly enough I found that it is not possible to build external overviews for &lt;code&gt;.jp2&lt;/code&gt; (JPEG2000) format.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/reoTn79.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;overview-levels&#34;&gt;Overview levels&lt;/h3&gt;
 &lt;p&gt;The numbers we see for overviews are also termed as levels. Overviews can be built at many levels (typically from level 1-18). When you have a large raster image (drone shots etc), these levels facilitate faster rendering.&lt;/p&gt;
@@ -458,11 +458,11 @@ Example of Web Map Tiles. Each Block is typically a square.&lt;/ href&gt; &lt;/i
 &lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.2 -
 Higher the pyramid level you move (zoom in), more detailed information from the raster you get, requiring more tiles to be generated. Image courtesy: &lt;href src = &#34;https://www.azavea.com/blog/2018/08/06/generating-pyramided-tiles-from-a-geotiff-using-geotrellis/tilepyramid/&#34; &gt;Azavea &lt;/ href&gt; &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;In Fig.2 above, it should be clear that &lt;code&gt;tiling&lt;/code&gt; is splitting up the raster into multiple blocks, while &lt;code&gt;overview&lt;/code&gt; is reducing the resolution (downsampling) of the raster. Both overview levels and tile size has to be tuned to improve the performance for serving/rendering raster on our application.&lt;/p&gt;
+&lt;p&gt;In &lt;strong&gt;Fig.2&lt;/strong&gt; above, it should be clear that &lt;code&gt;tiling&lt;/code&gt; is splitting up the raster into multiple blocks, while &lt;code&gt;overview&lt;/code&gt; is reducing the resolution (downsampling) of the raster. Both overview levels and tile size has to be tuned to improve the performance for serving/rendering raster on our application.&lt;/p&gt;
 &lt;p&gt;Using a large tile size might reduce the overall number of GET requests but it will also mean more data transfer per request. Moreover, having many pyramid levels (overviews) can reduce the response time but the data overhead to create these overviews can turn out to be quite expensive (about 33% for each additional level).&lt;/p&gt;
 &lt;h3 id=&#34;experiments&#34;&gt;Experiments&lt;/h3&gt;
 &lt;p&gt;With the aim to create COGs, I ended up experimenting with GeoTIFF and JP2000 formats.&lt;/p&gt;
-&lt;p&gt;On running &lt;code&gt;gdal_translate -of GTiff .\T43PHP_20210123T051121_B03_20m.jp2 b03.tif&lt;/code&gt; &amp;amp; &lt;code&gt;gdalinfo .\b04.tif&lt;/code&gt; to convert &lt;code&gt;.jp2&lt;/code&gt; to &lt;code&gt;.tif&lt;/code&gt;, it resulted in file size = 55.2 MB, and&lt;/p&gt;
+&lt;p&gt;On running &lt;code&gt;gdal_translate -of GTiff .\T43PHP_20210123T051121_B03_20m.jp2 b03.tif&lt;/code&gt; &amp;amp; &lt;code&gt;gdalinfo .\b03.tif&lt;/code&gt; to convert &lt;code&gt;.jp2&lt;/code&gt; to &lt;code&gt;.tif&lt;/code&gt;, it resulted in file size = 55.2 MB, and&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Band 1 Block=5490x1 Type=UInt16, ColorInterp=Gray
   Description = Grayscale
   Image Structure Metadata:
@@ -492,8 +492,9 @@ Higher the pyramid level you move (zoom in), more detailed information from the 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;By default, internal overviews and tiles are created for us. We can tune both Block size and Overview parameters if needed. See &lt;a href=&#34;https://gdal.org/drivers/raster/cog.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;I had only heard positive things about COGs up until now. But I would &lt;em&gt;not&lt;/em&gt; use it apart from my need to serve rasters on any client application. Reason being the file size. It is much costlier to store a COG than, say, a JPEG2000. &lt;a href=&#34;https://medium.com/@_VincentS_/do-you-really-want-people-using-your-data-ec94cd94dc3f&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Vincent&lt;/a&gt; does a great job explaining various formats which inspired me to do my own little experiment.&lt;/p&gt;
-&lt;p&gt;If your aim is to let users download data, storing them in COG can be a costly affair. You are better off using JPEG2000 format to save cost. But if your aim is to serve the raster on the web, you should definitely try out COGs.&lt;/p&gt;
+&lt;p&gt;You can see from previous experiments that creating COGs can be a costly in terms of its size, but you should not leave it there. The true potential of COG is realized only when you pass in additional options (compression, tile size, overviews etc).&lt;/p&gt;
+&lt;p&gt;Moreover, ff you do not compress the file, it would ingress a huge cost to store them.&lt;/p&gt;
+&lt;p&gt;If your aim is to serve rasters on the browser or let users download the data, start using COGs with &lt;strong&gt;additional options&lt;/strong&gt; and you won&amp;rsquo;t notice any difference but only save money in the long run.&lt;/p&gt;
 </description>
     </item>
     

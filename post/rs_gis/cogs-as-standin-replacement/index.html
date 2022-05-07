@@ -33,10 +33,10 @@
   
     
   
-  <meta name="description" content="In this blog post we look into how to download precipitation data from NASA website and process it with `xarray` and/or `wget`." />
+  <meta name="description" content="I decided to write this blog when my twitter feed was buzzing with the usefulness of Cloud Optimized GeoTIFF (COGs) and how it is a paradigm shift in the way we serve raster on any client application." />
 
   
-  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/" />
+  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/rs_gis/cogs-as-standin-replacement/" />
 
   
 
@@ -315,7 +315,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_32x32_fill_lanczos_center_2.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_180x180_fill_lanczos_center_2.png" />
 
-  <link rel="canonical" href="https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/" />
+  <link rel="canonical" href="https://amanbagrecha.github.io/post/rs_gis/cogs-as-standin-replacement/" />
 
   
   
@@ -326,27 +326,26 @@
   
   
     
-    
   
   
-  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:card" content="summary_large_image" />
   
     <meta property="twitter:site" content="@https://twitter.com/aman_bagrecha" />
     <meta property="twitter:creator" content="@https://twitter.com/aman_bagrecha" />
   
   <meta property="og:site_name" content="Aman Bagrecha" />
-  <meta property="og:url" content="https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/" />
-  <meta property="og:title" content="Download and preprocess NASA GPM IMERG Data using Python and wget | Aman Bagrecha" />
-  <meta property="og:description" content="In this blog post we look into how to download precipitation data from NASA website and process it with `xarray` and/or `wget`." /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_512x512_fill_lanczos_center_2.png" />
-    <meta property="twitter:image" content="https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:url" content="https://amanbagrecha.github.io/post/rs_gis/cogs-as-standin-replacement/" />
+  <meta property="og:title" content="COGs as the Stand-in Replacement for GeoTIFFs | Aman Bagrecha" />
+  <meta property="og:description" content="I decided to write this blog when my twitter feed was buzzing with the usefulness of Cloud Optimized GeoTIFF (COGs) and how it is a paradigm shift in the way we serve raster on any client application." /><meta property="og:image" content="https://amanbagrecha.github.io/post/rs_gis/cogs-as-standin-replacement/featured.png" />
+    <meta property="twitter:image" content="https://amanbagrecha.github.io/post/rs_gis/cogs-as-standin-replacement/featured.png" /><meta property="og:locale" content="en-us" />
   
     
       <meta
         property="article:published_time"
-        content="2022-04-20T00:00:00&#43;00:00"
+        content="2022-03-06T00:00:00&#43;00:00"
       />
     
-    <meta property="article:modified_time" content="2021-06-10T21:33:25&#43;05:30">
+    <meta property="article:modified_time" content="2022-03-06T21:13:15&#43;05:30">
   
 
   
@@ -370,12 +369,16 @@
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/"
+    "@id": "https://amanbagrecha.github.io/post/rs_gis/cogs-as-standin-replacement/"
   },
-  "headline": "Download and preprocess NASA GPM IMERG Data using Python and wget",
+  "headline": "COGs as the Stand-in Replacement for GeoTIFFs",
   
-  "datePublished": "2022-04-20T00:00:00Z",
-  "dateModified": "2021-06-10T21:33:25+05:30",
+  "image": [
+    "https://amanbagrecha.github.io/post/rs_gis/cogs-as-standin-replacement/featured.png"
+  ],
+  
+  "datePublished": "2022-03-06T00:00:00Z",
+  "dateModified": "2022-03-06T21:13:15+05:30",
   
   "author": {
     "@type": "Person",
@@ -390,7 +393,7 @@
       "url": "https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "In this blog post we look into how to download precipitation data from NASA website and process it with `xarray` and/or `wget`."
+  "description": "I decided to write this blog when my twitter feed was buzzing with the usefulness of Cloud Optimized GeoTIFF (COGs) and how it is a paradigm shift in the way we serve raster on any client application."
 }
 </script>
 
@@ -406,11 +409,11 @@
 
 
 
-  <title>Download and preprocess NASA GPM IMERG Data using Python and wget | Aman Bagrecha</title>
+  <title>COGs as the Stand-in Replacement for GeoTIFFs | Aman Bagrecha</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="f149a5d405f6a8e7107a6f885ad432c0" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="b92da0d6359b0de67f36d1dbb69fa4b4" >
 
   
   
@@ -756,7 +759,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>Download and preprocess NASA GPM IMERG Data using Python and wget</h1>
+  <h1>COGs as the Stand-in Replacement for GeoTIFFs</h1>
 
   
 
@@ -777,7 +780,7 @@
           Last updated on
       
     
-    Jun 10, 2021
+    Mar 6, 2022
   </span>
   
 
@@ -786,7 +789,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    5 min read
+    6 min read
   </span>
   
 
@@ -798,10 +801,6 @@
   
 
   
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/category/python/">Python</a></span>
   
 
 </div>
@@ -820,88 +819,109 @@
   <div class="article-container">
 
     <div class="article-style">
-      <p>In this blog post we look into how to download precipitation data from NASA website and process it to get information using xarray and wget.</p>
-<p>We are going to work with <a href="https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary" target="_blank" rel="noopener">GPM IMERG Late Precipitation L3 Half Hourly 0.1 degree x 0.1 degree V06 (GPM_3IMERGHHL)</a> data provided by NASA which gives half-hourly precipitation values for entire globe.</p>
-<h3 id="pre-requisites">Pre-requisites</h3>
-<ul>
-<li>You must have an Earthdata Account</li>
-<li>Link GES DISC with your account</li>
-</ul>
-<p>Refer to <a href="https://daac.gsfc.nasa.gov/earthdata-login" target="_blank" rel="noopener">this</a> page on how to Link GES DISC to your account.</p>
-<p><em>First method</em> - We would be downloading netCDF data using the <code>requests</code> module and preprocessing the file using <code>xarray</code>.</p>
-<p><em>Second method</em> - To download netCDF file using wget and using <code>xarray</code> to preprocess and visualise the data.</p>
-<h3 id="downloading-link-list">Downloading link list</h3>
-<p>We first select the region for which we want to download the data by visiting the <a href="https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary" target="_blank" rel="noopener">GPM IMERG</a> website and clicking on <strong>subset/ Get Data</strong> link at right corner. 
-<img src="https://i.imgur.com/3RH1ot2.png" alt=""></p>
-<p>In the popup, select</p>
-<ol>
-<li><strong>Download Method</strong> as <code>Get File Subsets using OPeNDAP</code></li>
-<li><strong>Refine Date Range</strong> as the date you want the data for. In my case, I choose 10 days of data.</li>
-<li><strong>Refine Region</strong> to subset data for your area of interest. In my case I choose <code>77.45,12.85,77.75,13.10</code></li>
-<li>Under <strong>Variables</strong>, select <code>precipitationCal</code>.</li>
-<li>For <strong>file format</strong>, we choose <code>netCDF</code> and click the <strong>Get Data</strong> button.</li>
-</ol>
-<p><img src="https://i.imgur.com/xCp8Shs.png" alt=""></p>
-<p>This will download a text file, containing all the links to download individual half hourly data for our area of interest in netCDF file format.</p>
-<p>Now we move to Google Colaboratory, to download the data in netCDF file format. We use Google Colaboratory as it has many libraries pre-loaded and saves the hassle to install them.</p>
-<p>If you&rsquo;re area of interest (or) the timeframe of download is large, please use local machine as Google Colaboratory only offers ~60 GB of free storage.</p>
-<h3 id="method-1-using-python-to-read-and-preprocess-the-data-inside-google-colaboratory">Method 1: Using Python to read and preprocess the data inside Google Colaboratory.</h3>
-<p>Open a new google Colab notebook and upload the downloaded text file. Our uploaded text file looks like the following.</p>
-<p><img src="https://i.imgur.com/njlFhPT.png" alt=""></p>
-<p>As one last requirement, NASA requires authentication to access the data and thus we have to create a <code>.netrc</code> file and save it at specified location (under <code>/root</code> dir in our case).</p>
-<h3 id="creating-netrc-file">Creating <code>.netrc</code> file</h3>
-<p>Open your notepad and type in the following text. Make sure to replace <code>your_login_username</code> and <code>your_password</code> with your earthdata credentials. Now save it as <code>.netrc</code> file.</p>
-<pre><code>machine urs.earthdata.nasa.gov login your_login_username password your_password
+      <p>I decided to write this blog when my twitter feed was buzzing with the usefulness of Cloud Optimized GeoTIFF (COGs) and how it is a paradigm shift in the way we serve raster on any client application. I also look at potential gotchas when creating COGs and when it might end up <strong>not</strong> being useful.</p>
+<p>So, this post will mostly focus on COGs and why I would also use them over plain GeoTIFFs. Also, we would look at associated jargons when you want to create a COG. I aim to dump my thoughts once and for all and hopefully help others on the way.</p>
+<h3 id="table-of-content">Table of Content</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What is a block ?</strong></td>
+<td>Understand what is a Block in raster</td>
+</tr>
+<tr>
+<td><strong>What is an overview?</strong></td>
+<td>What are Overviews and how are they useful to us</td>
+</tr>
+<tr>
+<td><strong>Overview levels</strong></td>
+<td>How does Block and Overview affect me</td>
+</tr>
+<tr>
+<td><strong>Experiments</strong></td>
+<td>Playing around with JP2000 format</td>
+</tr>
+<tr>
+<td><strong>COGs</strong></td>
+<td>COGs as Stand-in replacement</td>
+</tr>
+</tbody>
+</table>
+<p>While looking at &ldquo;How to generate a COG&rdquo;, I encountered some fancy jargons — Block, Tile, Overview and Pyramid. Understanding them is essential to get the most out of COGs. Although I had known about them from when I started my GIS career, but you truly understand anything only when you apply it, don&rsquo;t you?</p>
+<p>To comprehend the above terms, let us take an example and experiment with it. I have a sentinel-2 L2A band 03 downloaded from <a href="https://scihub.copernicus.eu/dhus/" target="_blank" rel="noopener">scihub</a>. The data is in JPEG2000 format (which is not a cloud optimized format).</p>
+<p>On performing <code>gdalinfo .\T43PHP_20210123T051121_B03_20m.jp2</code>, the output gives a detailed description of the dataset. We focus on last few lines,</p>
+<pre><code class="language-bash">Band 1 Block=256x256 Type=UInt16, ColorInterp=Gray
+  Description = Grayscale
+  Overviews: 2745x2745, 1372x1372, 686x686, 343x343, 171x171
+  Image Structure Metadata:
+    NBITS=15
 </code></pre>
-<p>Upload the <code>.netrc</code> file to Colab under <code>root</code> directory as shown in the figure below.</p>
-<p><img src="https://i.imgur.com/oZLeJuY.png" alt=""></p>
-<p>Now we have all the setup done and are ready to code.</p>
-<p>We first load the required libraries. Then, read the text file and loop over every line in it to download from the URL using the <code>requests</code> module. Finally, we save the file to Colab&rsquo;s hard drive. If you do not see the files after running code, make sure to wait for at least a day after registering to earthdata to make your account activated. I was late to read about it and had wasted a long time debugging it.</p>
-<pre><code class="language-python">import pandas as pd
-import numpy as np
-import xarray as xr
-import requests 
-
-# dataframe to read the text file which contains all the download links
-ds = pd.read_csv('/content/subset_GPM_3IMERGHH_06_20210611_142330.txt', header = None, sep = '\n')[0]
-
-# Do not forget to add .netrc file in the root dir of Colab. printing `result` should return status code 200
-for file in range(2, len(ds)): # skip first 2 rows as they contain metadata files
-  URL = ds[file]
-  result = requests.get(URL)
-  try:
-    result.raise_for_status()
-    filename = 'test' + str(file) + '.nc'
-    with open(filename, 'wb') as f:
-        f.write(result.content)
-
-  except:
-    print('requests.get() returned an error code '+str(result.status_code))
-
-xr_df = xr.open_mfdataset('test*.nc')
-
-xr_df.mean(dim = ['lat', 'lon']).to_dataframe().to_csv('results.csv')
-
+<p>The <code>block</code> parameter represents the shape of tile (width x height) in the raster image. For example a <code>Block=256X256</code> represents a tile of width of 256 and height of 256 pixels. <strong>Fig. 1</strong> illustrates a tile as displayed on a web application.</p>
+<figure>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Tiled_web_map_Stevage.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.1 -
+Example of Web Map Tiles. The squares represent a <b>block</b>.</ href> </i></b></figcaption>
+</figure>
+<h3 id="what-is-a-block-">What is a <code>block</code> ?</h3>
+<blockquote>
+<p>A block corresponds to a rectangular subpart of the raster. The first value is the width of the block and the second value its height. Typical block shapes are lines or group of lines (in which case the block width is the raster width) or tiles (typically squares), such as here. Knowing the block size is important when efficient reading of a raster is needed. In the case of tiles, this means reading rasters from the left-most tile of the raster to the right-most of the upper lines and progressing that way downward to the bottom of the image. <em><a href="https://download.osgeo.org/gdal/workshop/foss4ge2015/workshop_gdal.pdf" target="_blank" rel="noopener">Source</a></em></p>
+</blockquote>
+<p>So one thing is clear, Block and Tile are synonyms.</p>
+<p>Also notice the output contains <code>Overviews: 2745x2745, 1372x1372, 686x686, 343x343, 171x171</code>. What are these numbers? Let&rsquo;s find out!</p>
+<hr>
+<h3 id="what-is-an-overview">What is an overview?</h3>
+<p>Overviews are reduced/downsampled versions of the raster. Overviews can also be termed interchangeably with <strong>pyramids</strong> in GIS. When you want to pan, zoom around the raster, it helps to have overviews. The concept is to reduce the dimension of the raster to facilitate faster rendering of Raster on our application. Each overview is a half the size of its previous dimension. They can be built both externally and internally. Having an external overview would generate an <code>.ovr</code> file which contains the information about the downsampled raster. While internal overviews alter the existing file permanently.</p>
+<p>The above numbers for overviews (<code>2745x...</code>) tells us that the sentinel-2 image we are using here has internal overviews and tiling baked in it. Interestingly enough I found that it is not possible to build external overviews for <code>.jp2</code> (JPEG2000) format.</p>
+<p><img src="https://i.imgur.com/reoTn79.png" alt=""></p>
+<h3 id="overview-levels">Overview levels</h3>
+<p>The numbers we see for overviews are also termed as levels. Overviews can be built at many levels (typically from level 1-18). When you have a large raster image (drone shots etc), these levels facilitate faster rendering.</p>
+<figure>
+<p><img src="https://2rct3i2488gxf9jvb1lqhek9-wpengine.netdna-ssl.com/wp-content/uploads/2018/07/TilePyramid.jpg" alt=""></p>
+<figcaption align = "center"><b><i>Fig.2 -
+Higher the pyramid level you move (zoom in), more detailed information from the raster you get, requiring more tiles to be generated. Image courtesy: <href src = "https://www.azavea.com/blog/2018/08/06/generating-pyramided-tiles-from-a-geotiff-using-geotrellis/tilepyramid/" >Azavea </ href> </i></b></figcaption>
+</figure>
+<p>In <strong>Fig.2</strong> above, it should be clear that <code>tiling</code> is splitting up the raster into multiple blocks, while <code>overview</code> is reducing the resolution (downsampling) of the raster. Both overview levels and tile size has to be tuned to improve the performance for serving/rendering raster on our application.</p>
+<p>Using a large tile size might reduce the overall number of GET requests but it will also mean more data transfer per request. Moreover, having many pyramid levels (overviews) can reduce the response time but the data overhead to create these overviews can turn out to be quite expensive (about 33% for each additional level).</p>
+<h3 id="experiments">Experiments</h3>
+<p>With the aim to create COGs, I ended up experimenting with GeoTIFF and JP2000 formats.</p>
+<p>On running <code>gdal_translate -of GTiff .\T43PHP_20210123T051121_B03_20m.jp2 b03.tif</code> &amp; <code>gdalinfo .\b03.tif</code> to convert <code>.jp2</code> to <code>.tif</code>, it resulted in file size = 55.2 MB, and</p>
+<pre><code class="language-bash">Band 1 Block=5490x1 Type=UInt16, ColorInterp=Gray
+  Description = Grayscale
+  Image Structure Metadata:
+    NBITS=15
 </code></pre>
-<p>In the above snippet, what is interesting is the method <code>open_mfdataset</code> which takes in all the <code>netCDF</code> files and gives us a nice, compact output from which we can subset and further process our data.
-Here, we take the average of all the values (precipitation) and convert it into a new dataframe. We are ready to export it as CSV.</p>
-<h3 id="method-2-using-wget-to-download-and-then-preprocess-using-xarray">Method 2: Using wget to download and then preprocess using xarray</h3>
-<p>In this method, we download all the netCDF files using <code>wget</code>. These files are then read using xarray which makes it really easy to process and get the information we require.</p>
-<p>Running the following shell command in Google Colab will download all the data from the text file URLs. Make sure to replace <code>your_user_name</code> , <code>&lt;url text file&gt;</code> within the command. It will ask for password of your earthdata account on running the cell.</p>
-<pre><code class="language-sh">! wget --load-cookies /.urs_cookies --save-cookies /root/.urs_cookies --auth-no-challenge=on --user=your_user_name --ask-password --content-disposition -i &lt;url text file&gt;
+<p>You&rsquo;d notice that the file size of the <code>.tif</code> is much higher than that of <code>.jp2</code>. Additionally we do not see any blocks or overviews for the <code>.tif</code> file.</p>
+<hr>
+<p>On running the command <code>gdaladdo -r average .\b03_overview.tif</code> to add internal overview to my raster, and then <code>gdalinfo b03_overview.tif</code>,  the output file size of the resulted raster is 74.8 MB, and</p>
+<pre><code class="language-bash">Band 1 Block=5490x1 Type=UInt16, ColorInterp=Gray
+  Description = Grayscale
+  Overviews: 2745x2745, 1373x1373, 687x687, 344x344, 172x172
+  Image Structure Metadata:
+    NBITS=15
 </code></pre>
-<p>Once the above shell command is run on Colab, the following 2 lines of code will give a nice dataframe which can be exported to csv for further analysis.</p>
-<pre><code class="language-python">import xarray as xr
-import glob
-
-ds = xr.open_mfdataset('test*.nc')
-ds.precipitationCal.mean(dim=('lon', 'lat')).plot() # calculate the average precipitation on a half-hourly basis.
+<p>The point I am trying to convey here is that when you add an overview to the raster, there is an additional cost in terms of storage. In my opinion, the reason sentinel-2 images are stored with <code>.jp2</code> format is because of lower file size since they do not have to serve the raster on the web but instead let users download them in entirety. This would save them a huge cost on storing the data.</p>
+<h3 id="cloud-optimized-geotiff-cog">Cloud Optimized GeoTIFF (COG)</h3>
+<blockquote>
+<p>With the COG, you&rsquo;ll be able to load the image faster and zoom in and out much smoother than you would if you were working with a regular GeoTIFF. With the GeoTIFF, the entire image needs to finish downloading before the tiles can be generated for viewing.</p>
+</blockquote>
+<p>Cloud Optimized GeoTIFFs (COGs) are great! I use them in my work and they allow for easy and rendering of rasters on-the-fly. What makes it great is that it supports HTTP Range requests. This allows you to only fetch data where you are requesting it.</p>
+<p>To create COGs using GDAL, it is as simple as typing</p>
+<pre><code class="language-bash">gdalwarp -of COG .\T43PHP_20210123T051121_B03_20m.jp2 b03_cog.tif
 </code></pre>
-<h3 id="final-comments">Final Comments</h3>
-<p>In this post we looked into how to download and preprocess netCDF data provided by <a href="https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary" target="_blank" rel="noopener">NASA GES DISC</a>.
-We looked at two methods, one with pure Python and the other with wget and xarray. All performed on google Colab. 
-It is to be noted that, there is a significant setup required i.e, to create a new <code>.netrc</code> file and store inside the root directory of Colab else it returns an authorisation error. We looked at how easy it is to process netCDF data in xarray and how wget commands can be run on Colab.</p>
-<p>Watch the video tutorial <a href="https://www.youtube.com/watch?v=T_Us4hJxSeI" target="_blank" rel="noopener">here</a>. The notebook for reference is located <a href="https://Colab.research.google.com/drive/1VIKun8K3RT8VvcPJ7DE5uDDC10i10k1T?usp=sharing" target="_blank" rel="noopener">here</a>.</p>
+<p>The result from the above command results in a file size of 87.5 MB and,</p>
+<pre><code class="language-bash">Band 1 Block=512x512 Type=UInt16, ColorInterp=Gray
+  Overviews: 2745x2745, 1373x1373, 687x687, 344x344
+</code></pre>
+<p>By default, internal overviews and tiles are created for us. We can tune both Block size and Overview parameters if needed. See <a href="https://gdal.org/drivers/raster/cog.html" target="_blank" rel="noopener">here</a></p>
+<hr>
+<p>You can see from previous experiments that creating COGs can be a costly in terms of its size, but you should not leave it there. The true potential of COG is realized only when you pass in additional options (compression, tile size, overviews etc).</p>
+<p>Moreover, ff you do not compress the file, it would ingress a huge cost to store them.</p>
+<p>If your aim is to serve rasters on the browser or let users download the data, start using COGs with <strong>additional options</strong> and you won&rsquo;t notice any difference but only save money in the long run.</p>
 
     </div>
 
@@ -911,14 +931,6 @@ It is to be noted that, there is a significant setup required i.e, to create a n
 
 
 
-
-<div class="article-tags">
-  
-  <a class="badge badge-light" href="/tag/xarray/">xarray</a>
-  
-  <a class="badge badge-light" href="/tag/colab/">Colab</a>
-  
-</div>
 
 
 
@@ -1061,8 +1073,15 @@ It is to be noted that, there is a significant setup required i.e, to create a n
   
   
   <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/" rel="next">Download and preprocess NASA GPM IMERG Data using Python and wget</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/post/rs_gis/cogs-as-standin-replacement/" rel="prev">COGs as the Stand-in Replacement for GeoTIFFs</a>
+    <a href="/post/rs_gis/how-to-save-earth-engine-image-directly-to-your-local-machine/" rel="prev">How to save Earth Engine Image directly to your local machine</a>
   </div>
   
 </div>
