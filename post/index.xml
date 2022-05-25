@@ -108,7 +108,7 @@ It is to be noted that, there is a significant setup required i.e, to create a n
       <pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate>
       <guid>https://amanbagrecha.github.io/post/rs_gis/cogs-as-standin-replacement/</guid>
       <description>&lt;p&gt;I decided to write this blog when my twitter feed was buzzing with the usefulness of Cloud Optimized GeoTIFF (COGs) and how it is a paradigm shift in the way we serve raster on any client application. I also look at potential gotchas when creating COGs and when it might end up &lt;strong&gt;not&lt;/strong&gt; being useful.&lt;/p&gt;
-&lt;p&gt;So, this post will mostly focus on COGs and why I would also use them over plain GeoTIFFs. Also, we would look at associated jargons when you want to create a COG. I aim to dump my thoughts once and for all and hopefully help others on the way.&lt;/p&gt;
+&lt;p&gt;So, this post will mostly focus on COGs and why I would use them over plain GeoTIFFs. Also, we would look at associated jargons when you want to create a COG. I aim to dump my thoughts once and for all and hopefully help others on the way.&lt;/p&gt;
 &lt;h3 id=&#34;table-of-content&#34;&gt;Table of Content&lt;/h3&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -142,14 +142,15 @@ It is to be noted that, there is a significant setup required i.e, to create a n
 &lt;/table&gt;
 &lt;p&gt;While looking at &amp;ldquo;How to generate a COG&amp;rdquo;, I encountered some fancy jargons — Block, Tile, Overview and Pyramid. Understanding them is essential to get the most out of COGs. Although I had known about them from when I started my GIS career, but you truly understand anything only when you apply it, don&amp;rsquo;t you?&lt;/p&gt;
 &lt;p&gt;To comprehend the above terms, let us take an example and experiment with it. I have a sentinel-2 L2A band 03 downloaded from &lt;a href=&#34;https://scihub.copernicus.eu/dhus/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;scihub&lt;/a&gt;. The data is in JPEG2000 format (which is not a cloud optimized format).&lt;/p&gt;
-&lt;p&gt;On performing &lt;code&gt;gdalinfo .\T43PHP_20210123T051121_B03_20m.jp2&lt;/code&gt;, the output gives a detailed description of the dataset. We focus on last few lines,&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Band 1 Block=256x256 Type=UInt16, ColorInterp=Gray
-  Description = Grayscale
-  Overviews: 2745x2745, 1372x1372, 686x686, 343x343, 171x171
-  Image Structure Metadata:
-    NBITS=15
+&lt;p&gt;On performing &lt;code&gt;gdalinfo ./T43PHP_20210123T051121_B03_20m.jp2&lt;/code&gt;, the output gives a detailed description of the dataset. We focus on last few lines,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Band 1 Block=640x640 Type=UInt16, ColorInterp=Gray
+Overviews: 2745x2745, 1373x1373, 687x687, 344x344
+Overviews: arbitrary
+Image Structure Metadata:
+  COMPRESSION=JPEG2000
+  NBITS=15
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;block&lt;/code&gt; parameter represents the shape of tile (width x height) in the raster image. For example a &lt;code&gt;Block=256X256&lt;/code&gt; represents a tile of width of 256 and height of 256 pixels. &lt;strong&gt;Fig. 1&lt;/strong&gt; illustrates a tile as displayed on a web application.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;block&lt;/code&gt; parameter represents the shape of tile (width x height) in the raster image. For example a &lt;code&gt;Block=640x640&lt;/code&gt; represents a tile of width of 640 and height of 640 pixels. &lt;strong&gt;Fig. 1&lt;/strong&gt; illustrates a tile as displayed on a web application.&lt;/p&gt;
 &lt;figure&gt;
 &lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/0/03/Tiled_web_map_Stevage.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 -
@@ -160,7 +161,7 @@ Example of Web Map Tiles. The squares represent a &lt;b&gt;block&lt;/b&gt;.&lt;/
 &lt;p&gt;A block corresponds to a rectangular subpart of the raster. The first value is the width of the block and the second value its height. Typical block shapes are lines or group of lines (in which case the block width is the raster width) or tiles (typically squares), such as here. Knowing the block size is important when efficient reading of a raster is needed. In the case of tiles, this means reading rasters from the left-most tile of the raster to the right-most of the upper lines and progressing that way downward to the bottom of the image. &lt;em&gt;&lt;a href=&#34;https://download.osgeo.org/gdal/workshop/foss4ge2015/workshop_gdal.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Source&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;So one thing is clear, Block and Tile are synonyms.&lt;/p&gt;
-&lt;p&gt;Also notice the output contains &lt;code&gt;Overviews: 2745x2745, 1372x1372, 686x686, 343x343, 171x171&lt;/code&gt;. What are these numbers? Let&amp;rsquo;s find out!&lt;/p&gt;
+&lt;p&gt;Also notice the output contains &lt;code&gt;Overviews: 2745x2745, 1372x1372, 686x686, 343x343&lt;/code&gt;. What are these numbers? Let&amp;rsquo;s find out!&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;what-is-an-overview&#34;&gt;What is an overview?&lt;/h3&gt;
 &lt;p&gt;Overviews are reduced/downsampled versions of the raster. Overviews can also be termed interchangeably with &lt;strong&gt;pyramids&lt;/strong&gt; in GIS. When you want to pan, zoom around the raster, it helps to have overviews. The concept is to reduce the dimension of the raster to facilitate faster rendering of Raster on our application. Each overview is a half the size of its previous dimension. They can be built both externally and internally. Having an external overview would generate an &lt;code&gt;.ovr&lt;/code&gt; file which contains the information about the downsampled raster. While internal overviews alter the existing file permanently.&lt;/p&gt;
@@ -175,22 +176,16 @@ Higher the pyramid level you move (zoom in), more detailed information from the 
 &lt;/figure&gt;
 &lt;p&gt;In &lt;strong&gt;Fig.2&lt;/strong&gt; above, it should be clear that &lt;code&gt;tiling&lt;/code&gt; is splitting up the raster into multiple blocks, while &lt;code&gt;overview&lt;/code&gt; is reducing the resolution (downsampling) of the raster. Both overview levels and tile size has to be tuned to improve the performance for serving/rendering raster on our application.&lt;/p&gt;
 &lt;p&gt;Using a large tile size might reduce the overall number of GET requests but it will also mean more data transfer per request. Moreover, having many pyramid levels (overviews) can reduce the response time but the data overhead to create these overviews can turn out to be quite expensive (about 33% for each additional level).&lt;/p&gt;
-&lt;h3 id=&#34;experiments&#34;&gt;Experiments&lt;/h3&gt;
+&lt;h3 id=&#34;cogs-as-stand-in-replacement&#34;&gt;COGs as Stand-in replacement&lt;/h3&gt;
 &lt;p&gt;With the aim to create COGs, I ended up experimenting with GeoTIFF and JP2000 formats.&lt;/p&gt;
-&lt;p&gt;On running &lt;code&gt;gdal_translate -of GTiff .\T43PHP_20210123T051121_B03_20m.jp2 b03.tif&lt;/code&gt; &amp;amp; &lt;code&gt;gdalinfo .\b03.tif&lt;/code&gt; to convert &lt;code&gt;.jp2&lt;/code&gt; to &lt;code&gt;.tif&lt;/code&gt;, it resulted in file size = 55.2 MB, and&lt;/p&gt;
+&lt;p&gt;On converting our &lt;code&gt;.jp2&lt;/code&gt; to &lt;code&gt;.tif&lt;/code&gt; by running &lt;code&gt;gdal_translate -of GTiff ./T43PHP_20210123T051121_B03_20m.jp2 b03.tif&lt;/code&gt; and then &lt;code&gt;gdalinfo ./b03.tif&lt;/code&gt;, it resulted in file size = 58 MB, and&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Band 1 Block=5490x1 Type=UInt16, ColorInterp=Gray
-  Description = Grayscale
-  Image Structure Metadata:
-    NBITS=15
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;You&amp;rsquo;d notice that the file size of the &lt;code&gt;.tif&lt;/code&gt; is much higher than that of &lt;code&gt;.jp2&lt;/code&gt;. Additionally we do not see any blocks or overviews for the &lt;code&gt;.tif&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;You&amp;rsquo;d notice that the file size of the &lt;code&gt;.tif&lt;/code&gt; is much higher than that of &lt;code&gt;.jp2&lt;/code&gt;. Additionally we do not see any overviews for the &lt;code&gt;.tif&lt;/code&gt; file.&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;On running the command &lt;code&gt;gdaladdo -r average .\b03_overview.tif&lt;/code&gt; to add internal overview to my raster, and then &lt;code&gt;gdalinfo b03_overview.tif&lt;/code&gt;,  the output file size of the resulted raster is 74.8 MB, and&lt;/p&gt;
+&lt;p&gt;On running the command &lt;code&gt;gdaladdo -r average ./b03.tif&lt;/code&gt; to add internal overview to my raster, and then &lt;code&gt;gdalinfo b03.tif&lt;/code&gt;,  the output file size of the resulted raster is 78 MB, and&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Band 1 Block=5490x1 Type=UInt16, ColorInterp=Gray
-  Description = Grayscale
   Overviews: 2745x2745, 1373x1373, 687x687, 344x344, 172x172
-  Image Structure Metadata:
-    NBITS=15
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The point I am trying to convey here is that when you add an overview to the raster, there is an additional cost in terms of storage. In my opinion, the reason sentinel-2 images are stored with &lt;code&gt;.jp2&lt;/code&gt; format is because of lower file size since they do not have to serve the raster on the web but instead let users download them in entirety. This would save them a huge cost on storing the data.&lt;/p&gt;
 &lt;h3 id=&#34;cloud-optimized-geotiff-cog&#34;&gt;Cloud Optimized GeoTIFF (COG)&lt;/h3&gt;
@@ -199,16 +194,60 @@ Higher the pyramid level you move (zoom in), more detailed information from the 
 &lt;/blockquote&gt;
 &lt;p&gt;Cloud Optimized GeoTIFFs (COGs) are great! I use them in my work and they allow for easy and rendering of rasters on-the-fly. What makes it great is that it supports HTTP Range requests. This allows you to only fetch data where you are requesting it.&lt;/p&gt;
 &lt;p&gt;To create COGs using GDAL, it is as simple as typing&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gdalwarp -of COG .\T43PHP_20210123T051121_B03_20m.jp2 b03_cog.tif
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gdalwarp -of COG ./b03.tif b03_cog.tif
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The result from the above command results in a file size of 87.5 MB and,&lt;/p&gt;
+&lt;p&gt;The result from the above command results in a file size of 87 MB and,&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Band 1 Block=512x512 Type=UInt16, ColorInterp=Gray
-  Overviews: 2745x2745, 1373x1373, 687x687, 344x344
+  Overviews: 2745x2745, 1373x1373, 687x687, 344x344, 172x172
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;By default, internal overviews and tiles are created for us. We can tune both Block size and Overview parameters if needed. See &lt;a href=&#34;https://gdal.org/drivers/raster/cog.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;You can see from previous experiments that creating COGs can be a costly in terms of its size, but you should not leave it there. The true potential of COG is realized only when you pass in additional options (compression, tile size, overviews etc).&lt;/p&gt;
-&lt;p&gt;Moreover, ff you do not compress the file, it would ingress a huge cost to store them.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gdalwarp -of COG -co COMPRESS=DEFLATE ./b03_cog.tif b03_cog_deflate.tif
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The result from the above command results in a file size of 57 MB and,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Band 1 Block=512x512 Type=UInt16, ColorInterp=Gray
+  Overviews: 2745x2745, 1373x1373, 687x687, 344x344, 172x172
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Filename&lt;/th&gt;
+&lt;th&gt;Size&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Remarks&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;T43PHP_20210123T051121_B03_20m.jp2&lt;/td&gt;
+&lt;td&gt;33 Mb&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Original size&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;b03.tif&lt;/td&gt;
+&lt;td&gt;58 Mb&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;convert jp2 to tif&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;b03.tif&lt;/td&gt;
+&lt;td&gt;78 Mb&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;add overviews&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;b03_cog.tif&lt;/td&gt;
+&lt;td&gt;87 Mb&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;convert to COG&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;b03_cog_deflate.tif&lt;/td&gt;
+&lt;td&gt;57 Mb&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;COG with deflate&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;By this comparison you can see that, if you do not compress the file, it would ingress a huge cost to store them.&lt;/p&gt;
 &lt;p&gt;If your aim is to serve rasters on the browser or let users download the data, start using COGs with &lt;strong&gt;additional options&lt;/strong&gt; and you won&amp;rsquo;t notice any difference but only save money in the long run.&lt;/p&gt;
 </description>
     </item>
