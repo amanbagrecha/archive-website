@@ -5,12 +5,109 @@
     <link>https://amanbagrecha.github.io/category/python/</link>
       <atom:link href="https://amanbagrecha.github.io/category/python/index.xml" rel="self" type="application/rss+xml" />
     <description>Python</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 25 May 2022 16:02:01 +0530</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 19 Jun 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_512x512_fill_lanczos_center_2.png</url>
       <title>Python</title>
       <link>https://amanbagrecha.github.io/category/python/</link>
     </image>
+    
+    <item>
+      <title>Download MODIS data using CMR API in Python</title>
+      <link>https://amanbagrecha.github.io/post/rs_gis/download-modis-data-using-cmr-api-in-python/</link>
+      <pubDate>Sun, 19 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/post/rs_gis/download-modis-data-using-cmr-api-in-python/</guid>
+      <description>&lt;p&gt;If you have ever used USGS Earth Explorer to download / explore data, you&amp;rsquo;d notice that the manual process is cumbersome and not scalable. That is why we require a programmatic way to download satellite data.&lt;/p&gt;
+&lt;p&gt;In this blog we&amp;rsquo;d see how to download MODIS data using Python. We use a Python package called &lt;a href=&#34;https://github.com/fraymio/modis-tools&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;modis-tools&lt;/a&gt; to perform our task. This package internally uses &lt;a href=&#34;https://cmr.earthdata.nasa.gov/search/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NASA CMR&lt;/a&gt; (Common Metadata Repository) API which lets us search and query catalogs of various satellite dataset including MODIS.&lt;/p&gt;
+&lt;p&gt;We focus on the MODIS dataset in this blog, but with little modification, we could extend for various other datasets.&lt;/p&gt;
+&lt;p&gt;Before you move ahead, make sure you have an earthdata account. We would require the username and password to download the data. Register &lt;a href=&#34;https://urs.earthdata.nasa.gov/users/new&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; if not done so.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;To download the data we ask ourselves the following questions:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Which dataset specifically do I need? — Define &lt;em&gt;&lt;strong&gt;Dataset Name&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;What area do I need the data for? — Define our &lt;em&gt;&lt;strong&gt;Region of Interest&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;What time period of data do I require? — Define &lt;em&gt;&lt;strong&gt;Start and End Date&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Here, I wish to download MODIS Surface Reflectance 8-Day L3 Global 250 m SIN Grid data for Nigeria from 29 December, 2019 to 31st December, 2019.&lt;/p&gt;
+&lt;p&gt;Let us install and use the Python package &lt;code&gt;modis-tools&lt;/code&gt; to download the data on our local machine by performing the following steps&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a virtual environment.&lt;/li&gt;
+&lt;li&gt;Install the &lt;code&gt;modis-tools&lt;/code&gt; package.&lt;/li&gt;
+&lt;li&gt;Write the code.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;to-create-a-new-environment&#34;&gt;To create a new environment&lt;/h3&gt;
+&lt;p&gt;Create virtual environment &lt;code&gt;.modis-tools&lt;/code&gt; using Python&amp;rsquo;s &lt;code&gt;venv&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;aman@AMAN-JAIN:~$ python3 -m venv .modis-tools
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Activate the environment.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;aman@AMAN-JAIN:~$ source .modis-tools/bin/activate
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The above command is for linux. For Windows use 
+&lt;code&gt;.modis-tools\Scripts\activate&lt;/code&gt; instead.&lt;/p&gt;
+&lt;h3 id=&#34;install-the-modis-tools-package&#34;&gt;Install the modis-tools package&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;(.modis-tools) aman@AMAN-JAIN:~$ pip install modis-tools
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;insert-the-below-code&#34;&gt;Insert the below code&lt;/h3&gt;
+&lt;p&gt;Paste the code in a python file named &lt;code&gt;download.py&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# download_modis.py
+
+# 1) connect to earthdata
+session = ModisSession(username=username, password=password)
+
+# 2) Query the MODIS catalog for collections
+collection_client = CollectionApi(session=session)
+collections = collection_client.query(short_name=&amp;quot;MOD09GQ&amp;quot;, version=&amp;quot;061&amp;quot;)
+# Query the selected collection for granules
+granule_client = GranuleApi.from_collection(collections[0], session=session)
+
+# 3) Filter the selected granules via spatial and temporal parameters
+nigeria_bbox = [2.1448863675, 3.002583177, 4.289420717, 4.275061098] # format [x_min, y_min, x_max, y_max]
+nigeria_granules = granule_client.query(start_date=&amp;quot;2019-12-29&amp;quot;, end_date=&amp;quot;2019-12-31&amp;quot;, bounding_box=nigeria_bbox)
+
+# 4) Download the granules
+GranuleHandler.download_from_granules(nigeria_granules, session, threads=-1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the above code, change the &lt;code&gt;username&lt;/code&gt;, &lt;code&gt;password&lt;/code&gt;, &lt;code&gt;nigeria_box&lt;/code&gt; and &lt;code&gt;start_date&lt;/code&gt; &amp;amp; &lt;code&gt;end_date&lt;/code&gt; according to your requirements.&lt;/p&gt;
+&lt;p&gt;To explain the above code —&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;First we create a session, which makes a connection to earthdata and registers a session.&lt;/li&gt;
+&lt;li&gt;Next three lines we search for MODIS Surface Reflectance 8-Day L3 Global 250 m SIN Grid dataset using &lt;code&gt;short_name&lt;/code&gt; and &lt;code&gt;version&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Now we filter the region spatially and temporally we want our data to be downloaded. In this example, we filter for the nigeria region with a bounding box (&lt;code&gt;bounding_box&lt;/code&gt;) and the two days of december of 2019 (&lt;code&gt;start_date&lt;/code&gt;, &lt;code&gt;end_date&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;Lastly, we download the data (granules) using multithreading, since we asked to use all threads. (&lt;code&gt;threads=-1&lt;/code&gt; is all threads).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;how-to-get-short_name-and-version-for-the-dataset&#34;&gt;How to get &lt;code&gt;short_name&lt;/code&gt; and &lt;code&gt;version&lt;/code&gt; for the dataset?&lt;/h3&gt;
+&lt;p&gt;The &lt;a href=&#34;https://cmr.earthdata.nasa.gov/search/site/collections/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;collection endpoint&lt;/a&gt; of the CMR API contains a directory of all dataset catalogs hosted by various organizations with its short name and version number. For MODIS data, LPDAAC_ECS hosts and maintains it. Under the &lt;code&gt;/collections/directory&lt;/code&gt; endpoint, look for &lt;code&gt;LPDAAC_ECS&lt;/code&gt; and search for the MODIS dataset you want to download. Each dataset has a short name and version associated with it as shown in the picture below. In our case we found &lt;code&gt;MOD09Q1&lt;/code&gt; short name with version &lt;code&gt;061&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/x9aT290.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Now it is time to run the code to see our data being downloaded.&lt;/p&gt;
+&lt;p&gt;In your terminal, run —&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;(.modis-tools) aman@AMAN-JAIN:~$ python download_modis.py
+Downloading: 100%|██████████████████████████████████████████████████████| 3/3 [00:10&amp;lt;00:00,  3.67s/file]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;A progress bar would let you see the download progress and the files would be downloaded to your local disk. If you wish to download the data to a specific directory, use the &lt;code&gt;path&lt;/code&gt; parameter  in &lt;code&gt;download_from_granules&lt;/code&gt; classmethod.&lt;/p&gt;
+&lt;h3 id=&#34;endnote&#34;&gt;Endnote&lt;/h3&gt;
+&lt;p&gt;This short post on downloading MODIS data originated when I wanted to set up and deploy a pipeline. I did find other packages but they were quite old and did not use the state of the art specifications. Since the solution presented here uses CMR API, which has a very good documentation, I preferred it over other tools.&lt;/p&gt;
+&lt;p&gt;You can find the video version of this blog below&lt;/p&gt;
+&lt;figure class=&#34;video_container&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/3K1yl79Mhow&#34; frameborder=&#34;0&#34; allowfullscreen=&#34;true&#34;&gt; &lt;/iframe&gt;
+&lt;/figure&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;for-the-curious-advanced&#34;&gt;For the curious (Advanced)&lt;/h3&gt;
+&lt;p&gt;The base url for the CMR API is —&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;https://cmr.earthdata.nasa.gov/search
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Internally, CMR API first finds the collection for our dataset —&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;https://cmr.earthdata.nasa.gov/search/collections.json?short_name=MOD09GQ&amp;amp;version=061
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After that the package queries the granules endpoint to find individual granules matching our query parameters —&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;https://cmr.earthdata.nasa.gov/search/granules.json?downloadable=true&amp;amp;scroll=true&amp;amp;page_size=2000&amp;amp;sort_key=-start_date&amp;amp;concept_id=C1621091662-LPDAAC_ECS&amp;amp;temporal=2019-12-01T00%3A00%3A00Z%2C2019-12-31T00%3A00%3A00Z&amp;amp;bounding_box=2.1448863675%2C3.002583177%2C4.289420717%2C4.275061098
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that most parameters are autogenerated by the python package depending on the &lt;code&gt;short_name&lt;/code&gt; and &lt;code&gt;version&lt;/code&gt; you provide (downloadable, scroll, page_size, sort_key, concept_id).
+The other parameters are user defined (temporal, bounding_box)&lt;/p&gt;
+&lt;p&gt;There are many more additional parameters which can be passed. A complete list is present in the &lt;a href=&#34;https://cmr.earthdata.nasa.gov/search/site/docs/search/api.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;documentation&lt;/a&gt;. One such useful parameter that you can try out is &lt;code&gt;cloud_cover&lt;/code&gt;. All you need to do is pass this parameter name with value to the &lt;code&gt;query&lt;/code&gt; method in the above code.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Train Spacenet 5 CRESI Algorithm to extract road network from Satellite Imagery.</title>
