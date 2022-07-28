@@ -28,7 +28,7 @@
 &lt;p&gt;&lt;em&gt;First method&lt;/em&gt; - We would be downloading netCDF data using the &lt;code&gt;requests&lt;/code&gt; module and preprocessing the file using &lt;code&gt;xarray&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Second method&lt;/em&gt; - To download netCDF file using wget and using &lt;code&gt;xarray&lt;/code&gt; to preprocess and visualise the data.&lt;/p&gt;
 &lt;h3 id=&#34;downloading-link-list&#34;&gt;Downloading link list&lt;/h3&gt;
-&lt;p&gt;We first select the region for which we want to download the data by visiting the &lt;a href=&#34;https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GPM IMERG&lt;/a&gt; website and clicking on &lt;strong&gt;subset/ Get Data&lt;/strong&gt; link at right corner. 
+&lt;p&gt;We first select the region for which we want to download the data by visiting the &lt;a href=&#34;https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GPM IMERG&lt;/a&gt; website and clicking on &lt;strong&gt;subset/ Get Data&lt;/strong&gt; link at right corner.
 &lt;img src=&#34;https://i.imgur.com/3RH1ot2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;In the popup, select&lt;/p&gt;
 &lt;ol&gt;
@@ -96,7 +96,7 @@ ds.precipitationCal.mean(dim=(&#39;lon&#39;, &#39;lat&#39;)).plot() # calculate 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;final-comments&#34;&gt;Final Comments&lt;/h3&gt;
 &lt;p&gt;In this post we looked into how to download and preprocess netCDF data provided by &lt;a href=&#34;https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NASA GES DISC&lt;/a&gt;.
-We looked at two methods, one with pure Python and the other with wget and xarray. All performed on google Colab. 
+We looked at two methods, one with pure Python and the other with wget and xarray. All performed on google Colab.
 It is to be noted that, there is a significant setup required i.e, to create a new &lt;code&gt;.netrc&lt;/code&gt; file and store inside the root directory of Colab else it returns an authorisation error. We looked at how easy it is to process netCDF data in xarray and how wget commands can be run on Colab.&lt;/p&gt;
 &lt;p&gt;Watch the video tutorial &lt;a href=&#34;https://www.youtube.com/watch?v=T_Us4hJxSeI&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;. The notebook for reference is located &lt;a href=&#34;https://Colab.research.google.com/drive/1VIKun8K3RT8VvcPJ7DE5uDDC10i10k1T?usp=sharing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>

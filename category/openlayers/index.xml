@@ -555,7 +555,7 @@ I assume readers to have familiarity with setting up geoserver and basics of ope
  &amp;lt;script src=&amp;quot;https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
  
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We are using openlayers to render the request response. since the output of the WFS request is json, we create a new layer with vector source and format as geojson. 
+&lt;p&gt;We are using openlayers to render the request response. since the output of the WFS request is json, we create a new layer with vector source and format as geojson.
 The &lt;code&gt;strategy:ol.loadingstrategy.bbox&lt;/code&gt; tells openlayers to only load features within the bbox. Simply put, if we move to different location, only features within that bbox will appear.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;
 // setup geoserver port

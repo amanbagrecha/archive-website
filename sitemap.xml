@@ -30,40 +30,25 @@
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/</loc>
-    <lastmod>2022-06-28T22:10:04+05:30</lastmod>
+    <lastmod>2022-03-06T21:13:15+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/categories/</loc>
-    <lastmod>2022-06-28T22:10:04+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/post/rs_gis/download-modis-data-using-cmr-api-in-python/</loc>
-    <lastmod>2022-06-28T22:10:04+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/post/</loc>
-    <lastmod>2022-06-28T22:10:04+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/category/python/</loc>
-    <lastmod>2022-06-28T22:10:04+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/tag/datascience/</loc>
-    <lastmod>2022-05-25T16:02:01+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/category/docker/</loc>
-    <lastmod>2022-05-25T16:02:01+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/project/</loc>
-    <lastmod>2022-05-25T16:02:01+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/tags/</loc>
-    <lastmod>2022-05-25T16:02:01+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/project/cresi-modified/</loc>
-    <lastmod>2022-05-25T16:02:01+05:30</lastmod>
+    <lastmod>2022-02-07T22:19:19+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/tag/colab/</loc>
     <lastmod>2021-06-10T21:33:25+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/</loc>
     <lastmod>2021-06-10T21:33:25+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/post/</loc>
+    <lastmod>2022-03-06T21:13:15+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/category/python/</loc>
+    <lastmod>2021-10-10T18:42:47+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/tags/</loc>
+    <lastmod>2022-02-07T22:19:19+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/tag/xarray/</loc>
     <lastmod>2021-06-10T21:33:25+05:30</lastmod>
@@ -84,6 +69,9 @@
     <lastmod>2022-02-07T22:19:19+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/tag/docker/</loc>
+    <lastmod>2021-12-22T00:19:15+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/category/docker/</loc>
     <lastmod>2021-12-22T00:19:15+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/post/rs_gis/vector-tiles-and-docker-using-pg-tilerserv/</loc>
@@ -149,6 +137,9 @@
     <loc>https://amanbagrecha.github.io/tag/gis/</loc>
     <lastmod>2021-09-08T14:15:36+05:30</lastmod>
   </url><url>
+    <loc>https://amanbagrecha.github.io/project/</loc>
+    <lastmod>2021-09-08T14:15:36+05:30</lastmod>
+  </url><url>
     <loc>https://amanbagrecha.github.io/project/smap-soil-moisture/</loc>
     <lastmod>2021-09-08T14:15:36+05:30</lastmod>
   </url><url>
@@ -172,6 +163,9 @@
   </url><url>
     <loc>https://amanbagrecha.github.io/tag/webgis/</loc>
     <lastmod>2021-08-10T22:17:14+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/tag/datascience/</loc>
+    <lastmod>2021-07-24T19:56:56+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/tag/matplotlib/</loc>
     <lastmod>2021-07-24T19:56:56+05:30</lastmod>

@@ -958,7 +958,7 @@ admin.site.register(MyAccount) # Register your models here.
 <p>Install dependeny</p>
 <pre><code>conda install djangorestframework
 </code></pre>
-<p>Like any other app, django rest framework is also an app. so we add it to the list of installed apps. 
+<p>Like any other app, django rest framework is also an app. so we add it to the list of installed apps.
 We additionally add authtoken app for user authentication which we are shortly going to intergrate in our CRUD application</p>
 <p>In <code>settings.py</code></p>
 <pre><code class="language-python">INSTALLED_APPS = [
@@ -971,7 +971,7 @@ We additionally add authtoken app for user authentication which we are shortly g
     
 ]
 </code></pre>
-<p>We are going to be using Token Authentication in this application. DRF documentation recommends it as the default. 
+<p>We are going to be using Token Authentication in this application. DRF documentation recommends it as the default.
 Let Us setup the Default authentication class before actually utilising it.</p>
 <p>In <code>settings.py</code></p>
 <pre><code class="language-python">REST_FRAMEWORK = {

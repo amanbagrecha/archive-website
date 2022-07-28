@@ -831,7 +831,7 @@
 <p><em>First method</em> - We would be downloading netCDF data using the <code>requests</code> module and preprocessing the file using <code>xarray</code>.</p>
 <p><em>Second method</em> - To download netCDF file using wget and using <code>xarray</code> to preprocess and visualise the data.</p>
 <h3 id="downloading-link-list">Downloading link list</h3>
-<p>We first select the region for which we want to download the data by visiting the <a href="https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary" target="_blank" rel="noopener">GPM IMERG</a> website and clicking on <strong>subset/ Get Data</strong> link at right corner. 
+<p>We first select the region for which we want to download the data by visiting the <a href="https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary" target="_blank" rel="noopener">GPM IMERG</a> website and clicking on <strong>subset/ Get Data</strong> link at right corner.
 <img src="https://i.imgur.com/3RH1ot2.png" alt=""></p>
 <p>In the popup, select</p>
 <ol>
@@ -899,7 +899,7 @@ ds.precipitationCal.mean(dim=('lon', 'lat')).plot() # calculate the average prec
 </code></pre>
 <h3 id="final-comments">Final Comments</h3>
 <p>In this post we looked into how to download and preprocess netCDF data provided by <a href="https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHHL_06/summary" target="_blank" rel="noopener">NASA GES DISC</a>.
-We looked at two methods, one with pure Python and the other with wget and xarray. All performed on google Colab. 
+We looked at two methods, one with pure Python and the other with wget and xarray. All performed on google Colab.
 It is to be noted that, there is a significant setup required i.e, to create a new <code>.netrc</code> file and store inside the root directory of Colab else it returns an authorisation error. We looked at how easy it is to process netCDF data in xarray and how wget commands can be run on Colab.</p>
 <p>Watch the video tutorial <a href="https://www.youtube.com/watch?v=T_Us4hJxSeI" target="_blank" rel="noopener">here</a>. The notebook for reference is located <a href="https://Colab.research.google.com/drive/1VIKun8K3RT8VvcPJ7DE5uDDC10i10k1T?usp=sharing" target="_blank" rel="noopener">here</a>.</p>
 
@@ -1057,13 +1057,6 @@ It is to be noted that, there is a significant setup required i.e, to create a n
 <div class="article-widget">
   
 <div class="post-nav">
-  
-  
-  
-  <div class="post-nav-item">
-    <div class="meta-nav">Next</div>
-    <a href="/post/rs_gis/download-modis-data-using-cmr-api-in-python/" rel="next">Download MODIS data using CMR API in Python</a>
-  </div>
   
   
   

@@ -31,7 +31,7 @@
 &lt;p&gt;ST_asMVT, an aggregate function which is used under the hood for pg_tileserv, returns mapbox vector tile format based on google protobuf. While there are other formats such as MBtiles which is sqlite based binary file (can be opened in sqlite), Mapbox Vector Tile format seems to be winning this race and is thus the most popular format currently.&lt;/p&gt;
 &lt;h3 id=&#34;to-get-started-with-serving-your-vector-data-to-the-web-using-pg_tileserv-we-follow-the-below-mentioned-steps&#34;&gt;To get started with serving your vector data to the web using pg_tileserv, we follow the below mentioned steps&lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;Download &lt;a href=&#34;https://github.com/CrunchyData/pg_tileserv&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;pg_tileserv&lt;/a&gt; folder from &lt;a href=&#34;https://downgit.github.io/#/home&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;down-git&lt;/a&gt; website and save it to your local directory. 
+&lt;li&gt;Download &lt;a href=&#34;https://github.com/CrunchyData/pg_tileserv&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;pg_tileserv&lt;/a&gt; folder from &lt;a href=&#34;https://downgit.github.io/#/home&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;down-git&lt;/a&gt; website and save it to your local directory.
 &lt;img src=&#34;https://i.imgur.com/QkF6OF9.png&#34; alt=&#34;&#34;&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;The folder contains all the files required to start a docker container and serve vector tiles.&lt;/p&gt;
