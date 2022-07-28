@@ -5,12 +5,24 @@
     <link>https://amanbagrecha.github.io/tag/python/</link>
       <atom:link href="https://amanbagrecha.github.io/tag/python/index.xml" rel="self" type="application/rss+xml" />
     <description>Python</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 07 Feb 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 28 Jul 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_512x512_fill_lanczos_center_2.png</url>
       <title>Python</title>
       <link>https://amanbagrecha.github.io/tag/python/</link>
     </image>
+    
+    <item>
+      <title>Download-MODIS-data-using-CMR-API-in-Python</title>
+      <link>https://amanbagrecha.github.io/post/rs_gis/download-modis-data-using-cmr-api-in-python/</link>
+      <pubDate>Thu, 28 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/post/rs_gis/download-modis-data-using-cmr-api-in-python/</guid>
+      <description>&lt;p&gt;If you have ever used USGS Earth Explorer to download / explore data, you’d notice that the manual process is cumbersome and not scalable. That is why we require a programmatic way to download satellite data.&lt;/p&gt;
+&lt;p&gt;In this blog we’d see how to download MODIS data using Python. We use a Python package called modis-tools to perform our task. This package internally uses NASA CMR (Common Metadata Repository) API which lets us search and query catalogs of various satellite dataset including MODIS.&lt;/p&gt;
+&lt;p&gt;We focus on the MODIS dataset in this blog, but with little modification, we could extend for various other datasets.&lt;/p&gt;
+&lt;p&gt;Before you move ahead, make sure you have an earthdata account. We would require the username and password to download the data. Register here if not done so.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>How to save Earth Engine Image directly to your local machine</title>
