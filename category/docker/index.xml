@@ -5,12 +5,20 @@
     <link>https://amanbagrecha.github.io/category/docker/</link>
       <atom:link href="https://amanbagrecha.github.io/category/docker/index.xml" rel="self" type="application/rss+xml" />
     <description>Docker</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 22 Dec 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 28 Jul 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_512x512_fill_lanczos_center_2.png</url>
       <title>Docker</title>
       <link>https://amanbagrecha.github.io/category/docker/</link>
     </image>
+    
+    <item>
+      <title>Train Spacenet 5 CRESI Algorithm to extract road network from Satellite Imagery.</title>
+      <link>https://amanbagrecha.github.io/project/2022-07-28-train-spacenet-5-cresi-algorithm-to-extract-road-network-from-satellite-imagery/</link>
+      <pubDate>Thu, 28 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/project/2022-07-28-train-spacenet-5-cresi-algorithm-to-extract-road-network-from-satellite-imagery/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Vector tiles and Docker using pg_tilerserv</title>
