@@ -32,20 +32,17 @@
     <loc>https://amanbagrecha.github.io/</loc>
     <lastmod>2022-07-28T21:15:16+05:30</lastmod>
   </url><url>
+    <loc>https://amanbagrecha.github.io/categories/</loc>
+    <lastmod>2022-07-28T21:15:16+05:30</lastmod>
+  </url><url>
     <loc>https://amanbagrecha.github.io/post/rs_gis/download-modis-data-using-cmr-api-in-python/</loc>
     <lastmod>2022-07-28T21:15:16+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/post/</loc>
     <lastmod>2022-07-28T21:15:16+05:30</lastmod>
   </url><url>
-    <loc>https://amanbagrecha.github.io/tag/python/</loc>
+    <loc>https://amanbagrecha.github.io/category/python/</loc>
     <lastmod>2022-07-28T21:15:16+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/tags/</loc>
-    <lastmod>2022-07-28T21:15:16+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/categories/</loc>
-    <lastmod>2022-02-07T22:19:19+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/tag/colab/</loc>
     <lastmod>2021-06-10T21:33:25+05:30</lastmod>
@@ -53,8 +50,8 @@
     <loc>https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/</loc>
     <lastmod>2021-06-10T21:33:25+05:30</lastmod>
   </url><url>
-    <loc>https://amanbagrecha.github.io/category/python/</loc>
-    <lastmod>2021-10-10T18:42:47+05:30</lastmod>
+    <loc>https://amanbagrecha.github.io/tags/</loc>
+    <lastmod>2022-02-07T22:19:19+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/tag/xarray/</loc>
     <lastmod>2021-06-10T21:33:25+05:30</lastmod>
@@ -69,6 +66,9 @@
     <lastmod>2022-02-07T22:19:19+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/post/rs_gis/how-to-save-earth-engine-image-directly-to-your-local-machine/</loc>
+    <lastmod>2022-02-07T22:19:19+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/tag/python/</loc>
     <lastmod>2022-02-07T22:19:19+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/tag/docker/</loc>
