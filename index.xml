@@ -5,7 +5,7 @@
     <link>https://amanbagrecha.github.io/</link>
       <atom:link href="https://amanbagrecha.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Aman Bagrecha</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 28 Jul 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 07 Aug 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_512x512_fill_lanczos_center_2.png</url>
       <title>Aman Bagrecha</title>
@@ -295,6 +295,166 @@ The variance of the distribution is $\sigma^{2}$.
   &lt;summary&gt;What is the parameter $\mu$?&lt;/summary&gt;
   &lt;p&gt;The parameter $\mu$ is the mean or expectation of the distribution.&lt;/p&gt;
 &lt;/details&gt;</description>
+    </item>
+    
+    <item>
+      <title>Merging Rasters using Rasterio</title>
+      <link>https://amanbagrecha.github.io/post/rs_gis/merge-rasters-the-modern-way-using-python/</link>
+      <pubDate>Sun, 07 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/post/rs_gis/merge-rasters-the-modern-way-using-python/</guid>
+      <description>&lt;p&gt;In this blog, we&amp;rsquo;ll examine how to merge or mosaic rasters using Python, the modern way. Additionally, we would look at a few nuances and internal workings of rasterio&amp;rsquo;s merge functionality along with saving your rasters in-memory.&lt;/p&gt;
+&lt;p&gt;By &amp;ldquo;modern way&amp;rdquo;, it is implied that you have an improved workflow and data management. And that you can experiment with various scenarios quickly and efficiently.&lt;/p&gt;
+&lt;p&gt;The traditional way to mosaic data is by downloading multiple intersecting tileset in its entirety. Downloading an entire tileset is itself a cost prohibitive task, added to already lost time in searching desired satellite imagery on GUI.&lt;/p&gt;
+&lt;p&gt;To overcome these traditional challenges, there has been significant improvement in storing metadata of satellite imagery (namely &lt;a href=&#34;https://stacspec.org/en&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;STAC&lt;/a&gt;) which has enabled querying them much smoother and made it imagery-provider agnostic.&lt;/p&gt;
+&lt;h3 id=&#34;tldr&#34;&gt;TL;DR&lt;/h3&gt;
+&lt;p&gt;We would perform the following task in this blog —&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use pystac to query items over our AOI&lt;/li&gt;
+&lt;li&gt;Plot the tiles on map using hvplot&lt;/li&gt;
+&lt;li&gt;Merge tiles without data download on local machine&lt;/li&gt;
+&lt;li&gt;Save the merged tile in-memory using rasterio&amp;rsquo;s MemoryFile&lt;/li&gt;
+&lt;li&gt;Internals of rasterio&amp;rsquo;s merge methods&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;problem-at-hand&#34;&gt;Problem at hand&lt;/h3&gt;
+&lt;p&gt;I wish to access sentinel-2 True Color Image for the month of January over my area of interest (AOI), which is a highway network across Karnataka and Andhra Pradesh (Figure 1).&lt;/p&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/183255775-352d47fb-515c-4d72-ba4e-e32ac5bebf42.png&#34; alt=&#34;bokeh_plot&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 -
+Highway Network as our Region of Interest&lt;/ href&gt; &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;We start by fetching sentinel-2 tiles over our AOI from &lt;code&gt;sentinel-s2-l2a-cogs&lt;/code&gt; STAC catalog using &lt;a href=&#34;https://github.com/stac-utils/pystac-client&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;pystac-client&lt;/a&gt;. This library allows us to crawl STAC catalog and enables rapid access to the metadata we need.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# STAC API root URL
+# Thanks to element84 for hosting the API for sentinel-2 catalog.
+URL = &#39;https://earth-search.aws.element84.com/v0/&#39;
+
+client = Client.open(URL)
+
+search = client.search(
+    max_items = 10,
+    collections = &amp;quot;sentinel-s2-l2a-cogs&amp;quot;,
+    bbox = gdf.total_bounds, # geodataframe for our region of study
+    datetime = &#39;2022-01-01/2022-01-24&#39;
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the above code, we search for 10 sentinel-s2-l2a-cogs over our AOI for the date between January 1 and 24 of 2022.&lt;/p&gt;
+&lt;p&gt;Now we need to know which of our 10 queried images covers our area of interest in its entirety. To do that, we can plot all the search results on the map and visually inspect.&lt;/p&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/183255939-121e585e-79dc-4ceb-b61e-7e08709de926.png&#34; alt=&#34;bokeh_plot&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.2 -
+Sentinel-2 tiles overlaid on Region of Interest&lt;/ href&gt; &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;We see that our AOI is not covered by a single tile in entirety, and that there is a need to merge adjacent tiles.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note that we have so far only queried the metadata of our desired imagery&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We use rasterio&amp;rsquo;s &lt;a href=&#34;https://rasterio.readthedocs.io/en/latest/api/rasterio.merge.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;merge&lt;/a&gt; functionality, which would enable us to combine all of them seamlessly.&lt;/p&gt;
+&lt;p&gt;First, we get all the tiles for a single day and look for True Color Image (TCI) band&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# retrieve the items as dictionaries, rather than Item objects
+items = list(search.items_as_dicts())
+# convert found items to a GeoDataFrame
+items_gdf = items_to_geodataframe(items)
+
+tiles_single_day = items_gdf.loc[&#39;2022-01-23&#39;, &amp;quot;assets.visual.href&amp;quot;]
+
+# print(tiles_single_day)
+ properties.datetime
+ 2022-01-23 05:25:14+00:00    https://sentinel-cogs.s3.us-west-2.amazonaws.c...
+ 2022-01-23 05:25:11+00:00    https://sentinel-cogs.s3.us-west-2.amazonaws.c...
+ 2022-01-23 05:24:59+00:00    https://sentinel-cogs.s3.us-west-2.amazonaws.c...
+ 2022-01-23 05:24:56+00:00    https://sentinel-cogs.s3.us-west-2.amazonaws.c...
+ Name: assets.visual.href, dtype: object
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, read the remote files via the URL in the above output using &lt;code&gt;rasterio.open&lt;/code&gt; and save the returned file handlers as a list. This is the first instance where we are dealing with the actual imagery. Although, we are not reading the values stored in the data just yet.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-py&#34;&gt;# open images stored on s3
+file_handler = [rasterio.open(row) for row in tiles_single_day]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Finally we can merge all of the tiles and get the clipped raster stored in memory.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-py&#34;&gt;from rasterio.io import MemoryFile
+from rasterio.merge import merge
+
+memfile = MemoryFile()
+
+merge(datasets=file_handler, # list of dataset objects opened in &#39;r&#39; mode
+    bounds=tuple(gdf.set_crs(&amp;quot;EPSG:4326&amp;quot;).to_crs(file_handler[0].crs).total_bounds), # tuple
+    nodata=None, # float
+    dtype=&#39;uint16&#39;, # dtype
+    resampling=Resampling.nearest,
+    method=&#39;first&#39;, # strategy to combine overlapping rasters
+    dst_path=memfile.name, # str or PathLike to save raster
+    dst_kwds={&#39;blockysize&#39;:512, &#39;blockxsize&#39;:512} # Dictionary
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There are really interesting things to look at in the above code. Overall, the code above returns a &lt;code&gt;MemoryFile&lt;/code&gt; object which contains a &lt;code&gt;uint16&lt;/code&gt; raster with bounds of our AOI and blocksize of 512. The attribute &lt;code&gt;dst_path&lt;/code&gt; allows us to specify a path to save the output as a raster. What is interesting is we can not only pass a file path to save on local disk but also a virtual path and save the merged raster &lt;strong&gt;in-memory&lt;/strong&gt;, avoiding clutter of additional files on disk.&lt;/p&gt;
+&lt;p&gt;To define a virtual path, we use rasterio&amp;rsquo;s &lt;code&gt;MemoryFile&lt;/code&gt; class. When we create a &lt;code&gt;MemoryFile&lt;/code&gt; object, it has a &lt;code&gt;name&lt;/code&gt; attribute which gives us a virtual path, thus treating it as a real file (using GDALs &lt;a href=&#34;https://gdal.org/user/virtual_file_systems.html#vsimem-in-memory-files&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;vsimem&lt;/a&gt; internally). This MemoryFile object (&lt;code&gt;memfile&lt;/code&gt; here) provides us all the methods and attributes of rasterio&amp;rsquo;s file handler, which is extremely helpful.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-py&#34;&gt;print(memfile.open().profile)
+
+{&#39;driver&#39;: &#39;GTiff&#39;, &#39;dtype&#39;: &#39;uint16&#39;, &#39;nodata&#39;: 0.0, &#39;width&#39;: 4110, &#39;height&#39;: 3211, &#39;count&#39;: 3, &#39;crs&#39;: CRS.from_epsg(32643), &#39;transform&#39;: Affine(10.0, 0.0, 788693.4700669964,
+       0.0, -10.0, 1500674.3670768766), &#39;blockxsize&#39;: 512, &#39;blockysize&#39;: 512, &#39;tiled&#39;: True, &#39;compress&#39;: &#39;deflate&#39;, &#39;interleave&#39;: &#39;pixel&#39;}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;method=&#39;first&#39;&lt;/code&gt; tells us the strategy used to determine the value of the pixel where the rasters overlap. In this case, the pixel value from the first imagery of the overlapping region in the list, is used as the value for the output raster.&lt;/p&gt;
+&lt;p&gt;The entire algorithm to merge rasters is illustrated in the figure below by taking an example of combining two rasters with &lt;code&gt;method=first&lt;/code&gt;.&lt;/p&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/183279200-05b96cd5-f0a7-48e0-9b37-480792756d16.jpg&#34; alt=&#34;merge-rasterio-with-laberl_merging-rasters&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.3 -
+Internal working of rasterio&#39;s merge functionality. src1 and src2 are two overlapping raster.&lt;/ href&gt; &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;From the above figure, for each raster in the list:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;it finds the intersection with the &lt;strong&gt;Output Bounds&lt;/strong&gt; (named &lt;code&gt;region&lt;/code&gt; in the figure)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;next, it gets a boolean mask of invaild pixel over the &lt;code&gt;region&lt;/code&gt; (named &lt;code&gt;region_mask&lt;/code&gt; in the figure).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;next, it copies over all the existing values from the raster for the &lt;code&gt;region&lt;/code&gt; to an array (named &lt;code&gt;temp&lt;/code&gt; in the figure)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It gets a boolean mask for the valid pixels in the &lt;code&gt;temp&lt;/code&gt; array. (named &lt;code&gt;temp_mask&lt;/code&gt; in the figure)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;With these four arrays, it runs the &lt;code&gt;method=first&lt;/code&gt;, which is to&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;create the same shaped array as that of &lt;code&gt;region&lt;/code&gt; and fill values with negation of &lt;code&gt;region_mask&lt;/code&gt; (named &lt;code&gt;A&lt;/code&gt; in the figure)&lt;/li&gt;
+&lt;li&gt;create a filter by combining &lt;code&gt;region_mask&lt;/code&gt; and &lt;code&gt;A&lt;/code&gt; with a AND gate (named &lt;code&gt;B&lt;/code&gt; in the figure)&lt;/li&gt;
+&lt;li&gt;copy over the values from &lt;code&gt;temp&lt;/code&gt; to &lt;code&gt;region&lt;/code&gt; using &lt;code&gt;B&lt;/code&gt; as the filter&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These series of steps are performed for all the rasters in the list. Finally, the output at the end of each iteration is combined to produce &lt;code&gt;dest&lt;/code&gt; raster.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Notice the dark strip bands for each array which represents the overlapping region. Also notice that values from the dark strip in step &lt;strong&gt;&lt;code&gt;1&lt;/code&gt;&lt;/strong&gt; did not change at the end of step &lt;strong&gt;&lt;code&gt;2&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;custom-combining-strategy-for-overlapping-regions&#34;&gt;Custom combining strategy for overlapping regions&lt;/h3&gt;
+&lt;p&gt;We can have arbitrary conditions on how to combine the overlapping region. By default rasterio uses values of the first overlapping raster from the list of Input files as pixel values for the output raster file. It has several other options in its utility such as &lt;code&gt;min&lt;/code&gt;, &lt;code&gt;max&lt;/code&gt;, &lt;code&gt;sum&lt;/code&gt;, &lt;code&gt;count&lt;/code&gt;, &lt;code&gt;last&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To define our custom method, say in this case, I want to take the average of all the pixel values over my overlapping region and copy them to the output file. To do that, we can override the method by defining our custom method. Let us see how —&lt;/p&gt;
+&lt;p&gt;We take a look at the source code of built-in methods which make use of two or more rasters to make decisions on the output pixel values. Few such methods which do that are &lt;code&gt;copy_sum&lt;/code&gt;, &lt;code&gt;copy_min&lt;/code&gt;, &lt;code&gt;copy_max&lt;/code&gt;, &lt;code&gt;copy_count&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Looking at the &lt;a href=&#34;https://github.com/rasterio/rasterio/blob/main/rasterio/merge.py#L40&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;copy_min&lt;/a&gt; from source code, we see that it performs two logical operations each before and after the custom logic we wish to apply.&lt;/p&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/183279064-f2437364-b4bd-4761-8b99-2aa3bc65bc42.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.4 -
+copy_min function copies minimum value from overlapping region to the output raster&lt;/ href&gt; &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;We would replace our custom logic of averaging with that of &lt;code&gt;minimum&lt;/code&gt; in the above code and that is all there is to it. We can now use this function to manipulate the values of overlapping region!&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-py&#34;&gt;def custom_method_avg(merged_data, new_data, merged_mask, new_mask, **kwargs):
+    &amp;quot;&amp;quot;&amp;quot;Returns the average value pixel.&amp;quot;&amp;quot;&amp;quot;
+    mask = np.empty_like(merged_mask, dtype=&amp;quot;bool&amp;quot;)
+    np.logical_or(merged_mask, new_mask, out=mask)
+    np.logical_not(mask, out=mask)
+    np.nanmean([merged_data, new_data], axis=0, out=merged_data, where=mask)
+    np.logical_not(new_mask, out=mask)
+    np.logical_and(merged_mask, mask, out=mask)
+    np.copyto(merged_data, new_data, where=mask, casting=&amp;quot;unsafe&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;endnote&#34;&gt;Endnote&lt;/h3&gt;
+&lt;p&gt;The modern approach to merge rasters in python is to only stream the data for your region of interest, process and perform analysis on the raster in memory. This would save you a huge cost and time. This is possible because of &lt;a href=&#34;https://www.cogeo.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;COGs&lt;/a&gt; and &lt;a href=&#34;https://stacspec.org/en&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;STAC&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We looked at the merge method in depth and also explored the techniques used to combine the overlapping data. Finally, we created a custom method for merging rasters by modifying the existing code to suit our requirements. The code associated with this post can be found &lt;a href=&#34;https://colab.research.google.com/drive/1iMYdNmAEr0JuKzPnDH0qC4rDsYkvwMk0?usp=sharing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
     </item>
     
     <item>
