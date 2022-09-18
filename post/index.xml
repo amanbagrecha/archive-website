@@ -59,8 +59,7 @@
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;ogr2ogr -f PostgreSQL PG:&amp;quot;dbname=postgres host=localhost port=5432 user=postgres password=1234&amp;quot; bahamas-latest.osm.pbf multipolygons -nln bahamas_mpoly -lco COLUMN_TYPES=other_tags=hstore -overwrite -skipfailures -where &amp;quot;name is not null&amp;quot; -clipsrc -78 23 -73 27 -nlt PROMOTE_TO_MULTI
 &lt;/code&gt;&lt;/pre&gt;
 &lt;hr&gt;
-&lt;h4 id=&#34;video-version-of-the-blog&#34;&gt;Video version of the blog:&lt;/h4&gt;
-&lt;iframe width=&#34;460&#34; height=&#34;215&#34; src=&#34;http://www.youtube.com/embed/87liLpASYPI?rel=0&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;h4 id=&#34;video-version-of-the-blog-can-be-found-herehttpsyoutube87lilpasypi&#34;&gt;Video version of the blog can be found &lt;a href=&#34;https://youtu.be/87liLpASYPI&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/h4&gt;
 </description>
     </item>
     
@@ -304,8 +303,7 @@ Downloading: 100%|████████████████████�
 &lt;p&gt;A progress bar would let you see the download progress and the files would be downloaded to your local disk. If you wish to download the data to a specific directory, use the path parameter in download_from_granules classmethod.&lt;/p&gt;
 &lt;p&gt;Endnote
 This short post on downloading MODIS data originated when I wanted to set up and deploy a pipeline. I did find other packages but they were quite old and did not use the state of the art specifications. Since the solution presented here uses CMR API, which has a very good documentation, I preferred it over other tools.&lt;/p&gt;
-&lt;p&gt;You can find the video version of this blog below&lt;/p&gt;
-&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;http://www.youtube.com/embed/3K1yl79Mhow?rel=0&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;You can find the video version of this blog &lt;a href=&#34;https://youtu.be/3K1yl79Mhow&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;for-the-curious-advanced&#34;&gt;For the curious (Advanced)&lt;/h3&gt;
 &lt;p&gt;The base url for the CMR API is —&lt;/p&gt;
