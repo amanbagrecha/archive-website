@@ -33,10 +33,10 @@
   
     
   
-  <meta name="description" content="If you have ever used USGS Earth Explorer to download / explore data, you’d notice that the manual process is cumbersome and not scalable. That is why we require a programmatic way to download satellite data." />
+  <meta name="description" content="ogr2ogr is the swiss knife for vector geometry conversion. You can import CSV with latitude and longitude columns as Point geometry into PostgreSQL. This tool also makes it easy to import OSM data to be imported into PostgreSQL with a lot of flexibility." />
 
   
-  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/rs_gis/download-modis-data-using-cmr-api-in-python/" />
+  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/rs_gis/import-csv-and-osm-data-into-postgresql-using-ogr2ogr/" />
 
   
 
@@ -315,7 +315,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_32x32_fill_lanczos_center_2.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_180x180_fill_lanczos_center_2.png" />
 
-  <link rel="canonical" href="https://amanbagrecha.github.io/post/rs_gis/download-modis-data-using-cmr-api-in-python/" />
+  <link rel="canonical" href="https://amanbagrecha.github.io/post/rs_gis/import-csv-and-osm-data-into-postgresql-using-ogr2ogr/" />
 
   
   
@@ -334,18 +334,18 @@
     <meta property="twitter:creator" content="@https://twitter.com/aman_bagrecha" />
   
   <meta property="og:site_name" content="Aman Bagrecha" />
-  <meta property="og:url" content="https://amanbagrecha.github.io/post/rs_gis/download-modis-data-using-cmr-api-in-python/" />
-  <meta property="og:title" content="Download MODIS data using CMR API in Python | Aman Bagrecha" />
-  <meta property="og:description" content="If you have ever used USGS Earth Explorer to download / explore data, you’d notice that the manual process is cumbersome and not scalable. That is why we require a programmatic way to download satellite data." /><meta property="og:image" content="https://amanbagrecha.github.io/post/rs_gis/download-modis-data-using-cmr-api-in-python/featured.png" />
-    <meta property="twitter:image" content="https://amanbagrecha.github.io/post/rs_gis/download-modis-data-using-cmr-api-in-python/featured.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:url" content="https://amanbagrecha.github.io/post/rs_gis/import-csv-and-osm-data-into-postgresql-using-ogr2ogr/" />
+  <meta property="og:title" content="Import CSV and OSM data into PostgreSQL using ogr2ogr | Aman Bagrecha" />
+  <meta property="og:description" content="ogr2ogr is the swiss knife for vector geometry conversion. You can import CSV with latitude and longitude columns as Point geometry into PostgreSQL. This tool also makes it easy to import OSM data to be imported into PostgreSQL with a lot of flexibility." /><meta property="og:image" content="https://amanbagrecha.github.io/post/rs_gis/import-csv-and-osm-data-into-postgresql-using-ogr2ogr/featured.png" />
+    <meta property="twitter:image" content="https://amanbagrecha.github.io/post/rs_gis/import-csv-and-osm-data-into-postgresql-using-ogr2ogr/featured.png" /><meta property="og:locale" content="en-us" />
   
     
       <meta
         property="article:published_time"
-        content="2022-07-28T00:00:00&#43;00:00"
+        content="2022-09-18T00:00:00&#43;00:00"
       />
     
-    <meta property="article:modified_time" content="2022-07-28T21:15:16&#43;05:30">
+    <meta property="article:modified_time" content="2022-09-18T15:14:02&#43;05:30">
   
 
   
@@ -369,16 +369,16 @@
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://amanbagrecha.github.io/post/rs_gis/download-modis-data-using-cmr-api-in-python/"
+    "@id": "https://amanbagrecha.github.io/post/rs_gis/import-csv-and-osm-data-into-postgresql-using-ogr2ogr/"
   },
-  "headline": "Download MODIS data using CMR API in Python",
+  "headline": "Import CSV and OSM data into PostgreSQL using ogr2ogr",
   
   "image": [
-    "https://amanbagrecha.github.io/post/rs_gis/download-modis-data-using-cmr-api-in-python/featured.png"
+    "https://amanbagrecha.github.io/post/rs_gis/import-csv-and-osm-data-into-postgresql-using-ogr2ogr/featured.png"
   ],
   
-  "datePublished": "2022-07-28T00:00:00Z",
-  "dateModified": "2022-07-28T21:15:16+05:30",
+  "datePublished": "2022-09-18T00:00:00Z",
+  "dateModified": "2022-09-18T15:14:02+05:30",
   
   "author": {
     "@type": "Person",
@@ -393,7 +393,7 @@
       "url": "https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "If you have ever used USGS Earth Explorer to download / explore data, you’d notice that the manual process is cumbersome and not scalable. That is why we require a programmatic way to download satellite data."
+  "description": "ogr2ogr is the swiss knife for vector geometry conversion. You can import CSV with latitude and longitude columns as Point geometry into PostgreSQL. This tool also makes it easy to import OSM data to be imported into PostgreSQL with a lot of flexibility."
 }
 </script>
 
@@ -409,11 +409,11 @@
 
 
 
-  <title>Download MODIS data using CMR API in Python | Aman Bagrecha</title>
+  <title>Import CSV and OSM data into PostgreSQL using ogr2ogr | Aman Bagrecha</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="6ccfc934c4d2450fd820100fd5aed8d2" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="591b594efd146a6620edf5985d4942f6" >
 
   
   
@@ -759,7 +759,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>Download MODIS data using CMR API in Python</h1>
+  <h1>Import CSV and OSM data into PostgreSQL using ogr2ogr</h1>
 
   
 
@@ -780,7 +780,7 @@
           Last updated on
       
     
-    Jul 28, 2022
+    Sep 18, 2022
   </span>
   
 
@@ -789,7 +789,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    4 min read
+    2 min read
   </span>
   
 
@@ -801,10 +801,6 @@
   
 
   
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/category/python/">Python</a></span>
   
 
 </div>
@@ -823,96 +819,50 @@
   <div class="article-container">
 
     <div class="article-style">
-      <p>If you have ever used USGS Earth Explorer to download / explore data, you’d notice that the manual process is cumbersome and not scalable. That is why we require a programmatic way to download satellite data.</p>
-<p>In this blog we’d see how to download MODIS data using Python. We use a Python package called <a href="https://github.com/fraymio/modis-tools" target="_blank" rel="noopener">modis-tools</a> to perform our task. This package internally uses <a href="https://cmr.earthdata.nasa.gov/search/" target="_blank" rel="noopener">NASA CMR</a> (Common Metadata Repository) API which lets us search and query catalogs of various satellite dataset including MODIS.</p>
-<p>We focus on the MODIS dataset in this blog, but with little modification, we could extend for various other datasets.</p>
-<p>Before you move ahead, make sure you have an earthdata account. We would require the username and password to download the data. Register <a href="https://urs.earthdata.nasa.gov/users/new" target="_blank" rel="noopener">here</a> if not done so.</p>
-<hr>
-<p>To download the data we ask ourselves the following questions:</p>
-<ol>
-<li>Which dataset specifically do I need? — Define <em>Dataset Name</em></li>
-<li>What area do I need the data for? — Define our <em>Region of Interest</em></li>
-<li>What time period of data do I require? — Define <em>Start and End Date</em></li>
-</ol>
-<p>Here, I wish to download MODIS Surface Reflectance 8-Day L3 Global 250 m SIN Grid data for Nigeria from 29 December, 2019 to 31st December, 2019.</p>
-<p>Let us install and use the Python package <code>modis-tools</code> to download the data on our local machine by performing the following steps</p>
-<ol>
-<li>Create a virtual environment.</li>
-<li>Install the <code>modis-tools</code> package.</li>
-<li>Write the code.</li>
-</ol>
-<h3 id="to-create-a-new-environment">To create a new environment</h3>
-<p>Create virtual environment <code>.modis-tools</code> using Python’s <code>venv</code></p>
-<pre><code>aman@AMAN-JAIN:~$ python3 -m venv .modis-tools
+      <p><a href="https://gdal.org/programs/ogr2ogr.html" target="_blank" rel="noopener">ogr2ogr</a> is the swiss knife for vector geometry conversion. You can import CSV with latitude and longitude columns as Point geometry into PostgreSQL. This tool also makes it easy to import OSM data to be imported into PostgreSQL with a lot of flexibility.</p>
+<h2 id="1-insert-csv-to-postgresql">1. Insert CSV to PostgreSQL</h2>
+<p>Our CSV contains information about retail food stores including cafes, restaurants, grocery information with the location and name. Download the data <a href="https://github.com/amanbagrecha/amanbagrecha.github.io/files/9592312/filter_all_cat_data.csv" target="_blank" rel="noopener">here</a></p>
+<p><img src="https://user-images.githubusercontent.com/76432265/190896961-cc985bf1-0b5b-4665-b53a-bcb9eadf50eb.png" alt="image"></p>
+<p>We first read the metadata of the CSV using ogrinfo</p>
+<pre><code class="language-sh">ogrinfo -so filter_all_cat_data.csv filter_all_cat_data
 </code></pre>
-<p>Activate the environment.</p>
-<pre><code>aman@AMAN-JAIN:~$ source .modis-tools/bin/activate
+<p>Assuming you have a database already (<code>postgres</code> here), we run the following command to create <code>postgis</code> extension for <code>postgres</code> database. The connection string is of the format as described <a href="https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING" target="_blank" rel="noopener">here</a></p>
+<pre><code class="language-sh">psql -c &quot;create extension postgis;&quot; &quot;postgresql://postgres:1234@localhost:5432/postgres&quot;
 </code></pre>
-<p><strong>Note</strong>: The above command is for linux. For Windows use .<code>modis-tools\Scripts\activate</code> instead.</p>
-<h3 id="install-the-modis-tools-package">Install the modis-tools package</h3>
-<pre><code>(.modis-tools) aman@AMAN-JAIN:~$ pip install modis-tools
+<p>Finally, we insert the CSV into PostgreSQL table named <strong>cat_data_copy</strong> and assign CRS of EPSG:4326.</p>
+<pre><code class="language-sh">ogr2ogr -f PostgreSQL PG:&quot;host=localhost user=postgres dbname=postgres password=1234&quot; filter_all_cat_data.csv -oo X_POSSIBLE_NAMES=long_url -oo Y_POSSIBLE_NAMES=lat_url -nlt POINT -nln &quot;cat_data_copy&quot; -sql &quot;select name,city,lat_url,long_url,type from filter_all_cat_data&quot; -a_srs &quot;EPSG:4326”
 </code></pre>
-<h3 id="insert-the-below-code">Insert the below code</h3>
-<p>Paste the code in a python file named <code>download.py</code>.</p>
-<pre><code class="language-python"># download_modis.py
-
-# 1) connect to earthdata
-session = ModisSession(username=username, password=password)
-
-# 2) Query the MODIS catalog for collections
-collection_client = CollectionApi(session=session)
-collections = collection_client.query(short_name=&quot;MOD09GQ&quot;, version=&quot;061&quot;)
-# Query the selected collection for granules
-granule_client = GranuleApi.from_collection(collections[0], session=session)
-
-# 3) Filter the selected granules via spatial and temporal parameters
-nigeria_bbox = [2.1448863675, 3.002583177, 4.289420717, 4.275061098] # format [x_min, y_min, x_max, y_max]
-nigeria_granules = granule_client.query(start_date=&quot;2019-12-29&quot;, end_date=&quot;2019-12-31&quot;, bounding_box=nigeria_bbox)
-
-# 4) Download the granules
-GranuleHandler.download_from_granules(nigeria_granules, session, threads=-1)
-</code></pre>
-<p>In the above code, change the <code>username</code>, <code>password</code>, <code>nigeria_box</code> and <code>start_date</code> &amp; <code>end_date</code> according to your requirements.</p>
-<p>To explain the above code —</p>
+<p>The following explains few of the flags</p>
 <ul>
 <li>
-<p>First we create a session, which makes a connection to earthdata and registers a session.
-Next three lines we search for MODIS Surface Reflectance 8-Day L3 Global 250 m SIN Grid dataset using <code>short_name</code> and <code>version</code>.</p>
+<p><code>-oo</code>: <code>X_POSSIBLE_NAMES</code> and <code>Y_POSSIBLE_NAMES</code> allows us to specify geometry columns from CSV</p>
 </li>
 <li>
-<p>Now we filter the region spatially and temporally we want our data to be downloaded. In this example, we filter for the nigeria region with a bounding box (<code>bounding_box</code>) and the two days of december of 2019 (<code>start_date</code>, <code>end_date</code>).</p>
+<p><code>-nlt</code>: Define the geometry type for the table</p>
 </li>
 <li>
-<p>Lastly, we download the data (granules) using multithreading, since we asked to use all threads. (<code>threads=-1</code> is all threads).</p>
+<p><code>-nln</code>: alternate Table name (defaults to name of the file)</p>
+</li>
+<li>
+<p><code>-sql</code>: write SQL to insert only selected columns into the table</p>
 </li>
 </ul>
-<h3 id="how-to-get-short_name-and-version-for-the-dataset">How to get <code>short_name</code> and <code>version</code> for the dataset?</h3>
-<p>The <a href="https://cmr.earthdata.nasa.gov/search/site/collections/" target="_blank" rel="noopener">collection endpoint</a> of the CMR API contains a directory of all dataset catalogs hosted by various organizations with its short name and version number. For MODIS data, LPDAAC_ECS hosts and maintains it. Under the <code>/collections/directory</code> endpoint, look for <code>LPDAAC_ECS</code> and search for the MODIS dataset you want to download. Each dataset has a short name and version associated with it as shown in the picture below. In our case we found <code>MOD09Q1</code> short name with version <code>061</code>.</p>
-<p><img src="https://i.imgur.com/x9aT290.png" alt=""></p>
 <hr>
-<p>Now it is time to run the code to see our data being downloaded.</p>
-<p>In your terminal, run —</p>
-<pre><code>(.modis-tools) aman@AMAN-JAIN:~$ python download_modis.py
-Downloading: 100%|██████████████████████████████████████████████████████| 3/3 [00:10&lt;00:00,  3.67s/file]
+<h2 id="2-insert-osm-data-to-postgresql">2. Insert OSM data to PostgreSQL</h2>
+<p>Our OSM data is of Bahamas downloaded from geofabrik. You can download it from <a href="https://download.geofabrik.de/central-america/bahamas-latest.osm.pbf" target="_blank" rel="noopener">here</a></p>
+<p>We first read the metadata of the OSM data using ogrinfo</p>
+<pre><code class="language-sh">ogrinfo -so bahamas-latest.osm.pbf multipolygons
 </code></pre>
-<p>A progress bar would let you see the download progress and the files would be downloaded to your local disk. If you wish to download the data to a specific directory, use the path parameter in download_from_granules classmethod.</p>
-<p>Endnote
-This short post on downloading MODIS data originated when I wanted to set up and deploy a pipeline. I did find other packages but they were quite old and did not use the state of the art specifications. Since the solution presented here uses CMR API, which has a very good documentation, I preferred it over other tools.</p>
-<p>You can find the video version of this blog below</p>
-<iframe width="560" height="315" src="http://www.youtube.com/embed/3K1yl79Mhow?rel=0" frameborder="0" allowfullscreen></iframe>
+<p>We find about the geometry column, CRS and columns in the data. This will be used when inserting the data into the database.</p>
+<p>Next we create postgis and hstore extensions in our <code>postgres</code> database.</p>
+<pre><code class="language-sh">psql -c &quot;create extension hstore; create extension postgis&quot; &quot;postgresql://postgres:1234@localhost:5432/postgres&quot;
+</code></pre>
+<p>Finally we insert the data into PostgreSQL with table name as <strong>bahamas_mpoly</strong> with only multipolygons. We convert the <code>other_tags</code> column into <code>hstore</code> and insert only those rows where the <code>name</code> column does not contain a null value. We also clip our data to a bounding box and promote our polygons to multipolygons to avoid error.</p>
+<pre><code class="language-sh">ogr2ogr -f PostgreSQL PG:&quot;dbname=postgres host=localhost port=5432 user=postgres password=1234&quot; bahamas-latest.osm.pbf multipolygons -nln bahamas_mpoly -lco COLUMN_TYPES=other_tags=hstore -overwrite -skipfailures -where &quot;name is not null&quot; -clipsrc -78 23 -73 27 -nlt PROMOTE_TO_MULTI
+</code></pre>
 <hr>
-<h3 id="for-the-curious-advanced">For the curious (Advanced)</h3>
-<p>The base url for the CMR API is —</p>
-<pre><code class="language-sh">https://cmr.earthdata.nasa.gov/search
-</code></pre>
-<p>Internally, CMR API first finds the collection for our dataset —</p>
-<pre><code class="language-sh">https://cmr.earthdata.nasa.gov/search/collections.json?short_name=MOD09GQ&amp;version=061
-</code></pre>
-<p>After that the package queries the granules endpoint to find individual granules matching our query parameters —</p>
-<pre><code class="language-sh">https://cmr.earthdata.nasa.gov/search/granules.json?downloadable=true&amp;scroll=true&amp;page_size=2000&amp;sort_key=-start_date&amp;concept_id=C1621091662-LPDAAC_ECS&amp;temporal=2019-12-01T00%3A00%3A00Z%2C2019-12-31T00%3A00%3A00Z&amp;bounding_box=2.1448863675%2C3.002583177%2C4.289420717%2C4.275061098
-</code></pre>
-<p>Note that most parameters are autogenerated by the python package depending on the <code>short_name</code> and <code>version</code> you provide (downloadable, scroll, page_size, sort_key, concept_id). The other parameters are user defined (temporal, bounding_box)</p>
-<p>There are many more additional parameters which can be passed. A complete list is present in the <a href="https://cmr.earthdata.nasa.gov/search/site/docs/search/api.html" target="_blank" rel="noopener">documentation</a>. One such useful parameter that you can try out is <code>cloud_cover</code>. All you need to do is pass this parameter name with value to the <code>query</code> method in the above code.</p>
+<h4 id="video-version-of-the-blog">Video version of the blog:</h4>
+<iframe width="460" height="215" src="http://www.youtube.com/embed/87liLpASYPI?rel=0" frameborder="0" allowfullscreen></iframe>
 
     </div>
 
@@ -1064,15 +1014,8 @@ This short post on downloading MODIS data originated when I wanted to set up and
   
   
   <div class="post-nav-item">
-    <div class="meta-nav">Next</div>
-    <a href="/post/rs_gis/merge-rasters-the-modern-way-using-python/" rel="next">Merging Rasters using Rasterio</a>
-  </div>
-  
-  
-  
-  <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/" rel="prev">Download and preprocess NASA GPM IMERG Data using Python and wget</a>
+    <a href="/post/rs_gis/merge-rasters-the-modern-way-using-python/" rel="prev">Merging Rasters using Rasterio</a>
   </div>
   
 </div>

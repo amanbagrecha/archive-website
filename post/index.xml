@@ -5,12 +5,64 @@
     <link>https://amanbagrecha.github.io/post/</link>
       <atom:link href="https://amanbagrecha.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 07 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 18 Sep 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
       <link>https://amanbagrecha.github.io/post/</link>
     </image>
+    
+    <item>
+      <title>Import CSV and OSM data into PostgreSQL using ogr2ogr</title>
+      <link>https://amanbagrecha.github.io/post/rs_gis/import-csv-and-osm-data-into-postgresql-using-ogr2ogr/</link>
+      <pubDate>Sun, 18 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/post/rs_gis/import-csv-and-osm-data-into-postgresql-using-ogr2ogr/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://gdal.org/programs/ogr2ogr.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ogr2ogr&lt;/a&gt; is the swiss knife for vector geometry conversion. You can import CSV with latitude and longitude columns as Point geometry into PostgreSQL. This tool also makes it easy to import OSM data to be imported into PostgreSQL with a lot of flexibility.&lt;/p&gt;
+&lt;h2 id=&#34;1-insert-csv-to-postgresql&#34;&gt;1. Insert CSV to PostgreSQL&lt;/h2&gt;
+&lt;p&gt;Our CSV contains information about retail food stores including cafes, restaurants, grocery information with the location and name. Download the data &lt;a href=&#34;https://github.com/amanbagrecha/amanbagrecha.github.io/files/9592312/filter_all_cat_data.csv&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/190896961-cc985bf1-0b5b-4665-b53a-bcb9eadf50eb.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;We first read the metadata of the CSV using ogrinfo&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;ogrinfo -so filter_all_cat_data.csv filter_all_cat_data
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Assuming you have a database already (&lt;code&gt;postgres&lt;/code&gt; here), we run the following command to create &lt;code&gt;postgis&lt;/code&gt; extension for &lt;code&gt;postgres&lt;/code&gt; database. The connection string is of the format as described &lt;a href=&#34;https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;psql -c &amp;quot;create extension postgis;&amp;quot; &amp;quot;postgresql://postgres:1234@localhost:5432/postgres&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Finally, we insert the CSV into PostgreSQL table named &lt;strong&gt;cat_data_copy&lt;/strong&gt; and assign CRS of EPSG:4326.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;ogr2ogr -f PostgreSQL PG:&amp;quot;host=localhost user=postgres dbname=postgres password=1234&amp;quot; filter_all_cat_data.csv -oo X_POSSIBLE_NAMES=long_url -oo Y_POSSIBLE_NAMES=lat_url -nlt POINT -nln &amp;quot;cat_data_copy&amp;quot; -sql &amp;quot;select name,city,lat_url,long_url,type from filter_all_cat_data&amp;quot; -a_srs &amp;quot;EPSG:4326”
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The following explains few of the flags&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;-oo&lt;/code&gt;: &lt;code&gt;X_POSSIBLE_NAMES&lt;/code&gt; and &lt;code&gt;Y_POSSIBLE_NAMES&lt;/code&gt; allows us to specify geometry columns from CSV&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;-nlt&lt;/code&gt;: Define the geometry type for the table&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;-nln&lt;/code&gt;: alternate Table name (defaults to name of the file)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;-sql&lt;/code&gt;: write SQL to insert only selected columns into the table&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-insert-osm-data-to-postgresql&#34;&gt;2. Insert OSM data to PostgreSQL&lt;/h2&gt;
+&lt;p&gt;Our OSM data is of Bahamas downloaded from geofabrik. You can download it from &lt;a href=&#34;https://download.geofabrik.de/central-america/bahamas-latest.osm.pbf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;We first read the metadata of the OSM data using ogrinfo&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;ogrinfo -so bahamas-latest.osm.pbf multipolygons
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We find about the geometry column, CRS and columns in the data. This will be used when inserting the data into the database.&lt;/p&gt;
+&lt;p&gt;Next we create postgis and hstore extensions in our &lt;code&gt;postgres&lt;/code&gt; database.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;psql -c &amp;quot;create extension hstore; create extension postgis&amp;quot; &amp;quot;postgresql://postgres:1234@localhost:5432/postgres&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Finally we insert the data into PostgreSQL with table name as &lt;strong&gt;bahamas_mpoly&lt;/strong&gt; with only multipolygons. We convert the &lt;code&gt;other_tags&lt;/code&gt; column into &lt;code&gt;hstore&lt;/code&gt; and insert only those rows where the &lt;code&gt;name&lt;/code&gt; column does not contain a null value. We also clip our data to a bounding box and promote our polygons to multipolygons to avoid error.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;ogr2ogr -f PostgreSQL PG:&amp;quot;dbname=postgres host=localhost port=5432 user=postgres password=1234&amp;quot; bahamas-latest.osm.pbf multipolygons -nln bahamas_mpoly -lco COLUMN_TYPES=other_tags=hstore -overwrite -skipfailures -where &amp;quot;name is not null&amp;quot; -clipsrc -78 23 -73 27 -nlt PROMOTE_TO_MULTI
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;video-version-of-the-blog&#34;&gt;Video version of the blog:&lt;/h4&gt;
+&lt;iframe width=&#34;460&#34; height=&#34;215&#34; src=&#34;http://www.youtube.com/embed/87liLpASYPI?rel=0&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+</description>
+    </item>
     
     <item>
       <title>Merging Rasters using Rasterio</title>
