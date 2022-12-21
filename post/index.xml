@@ -17,24 +17,44 @@
       <link>https://amanbagrecha.github.io/post/qgis/how-hard-can-it-be-to-create-30-maps/</link>
       <pubDate>Wed, 21 Dec 2022 00:00:00 +0000</pubDate>
       <guid>https://amanbagrecha.github.io/post/qgis/how-hard-can-it-be-to-create-30-maps/</guid>
-      <description>&lt;p&gt;Maps I made for &lt;a href=&#34;https://twitter.com/search?q=%2330DayMapChallenge&amp;amp;src=typeahead_click&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#30DayMapChallenge&lt;/a&gt;. Read more about the challenge &lt;a href=&#34;https://30daymapchallenge.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+      <description>&lt;p&gt;I participated in the &lt;a href=&#34;https://twitter.com/search?q=%2330DayMapChallenge&amp;amp;src=typeahead_click&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#30DayMapChallenge&lt;/a&gt; for the first time. I found the experience to be both challenging and rewarding wherein I was able to create a variety of maps using different techniques and tools. I got to use felt, blender, kepler, python and QGIS for my maps.&lt;/p&gt;
+&lt;p&gt;Though I did not complete all of them, I realised how vital and hard it is to effectively communicate information through maps and how to use maps to make informed decisions. Hope to complete all 30 next year. Compiled all my maps for the year 2022 below -&lt;/p&gt;
+&lt;p&gt;Read more about the challenge &lt;a href=&#34;https://30daymapchallenge.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Day1: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1587517568197480448&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Points&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/208978036-69dbbc2c-0edd-4933-bf59-d2cfba3fa7a1.png&#34; alt=&#34;day1-points&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Day2: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1587837563150028800&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Lines&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Day3: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1588268637038661633&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Polygons&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Day4: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1588610806077599744&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Colour Friday: Green&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/208978064-800324d6-b53f-4769-870f-1f3069e8e808.png&#34; alt=&#34;day2-lines&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Day3: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1588268637038661633&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Polygons&lt;/a&gt;
+&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/208979145-f943c337-1306-4720-8b95-22ccd8f7917d.png&#34; alt=&#34;day3-polygon&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Day4: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1588610806077599744&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Colour Friday: Green&lt;/a&gt;
+&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/208979100-a31db1ca-47be-46ee-a2e0-35d5b9be07da.jpg&#34; alt=&#34;day4-greenday&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Day5: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1588961594414927873&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Ukraine&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Day6:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1589194185642762240&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Network&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Day7:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1589677794841489408&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Raster&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Day8:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1590047409337692161&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Data: OpenStreetMap&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Day10:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1590766714782126080&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;A bad map&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Day11:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1591145003061239809&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Colour Friday: Red&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Day12:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1591503001671602177&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Scale&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Day13:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1591847798609436672&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;5 minute map&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Day14:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1592231783864860672&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hexagons&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Day16: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1592953349523271680&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Minimal&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Day21: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1594746083330379776&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Data: Kontur Population Dataset&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Day23: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1595495715983089664&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Movement&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Day25: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1596213863266996225&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Two Colors&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/208979052-05237f71-549f-4279-a733-2347af076160.jpeg&#34; alt=&#34;day5-ukraine&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Day6:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1589194185642762240&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Network&lt;/a&gt;
+&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/208979247-34f780d5-7e39-4650-8ccf-9026f85eb458.jpeg&#34; alt=&#34;day6-network&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Day7:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1589677794841489408&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Raster&lt;/a&gt;
+&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/208979297-933d9403-053e-492a-9e6c-cedd16adbbe0.jpeg&#34; alt=&#34;day7-raster&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Day8:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1590047409337692161&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Data: OpenStreetMap&lt;/a&gt;
+&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/208979342-94f48a98-a7bb-4ef2-ac19-e6e660b79f8a.jpeg&#34; alt=&#34;day8-osm&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Day10:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1590766714782126080&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;A bad map&lt;/a&gt;
+&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/208979386-62a6ac59-4c9a-4cbe-8eea-adfdebe7f207.jpeg&#34; alt=&#34;day10-badmap&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Day11:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1591145003061239809&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Colour Friday: Red&lt;/a&gt;
+&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/208979429-f2ddf0cd-2f9b-4f78-8e38-75143b487081.jpeg&#34; alt=&#34;day11-red&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Day12:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1591503001671602177&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Scale&lt;/a&gt;
+&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/208979708-2ef22e06-76ac-4a3f-a603-c7901ebd2186.jpg&#34; alt=&#34;day12-scale&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Day13:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1591847798609436672&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;5 minute map&lt;/a&gt;
+&lt;img src=&#34;https://user-images.githubusercontent.com/119618422/208980231-2689d22d-3e83-42af-9f7d-4b9ed49e8b6e.png&#34; alt=&#34;image&#34;&gt;
+Day14:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1592231783864860672&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hexagons&lt;/a&gt;
+&lt;img src=&#34;https://user-images.githubusercontent.com/119618422/208980692-37a90bf0-c82e-45a6-b765-f248a6af40fb.jpeg&#34; alt=&#34;day14-hex&#34;&gt;
+Day16: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1592953349523271680&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Minimal&lt;/a&gt;
+&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/208980908-7eb66d2f-6f01-4681-880a-99a31d56051d.png&#34; alt=&#34;day16-ss&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Day21: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1594746083330379776&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Data: Kontur Population Dataset&lt;/a&gt;
+&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/208980823-154fcbfb-e02d-42e6-a466-977f26a4142c.jpeg&#34; alt=&#34;day21-image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Day23: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1595495715983089664&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Movement&lt;/a&gt;
+&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/208981041-f0d338e3-aa31-4a45-9f72-646e24950eae.gif&#34; alt=&#34;day23-gif&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Day25: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1596213863266996225&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Two Colors&lt;/a&gt;
+&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/208981134-c2fd8ed9-9769-4612-8db7-167d07b61697.jpeg&#34; alt=&#34;day25-map&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The data I used for this challenge is archived on &lt;a href=&#34;https://github.com/amanbagrecha/30DayMapChallenge&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
