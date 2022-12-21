@@ -5,12 +5,38 @@
     <link>https://amanbagrecha.github.io/post/</link>
       <atom:link href="https://amanbagrecha.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 18 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 21 Dec 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
       <link>https://amanbagrecha.github.io/post/</link>
     </image>
+    
+    <item>
+      <title>How hard can it be to create 30 Maps?</title>
+      <link>https://amanbagrecha.github.io/post/qgis/how-hard-can-it-be-to-create-30-maps/</link>
+      <pubDate>Wed, 21 Dec 2022 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/post/qgis/how-hard-can-it-be-to-create-30-maps/</guid>
+      <description>&lt;p&gt;Maps I made for &lt;a href=&#34;https://twitter.com/search?q=%2330DayMapChallenge&amp;amp;src=typeahead_click&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#30DayMapChallenge&lt;/a&gt;. Read more about the challenge &lt;a href=&#34;https://30daymapchallenge.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Day1: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1587517568197480448&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Points&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Day2: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1587837563150028800&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Lines&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Day3: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1588268637038661633&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Polygons&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Day4: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1588610806077599744&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Colour Friday: Green&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Day5: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1588961594414927873&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Ukraine&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Day6:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1589194185642762240&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Network&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Day7:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1589677794841489408&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Raster&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Day8:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1590047409337692161&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Data: OpenStreetMap&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Day10:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1590766714782126080&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;A bad map&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Day11:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1591145003061239809&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Colour Friday: Red&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Day12:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1591503001671602177&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Scale&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Day13:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1591847798609436672&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;5 minute map&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Day14:	&lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1592231783864860672&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hexagons&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Day16: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1592953349523271680&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Minimal&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Day21: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1594746083330379776&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Data: Kontur Population Dataset&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Day23: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1595495715983089664&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Movement&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Day25: &lt;a href=&#34;https://twitter.com/aman_bagrecha/status/1596213863266996225&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Two Colors&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Import CSV and OSM data into PostgreSQL using ogr2ogr</title>
