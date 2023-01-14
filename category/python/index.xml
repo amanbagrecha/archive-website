@@ -5,12 +5,81 @@
     <link>https://amanbagrecha.github.io/category/python/</link>
       <atom:link href="https://amanbagrecha.github.io/category/python/index.xml" rel="self" type="application/rss+xml" />
     <description>Python</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 07 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 14 Jan 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_512x512_fill_lanczos_center_2.png</url>
       <title>Python</title>
       <link>https://amanbagrecha.github.io/category/python/</link>
     </image>
+    
+    <item>
+      <title>Cloud Native Composite, Subset and Processing of Satellite Imagery with STAC and Stackstac</title>
+      <link>https://amanbagrecha.github.io/post/xarray/cloud-native-composite-subset-and-processing-of-satellite-imagery-with-stac-and-stackstac/</link>
+      <pubDate>Sat, 14 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/post/xarray/cloud-native-composite-subset-and-processing-of-satellite-imagery-with-stac-and-stackstac/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;If you wanted to collect all Sentinel satellite data for a given region of interest (ROI), say, for a given day or time frame - is there any simple way to do it? That means: Without having to download all the full images manually and cropping the ROI subset manually as well afterwards?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This, well articulated question, was the one which I was facing and made me ponder to think if we could do this using STAC and Python.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;I had a road network layer over which I needed satellite imagery. The problem with my road network is that it has a large spatial extent, causing a single satellite imagery to not cover it entirely. Moreover, because of this large extent, I need two adjacent tiles to be in the same Coordinate Reference System.&lt;/p&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/FHLQbBo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 - Road network (in red) spanning multiple UTM Zones&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;What I needed was,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A way to aggregate all the adjacent tiles for a single day&lt;/li&gt;
+&lt;li&gt;Convert to a single CRS on the fly&lt;/li&gt;
+&lt;li&gt;Subset the data to my region&lt;/li&gt;
+&lt;li&gt;Create a composite (merge) and perform analysis on the fly&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It turns out Python (and its ecosystem of great geospatial packages) along with STAC allows us to do just that.&lt;/p&gt;
+&lt;p&gt;What is STAC?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;STAC (SpatioTemporal Asset Catalog) is an open-source specification for describing satellite imagery and the associated metadata.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We will use &lt;code&gt;stackstac&lt;/code&gt;, which is a Python package for efficiently managing and analysing large amounts of satellite imagery data in a cloud computing environment.&lt;/p&gt;
+&lt;p&gt;First, we search through the sentinel-2 collection for our area of interest from element84 provided STAC endpoint.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from pystac_client import Client
+
+URL = &#39;https://earth-search.aws.element84.com/v0/&#39;
+
+client = Client.open(URL)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;search = client.search(
+    max_items = 10,
+    collections = &amp;quot;sentinel-s2-l2a-cogs&amp;quot;,
+    intersects = aoi_as_multiline,
+    datetime = &#39;2022-01-01/2022-01-24&#39;
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The resultant &lt;code&gt;search&lt;/code&gt; object is passed to &lt;code&gt;stack&lt;/code&gt; method on &lt;code&gt;stackstac&lt;/code&gt; along with providing the destination CRS, the region of bounds and the assets required.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import stackstac
+
+ds = stackstac.stack(search.get_all_items() ,  epsg=4326, assets=[&amp;quot;B04&amp;quot;, &amp;quot;B03&amp;quot;, &amp;quot;B05&amp;quot;],
+bounds_latlon= aoi_as_multiline.bounds )
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The above line does a lot of things under the hood. It transforms the CRS of each tile from their native CRS to EPSG:4326. It also clips the tiles to our AOI. It also filters only 3 bands out of the possible 15 sentinel-2 bands. 
+The output &lt;code&gt;ds&lt;/code&gt; is a &lt;code&gt;xarray.DataArray&lt;/code&gt; object and it is a known fact how much is possible with very little code in xarray.&lt;/p&gt;
+&lt;p&gt;As such, we can group by a date and mosaic those tiles very easily using xarray as shown below.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dsf = ds.groupby(&amp;quot;time.date&amp;quot;).median()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/BLCu4xs.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.2 - Our DataArray is 3.37GB with 4 dimensions (time, bands, x, y) respectively.&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Since xarray loads lazily, we did not perform any computation so far. But we can see how much data we are going to end up storing as shown in Figure 2.&lt;/p&gt;
+&lt;p&gt;When I run the &lt;code&gt;compute&lt;/code&gt; method on the output, it does the computation in 4 minutes (here) i.e, processing ~3.5GB in 4 mins and computing the median across the dates.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;res = dsf.compute()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;At the end of this process, I have 4 images for each of the 4 dates, clipped to my region of interest in the CRS that I desire.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;The above method of processing large volume data is super handy and can be scaled very easily with cloud infrastructure. What is unique about this approach is that I did not have to download data, convert or know the CRS of each tile, worrying about the bounds of my region of interest.
+Read more about how stackstac works &lt;a href=&#34;https://stackstac.readthedocs.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Merging Rasters using Rasterio</title>

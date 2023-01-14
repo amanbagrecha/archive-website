@@ -30,24 +30,33 @@
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/</loc>
-    <lastmod>2022-12-21T23:17:32+05:30</lastmod>
+    <lastmod>2023-01-14T14:20:38+05:30</lastmod>
   </url><url>
-    <loc>https://amanbagrecha.github.io/post/qgis/how-hard-can-it-be-to-create-30-maps/</loc>
-    <lastmod>2022-12-21T23:17:32+05:30</lastmod>
+    <loc>https://amanbagrecha.github.io/categories/</loc>
+    <lastmod>2023-01-14T14:20:38+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/post/xarray/cloud-native-composite-subset-and-processing-of-satellite-imagery-with-stac-and-stackstac/</loc>
+    <lastmod>2023-01-14T14:20:38+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/post/</loc>
+    <lastmod>2023-01-14T14:20:38+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/category/python/</loc>
+    <lastmod>2023-01-14T14:20:38+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/tags/</loc>
+    <lastmod>2023-01-14T14:20:38+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/tag/xarray/</loc>
+    <lastmod>2023-01-14T14:20:38+05:30</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/post/qgis/how-hard-can-it-be-to-create-30-maps/</loc>
     <lastmod>2022-12-21T23:17:32+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/post/rs_gis/import-csv-and-osm-data-into-postgresql-using-ogr2ogr/</loc>
     <lastmod>2022-09-18T15:14:02+05:30</lastmod>
   </url><url>
-    <loc>https://amanbagrecha.github.io/categories/</loc>
-    <lastmod>2022-08-07T10:55:30+05:30</lastmod>
-  </url><url>
     <loc>https://amanbagrecha.github.io/post/rs_gis/merge-rasters-the-modern-way-using-python/</loc>
-    <lastmod>2022-08-07T10:55:30+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/category/python/</loc>
     <lastmod>2022-08-07T10:55:30+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/tag/datascience/</loc>
@@ -62,9 +71,6 @@
     <loc>https://amanbagrecha.github.io/project/</loc>
     <lastmod>2022-07-28T22:06:36+05:30</lastmod>
   </url><url>
-    <loc>https://amanbagrecha.github.io/tags/</loc>
-    <lastmod>2022-07-28T22:06:36+05:30</lastmod>
-  </url><url>
     <loc>https://amanbagrecha.github.io/project/2022-07-28-train-spacenet-5-cresi-algorithm-to-extract-road-network-from-satellite-imagery/</loc>
     <lastmod>2022-07-28T22:06:36+05:30</lastmod>
   </url><url>
@@ -72,9 +78,6 @@
     <lastmod>2021-06-10T21:33:25+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/</loc>
-    <lastmod>2021-06-10T21:33:25+05:30</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/tag/xarray/</loc>
     <lastmod>2021-06-10T21:33:25+05:30</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/post/rs_gis/cogs-as-standin-replacement/</loc>

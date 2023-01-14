@@ -33,10 +33,10 @@
   
     
   
-  <meta name="description" content="GIS, Remote Sensing and Machine Learning" />
+  <meta name="description" content="If you wanted to collect all Sentinel satellite data for a given region of interest (ROI), say, for a given day or time frame - is there any simple way to do it?" />
 
   
-  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/404.html" />
+  <link rel="alternate" hreflang="en-us" href="https://amanbagrecha.github.io/post/xarray/cloud-native-composite-subset-and-processing-of-satellite-imagery-with-stac-and-stackstac/" />
 
   
 
@@ -315,7 +315,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_32x32_fill_lanczos_center_2.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_180x180_fill_lanczos_center_2.png" />
 
-  <link rel="canonical" href="https://amanbagrecha.github.io/404.html" />
+  <link rel="canonical" href="https://amanbagrecha.github.io/post/xarray/cloud-native-composite-subset-and-processing-of-satellite-imagery-with-stac-and-stackstac/" />
 
   
   
@@ -326,40 +326,94 @@
   
   
     
-    
   
   
-  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:card" content="summary_large_image" />
   
     <meta property="twitter:site" content="@https://twitter.com/aman_bagrecha" />
     <meta property="twitter:creator" content="@https://twitter.com/aman_bagrecha" />
   
   <meta property="og:site_name" content="Aman Bagrecha" />
-  <meta property="og:url" content="https://amanbagrecha.github.io/404.html" />
-  <meta property="og:title" content="404 Page not found | Aman Bagrecha" />
-  <meta property="og:description" content="GIS, Remote Sensing and Machine Learning" /><meta property="og:image" content="https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_512x512_fill_lanczos_center_2.png" />
-    <meta property="twitter:image" content="https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:url" content="https://amanbagrecha.github.io/post/xarray/cloud-native-composite-subset-and-processing-of-satellite-imagery-with-stac-and-stackstac/" />
+  <meta property="og:title" content="Cloud Native Composite, Subset and Processing of Satellite Imagery with STAC and Stackstac | Aman Bagrecha" />
+  <meta property="og:description" content="If you wanted to collect all Sentinel satellite data for a given region of interest (ROI), say, for a given day or time frame - is there any simple way to do it?" /><meta property="og:image" content="https://amanbagrecha.github.io/post/xarray/cloud-native-composite-subset-and-processing-of-satellite-imagery-with-stac-and-stackstac/featured.png" />
+    <meta property="twitter:image" content="https://amanbagrecha.github.io/post/xarray/cloud-native-composite-subset-and-processing-of-satellite-imagery-with-stac-and-stackstac/featured.png" /><meta property="og:locale" content="en-us" />
   
     
+      <meta
+        property="article:published_time"
+        content="2023-01-14T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2023-01-14T14:20:38&#43;05:30">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://amanbagrecha.github.io/post/xarray/cloud-native-composite-subset-and-processing-of-satellite-imagery-with-stac-and-stackstac/"
+  },
+  "headline": "Cloud Native Composite, Subset and Processing of Satellite Imagery with STAC and Stackstac",
+  
+  "image": [
+    "https://amanbagrecha.github.io/post/xarray/cloud-native-composite-subset-and-processing-of-satellite-imagery-with-stac-and-stackstac/featured.png"
+  ],
+  
+  "datePublished": "2023-01-14T00:00:00Z",
+  "dateModified": "2023-01-14T14:20:38+05:30",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Aman Bagrecha"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Aman Bagrecha",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "If you wanted to collect all Sentinel satellite data for a given region of interest (ROI), say, for a given day or time frame - is there any simple way to do it?"
+}
+</script>
+
+  
+
+  
+
   
 
   
 
 
 
-  
-
-  
 
 
-
-
-
-  <title>404 Page not found | Aman Bagrecha</title>
+  <title>Cloud Native Composite, Subset and Processing of Satellite Imagery with STAC and Stackstac | Aman Bagrecha</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   "  >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="c39620abb6535d5a5ebb7b8497d40db4" >
 
   
   
@@ -684,51 +738,339 @@
   </div>
 
   <div class="page-body">
-    <div class="universal-wrapper pt-3">
-
-  <h1>Page not found</h1>
-
-  
-  
-  <form class="d-flex align-items-center mb-3">
-    <input name="q" type="search" class="form-control" placeholder="Search..." autocomplete="off">
-  </form>
-  
+    <article class="article">
 
   
 
-  <p>Perhaps you were looking for one of these?</p>
+
+
+
+
+
+
+
+
+
+
+
+  
 
   
   
   
-  <h2>Latest</h2>
-  <ul>
+<div class="article-container pt-3">
+  <h1>Cloud Native Composite, Subset and Processing of Satellite Imagery with STAC and Stackstac</h1>
+
+  
+
+  
     
-      <li><a href="/courses/aws-notes/python/">Python basics</a></li>
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
     
-      <li><a href="/courses/example-notes/python/">Python basics</a></li>
     
-      <li><a href="/courses/gdal-notes/python/">Python basics</a></li>
+      
+          Last updated on
+      
     
-      <li><a href="/courses/aws-notes/visualization/">Visualization</a></li>
-    
-      <li><a href="/courses/example-notes/visualization/">Visualization</a></li>
-    
-      <li><a href="/courses/gdal-notes/visualization/">Visualization</a></li>
-    
-      <li><a href="/courses/aws-notes/stats/">Statistics</a></li>
-    
-      <li><a href="/courses/example-notes/stats/">Statistics</a></li>
-    
-      <li><a href="/courses/gdal-notes/stats/">Statistics</a></li>
-    
-      <li><a href="/post/xarray/cloud-native-composite-subset-and-processing-of-satellite-imagery-with-stac-and-stackstac/">Cloud Native Composite, Subset and Processing of Satellite Imagery with STAC and Stackstac</a></li>
-    
-  </ul>
+    Jan 14, 2023
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/python/">Python</a></span>
   
 
 </div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <blockquote>
+<p>If you wanted to collect all Sentinel satellite data for a given region of interest (ROI), say, for a given day or time frame - is there any simple way to do it? That means: Without having to download all the full images manually and cropping the ROI subset manually as well afterwards?</p>
+</blockquote>
+<p>This, well articulated question, was the one which I was facing and made me ponder to think if we could do this using STAC and Python.</p>
+<hr>
+<p>I had a road network layer over which I needed satellite imagery. The problem with my road network is that it has a large spatial extent, causing a single satellite imagery to not cover it entirely. Moreover, because of this large extent, I need two adjacent tiles to be in the same Coordinate Reference System.</p>
+<figure>
+<p><img src="https://i.imgur.com/FHLQbBo.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.1 - Road network (in red) spanning multiple UTM Zones</i></b></figcaption>
+</figure>
+<p>What I needed was,</p>
+<ul>
+<li>A way to aggregate all the adjacent tiles for a single day</li>
+<li>Convert to a single CRS on the fly</li>
+<li>Subset the data to my region</li>
+<li>Create a composite (merge) and perform analysis on the fly</li>
+</ul>
+<p>It turns out Python (and its ecosystem of great geospatial packages) along with STAC allows us to do just that.</p>
+<p>What is STAC?</p>
+<blockquote>
+<p>STAC (SpatioTemporal Asset Catalog) is an open-source specification for describing satellite imagery and the associated metadata.</p>
+</blockquote>
+<p>We will use <code>stackstac</code>, which is a Python package for efficiently managing and analysing large amounts of satellite imagery data in a cloud computing environment.</p>
+<p>First, we search through the sentinel-2 collection for our area of interest from element84 provided STAC endpoint.</p>
+<pre><code>from pystac_client import Client
+
+URL = 'https://earth-search.aws.element84.com/v0/'
+
+client = Client.open(URL)
+</code></pre>
+<pre><code>search = client.search(
+    max_items = 10,
+    collections = &quot;sentinel-s2-l2a-cogs&quot;,
+    intersects = aoi_as_multiline,
+    datetime = '2022-01-01/2022-01-24'
+)
+</code></pre>
+<p>The resultant <code>search</code> object is passed to <code>stack</code> method on <code>stackstac</code> along with providing the destination CRS, the region of bounds and the assets required.</p>
+<pre><code>import stackstac
+
+ds = stackstac.stack(search.get_all_items() ,  epsg=4326, assets=[&quot;B04&quot;, &quot;B03&quot;, &quot;B05&quot;],
+bounds_latlon= aoi_as_multiline.bounds )
+
+</code></pre>
+<p>The above line does a lot of things under the hood. It transforms the CRS of each tile from their native CRS to EPSG:4326. It also clips the tiles to our AOI. It also filters only 3 bands out of the possible 15 sentinel-2 bands. 
+The output <code>ds</code> is a <code>xarray.DataArray</code> object and it is a known fact how much is possible with very little code in xarray.</p>
+<p>As such, we can group by a date and mosaic those tiles very easily using xarray as shown below.</p>
+<pre><code>dsf = ds.groupby(&quot;time.date&quot;).median()
+</code></pre>
+<figure>
+<p><img src="https://i.imgur.com/BLCu4xs.png" alt=""></p>
+<figcaption align = "center"><b><i>Fig.2 - Our DataArray is 3.37GB with 4 dimensions (time, bands, x, y) respectively.</i></b></figcaption>
+</figure>
+<p>Since xarray loads lazily, we did not perform any computation so far. But we can see how much data we are going to end up storing as shown in Figure 2.</p>
+<p>When I run the <code>compute</code> method on the output, it does the computation in 4 minutes (here) i.e, processing ~3.5GB in 4 mins and computing the median across the dates.</p>
+<pre><code>res = dsf.compute()
+</code></pre>
+<p>At the end of this process, I have 4 images for each of the 4 dates, clipped to my region of interest in the CRS that I desire.</p>
+<hr>
+<p>The above method of processing large volume data is super handy and can be scaled very easily with cloud infrastructure. What is unique about this approach is that I did not have to download data, convert or know the CRS of each tile, worrying about the bounds of my region of interest.
+Read more about how stackstac works <a href="https://stackstac.readthedocs.io/" target="_blank" rel="noopener">here</a></p>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/xarray/">xarray</a>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      <a href="https://amanbagrecha.github.io/"><img class="avatar mr-3 avatar-circle" src="https://s.gravatar.com/avatar/643d1b0bcb1f06ba47f9a36b1ec145ee?s=200" alt="Aman Bagrecha"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://amanbagrecha.github.io/">Aman Bagrecha</a></h5>
+      <h6 class="card-subtitle">GIS and RS fanatic</h6>
+      <p class="card-text">My interests include documenting, programming, Deep learning and GIS matter.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/aman_bagrecha" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.youtube.com/channel/UCZ_uK9jYmKsmpPG6hj5HF-A" target="_blank" rel="noopener">
+        <i class="fab fa-youtube"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/amanbagrecha" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/amanbagrecha/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:jainaman588@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="article-widget">
+  
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/post/qgis/how-hard-can-it-be-to-create-30-maps/" rel="prev">How hard can it be to create 30 Maps?</a>
+  </div>
+  
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/xarray/download-and-preprocess-nasa-gpm-imerg-data-using-python-and-wget/">Download and preprocess NASA GPM IMERG Data using Python and wget</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
   </div>
 
   <div class="page-footer">
