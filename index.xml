@@ -363,6 +363,7 @@ The output &lt;code&gt;ds&lt;/code&gt; is a &lt;code&gt;xarray.DataArray&lt;/cod
 &lt;hr&gt;
 &lt;p&gt;The above method of processing large volume data is super handy and can be scaled very easily with cloud infrastructure. What is unique about this approach is that I did not have to download data, convert or know the CRS of each tile, worrying about the bounds of my region of interest.
 Read more about how stackstac works &lt;a href=&#34;https://stackstac.readthedocs.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The code can be found &lt;a href=&#34;https://colab.research.google.com/drive/1NcwW7S58PkZFnrGaCyOcA5uLTxymdbZl?usp=sharing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
