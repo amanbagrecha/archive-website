@@ -25,7 +25,7 @@
 &lt;p&gt;I had a road network layer over which I needed satellite imagery. The problem with my road network is that it has a large spatial extent, causing a single satellite imagery to not cover it entirely. Moreover, because of this large extent, I need two adjacent tiles to be in the same Coordinate Reference System.&lt;/p&gt;
 &lt;figure&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/FHLQbBo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 - Road network (in red) spanning multiple UTM Zones&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 - Road network (in red) spanning multiple UTM Zones. Basemap from OSM.&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;What I needed was,&lt;/p&gt;
 &lt;ul&gt;
@@ -77,8 +77,8 @@ The output &lt;code&gt;ds&lt;/code&gt; is a &lt;code&gt;xarray.DataArray&lt;/cod
 &lt;p&gt;At the end of this process, I have 4 images for each of the 4 dates, clipped to my region of interest in the CRS that I desire.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;The above method of processing large volume data is super handy and can be scaled very easily with cloud infrastructure. What is unique about this approach is that I did not have to download data, convert or know the CRS of each tile, worrying about the bounds of my region of interest.
-Read more about how stackstac works &lt;a href=&#34;https://stackstac.readthedocs.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;The code can be found &lt;a href=&#34;https://colab.research.google.com/drive/1NcwW7S58PkZFnrGaCyOcA5uLTxymdbZl?usp=sharing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+Read more about how stackstac works &lt;a href=&#34;https://stackstac.readthedocs.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The code can be found &lt;a href=&#34;https://colab.research.google.com/drive/1NcwW7S58PkZFnrGaCyOcA5uLTxymdbZl?usp=sharing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

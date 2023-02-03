@@ -18,23 +18,25 @@
       <pubDate>Thu, 26 Jan 2023 00:00:00 +0000</pubDate>
       <guid>https://amanbagrecha.github.io/post/rs_gis/understanding-jason-3-satellite-data-and-its-applications/</guid>
       <description>&lt;h3 id=&#34;what-is-jason-3&#34;&gt;What is Jason-3?&lt;/h3&gt;
-&lt;p&gt;Jason-3 is a satellite which measures topographic height of the entire earth once every ~10 days and is used in applications such as sea level rise, ocean circulation, and climate change.&lt;/p&gt;
+&lt;p&gt;Jason-3 is a satellite which measures topographic height of the entire earth once every ~10 days since the year 2016 and is used in applications such as sea level rise, ocean circulation, and climate change.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;It has an &lt;strong&gt;altimeter&lt;/strong&gt; which measures the two-way travel time from the Earth’s surface to satellite.&lt;/li&gt;
-&lt;li&gt;It emits pulse (radar pulse in this case) at certain frequency to measure time. Thus can also penetrate cloud.&lt;/li&gt;
+&lt;li&gt;It emits a pulse (radar pulse in this case) at a certain frequency to measure time. Thus it can also penetrate clouds.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;figure&gt;
 &lt;iframe width=&#34;100%&#34; height=&#34;450&#34; frameborder=&#34;0&#34; title=&#34;Felt Map&#34; src=&#34;https://felt.com/embed/map/Jason-3-pass-vgfiMu1mRpaWz6BZqg9Cx4D?lat=-6.478218&amp;lon=16.823646&amp;zoom=6.366&#34;&gt;&lt;/iframe&gt;
 &lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 - Jason-3 ground track visualised on felt. Each point represents a measurement. The distance between two measurements depends on specific product type. &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;&lt;em&gt;The data format of this satellite is Vector Points, distributed as netCDF4 file format.&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The data format of this satellite is Vector Points, distributed as netCDF4 file format.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;understanding-jason-3-family-of-products&#34;&gt;Understanding Jason-3 Family of products&lt;/h3&gt;
-&lt;p&gt;Jason-3 is processed to level-2 from raw measurements and is the sole product available online for users to download.&lt;strong&gt;Jason-3 level-2 product&lt;/strong&gt; has 3 family of products depending on their &lt;strong&gt;latency&lt;/strong&gt;. The near real time data with latency of 3-5 hours is categorized under Operational Geophysical Data Record (&lt;strong&gt;OGDR&lt;/strong&gt;) product family, with latency of 1-2 days under Interim geophysical data record (&lt;strong&gt;IGDR&lt;/strong&gt;) product family, and with latency of 60 days under geophysical data record (&lt;strong&gt;GDR&lt;/strong&gt;) product family.&lt;/p&gt;
+&lt;p&gt;Jason-3 is processed to level-2 from raw measurements and is available online for users to download. &lt;strong&gt;Jason-3 level-2 product&lt;/strong&gt; has 3 family of products depending on their &lt;strong&gt;latency&lt;/strong&gt;. The near real time data with latency of 3-5 hours is categorised under Operational Geophysical Data Record (&lt;strong&gt;OGDR&lt;/strong&gt;) product family, with latency of 1-2 days under Interim geophysical data record (&lt;strong&gt;IGDR&lt;/strong&gt;) product family, and with latency of 60 days under geophysical data record (&lt;strong&gt;GDR&lt;/strong&gt;) product family.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Note: Higher the latency, more accurate the measurements.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Under each family of product, there are categorized with &lt;strong&gt;reduced&lt;/strong&gt;, &lt;strong&gt;native&lt;/strong&gt; and &lt;strong&gt;sensor&lt;/strong&gt; as described in the figure below.&lt;/p&gt;
+&lt;p&gt;Under each family of product, there are categorised with &lt;strong&gt;reduced&lt;/strong&gt;, &lt;strong&gt;native&lt;/strong&gt; and &lt;strong&gt;sensor&lt;/strong&gt; as described in the figure below.&lt;/p&gt;
 &lt;figure&gt;
 &lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/216071809-e56744d4-e241-4a4c-9002-ea3cd416e183.png&#34; alt=&#34;2023-01-27-2302&#34;&gt;&lt;/p&gt;
 &lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.2 - Describing Jason-3 Product Family and its childs. Reduced product only contains data with 1Hz frequency. Native contains data with 1Hz + 20Hz. Sensor contains 1Hz + 20Hz + waveforms.
@@ -42,9 +44,9 @@ OGDR family is Near Real time data, while IGDR is corrected for orbits and has a
 &lt;/figure&gt;
 &lt;h3 id=&#34;which-jason-3-data-product-should-i-use&#34;&gt;Which Jason-3 data product should I use?&lt;/h3&gt;
 &lt;p&gt;The answer depends on 3 key factors: 1. Latency, spatial resolution, spectral resolution.&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;ve already mentioned about latency difference between three parent product (see above section). Depending on user requirements and accuracy, one of the three family can be selected.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve already mentioned the latency difference between three parent products (see above section). Depending on user requirements and accuracy, one of the three families can be selected.&lt;/p&gt;
 &lt;p&gt;Let us now look at two other factors which will help you decide which data product to choose.&lt;/p&gt;
-&lt;p&gt;Spatial resolution here is the distance between two measurements, while spectral resolution is richness of data. &lt;strong&gt;sensor product&lt;/strong&gt; contains information about the photon signals (waveforms) and might not be useful for certain applications, while &lt;strong&gt;reduced product&lt;/strong&gt; has sparsely spaced measurements, i.e, number of total measurements are less and it does not contain waveform information.&lt;/p&gt;
+&lt;p&gt;Spatial resolution here is the distance between two measurements, while spectral resolution is the richness of data. &lt;strong&gt;sensor product&lt;/strong&gt; contains information about the photon signals (waveforms) and might not be useful for certain applications, while &lt;strong&gt;reduced product&lt;/strong&gt; has sparsely spaced measurements, i.e, number of total measurements are less and it does not contain waveform information.&lt;/p&gt;
 &lt;p&gt;To illustrate which product to choose among the 8 products from 3 family, let us look at few real world use cases to help with our selection  -&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -59,13 +61,13 @@ OGDR family is Near Real time data, while IGDR is corrected for orbits and has a
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Earthdata hosts a product called &lt;strong&gt;GPS OGDR SSHA&lt;/strong&gt; which is delivered near real time (8-10 hours) as &lt;strong&gt;reduced product&lt;/strong&gt; (1Hz only). This product is more accurate than &lt;strong&gt;OGDR SSHA&lt;/strong&gt; from OGDR family described above due to it being processed against GPS orbit than DORIS, which is used for all other products.&lt;/p&gt;
+&lt;p&gt;Earthdata hosts a product called &lt;strong&gt;GPS OGDR SSHA&lt;/strong&gt; which is delivered near real time (8-10 hours) as &lt;strong&gt;reduced product&lt;/strong&gt; (1Hz only). This product is more accurate than &lt;strong&gt;OGDR SSHA&lt;/strong&gt; from the OGDR family described above due to it being processed against GPS orbit rather than DORIS orbit ( which is used for all other products described in figure 2). Though &lt;strong&gt;GPS OGDR SSHA&lt;/strong&gt; product is only available from 2020 october onwards.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Now that we know which product to download, let us look how and where to download them.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Manual Download&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://search.earthdata.nasa.gov/search/granules?p=C2205122298-POCLOUD&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Earthdata Search JASON3 GPS OGDR&lt;/a&gt;: It only allows you to visualize the ground track of the product you are going to download.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.ncei.noaa.gov/data/oceans/jason3/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NCEI NOAA JASON3&lt;/a&gt;: It has a GUI to check out the available products for each family, cycle and pass. Each family is suffixed with version number.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://search.earthdata.nasa.gov/search/granules?p=C2205122298-POCLOUD&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Earthdata Search JASON3 GPS OGDR&lt;/a&gt;: It only allows you to visualise the ground track of the product you are going to download.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ncei.noaa.gov/data/oceans/jason3/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NCEI NOAA JASON3&lt;/a&gt;: It has a GUI to check out the available products for each family, cycle and pass. Each family is suffixed with the version number.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://cmr.earthdata.nasa.gov/virtual-directory/collections/C2205122298-POCLOUD&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CMR API virtual Directory JASON3 GPS OGDR&lt;/a&gt;: It is same as NCEI NOAA, but only 1 product is available through CMR API virtual directory&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Programmatic download Links&lt;/strong&gt;&lt;/p&gt;
@@ -79,16 +81,21 @@ OGDR family is Near Real time data, while IGDR is corrected for orbits and has a
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;download-from-cmr-api&#34;&gt;Download from CMR API&lt;/h3&gt;
 &lt;p&gt;The entire code for downloading jason-3 data using CMR API can be found &lt;a href=&#34;https://github.com/amanbagrecha/jason3/blob/main/jason3_script.py&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Broadly, The code sends a requests to CMR Search API &lt;a href=&#34;https://cmr.earthdata.nasa.gov/search/granules.json&#34;&gt;https://cmr.earthdata.nasa.gov/search/granules.json&lt;/a&gt; along with parameters to filter by date, region and number of products required. The result is passed to authenticate with earthdata credentials and file is downloaded to local machine.&lt;/p&gt;
+&lt;p&gt;Broadly, The code sends a request to CMR Search API &lt;a href=&#34;https://cmr.earthdata.nasa.gov/search/granules.json&#34;&gt;https://cmr.earthdata.nasa.gov/search/granules.json&lt;/a&gt; along with parameters to filter by date, region and number of products required. The result is passed to authenticate with earthdata credentials and the file is downloaded to the local machine.&lt;/p&gt;
 &lt;h3 id=&#34;download-from-ftp-server&#34;&gt;Download from FTP server&lt;/h3&gt;
 &lt;p&gt;The entire code for downloading jason-3 data using FTP Server can be found &lt;a href=&#34;https://github.com/amanbagrecha/jason3/blob/main/jason3_ftp_script.py&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In this code, the FTP directory is fetch for a specific product. To know which parent family folder to choose, we need to understand family versions for Jason-3 product.&lt;/p&gt;
+&lt;p&gt;In this code, the FTP directory is fetched for a specific product. To know which parent family folder to choose, we need to understand family versions for the Jason-3 product.&lt;/p&gt;
 &lt;figure&gt;
 &lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/216138037-4752c77c-12c5-439d-94ba-d98adfc388f3.png&#34; alt=&#34;avi&#34;&gt;&lt;/p&gt;
 &lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.2 - Definition of Jason-3 products in FTP server directory. &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;Jason-3 family product is versioned based on wheather the product is used for calibration/validation or intended to be used by end user. If &lt;code&gt;t&lt;/code&gt; is suffixed with the name of parent folder, it means cal/val phase. Version &lt;code&gt;f&lt;/code&gt;, &lt;code&gt;d&lt;/code&gt; are updated family products.&lt;/p&gt;
-&lt;p&gt;I am yet to find a comparision of which version among &lt;code&gt;f&lt;/code&gt;, &lt;code&gt;d&lt;/code&gt; and no suffix is better, but from my usage testing all three, product with no suffix is good for general use cases.&lt;/p&gt;
+&lt;p&gt;The Jason-3 family product is versioned based on whether the product is used for calibration/validation or intended to be used by the end user. If &lt;code&gt;t&lt;/code&gt; is suffixed with the name of the parent folder, it means cal/val phase. Version &lt;code&gt;f&lt;/code&gt;, &lt;code&gt;d&lt;/code&gt; are updated family products.&lt;/p&gt;
+&lt;p&gt;I am yet to find a comparison of which version among &lt;code&gt;f&lt;/code&gt;, &lt;code&gt;d&lt;/code&gt; and no suffix is better, but from my usage testing all three, a product with no suffix is good enough for general use cases.&lt;/p&gt;
+&lt;p&gt;References&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ospo.noaa.gov/Products/documents/hdbk_j3.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jason-3 Product Handbook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://podaac.jpl.nasa.gov/dataset/JASON_3_L2_OST_OGDR_GPS&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;PODAAC JPL NASA&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
@@ -105,7 +112,7 @@ OGDR family is Near Real time data, while IGDR is corrected for orbits and has a
 &lt;p&gt;I had a road network layer over which I needed satellite imagery. The problem with my road network is that it has a large spatial extent, causing a single satellite imagery to not cover it entirely. Moreover, because of this large extent, I need two adjacent tiles to be in the same Coordinate Reference System.&lt;/p&gt;
 &lt;figure&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/FHLQbBo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 - Road network (in red) spanning multiple UTM Zones&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.1 - Road network (in red) spanning multiple UTM Zones. Basemap from OSM.&lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;What I needed was,&lt;/p&gt;
 &lt;ul&gt;
@@ -157,8 +164,8 @@ The output &lt;code&gt;ds&lt;/code&gt; is a &lt;code&gt;xarray.DataArray&lt;/cod
 &lt;p&gt;At the end of this process, I have 4 images for each of the 4 dates, clipped to my region of interest in the CRS that I desire.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;The above method of processing large volume data is super handy and can be scaled very easily with cloud infrastructure. What is unique about this approach is that I did not have to download data, convert or know the CRS of each tile, worrying about the bounds of my region of interest.
-Read more about how stackstac works &lt;a href=&#34;https://stackstac.readthedocs.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;The code can be found &lt;a href=&#34;https://colab.research.google.com/drive/1NcwW7S58PkZFnrGaCyOcA5uLTxymdbZl?usp=sharing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+Read more about how stackstac works &lt;a href=&#34;https://stackstac.readthedocs.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The code can be found &lt;a href=&#34;https://colab.research.google.com/drive/1NcwW7S58PkZFnrGaCyOcA5uLTxymdbZl?usp=sharing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
