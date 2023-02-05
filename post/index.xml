@@ -32,15 +32,14 @@
 &lt;/blockquote&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;understanding-jason-3-family-of-products&#34;&gt;Understanding Jason-3 Family of products&lt;/h3&gt;
-&lt;p&gt;Jason-3 is processed to level-2 from raw measurements and is available online for users to download. &lt;strong&gt;Jason-3 level-2 product&lt;/strong&gt; has 3 family of products depending on their &lt;strong&gt;latency&lt;/strong&gt;. The near real time data with latency of 3-5 hours is categorised under Operational Geophysical Data Record (&lt;strong&gt;OGDR&lt;/strong&gt;) product family, with latency of 1-2 days under Interim geophysical data record (&lt;strong&gt;IGDR&lt;/strong&gt;) product family, and with latency of 60 days under geophysical data record (&lt;strong&gt;GDR&lt;/strong&gt;) product family.&lt;/p&gt;
+&lt;p&gt;Jason-3 is processed to level-2 from telemetry data (level-0) and is available online for users to download via NOAA, EUMETSAT and CNES. &lt;strong&gt;Jason-3 level-2 product&lt;/strong&gt; has 3 family of products depending on their &lt;strong&gt;latency&lt;/strong&gt;. The near real time data with latency of 3-5 hours is categorised under Operational Geophysical Data Record (&lt;strong&gt;OGDR&lt;/strong&gt;) product family, with latency of 1-2 days under Interim geophysical data record (&lt;strong&gt;IGDR&lt;/strong&gt;) product family, and with latency of 60 days under geophysical data record (&lt;strong&gt;GDR&lt;/strong&gt;) product family.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Note: Higher the latency, more accurate the measurements.&lt;/p&gt;
+&lt;p&gt;Note: Higher the latency, more accurate the measurements since GDR products, unlike OGDR and IGDR products, are fully validated and calibrated.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Under each family of product, there are categorised with &lt;strong&gt;reduced&lt;/strong&gt;, &lt;strong&gt;native&lt;/strong&gt; and &lt;strong&gt;sensor&lt;/strong&gt; as described in the figure below.&lt;/p&gt;
+&lt;p&gt;Under each family, they are categorised with &lt;strong&gt;reduced&lt;/strong&gt;, &lt;strong&gt;native&lt;/strong&gt; and &lt;strong&gt;sensor&lt;/strong&gt; product. The difference between them is in the amount and type of data included, as described in the figure below.&lt;/p&gt;
 &lt;figure&gt;
-&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/216071809-e56744d4-e241-4a4c-9002-ea3cd416e183.png&#34; alt=&#34;2023-01-27-2302&#34;&gt;&lt;/p&gt;
-&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.2 - Describing Jason-3 Product Family and its childs. Reduced product only contains data with 1Hz frequency. Native contains data with 1Hz + 20Hz. Sensor contains 1Hz + 20Hz + waveforms.
-OGDR family is Near Real time data, while IGDR is corrected for orbits and has a latency of 2-3 days. GDR product is fully validated and has highest accuracy. &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/216826096-35712afa-a141-4bb5-8dcd-1f2f8eed1365.png&#34; alt=&#34;Untitled-2023-01-27-23021&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.2 - Describing Jason-3 Product Family and its childs. Reduced product only contains data with 1Hz frequency. Native product contains data with 1Hz + 20Hz. Sensor contains 1Hz + 20Hz + waveforms. GDR product is fully validated and has highest accuracy. &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;h3 id=&#34;which-jason-3-data-product-should-i-use&#34;&gt;Which Jason-3 data product should I use?&lt;/h3&gt;
 &lt;p&gt;The answer depends on 3 key factors: 1. Latency, spatial resolution, spectral resolution.&lt;/p&gt;
@@ -80,17 +79,20 @@ OGDR family is Near Real time data, while IGDR is corrected for orbits and has a
 &lt;p&gt;Data hosted by NCEI NOAA has all the data available for download, but NASA earthdata only hosts &lt;em&gt;GPS OGDR SSHA&lt;/em&gt; &lt;strong&gt;reduced product&lt;/strong&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;download-from-cmr-api&#34;&gt;Download from CMR API&lt;/h3&gt;
-&lt;p&gt;The entire code for downloading jason-3 data using CMR API can be found &lt;a href=&#34;https://github.com/amanbagrecha/jason3/blob/main/jason3_script.py&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Broadly, The code sends a request to CMR Search API &lt;a href=&#34;https://cmr.earthdata.nasa.gov/search/granules.json&#34;&gt;https://cmr.earthdata.nasa.gov/search/granules.json&lt;/a&gt; along with parameters to filter by date, region and number of products required. The result is passed to authenticate with earthdata credentials and the file is downloaded to the local machine.&lt;/p&gt;
+&lt;p&gt;The code for downloading jason-3 data using CMR API can be found &lt;a href=&#34;https://github.com/amanbagrecha/jason3/blob/main/jason3_script.py&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.
+Broadly, The code sends a request to CMR Search API &lt;a href=&#34;https://cmr.earthdata.nasa.gov/search/granules.json&#34;&gt;https://cmr.earthdata.nasa.gov/search/granules.json&lt;/a&gt; along with parameters to filter by date, region and number of products required. The result is passed to authenticate with earthdata credentials and the file is downloaded to the local machine.&lt;/p&gt;
 &lt;h3 id=&#34;download-from-ftp-server&#34;&gt;Download from FTP server&lt;/h3&gt;
-&lt;p&gt;The entire code for downloading jason-3 data using FTP Server can be found &lt;a href=&#34;https://github.com/amanbagrecha/jason3/blob/main/jason3_ftp_script.py&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In this code, the FTP directory is fetched for a specific product. To know which parent family folder to choose, we need to understand family versions for the Jason-3 product.&lt;/p&gt;
+&lt;p&gt;The entire code for downloading jason-3 data using FTP Server can be found &lt;a href=&#34;https://github.com/amanbagrecha/jason3/blob/main/jason3_ftp_script.py&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.
+In this code, the FTP directory is fetched for a specific product. To know which parent family folder to choose, we need to understand family versions for the Jason-3 product.&lt;/p&gt;
 &lt;figure&gt;
-&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/216138037-4752c77c-12c5-439d-94ba-d98adfc388f3.png&#34; alt=&#34;avi&#34;&gt;&lt;/p&gt;
-&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.2 - Definition of Jason-3 products in FTP server directory. &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/76432265/216826675-886e72bd-bb71-4727-ac76-86d7accd830d.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
+&lt;figcaption align = &#34;center&#34;&gt;&lt;b&gt;&lt;i&gt;Fig.3 - Jason-3 products grouped according to model version as seen in NOAA server directory at ncei.noaa.gov/data/oceans/jason3/. &lt;/i&gt;&lt;/b&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;The Jason-3 family product is versioned based on whether the product is used for calibration/validation or intended to be used by the end user. If &lt;code&gt;t&lt;/code&gt; is suffixed with the name of the parent folder, it means cal/val phase. Version &lt;code&gt;f&lt;/code&gt;, &lt;code&gt;d&lt;/code&gt; are updated family products.&lt;/p&gt;
-&lt;p&gt;I am yet to find a comparison of which version among &lt;code&gt;f&lt;/code&gt;, &lt;code&gt;d&lt;/code&gt; and no suffix is better, but from my usage testing all three, a product with no suffix is good enough for general use cases.&lt;/p&gt;
+&lt;p&gt;The Jason-3 family product is versioned based on whether the product is in calibration/validation phase or intended to be used by the end user. If &lt;strong&gt;&lt;code&gt;T&lt;/code&gt;&lt;/strong&gt; is suffixed with the name of the parent folder, it means cal/val phase otherwise it is for end user.
+Product families with no suffix, combines all the versioned family product, keeping the latest for each cycle. It has data for all cycles till the latest available date.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Since September 2018, all data products associated with &lt;strong&gt;&lt;code&gt;gdr&lt;/code&gt;&lt;/strong&gt; family have been moved to version &lt;strong&gt;&lt;code&gt;f&lt;/code&gt;&lt;/strong&gt;. If you require historcal jason3 data, it is a no-brainer to use GDR family products since it is at the most accurate among all the families and also has been updated with the latest model version &lt;strong&gt;&lt;code&gt;f&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;References&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.ospo.noaa.gov/Products/documents/hdbk_j3.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jason-3 Product Handbook&lt;/a&gt;&lt;/li&gt;
