@@ -53,6 +53,12 @@
     <loc>https://amanbagrecha.github.io/tags/</loc>
     <lastmod>2023-07-06T02:52:57+05:30</lastmod>
   </url><url>
+    <loc>https://amanbagrecha.github.io/talk/geopython-workshop/</loc>
+    <lastmod>2023-04-28T12:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://amanbagrecha.github.io/event/</loc>
+    <lastmod>2023-04-28T12:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://amanbagrecha.github.io/post/rs_gis/understanding-jason-3-satellite-data-and-its-applications/</loc>
     <lastmod>2023-02-05T21:01:30+05:30</lastmod>
   </url><url>
@@ -306,9 +312,6 @@
     <lastmod>2021-01-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/talk/analysis-of-flood-prone-region-with-sar-imagery-using-gee/</loc>
-    <lastmod>2020-05-01T13:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://amanbagrecha.github.io/event/</loc>
     <lastmod>2020-05-01T13:00:00+00:00</lastmod>
   </url><url>
     <loc>https://amanbagrecha.github.io/tag/crud/</loc>

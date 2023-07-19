@@ -5,12 +5,33 @@
     <link>https://amanbagrecha.github.io/event/</link>
       <atom:link href="https://amanbagrecha.github.io/event/index.xml" rel="self" type="application/rss+xml" />
     <description>Presentations and Talks</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 01 May 2020 13:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 28 Apr 2023 12:00:00 +0000</lastBuildDate>
     <image>
       <url>https://amanbagrecha.github.io/media/icon_hub8f2c4a40c112e5edee4297ae1d00aa4_198578_512x512_fill_lanczos_center_2.png</url>
       <title>Presentations and Talks</title>
       <link>https://amanbagrecha.github.io/event/</link>
     </image>
+    
+    <item>
+      <title>GeoPython Workshop</title>
+      <link>https://amanbagrecha.github.io/talk/geopython-workshop/</link>
+      <pubDate>Fri, 28 Apr 2023 12:00:00 +0000</pubDate>
+      <guid>https://amanbagrecha.github.io/talk/geopython-workshop/</guid>
+      <description>&lt;p&gt;Miscellaneous:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/playlist?list=PLP4zTYquupy8ELSqTqfRskP1m1W4ImHO6&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Videos of the entire hackathon&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://youtube.com/playlist?list=PLP4zTYquupy8ELSqTqfRskP1m1W4ImHO6&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;YouTube Playlist&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/IEEE-GRSS-GTSD-Hackathon/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hackathon Projects by students&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here is a &lt;a href=&#34;https://felt.com/map/Where-are-participants-from-Dd6xLozTRv6P6y9Bs129CNzA?lat=22.356024&amp;amp;lon=80.284317&amp;amp;zoom=5&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Felt&lt;/a&gt; map of spatial distribution of participants.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Analysis of Flood Prone Region with SAR Imagery using GEE</title>
